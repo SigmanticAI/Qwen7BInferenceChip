@@ -1,0 +1,9 @@
+[8] //  L3 full chain: bug_d128_stagebuf_nb (T=4 D=128 CQ-8) e2e=1.31% of value scale
+
+[8] //  phase A: CSR sanity + illegal-descriptor reject
+
+[55] //  phase B: hidden pipeline
+
+[4009110000] %Fatal: tb_apex_l3.sv:481: Assertion failed in tb_apex_l3.drive_g: drive_g stall @400911
+%Error: tb_apex_l3.sv:481: Verilog $stop
+Aborting...

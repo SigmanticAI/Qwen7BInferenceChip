@@ -1,0 +1,41 @@
+[clkgen] MMCM locked:
+Clock Group A Frequency (Mhz)
+| clk_extra_a1 | clk_extra_a2 | clk_extra_a3 |
+|--------------|--------------|--------------|
+|      15.62   |     125.00   |      62.50   |
+
+Clock Group B Frequency (Mhz)
+| clk_extra_b0 | clk_extra_b1 |
+|--------------|--------------|
+|       0.00   |       0.00   |
+
+Clock Group C Frequency (Mhz)
+| clk_extra_c0 | clk_extra_c1 |
+|--------------|--------------|
+|       0.00   |       0.00   |
+
+Clock Group HBM Frequency (Mhz)
+| clk_hbm_axi |
+|-------------|
+|      0.00   |
+[f2_regops/job_s019_L19_h03.regops.jsonl] 27601 ops, 507 checks, 0 fails
+[f2_regops/job_s027_L23_h02.regops.jsonl] 38146 ops, 643 checks, 0 fails
+[f2_regops/job_s033_L05_h18.regops.jsonl] 46069 ops, 745 checks, 0 fails
+[f2_regops/job_s050_L17_h08.regops.jsonl] 68470 ops, 1034 checks, 0 fails
+[f2_regops/job_s079_L17_h13.regops.jsonl] 106660 ops, 1527 checks, 0 fails
+[f2_regops/job_s080_L17_h08.regops.jsonl] 108028 ops, 1544 checks, 0 fails
+[f2_regops/job_s093_L09_h01.regops.jsonl] 125128 ops, 1765 checks, 0 fails
+[f2_regops/job_s106_L18_h03.regops.jsonl] 142285 ops, 1986 checks, 0 fails
+[f2_regops/job_s110_L11_h00.regops.jsonl] 147529 ops, 2054 checks, 0 fails
+[f2_regops/job_s110_L23_h15.regops.jsonl] 147529 ops, 2054 checks, 0 fails
+[f2_regops/job_s110_L25_h06.regops.jsonl] 147529 ops, 2054 checks, 0 fails
+[f2_regops/job_s113_L05_h18.regops.jsonl] 151519 ops, 2105 checks, 0 fails
+[f2_regops/job_s113_L18_h27.regops.jsonl] 151519 ops, 2105 checks, 0 fails
+[f2_regops/job_s120_L13_h20.regops.jsonl] 160753 ops, 2224 checks, 0 fails
+[f2_regops/job_s140_L14_h05_c0.regops.jsonl] 169930 ops, 2343 checks, 0 fails
+poll stall L16204 @0x2024: last 0x00000100 want 0x1a/0xffffffff
+[f2_regops/job_s140_L14_h05_c1.regops.jsonl] 16204 ops, 9 checks, 1 fails [ABORTED]
+[f2_regops/job_s151_L04_h07_c0.regops.jsonl] 169930 ops, 2343 checks, 0 fails
+poll stall L29668 @0x2024: last 0x00000100 want 0x30/0xffffffff
+[f2_regops/job_s151_L04_h07_c1.regops.jsonl] 29668 ops, 9 checks, 1 fails [ABORTED]
+F2HOST RESULT: files=18 checks=27051 fails=2 -> FAIL

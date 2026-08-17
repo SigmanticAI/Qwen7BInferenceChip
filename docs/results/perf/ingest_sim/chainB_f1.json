@@ -1,0 +1,64 @@
+{
+ "label": "chainB-F1",
+ "window": "CYCMARK_E6R-PREGO -> CYCMARK_E6R-WALKDONE",
+ "shell_cycles": 2238788,
+ "tile_cycles": 559697,
+ "theoretical_axi_Bpc": 64.0,
+ "theoretical_afifo_Bpc": 8.0,
+ "ddr_side_Bpc": 0.8196434856717116,
+ "fifo_push_Bpc": 0.8196434856717116,
+ "fifo_pop_Bpc": 0.8196434856717116,
+ "supply_Bpc_while_not_full": 7.993448450105417,
+ "achieved_vs_afifo_bound": 0.10245543570896395,
+ "supply_vs_afifo_bound": 0.9991810562631771,
+ "GBps_at_shell": {
+  "ddr_side": 0.2049108714179279,
+  "fifo_push": 0.2049108714179279,
+  "supply_capability": 1.9983621125263542,
+  "afifo_bound": 2.0
+ },
+ "busy_cycles": 2219564,
+ "busy_pct_of_window": 99.14132110767076,
+ "busy_decomposition": {
+  "push_cycles": 229376,
+  "stall_fifo_full": 1990000,
+  "other_bubbles_ar_lat_unpack": 188
+ },
+ "bursts": {
+  "n": 448,
+  "words": 28672,
+  "avg_words": 64.0,
+  "interburst_gap_avg": 1.0,
+  "interburst_gap_n": 444
+ },
+ "records": {
+  "n": 4,
+  "framing_gap_avg": 4769.666666666667,
+  "framing_gap_max_cum": 4799,
+  "framing_gap_n": 3,
+  "ack_to_reqtgl_avg": 4766.666666666667,
+  "walker_wf_handshakes": 4
+ },
+ "r_beats": 28672,
+ "occupancy": {
+  "mean": 509.1455430348921,
+  "max_cum": 512,
+  "end": 0,
+  "hist_pct": {
+   "0": 0.041093663178469776,
+   "1-64": 0.11613426550437111,
+   "65-128": 0.11434758449661156,
+   "129-192": 0.11434758449661156,
+   "193-256": 0.11434758449661156,
+   "257-320": 0.11434758449661156,
+   "321-384": 0.11434758449661156,
+   "385-448": 0.11434758449661156,
+   "449-511": 30.573685404781514,
+   "512": 68.58300115955598
+  }
+ },
+ "consistency": {
+  "pushes_eq_8x_rbeats": true,
+  "words_eq_rbeats": true
+ }
+}

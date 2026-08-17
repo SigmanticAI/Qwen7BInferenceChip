@@ -1,0 +1,7 @@
+Clock Group A Frequency (Mhz)
+| clk_extra_a1 | clk_extra_a2 | clk_extra_a3 |
+|--------------|--------------|--------------|
+|      15.62   |     125.00   |      62.50   |
+
+Type  FpgaImageSlot  VendorId    DeviceId    DBDF
+AFIDEVICE    0       0x1d0f      0xf006      0000:34:00.0

@@ -1,0 +1,120 @@
+{
+ "verdict": true,
+ "chain_a": {
+  "r1": {
+   "n": 896,
+   "bad": 0,
+   "bit_exact": true,
+   "first_bad": [],
+   "got_head": [
+    19810,
+    16943,
+    20539,
+    52145,
+    51752,
+    51750,
+    51751,
+    19376
+   ],
+   "want_head": [
+    19810,
+    16943,
+    20539,
+    52145,
+    51752,
+    51750,
+    51751,
+    19376
+   ]
+  },
+  "hostfree": {
+   "window_ops": 0,
+   "hostfree": true,
+   "offenders": []
+  },
+  "cycles": {
+   "stamps": {
+    "E6R-PREGO": 1419114,
+    "E6R-WALKDONE": 2398710
+   },
+   "walk_shell_cycles": 979596,
+   "walk_tile_cycles": 244899
+  },
+  "rq": [
+   48303,
+   25
+  ],
+  "comp": "0x4044e000"
+ },
+ "chain_b": {
+  "qkv": {
+   "jobs": 144,
+   "bad": 0,
+   "all_bit_exact": true
+  },
+  "r1": {
+   "n": 896,
+   "bad": 0,
+   "bit_exact": true,
+   "first_bad": [],
+   "got_head": [
+    19810,
+    16943,
+    20539,
+    52145,
+    51752,
+    51750,
+    51751,
+    19376
+   ],
+   "want_head": [
+    19810,
+    16943,
+    20539,
+    52145,
+    51752,
+    51750,
+    51751,
+    19376
+   ]
+  },
+  "silence": {
+   "window_ops": 1586,
+   "writes": 144,
+   "ro_advances": 144,
+   "control_writes": 0,
+   "silent": true,
+   "offenders": []
+  },
+  "cycles": {
+   "stamps": {
+    "E6R-PREGO": 1627882,
+    "E6R-WALKDONE": 3866670
+   },
+   "walk_shell_cycles": 2238788,
+   "walk_tile_cycles": 559697
+  }
+ },
+ "disc": {
+  "walk_off_red": true,
+  "poison": {
+   "mut": {
+    "k": 481,
+    "lane": 0,
+    "old": -9,
+    "new": 8,
+    "x_k": -127,
+    "delta_acc": -2159,
+    "o8_lane0": 7,
+    "o8_bad_lane0": 4,
+    "byte_offset": 1036033
+   },
+   "pred_moves": 1,
+   "red": true
+  },
+  "rq": {
+   "pred_moves": 20,
+   "red": true
+  }
+ }
+}

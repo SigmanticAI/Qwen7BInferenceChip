@@ -1,0 +1,228 @@
+{
+ "date": "2026-08-06",
+ "where": "fpga",
+ "agfi": "agfi-04cfe164ba90b8ab0",
+ "afi": "afi-0520bda18ad0d38f1",
+ "image_name": "apex-e7e8-20260806",
+ "commit": "a772713",
+ "geometry": {
+  "D": 64,
+  "DMODEL": 64,
+  "GQA": 2,
+  "DM": 896,
+  "QSTAGE": 14,
+  "DDR": 1
+ },
+ "clock": {
+  "recipe": "A2",
+  "mhz": 15.625,
+  "recipe_source": "s3://apex-f2-dcp-099597653601/dcp/e7_2026_08_06-071435.Developer_CL.tar :: to_aws/2026_08_06-071435.manifest.txt -> clock_recipe_a=A2"
+ },
+ "instance": "i-0029f4cb32ec22847 f2.6xlarge us-west-2",
+ "ddr": {
+  "loaded": true,
+  "full_verify": true,
+  "tensors": 20,
+  "words_read": 466288,
+  "fails": 0,
+  "reverified_after_all_runs": true,
+  "note": "the SAME resident weights served every run below"
+ },
+ "differential": [
+  {
+   "program": "walk_fuel_oproj",
+   "walked_steps": [
+    "OPROJ",
+    "RES1"
+   ],
+   "silicon": "PASS",
+   "caps": 896,
+   "checks": 36,
+   "fails": 0,
+   "walk_status": null
+  },
+  {
+   "program": "walk_fuel_qkv_oproj",
+   "walked_steps": [
+    "QKV",
+    "OPROJ",
+    "RES1"
+   ],
+   "silicon": "PASS",
+   "caps": 2192,
+   "checks": 50,
+   "fails": 0,
+   "walk_status": null
+  },
+  {
+   "program": "walk_e6",
+   "walked_steps": [
+    "SCORE",
+    "PV",
+    "OPROJ",
+    "RES1",
+    "NFEED",
+    "NSRC",
+    "FPROJ"
+   ],
+   "mask": "0x68f0",
+   "silicon": "FAIL",
+   "caps": 1,
+   "checks": 11,
+   "fails": 1,
+   "walk_status": "0x00003703",
+   "err": "WALK_ERR_SEQ",
+   "stall": "poll L1587 @0x1068 last 0x00003703 want 0x0/0x1"
+  },
+  {
+   "program": "walk_e7",
+   "walked_steps": [
+    "SCORE",
+    "PV",
+    "OPROJ",
+    "RES1",
+    "NORM2",
+    "NFEED",
+    "NSRC",
+    "FPROJ",
+    "FGAM"
+   ],
+   "mask": "0xe9f0",
+   "silicon": "FAIL",
+   "caps": 1,
+   "checks": 11,
+   "fails": 1,
+   "walk_status": "0x00003703",
+   "err": "WALK_ERR_SEQ",
+   "stall": "poll L1585 @0x1068 last 0x00003703 want 0x0/0x1"
+  },
+  {
+   "program": "walk_e8",
+   "walked_steps": [
+    "QKV",
+    "SCORE",
+    "PV",
+    "OPROJ",
+    "RES1",
+    "NORM2",
+    "NFEED",
+    "NSRC",
+    "FPROJ",
+    "FGAM"
+   ],
+   "mask": "0xe9f2",
+   "silicon": "FAIL",
+   "caps": 217,
+   "checks": 12,
+   "fails": 1,
+   "walk_status": "0x00003703",
+   "err": "WALK_ERR_SEQ",
+   "stall": "poll L2161 @0x1068 last 0x00003703 want 0x0/0x1"
+  }
+ ],
+ "e7_refusals_on_silicon": {
+  "walk_e7_off": {
+   "refused": true,
+   "caps": 0
+  },
+  "e7_fence_nofproj": {
+   "refused": true,
+   "caps": 0
+  },
+  "e7_fence_nonorm": {
+   "refused": true,
+   "caps": 0
+  },
+  "note": "all three descriptor-level refusals behave on silicon exactly as in sim \u2014 the walker's descriptor checker is healthy on this image"
+ },
+ "walk_status_decode": {
+  "raw": "0x3703",
+  "BUSY[0]": 1,
+  "ESTK[8]": 1,
+  "ECODE[11:9]": 3,
+  "ECODE_name": "WALK_ERR_SEQ",
+  "FMTSUP[15:12]": 3,
+  "meaning": "the walker latched an internal sequencing fault and never cleared busy, so the host's done-poll stalled"
+ },
+ "fault_localization": {
+  "walk_err_seq_sites": [
+   {
+    "file": "rtl/seq/seq_layer_walker2.sv",
+    "line": 1858,
+    "path": "S2_SKPR (STOREKV)",
+    "reachable": false,
+    "why_not": "EN_STOREKV (bit 3) is clear in all three failing masks"
+   },
+   {
+    "file": "rtl/top/apex_top.sv",
+    "line": 552,
+    "path": "wc_err_frame || wc_err_stale",
+    "reachable": true,
+    "why": "the only other site; therefore the fault is a COMPOSITE-UNIT fault"
+   }
+  ],
+  "composite_error_meanings": {
+   "err_frame": "tlast at the wrong beat (record framing) \u2014 seq_walker_comp.sv:97",
+   "err_stale": "requested an unwritten entry (scale-cache miss) \u2014 seq_walker_comp.sv:98"
+  },
+  "unit_under_suspicion": "the composite scale-cache subsystem as used on THIS image (bank instantiated at GQA=2); walk-vs-host attribution PENDING the host-mode control on this silicon",
+  "discriminating_prior_fact": "host-driven score+PV on the SAME D=64/GQA=2 geometry is already silicon-proven BIT-EXACT 1792/1792 (docs/results/p2_multilayer/p05b_hw_check2.log:78, agfi-0ecab46b8a8376b21) \u2014 so the bank itself computes correctly on silicon when the HOST drives the select; it is the WALKER-driven select (kv_eng_sel = walk_en_q ? wk_kv_eng_sel : l_kv_map_q, apex_top.sv:742) that faults",
+  "conclusion": "WALKED attention (SCORE+PV) does not survive silicon on this image. Every walked chain WITHOUT score/pv passes; every walked chain WITH score/pv faults, on the same card, image and resident weights. Mechanism open: select-crossing refuted (H=1); walk-only vs mode-independent split awaits the host-mode control.",
+  "refuted_hypothesis": "select-crossing: the flown walk_e7 descriptor decodes W_MODEL1=0x10101 = pack_model1(1,1,1) \u2014 H=1, n_kv=1, the engine select sits at 0 the whole walk and never moves",
+  "control_caveat": "the p05b host-attention control ran on agfi-0ecab46b8a8376b21 (pre-E-7 RTL) \u2014 host-mode composite on TODAY's image is untested; that split is the prepared next-card experiment"
+ },
+ "sim_status": {
+  "twin": "verif/f2sim/obj_e7fly_b64_ddr1/f2sim (built from the SAME commit as the image)",
+  "walk_e7": "PASS 221 caps, 27 checks 0 fails, all 4 discriminators fire",
+  "walk_e8": "PASS 437 caps, all 6 sub-grades bit-exact",
+  "walk_e6": "PASS (full E-6 chain gate green)",
+  "tile_div_sweep": {
+   "5": "PASS",
+   "2": "PASS",
+   "1": "PASS",
+   "16 (real card ratio)": "PASS",
+   "32": "PASS"
+  },
+  "note": "the simulator's clock divider is NOT the divergence \u2014 the twin passes at every divider, including undivided",
+  "twin_is_gqa_build": "confirmed: INFO_TIER&0x3 == 0x1 (bit1 clear) by checked read on the twin"
+ },
+ "what_this_does_NOT_retract": [
+  "E6_ON_SILICON.md \u2014 walk_oproj / walk_qkv_oproj were re-flown on THIS new image today and PASS (896 and 2192 captures, 86 checks, 0 fails)",
+  "the 6/6 op-type and C2 prompt results \u2014 those are host-driven",
+  "p05b host-driven attention on silicon \u2014 bit-exact, and it is the control that localizes this defect"
+ ],
+ "e8_prefix_diff": {
+  "hw_caps": 217,
+  "sim_caps": 437,
+  "compared": 217,
+  "mismatches": 0,
+  "meaning": "walked QKV was BIT-EXACT on silicon inside the failing walk; the fault is a clean stop at the QKV->SCORE step boundary",
+  "log": "build/e8_prefix_diff.log"
+ },
+ "second_session_2026_08_06": {
+  "instance": "i-0ec2487d966f900f0 (terminated+verified)",
+  "host_mode_attention_control": {
+   "jobs": 7,
+   "kv_engines": "0 and 1",
+   "result": "ALL PASS",
+   "record": "build/hostctl_result.json"
+  },
+  "walk_e6_recheck": {
+   "result": "FAIL, identical signature 0x3703"
+  },
+  "e7ng": {
+   "mask": "0xe9c0",
+   "result": "PASS on silicon, r1+h2 bit-exact, gamma-poison RED with physical DDR reload",
+   "doc": "E7NG_ON_SILICON.md"
+  },
+  "xdc_audit": "all exceptions scoped to CDC structures; no composite path swallowed",
+  "resolved": "the defect is exclusively the WALKER driving the composite scale-cache on this image; bank arithmetic (host mode), walker chains (e7ng), and fetch machinery (FGAM poison RED) all silicon-proven healthy"
+ },
+ "dbg_flight_2026_08_07": {
+  "image": "agfi-07245eb04d8bede9e (A2+WALK_DBG, WNS +0.453)",
+  "verdict": "err_stale on the sc_val leg; s_q leg healthy (head handshake reached); fuel-arm exonerated; mxe_desc_error is mechanical (identical in sim repro)",
+  "fingerprint_parity": "TOTAL \u2014 stall word, cap count, WALK_DBG class, ERR_STICKY pair, fuel/layer state all match the sim empty-cache repro",
+  "next_instrument": "WALK_DBG v2 @8c1c8db: snp counter + first-error ctx; repro=snp0/idx0/eng0, passing=snp2 \u2014 one flight names the seam",
+  "doc": "DBG_FLIGHT_RESULT.md"
+ }
+}

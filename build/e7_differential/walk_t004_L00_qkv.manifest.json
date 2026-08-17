@@ -1,0 +1,13 @@
+{
+ "name": "walk_t004_L00_qkv",
+ "regops": 12315,
+ "checks": 1348,
+ "caps": 896,
+ "cap_sites_rewritten": 0,
+ "erd_reads": 896,
+ "path": "build/tl_e7_nobatch/walk_t004_L00_qkv.regops.jsonl",
+ "stage": "walk_fuel_layer",
+ "d": 64,
+ "qkv_drain": true,
+ "act_rows": 14
+}

@@ -1,0 +1,15 @@
+[8] //  L3 core replay: calib_d64_T128 (T=128 D=64 CQ-8)
+
+[8] //  phase A: CSR sanity + illegal-descriptor reject
+
+[55] //  loader token: h8=[127,1,0...] via real RMSNorm+feeder
+
+[355] //  inject K/V fp16 rows through squant MODE_F16 -> KVQ store
+
+[528227] //  inject q row through squant MODE_QUANT (Q7 machinery)
+
+[528687] //  phase F: scores+softmax+P-requant, 16 chunks
+
+[9287830000] %Fatal: tb_apex_l3.sv:540: Assertion failed in tb_apex_l3.drive_cs: drive_cs stall @928783
+%Error: tb_apex_l3.sv:540: Verilog $stop
+Aborting...

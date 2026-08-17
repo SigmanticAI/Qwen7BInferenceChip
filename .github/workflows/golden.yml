@@ -1,0 +1,27 @@
+name: golden
+
+# The golden-model regression gate (ARCHITECTURE.md §8) + the perf-model
+# calibration check. Pure Python/NumPy — the Verilator suites are NOT run
+# here (they are driven locally; STATUS.md is regenerated only from fresh
+# full-suite runs per the anti-fabrication rule).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  golden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install NumPy
+        run: pip install numpy
+      - name: Golden suite (contract + compute + attention + transformer + plumbing7b + effbits)
+        run: make -C golden test PYTHON=python3
+      - name: Perf-model calibration anchors
+        run: python3 perf/apex_perf_model.py --check

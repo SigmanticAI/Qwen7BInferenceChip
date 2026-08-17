@@ -1,0 +1,51 @@
+==============================================================================
+PREDICTED HW PER-LAYER WALL — A PREDICTION, NOT A MEASUREMENT
+==============================================================================
+  No hardware was touched by this file. The model is fitted to the
+  two committed silicon runs and evaluated on the program sets the
+  sim runs above actually emitted.
+  model : wall = 4.8s x invocations + 45.8 ms x programs + 22.1 us x PEEKS
+          fit point s3_sweep: 29,696 programs, 68 invocations, 2160s (docs/results/prompt_on_chip/PROJ_SWEEP_RESULT.md)
+          fit point p05b_layer: 2,190 programs, 43 invocations, 470s (build/p05b_hw_check2.log (layer 0))
+          S3-class reference program (emitted here): 1,323 ops / 720 peeks at D=128 k=128
+          well-posed (both coefficients positive): True
+------------------------------------------------------------------------------
+  OLD (measured shape)   2160 proj programs + 30 other, 43 invocations, 7,394,304 peeks, 525 MB
+                         -> PREDICTED 470 s per layer
+  NEW (this change)      25 proj programs + 30 other, 5 invocations, 232,496 peeks, 214 MB
+                         -> PREDICTED 33 s per layer
+                         (that run MEASURED 5 executor entries and 80 programs per layer over 3 replay pass(es); collapse=True)
+------------------------------------------------------------------------------
+  The OLD row is NOT a validation: two parameters fitted to two
+  points reproduce both points by construction (470 s vs the 470 s measured executor
+  time it was fitted to; the measured per-layer WALL was 575-578 s, the
+  difference being host-side emit+grade, which this change also cuts).
+  What IS checkable: the fitted 22.1 us/peek is the same order as the
+  ~0.8 ms/job MMIO figure in MASTER_TABLE.md:44-46 divided by a job's peeks,
+  and both fit points come from DIFFERENT images, drivers and sessions.
+  PREDICTED speedup on the hw per-layer wall: 14.3x  (PREDICTION)
+  PREDICTED new per-layer wall: 33 s  (PREDICTION)
+  the PREDICTED 'new' wall, by term:
+      invocation setup                              24.0 s  (73%)
+      per-program (TILE_RST + parse + marker)        3.7 s  (11%)
+      BAR0 peeks                                     5.1 s  (16%)
+  5 invocations = one flush per layer REPLAY (3 passes; the last one serves every program from the
+  capture pool and enters no executor at all), each flush size-bounded at
+  --max-batch-mb. The per-head RoPE/attention and the residual windows no
+  longer cost an entry each: they ride the same flush as the projections.
+  SENSITIVITY to the one term this change attacks but cannot measure
+  without a card — C_inv is 5 ssh/scp connections + remote python + SDK
+  attach; remote_hw_exec now multiplexes all 5 onto ONE ssh connection:
+      C_inv =  4.8 s  ->    32.8 s per layer  ( 14.3x)   [MEASURED, pre-multiplexing]
+      C_inv =  2.5 s  ->    21.3 s per layer  ( 22.1x)   [PREDICTION]
+      C_inv =  1.5 s  ->    16.3 s per layer  ( 28.8x)   [PREDICTION]
+      C_inv =  1.0 s  ->    13.8 s per layer  ( 34.1x)   [PREDICTION]
+  Not modelled, and therefore NOT in the number above: the upload
+  bytes (this change cuts them 2.5x before gzip and ~10x
+  again with the gzipped tar), the ssh-multiplexing saving on the
+  5 connections per invocation, and the host-side emit time. All
+  three move the same way, so the prediction is a FLOOR on the
+  improvement only if the fitted model is the whole story — which
+  is exactly what the card session will decide.
+  record -> docs/results/prompt_on_chip/collapse_hw_prediction.json
+==============================================================================

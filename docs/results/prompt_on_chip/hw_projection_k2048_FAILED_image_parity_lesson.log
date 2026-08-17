@@ -1,0 +1,31 @@
+[remote_hw_exec] executor 'hw' -> ubuntu@35.90.250.213:~/apex_d (clock gate ON)
+==============================================================================
+FIRST NON-ATTENTION OP ON THE SILICON TWIN — a projection GEMM
+  op      L00 Wq[:, 0:8] x h8  (K=3584, N=8)
+  weights build/s8_weights/Qwen2.5-7B-4bit/L00_Wq.npy  (real Qwen2.5-7B INT8)
+  act     h8 of token 8420 = prompt_ids[0] of the committed S8 run, prompt 'Here are five interesting facts about the Moon:\n1.'
+  act     re-derived with golden's own quant/rmsnorm_fx_wide; s_h=0x214b amax code 127 at k*=658
+==============================================================================
+[build] qwen_l00_wq_k0: rows 0..15 k=2048 16308 regops 38 checks 9 caps 2048 weight beats (0.0s) -> build/f2_gemm_hw/qwen_l00_wq_k0.regops.jsonl
+[run  ] [./qwen_l00_wq_k0.regops.jsonl] 16308 ops, 36 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=36 fails=0 -> PASS
+[run  ] qwen_l00_wq_k0: rc=0 ok=True captures=9 (4.3s wall)
+[build] qwen_l00_wq_k1: rows 16..28 k=1664 13311 regops 35 checks 9 caps 1664 weight beats (0.1s) -> build/f2_gemm_hw/qwen_l00_wq_k1.regops.jsonl
+[run  ] [./qwen_l00_wq_k1.regops.jsonl] 13311 ops, 33 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=33 fails=0 -> PASS
+[run  ] qwen_l00_wq_k1: rc=0 ok=True captures=9 (4.3s wall)
+------------------------------------------------------------------------------
+[plan ] K_real=3584 -> K_staged=3712 in 29 stage rows of 128 (lane 0 of every row = channel k*=658, |code|=127, so MODE_QUANT is the identity; the 128 duplicate/pad lanes carry ZERO weight rows)
+[plan ] C-KSPLIT: 2 tile jobs, k = [2048, 1664] (K_MAX=2048)
+[part ] qwen_l00_wq_k0: k=2048 rows 0..15  INT32 partial [307, -184, 1380, -538, 332, -256, 1099, -886]
+[part ] qwen_l00_wq_k1: k=1664 rows 16..28  INT32 partial [1458, 12100, -1606, 1209, 2665, -2850, 3909, -3442]
+[sum  ] host-accumulated INT32 : [1765, 11916, -226, 671, 2997, -3106, 5008, -4328]
+[gold ] golden wide matmul     : [4606, 7364, 8535, 315, 7527, 8669, -778, -4875]
+[grade] {'equal': False, 'n': 8, 'n_diff': 8, 'worst': 11775.0, 'first_idx': 0}
+[grade] zero-padded output lanes read 0: True
+[time ] per-job wall clock [4.3, 4.34] s (total 8.7s incl. build+golden)
+[disc ] (a) +1 on one accumulated lane -> RED: True
+[disc ] (b) correct captures vs golden with ONE weight byte changed -> RED: True
+------------------------------------------------------------------------------
+PROJECTION GEMM ON THE TWIN: bit_exact=False (3584 INT8 channels contracted, 3712 weight beats pushed on the external xw port, 73 structural checks, 0 result expectations)
+GEMM_JOB SMOKE: FAIL

@@ -1,0 +1,21 @@
+==== tb_kvq_top config=d64_t70_cq4 D=64 T=70 TIER=1 G=64 K=0 NGRP=1 partial=1 stall=0 expect_bug=0
+     VECDIR=../../../golden/vectors/d64_T70_G64__CQ4
+     KEYDIR=../../../golden/vectors/d64_T70_G64__CQ4
+[V] streaming 70 value tokens
+[V] compress side-effects: checking 70 SRAM value records
+[V] decompress: reading back 70 tokens (fp32)
+[K] streaming key group 0 (G=64 tokens) at base 70
+[K] group 0 flushed (commit seq 0 -> ssid 0); checking 64 D-026 key records + bank row + readback
+[P] PARTIAL-GROUP DEMO: streaming 6-token tail (g<G=64) — no flush path in the top
+[P] confirmed: STATUS.idle=0 — engine wedged in ST_KACCEPT waiting for 58 more tokens
+[P] confirmed: OCCUPANCY unchanged (134) — the 6 tail tokens are stranded in the residual buffer
+[P] confirmed: READ_ADDR write while wedged is silently dropped (0 output beats in 5000 cycles)
+[P] soft reset recovers the engine (STATUS.idle=1); tail data is LOST
+[P] post-recovery value round-trip OK — limitation demonstrated, engine usable again
+============================================================
+CONFIG d64_t70_cq4: checks=24162 fails=0
+KVQ PARITY [d64_t70_cq4]: PASS (bit-exact records + fp32 readback, irq=0)
+- tb_kvq_top.sv:542: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 612us; walltime 0.045 s; speed 20.744 ms/s
+- Verilator: cpu 0.030 s on 1 threads; alloced 2 MB

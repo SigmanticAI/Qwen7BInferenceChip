@@ -1,0 +1,11 @@
+`verilator_config
+// lint_waivers.vlt — waivers for the FROZEN apex_pkg.sv only.
+//
+// NONE of the ASU RTL (rtl/asu/*.sv, including the clean-room rtl/asu/rsqrt.sv
+// that replaced the removed vendored rsqrt_unit) or any smoke TB is waived
+// here; those files must be -Wall clean on their own.
+//
+// apex_pkg.sv is the frozen tile-wide contract (do-not-modify). It declares
+// constants for ALL blocks, so any single block's build necessarily leaves
+// some of them unreferenced. (Same waiver as verif/mxe.)
+lint_off -rule UNUSEDPARAM -file "*apex_pkg.sv"

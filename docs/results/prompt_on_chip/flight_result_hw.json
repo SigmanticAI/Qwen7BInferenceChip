@@ -1,0 +1,316 @@
+{
+ "executor": "hw",
+ "n_stages": 34,
+ "n_pass": 34,
+ "wall_s": 49.5,
+ "ok": true,
+ "rows": [
+  {
+   "name": "nf_resid_probe",
+   "stage": "resid_probe",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 0
+  },
+  {
+   "name": "nf_resid_r1",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_norm2",
+   "stage": "norm2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_resid_r2",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_swiglu_probe",
+   "stage": "swiglu_probe",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 0
+  },
+  {
+   "name": "nf_swiglu",
+   "stage": "swiglu",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 21460
+  },
+  {
+   "name": "nf_rope_h00",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h01",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h02",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h03",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h04",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h05",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h06",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h07",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h08",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h09",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h10",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h11",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h12",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h13",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h14",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h15",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h16",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h17",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h18",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h19",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h20",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h21",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h22",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h23",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h24",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h25",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h26",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h27",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  }
+ ],
+ "claim_note": "norm2/resid are 128-wide UNIT demos; full-row forms stay gated on aws-fpga#799"
+}

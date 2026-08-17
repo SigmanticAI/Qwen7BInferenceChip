@@ -1,0 +1,32 @@
+INGESTMON armed (SIM-measured counters; behavioral twin — no silicon claim)
+DDRLOAD [L00_Wq] base=0x0 words=12544 tag=0 ok
+DDRLOAD [L00_Wk] base=0xc4000 words=1792 tag=1 ok
+DDRLOAD [L00_Wv] base=0xe0000 words=1792 tag=2 ok
+DDRLOAD [L00_Wo] base=0xfc000 words=12544 tag=3 ok
+DDRLOAD [L00_Wg] base=0x1c0000 words=68096 tag=4 ok
+DDRLOAD [L00_Wu] base=0x5e8000 words=68096 tag=5 ok
+DDRLOAD [L00_Wd] base=0xa10000 words=68096 tag=6 ok
+DDRLOAD [L00_g1] base=0xe38000 words=28 tag=7 ok
+DDRLOAD [L00_g2] base=0xe39000 words=28 tag=8 ok
+DDRLOAD [L00_phase] base=0xe3a000 words=128 tag=9 ok
+DDRLOAD [L01_Wq] base=0xe3c000 words=12544 tag=0 ok
+DDRLOAD [L01_Wk] base=0xf00000 words=1792 tag=1 ok
+DDRLOAD [L01_Wv] base=0xf1c000 words=1792 tag=2 ok
+DDRLOAD [L01_Wo] base=0xf38000 words=12544 tag=3 ok
+DDRLOAD [L01_Wg] base=0xffc000 words=68096 tag=4 ok
+DDRLOAD [L01_Wu] base=0x1424000 words=68096 tag=5 ok
+DDRLOAD [L01_Wd] base=0x184c000 words=68096 tag=6 ok
+DDRLOAD [L01_g1] base=0x1c74000 words=28 tag=7 ok
+DDRLOAD [L01_g2] base=0x1c75000 words=28 tag=8 ok
+DDRLOAD [L01_phase] base=0x1c76000 words=128 tag=9 ok
+DDRLOAD RESULT: regions=20 words=466288 rb_fails=0 sha_fails=0 -> PASS
+CYCMARK CYCMARK E6R-PREGO cyc=1965714
+INGESTMON SNAP CYCMARK_E6R-PREGO cyc=1965714 busy=0 arhs=0 arwords=0 rbeats=0 pushes=0 stallfull=0 pops=0 tedges=491429 occ=0 occmax=0 occsum=0 recs=0 recgapsum=0 recgapmax=0 recgapn=0 burstgapsum=0 burstgapn=0 reqtglsum=0 reqtgln=0 wfhs=0 hist=1965714,0,0,0,0,0,0,0,0,0
+INGESTMON REC n=1 cyc=2940443 arwords=12544 pushes=100352
+CYCMARK CYCMARK E6R-WALKDONE cyc=2945310
+INGESTMON SNAP CYCMARK_E6R-WALKDONE cyc=2945310 busy=974609 arhs=196 arwords=12544 rbeats=12544 pushes=100352 stallfull=868240 pops=100352 tedges=736328 occ=0 occmax=512 occsum=499684659 recs=1 recgapsum=0 recgapmax=0 recgapn=0 burstgapsum=195 burstgapn=195 reqtglsum=0 reqtgln=0 wfhs=1 hist=1966200,650,640,640,640,640,640,640,305053,669567
+[build/walk_ingest_f1/walk_oproj.regops.jsonl] 6394 ops, 36 checks, 0 fails (cyc 2978226)
+INGESTMON SNAP FILE_END cyc=2978226 busy=974609 arhs=196 arwords=12544 rbeats=12544 pushes=100352 stallfull=868240 pops=100352 tedges=744557 occ=0 occmax=512 occsum=499684659 recs=1 recgapsum=0 recgapmax=0 recgapn=0 burstgapsum=195 burstgapn=195 reqtglsum=0 reqtgln=0 wfhs=1 hist=1999116,650,640,640,640,640,640,640,305053,669567
+FUELAUDIT [build/walk_ingest_f1/walk_oproj.regops.jsonl] err=00000000 stat=00000309 -> ok
+F2SIM RESULT: files=1 checks=36 fails=0 -> PASS
+F2SIM CAPTURES: n=896 out=build/probes/obj_ing_f1_lat100.caps.jsonl

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="147" viewBox="0 0 390 147" role="img" aria-label="APEX tinyNPU — the attention engine that remembers">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+  </defs>
+    <rect x="24" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="40" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="56" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="8" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="72" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="8" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="72" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="8" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="24" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="40" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="56" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="72" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="8" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="72" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="8" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="72" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="123" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="139" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="155" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="171" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="123" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="139" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="155" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="107" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="222" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="238" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="254" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="270" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="222" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="238" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="254" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="206" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="222" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="238" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="254" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="270" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="305" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="369" y="8" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="321" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="353" y="24" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="337" y="40" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="337" y="56" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="321" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="353" y="72" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="305" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <rect x="369" y="88" width="13" height="13" rx="2.5" fill="url(#g)"/>
+  <text x="10" y="123" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" letter-spacing="6" fill="#8b949e">t i n y N P U</text>
+  <text x="10" y="141" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#8b949e">the attention engine that remembers</text>
+</svg>

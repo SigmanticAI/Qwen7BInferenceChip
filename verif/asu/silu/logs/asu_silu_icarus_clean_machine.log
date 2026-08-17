@@ -1,0 +1,59 @@
+# FIRST-EVER off-author-machine dual-simulator run of this suite.
+# Host      : AWS EC2 c6a.xlarge (x86_64), ip-172-31-51-160
+# OS        : Ubuntu 24.04.4 LTS, kernel 6.17.0-1019-aws
+# Verilator : Verilator 5.044 2026-01-01 rev v5.044   [pinned 5.044 - MATCHES]
+# Icarus    : Icarus Verilog version 12.0 (stable) ()   [ARCHITECTURE.md pins 13.0 - THIS IS 12.0, see finding]
+# Python    : Python 3.12.3
+# Date(UTC) : Mon Jul 27 06:23:42 UTC 2026
+# Tree      : comp/level-c-integration snapshot, unmodified sources
+# Command   : make silu IVERILOG=/usr/bin/iverilog VVP=/usr/bin/vvp
+#   (tool-path overrides ONLY - zero source edits; the suite Makefiles
+#    hardcode /opt/homebrew/bin/{iverilog,vvp}, which is the defect
+#    this run documents. No /opt/homebrew symlink was used for these.)
+# ============================================================================
+mkdir -p build
+python3 ../../../golden/gen_silu_lut_tables.py --out build/silu_lut_tables.regen.svh
+wrote build/silu_lut_tables.regen.svh: 256 base ([-1140,32500]), 256 slope ([-26,282])
+diff -q build/silu_lut_tables.regen.svh ../../../rtl/asu/silu_lut_tables.svh
+TABLES CHECK: rtl/asu/silu_lut_tables.svh matches the golden arbiter
+mkdir -p build
+python3 gen_silu_vectors.py --outdir build
+silu oracle: 65536 entries -> build/silu_expected.hex (range [-1140,32757], lim=8192)
+silu ROM   : 256 base + 256 slope -> build/silu_lut_{base,slope}.hex (Icarus $readmemh path)
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps +incdir+../../../rtl/asu +incdir+build --top-module asu_silu ../../../rtl/asu/asu_silu.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.036 MB sources in 2 modules, into 0.011 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.007 s (elab=0.001, cvt=0.002, bld=0.000); cpu 0.007 s on 1 threads; alloced 19.703 MB
+LINT CLEAN (-Wall, no waivers)
+mkdir -p build/obj_silu
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps +incdir+../../../rtl/asu +incdir+build --top-module tb_asu_silu \
+    -Mdir build/obj_silu ../../../rtl/asu/asu_silu.sv tb_asu_silu.sv
+make[1]: Entering directory '/home/ubuntu/apex-clean/verif/asu/silu/build/obj_silu'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex-clean/verif/asu/silu/build/obj_silu'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.006 s (elab=0.000, cvt=0.000, bld=0.006); cpu 0.001 s on 1 threads; alloced 18.379 MB
+build/obj_silu/Vtb_asu_silu 2>&1 | tee build/run_vl.log
+ASU SILU SMOKE: ALL TESTS PASSED (t=65541000)
+  65536/65536 input patterns bit-exact vs apex_golden silu_fx
+  (full Q5.10 domain + both clamp directions, signed Q4.12)
+- tb_asu_silu.sv:78: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 5ms; walltime 0.014 s; speed 346.579 ms/s
+- Verilator: cpu 0.014 s on 1 threads; alloced 7 MB
+mkdir -p build
+/usr/bin/iverilog -g2012 -Wall -o build/tb_asu_silu.iv.vvp \
+    -I ../../../rtl/asu -I build \
+    -s tb_asu_silu ../../../rtl/asu/asu_silu.sv tb_asu_silu.sv
+../../../rtl/asu/asu_silu.sv:79: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/asu/asu_silu.sv:79: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/asu/asu_silu.sv:79: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+/usr/bin/vvp build/tb_asu_silu.iv.vvp 2>&1 | tee build/run_iv.log
+ASU SILU SMOKE: ALL TESTS PASSED (t=65541)
+  65536/65536 input patterns bit-exact vs apex_golden silu_fx
+  (full Q5.10 domain + both clamp directions, signed Q4.12)
+tb_asu_silu.sv:78: $finish called at 65541 (1s)
+ASU SILU: exhaustive-domain check passed on Verilator AND Icarus
+
+# make exit: rc=0

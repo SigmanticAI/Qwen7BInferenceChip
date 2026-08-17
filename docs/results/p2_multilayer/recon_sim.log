@@ -1,0 +1,211 @@
+[P2-C] model=mlx-community/Qwen2.5-0.5B-Instruct-4bit  L=24 H=14 H_kv=2 head_dim=64 D_model=896 d_ffn=4864
+[P2-C] layers=(0,) step=4 mode=sim ops=proj,rope,attn,resid,norm,swiglu proj_cols=8
+[P2-C] transport: fat=True blocks_per_program=128 burst=True (FIFO depth 16); rows_per_desc=31 (sim twin built from this tree; 38ec95c base-row LOAD present in apex_stage_buf.sv: True) -> using 31
+[P2-C] WARNING: --include-reconstructed is ON (norm,swiglu): those families re-enter the host through the 64-wide C-1 feeder, the emitted token MAY legitimately differ from pure host, and this run is graded at the LOGIT level.
+[P2-C] transport: collapse=True (<= 64 MB per executor invocation, <= 12 layer replays)
+[P2-C] === run 1/3: OFFLOAD ON (1 layers) ===
+[P2-C] keeping lo_s004_L00_Wq's 1 job files as evidence (later calls are reclaimed after their flush; --keep-jobs disables it)
+[layer_offload] lo_s004_L00 pass 1: 48 program(s) the pool could not serve -> 1 executor invocation(s)
+[layer_offload] lo_s004_L00 pass 2: 21 program(s) the pool could not serve -> 1 executor invocation(s)
+[layer_offload] lo_s004_L00 pass 3: 4 program(s) the pool could not serve -> 1 executor invocation(s)
+[P2-C] L00 proj Wq: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wk: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wv: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wo: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[layer_offload] resid r1: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] L00 proj Wg: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.02s)
+[P2-C] L00 proj Wu: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.02s)
+[layer_offload] swiglu: 4864/4864 columns from the tile (76 x 64-col jobs), C-1 view bit-exact=True (2.61s)
+[P2-C] L00 proj Wd: 8/896 accumulators from the tile in 3 programs / 3 blocks (40,823 BAR0 ops, 2,213 peeks), bit-exact=True (0.02s)
+[layer_offload] resid r2: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] layer  0 done: 73 jobs, 19427 caps, 3 executor invocation(s) over 4 pass(es), executor 12.6s, wall 28.97s, families ['attn', 'norm', 'proj', 'resid', 'rope', 'swiglu'], checks 35/35
+[P2-C] === run 2/3: PURE HOST (golden, default bus) + MAC census ===
+[P2-C] MAC census verified against the model's own tensors: 24 layers, 379,846,656 projection MACs, 136,134,656 lm_head MACs, 480 inner ksplit recursions counted once
+[P2-C] === run 3/3: HOST ONLY, target layers in C-LBUS BUS_ON ===
+[P2-C] === discriminator on layer(s) (0,) (proj_cols=8) ===
+[P2-C] L00 proj Wq: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wk: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wv: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wo: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[layer_offload] resid r1: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] L00 proj Wg: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.02s)
+[P2-C] L00 proj Wu: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.01s)
+[layer_offload] swiglu: 4864/4864 columns from the tile (76 x 64-col jobs), C-1 view bit-exact=True (2.61s)
+[P2-C] L00 proj Wd: 8/896 accumulators from the tile in 3 programs / 3 blocks (40,823 BAR0 ops, 2,213 peeks), bit-exact=True (0.02s)
+[layer_offload] resid r2: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] layer  0 done: 0 jobs, 0 caps, 0 executor invocation(s) over 1 pass(es), executor 0.0s, wall 3.63s, families ['attn', 'norm', 'proj', 'resid', 'rope', 'swiglu'], checks 35/35
+[P2-C] keeping lo_s004_L00_Wo's 1 job files as evidence (later calls are reclaimed after their flush; --keep-jobs disables it)
+[layer_offload] lo_s004_L00 pass 1: 23 program(s) the pool could not serve -> 1 executor invocation(s)
+[layer_offload] lo_s004_L00 pass 2: 7 program(s) the pool could not serve -> 1 executor invocation(s)
+[layer_offload] lo_s004_L00 pass 3: 4 program(s) the pool could not serve -> 1 executor invocation(s)
+[P2-C] L00 proj Wq: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wk: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wv: 40/640 accumulators from the tile in 5 programs / 5 blocks (39,685 BAR0 ops, 2,230 peeks), bit-exact=True (0.0s)
+[P2-C] L00 proj Wo: 8/896 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.0s)
+[layer_offload] resid r1: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] L00 proj Wg: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.02s)
+[P2-C] L00 proj Wu: 8/4864 accumulators from the tile in 1 programs / 1 blocks (7,937 BAR0 ops, 446 peeks), bit-exact=True (0.02s)
+[layer_offload] swiglu: 4864/4864 columns from the tile (76 x 64-col jobs), C-1 view bit-exact=True (2.6s)
+[P2-C] L00 proj Wd: 8/896 accumulators from the tile in 3 programs / 3 blocks (40,823 BAR0 ops, 2,213 peeks), bit-exact=True (0.02s)
+[layer_offload] resid r2: 896/896 elements from the tile in 1 slices, bit-exact=True (0.04s)
+[P2-C] layer  0 done: 34 jobs, 16626 caps, 3 executor invocation(s) over 4 pass(es), executor 10.5s, wall 26.35s, families ['attn', 'norm', 'proj', 'resid', 'rope', 'swiglu'], checks 35/35
+
+==============================================================================
+P2 STAGE 3 — MANY Qwen2.5-0.5B DECODER LAYERS SERVED BY THE D=64 TILE
+==============================================================================
+  prompt          : '<ids [785, 6722, 315, 9625, 374]>'
+  prompt ids      : [785, 6722, 315, 9625, 374] (5 tokens)
+  model           : mlx-community/Qwen2.5-0.5B-Instruct-4bit
+                    L=24 H=14 H_kv=2 head_dim=64 D_model=896 d_ffn=4864
+  image           : b64_05b  CFG_D=64 CFG_DM=64 KVQ_GQA_NENG=2 RMS/LAYER_DM_MAX=896 QSTAGE_H_MAX=14
+  offloaded layers: [0]  (1 of 24)  decode step 4  composition C-LBUS BUS_ON
+  op families     : proj,rope,attn,resid,norm,swiglu
+  *** --include-reconstructed IS ON (norm,swiglu). Those families re-enter
+      the host through the 64-wide C-1 feeder (B-FEED-WIDTH): golden composes ONE
+      whole-row C-1 over 896 elements, the tile can only hand back
+      independently-scaled 64-wide frames. THE EMITTED TOKEN MAY LEGITIMATELY
+      DIFFER from the pure-host run — stage 2 measured a flip on 2 of 4 prompts
+      (docs/results/p2_b64_cl/RESULTS.md §5). This run is therefore graded at the
+      LOGIT level: token identity is REPORTED, not required.
+  executor        : sim   binary /Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/verif/f2sim/obj_b64_05b/f2sim
+  tile jobs       : 107 programs, 36053 capture records, 23.1s in the executor
+  invocations    : 6 entries into the executor for 107 programs (collapse ON, <= 64 MB per batch)
+  layer replay   : L00 4 pass(es) / 3 invocation(s)
+  capture pool   : 262 op fetch(es) served from the pool, 87 queued; 107 distinct programs executed, 62.9 MB of regops uploaded
+                   (a pooled capture set is reused ONLY for a program whose NAME and BYTES are identical — layer_offload.program_key — and every decode, grade and consumption check is re-run from those captures on every pass)
+  largest batch  : 18.7 MB in one invocation (6 flushes)
+  geometry audit  : 107 distinct programs audited (325 audit passes over re-emitted files), 107 distinct programs executed, 0 executed WITHOUT an audit — each audited program carries INFO_D == 64; descriptor k values seen = [0, 2, 5, 64, 960, 1024, 1984]  -> PASS
+  disclosed retarget: 325 INFO_TIER expectations rewritten 0x7 -> 0x1, exactly one per audited program (apex_top.sv:2540-2543). No datapath expectation touched.
+  transport       : fat=True burst=True rows_per_desc=31 blocks_per_program=128
+                    rows_per_desc=31 (sim twin built from this tree; 38ec95c base-row LOAD present in apex_stage_buf.sv: True)
+  projection cost : 25 programs, 25 8-column blocks, 249,461 BAR0 ops of which 13,775 PEEKS, 7.7 MB of regops
+                    (MEASURED by counting the emitted programs. Both executors poll before every push/fire, so a PEEK is the expensive half: f2_host_run.py:165-173, sim_main.cpp:453-460.)
+
+  PER-LAYER x PER-FAMILY LEDGER — served/total values, one row per
+  offloaded layer. Every layer's operands are staged from THAT layer's
+  own LayerWeights and verified per GEMM by _LayerState.next_proj,
+  which refuses an operand that is not the tensor it claims to be.
+  '*' marks a reconstruction (C-1 view); everything else is bit-exact
+  against golden's own view of that op. '.' = left on the host.
+  ------------------------------------------------------------------------------------------------------------------------------------------
+  layer    projections           RoPE      attention       residual      RMSNorm-2         SwiGLU   jobs     caps  exec s  inv pass   checks
+      0      120/13696       896/896*        896/896      1792/1792       896/896*     4864/4864*     73    19427    12.6    3    4 35/35    
+  ------------------------------------------------------------------------------------------------------------------------------------------
+  TOTAL      120/13696        896/896        896/896      1792/1792        896/896      4864/4864     73    19427    12.6    3      35/35    
+  'inv' = entries into the executor (ssh/process start + upload + attach), the
+  cost the fitted hw model charges 4.8 s each; 'pass' = replays of the layer
+  needed before every program it asks for was already in the capture pool.
+  per-layer wall  : min 29.0s  median 29.0s  max 29.0s  (MEASURED, 1 layers, emit + audit + retarget + execute + grade)
+  24-layer cost   : 0.19 h at the median above — EXTRAPOLATION, NOT RUN
+
+  PER-FAMILY LEDGER — summed over every offloaded layer
+  ----------------------------------------------------------------------------
+  op family                  who              served/total values   exact?
+  projections q/k/v/o/g/u/d  TILE (sim)       120/13696             BIT-EXACT
+      egress      : RO lanes, raw INT32                  EXACT
+      instances   : 7/7 op calls served, 17 tile programs, 153 caps, 0.06s
+      tile vs golden (same view): bit-exact
+        blocks                          : 1
+        K                               : 896
+  RoPE (decode-token q)      TILE (sim)       896/896               reconstructed
+      egress      : C-1 view (64 codes + row scale)      EXACT where consumed*
+      instances   : 14/14 op calls served, 14 tile programs, 1022 caps, 0.28s
+      tile vs golden (same view): bit-exact
+        max_abs_delta                   : 0.14013671875
+        requant_identical               : True
+        downstream_codes_match_golden   : True
+  attention (score + PV)     TILE (sim)       896/896               BIT-EXACT
+      egress      : RO lanes INT32 + captured s_c        EXACT
+      instances   : 14/14 op calls served, 14 tile programs, 1680 caps, 0.42s
+      tile vs golden (same view): bit-exact
+  residual (r1, r2)          TILE (sim)       1792/1792             BIT-EXACT
+      egress      : LAYER_RDATA fp16, ONE 896 window     EXACT
+      instances   : 2/2 op calls served, 2 tile programs, 1792 caps, 0.08s
+      tile vs golden (same view): bit-exact
+        reassembled_equal_golden        : True
+        per_slice_pass                  : 1
+        slices                          : 1
+  RMSNorm-2                  TILE (sim)       896/896               reconstructed
+      egress      : C-1 view, 14 x 64 frames             LOSSY (B-FEED-WIDTH)
+      instances   : 1/1 op calls served, 1 tile programs, 1036 caps, 0.18s
+      tile vs golden (same view): bit-exact
+        max_abs_delta_q78               : 12
+        downstream_c1_codes_n_diff      : 35
+        downstream_c1_scale_equal       : True
+        rows                            : 14
+  SwiGLU                     TILE (sim)       4864/4864             reconstructed
+      egress      : C-1 view, 76 x 64 frames             LOSSY (B-FEED-WIDTH)
+      instances   : 1/1 op calls served, 1 tile programs, 5548 caps, 2.61s
+      tile vs golden (same view): bit-exact
+        max_abs_delta                   : 0.01885986328125
+        downstream_c1_codes_n_diff      : 68
+        downstream_c1_scale_equal       : True
+        chunks                          : 76
+
+  FLOP SHARE — how much of this decode step's arithmetic the tile did
+  ----------------------------------------------------------------------------
+  DENOMINATOR (measured by observing golden's own calls during the
+  pure-host arm — MacCensus wraps gemm_i8_ksplit / attention_core /
+  decoder_layer_fx and counts, it never substitutes):
+      Wq: 1x896x896 per layer x 24 layers = 19,267,584 MACs
+      Wk: 5x896x128 per layer x 24 layers = 13,762,560 MACs
+      Wv: 5x896x128 per layer x 24 layers = 13,762,560 MACs
+      Wo: 1x896x896 per layer x 24 layers = 19,267,584 MACs
+      Wg: 1x896x4864 per layer x 24 layers = 104,595,456 MACs
+      Wu: 1x896x4864 per layer x 24 layers = 104,595,456 MACs
+      Wd: 1x4864x896 per layer x 24 layers = 104,595,456 MACs
+      attention (Q·K̂ᵀ + P·V̂, all heads, all layers) = 215,040 MACs
+      step total (24 layers)            = 380,061,696 MACs
+      lm_head (vocab x D_model, needed for the token) = 136,134,656 MACs
+      step + lm_head                                 = 516,196,352 MACs
+  NUMERATOR (only accumulators the tile actually produced):
+      projections: 120 of 13,696 accumulators over 1 layers
+                   x each call's own K = 139,264 MACs   [SAMPLED — see --proj-cols]
+      attention  : 14 heads served x 2·T·D = 8,960 MACs
+      tile total                                     = 148,224 MACs
+  >>> TILE SHARE OF THE DECODE STEP        : 0.04%   (SAMPLED projections, 1/24 layers)
+  >>> TILE SHARE OF STEP + lm_head         : 0.03%
+  Excluded from BOTH sides: elementwise work (RMSNorm, RoPE, SiLU,
+  residual, softmax) is not multiply-accumulate arithmetic. Measured
+  RMSNorm element-touches in this step: 150,528 (0.040% the size of the MAC count), so the exclusion cannot move the share
+  by a meaningful amount in either direction.
+  EXTRAPOLATION (LABELLED AS SUCH, not measured): at this run's
+  measured per-layer share of 0.04%, all 24 layers would be
+  0.9% of the step and 0.7% of step+lm_head. NOT RUN.
+
+  SUBSTITUTION / CONSUMPTION CHECKS: 35/35 PASS (the tile's value IS the value the model consumed)
+
+  logit geometry    : pure-host top-1 margin 0.5966 over a 29.48 logit range (2.02% of range)
+      max|dlogit| offload vs PURE host           = 4.661   (tile + BUS_ON composition, mixed)
+      max|dlogit| HOST+BUS_ON vs PURE host       = 3.424   (the composition mode ALONE, no tile)
+      max|dlogit| offload vs HOST+BUS_ON         = 4.932   (THE TILE ALONE — same composition both sides)
+  token OFFLOAD ON  : ids=[7407] text='[7407]' (36s)
+  token PURE HOST   : ids=[12095] text='[12095]' (5s)
+  token HOST+BUS_ON : ids=[12095] text='[12095]' (5s, 1 layer(s) composed BUS_ON) -> same as pure host
+  discriminator     : layer(s) [0], proj_cols=8
+      control (same layers offloaded, NOT poisoned): ids=[7407], max|dlogit| vs pure host = 4.661
+      poison  (every tile value x0.5): ids=[279], max|dlogit| vs control = 15.05  (substitutions ARE load-bearing)
+------------------------------------------------------------------------------
+  NOTE: the token changed. --include-reconstructed is on, so the C-1 re-entry
+        of RMSNorm-2/SwiGLU (B-FEED-WIDTH) is in play as well as the composition
+        mode: every family above is still bit-exact against golden's own view of
+        that op, so no tile value is wrong. Graded at the logit level, as declared.
+  OP FAMILIES SERVED BY THE TILE: 6/6 (proj, rope, attn, resid, norm, swiglu)
+  LAYERS SERVED BY THE TILE    : 1/24  [0]
+  TILE SHARE OF THE STEP       : 0.04% of multiply-accumulates
+  TOKEN == HOST IN SAME BUS    : FAIL   (the tile's own question)   [reported, NOT a pass condition]
+  TOKEN == PURE HOST           : FAIL   (offload-on == default-bus golden)   [reported, NOT a pass condition]
+  P2 STAGE 3                   : PASS
+==============================================================================
+  WHAT THE HOST STILL DID
+    - tokenizer, embedding lookup, the lm_head logits and the argmax (tie_word_embeddings: the head IS the embedding, handled at prepare) — the lm_head alone is 136,134,656 MACs, 26.4% of the token's arithmetic
+    - the 23 decoder layer(s) outside --layers, entirely on the host
+    - every decode step other than the offloaded one
+    - all data movement: weights, the KV rows, every operand staged into the tile and every value read back
+    - the C-2 requant epilogues (calib_requant + requant_i32_to_i8) of the attention output, the o-projection and the down-projection — the standing fence: the tile returns raw INT32, the host calibrates
+    - the attention path's score-dequant composites (s_q*s_k/sqrt(D), exact at D=64) are host-computed and pushed as CSRs; the online softmax itself runs on the tile's ASU
+    - the per-token whole-row C-1 quantizations that feed each op (quant_rows_i8 over all 896 elements, ONE amax) — the tile's C-1 feeder is elaborated at CFG_DM=64, so it frames the same values as 14 x 64 rows
+    - the RoPE of the CACHED K rows: the rotated K must reach the KVQ codec as exact fp16 bits and the tile's q_sink egress is a C-1 view (B-ROPE-EGRESS) — decode-token q rows only
+    - the projection accumulators outside --proj-cols 8 / --proj-rows 1073741824: 13576 of 13696
+==============================================================================
+  record -> build/p05b_recon_collapse/prompt05b_result.json

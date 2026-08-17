@@ -1,0 +1,112 @@
+[1] single token T=1
+    T1/CQ-8: T=1 D=64 e2e_abs=1.287e-02 e2e/|V|=6.437e-03 pmax=32768 psum=32768 their_gates=CLEAN
+  PASS  T1/CQ-8 their budget gates hold on adversarial data — []
+  PASS  T1/CQ-8 p fits UQ1.15 (<= 32768; asu_softmax.sv contract) — pmax=32768
+  NOTE  T1/CQ-8: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+    T1/CQ-4: T=1 D=64 e2e_abs=1.382e-01 e2e/|V|=6.909e-02 pmax=32768 psum=32768 their_gates=CLEAN
+  PASS  T1/CQ-4 their budget gates hold on adversarial data — []
+  PASS  T1/CQ-4 p fits UQ1.15 (<= 32768; asu_softmax.sv contract) — pmax=32768
+  NOTE  T1/CQ-4: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+    T1/CQ-4+: T=1 D=64 e2e_abs=1.382e-01 e2e/|V|=6.909e-02 pmax=32768 psum=32768 their_gates=CLEAN
+  PASS  T1/CQ-4+ their budget gates hold on adversarial data — []
+  PASS  T1/CQ-4+ p fits UQ1.15 (<= 32768; asu_softmax.sv contract) — pmax=32768
+  NOTE  T1/CQ-4+: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+[2] exactly tied scores (identical K rows), T=64
+    tied/CQ-8: T=64 D=64 e2e_abs=1.637e-02 e2e/|V|=8.184e-03 pmax=512 psum=32768 their_gates=CLEAN
+  PASS  tied/CQ-8 their budget gates hold on adversarial data — []
+  PASS  tied/CQ-8 sum(p) within [2^15-T, 2^15] — sum=32768
+    tied/CQ-4: T=64 D=64 e2e_abs=2.143e-02 e2e/|V|=1.072e-02 pmax=512 psum=32768 their_gates=CLEAN
+  PASS  tied/CQ-4 their budget gates hold on adversarial data — []
+  PASS  tied/CQ-4 sum(p) within [2^15-T, 2^15] — sum=32768
+    tied/CQ-4+: T=64 D=64 e2e_abs=2.143e-02 e2e/|V|=1.072e-02 pmax=512 psum=32768 their_gates=CLEAN
+  PASS  tied/CQ-4+ their budget gates hold on adversarial data — []
+  PASS  tied/CQ-4+ sum(p) within [2^15-T, 2^15] — sum=32768
+[3] near-tie: half the rows 1 fp16-ulp higher
+    neartie/CQ-8: T=64 D=64 e2e_abs=1.640e-02 e2e/|V|=8.201e-03 pmax=512 psum=32736 their_gates=CLEAN
+  PASS  neartie/CQ-8 their budget gates hold on adversarial data — []
+    neartie/CQ-4: T=64 D=64 e2e_abs=2.144e-02 e2e/|V|=1.072e-02 pmax=512 psum=32768 their_gates=CLEAN
+  PASS  neartie/CQ-4 their budget gates hold on adversarial data — []
+    neartie/CQ-4+: T=64 D=64 e2e_abs=2.144e-02 e2e/|V|=1.072e-02 pmax=512 psum=32768 their_gates=CLEAN
+  PASS  neartie/CQ-4+ their budget gates hold on adversarial data — []
+[4] ascending scores: T=130 rescale-every-token
+    ascend/CQ-8: T=130 D=64 e2e_abs=2.291e-02 e2e/|V|=1.146e-02 pmax=862 psum=32214 their_gates=CLEAN
+  PASS  ascend/CQ-8 their budget gates hold on adversarial data — []
+    ascend/CQ-4: T=130 D=64 e2e_abs=3.276e-02 e2e/|V|=1.638e-02 pmax=856 psum=32662 their_gates=CLEAN
+  PASS  ascend/CQ-4 their budget gates hold on adversarial data — []
+    ascend/CQ-4+: T=130 D=64 e2e_abs=3.276e-02 e2e/|V|=1.638e-02 pmax=857 psum=32676 their_gates=CLEAN
+  PASS  ascend/CQ-4+ their budget gates hold on adversarial data — []
+[4b] descending scores
+    descend/CQ-8: T=130 D=64 e2e_abs=2.071e-02 e2e/|V|=1.036e-02 pmax=876 psum=32702 their_gates=CLEAN
+  PASS  descend/CQ-8 their budget gates hold on adversarial data — []
+    descend/CQ-4: T=130 D=64 e2e_abs=4.239e-02 e2e/|V|=2.120e-02 pmax=859 psum=32703 their_gates=CLEAN
+  PASS  descend/CQ-4 their budget gates hold on adversarial data — []
+    descend/CQ-4+: T=130 D=64 e2e_abs=3.772e-02 e2e/|V|=1.886e-02 pmax=859 psum=32703 their_gates=CLEAN
+  PASS  descend/CQ-4+ their budget gates hold on adversarial data — []
+[5] dominant score, rest underflow exp LUT (T=32)
+    dominant/CQ-8: T=32 D=64 e2e_abs=1.565e-02 e2e/|V|=7.825e-03 pmax=6336 psum=32748 their_gates=CLEAN
+  PASS  dominant/CQ-8 their budget gates hold on adversarial data — []
+  PASS  dominant/CQ-8 p fits SIGNED Q1.15 — pmax=6336
+    dominant/CQ-4: T=32 D=64 e2e_abs=3.204e-02 e2e/|V|=1.602e-02 pmax=6326 psum=32738 their_gates=CLEAN
+  PASS  dominant/CQ-4 their budget gates hold on adversarial data — []
+  PASS  dominant/CQ-4 p fits SIGNED Q1.15 — pmax=6326
+    dominant/CQ-4+: T=32 D=64 e2e_abs=3.204e-02 e2e/|V|=1.602e-02 pmax=6326 psum=32738 their_gates=CLEAN
+  PASS  dominant/CQ-4+ their budget gates hold on adversarial data — []
+  PASS  dominant/CQ-4+ p fits SIGNED Q1.15 — pmax=6326
+[6] outlier channels x1000 (legal fp16), CQ-4 unmasked vs CQ-4+ masked
+    outlier1000/CQ-8: T=128 D=64 e2e_abs=3.064e-02 e2e/|V|=1.532e-02 pmax=2224 psum=32695 their_gates=CLEAN
+  PASS  outlier1000/CQ-8 their budget gates hold on adversarial data — []
+    outlier1000/CQ-4: T=128 D=64 e2e_abs=3.229e-02 e2e/|V|=1.615e-02 pmax=2497 psum=32697 their_gates=CLEAN
+  PASS  outlier1000/CQ-4 their budget gates hold on adversarial data — []
+    outlier1000/CQ-4+: T=128 D=64 e2e_abs=3.773e-02 e2e/|V|=1.887e-02 pmax=2224 psum=32697 their_gates=CLEAN
+  PASS  outlier1000/CQ-4+ their budget gates hold on adversarial data — []
+  NOTE  outlier1000 e2e/|V|: CQ-8=1.532e-02 CQ-4=1.615e-02 CQ-4+=1.887e-02 (CQ-4 unmasked degradation factor 1.1x)
+[7] all-zero K, then all-zero V
+    zeroK/CQ-8: T=16 D=64 e2e_abs=7.301e-03 e2e/|V|=3.650e-03 pmax=2048 psum=32768 their_gates=CLEAN
+  PASS  zeroK/CQ-8 their budget gates hold on adversarial data — []
+  NOTE  zeroV/CQ-8: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+    zeroK/CQ-4: T=16 D=64 e2e_abs=4.184e-02 e2e/|V|=2.092e-02 pmax=2048 psum=32768 their_gates=CLEAN
+  PASS  zeroK/CQ-4 their budget gates hold on adversarial data — []
+  NOTE  zeroV/CQ-4: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+    zeroK/CQ-4+: T=16 D=64 e2e_abs=4.184e-02 e2e/|V|=2.092e-02 pmax=2048 psum=32768 their_gates=CLEAN
+  PASS  zeroK/CQ-4+ their budget gates hold on adversarial data — []
+  NOTE  zeroV/CQ-4+: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+[8] partial-group straddles
+    straddle_T65_G64/CQ-8: T=65 D=64 e2e_abs=2.595e-02 e2e/|V|=1.297e-02 pmax=3444 psum=32738 their_gates=CLEAN
+  PASS  straddle_T65_G64/CQ-8 their budget gates hold on adversarial data — []
+    straddle_T65_G64/CQ-4: T=65 D=64 e2e_abs=3.829e-02 e2e/|V|=1.915e-02 pmax=3322 psum=32732 their_gates=CLEAN
+  PASS  straddle_T65_G64/CQ-4 their budget gates hold on adversarial data — []
+    straddle_T65_G64/CQ-4+: T=65 D=64 e2e_abs=3.942e-02 e2e/|V|=1.971e-02 pmax=3225 psum=32738 their_gates=CLEAN
+  PASS  straddle_T65_G64/CQ-4+ their budget gates hold on adversarial data — []
+    straddle_T127_G128/CQ-8: T=127 D=64 e2e_abs=3.062e-02 e2e/|V|=1.531e-02 pmax=2628 psum=32702 their_gates=CLEAN
+  PASS  straddle_T127_G128/CQ-8 their budget gates hold on adversarial data — []
+    straddle_T127_G128/CQ-4: T=127 D=64 e2e_abs=3.520e-02 e2e/|V|=1.760e-02 pmax=2895 psum=32705 their_gates=CLEAN
+  PASS  straddle_T127_G128/CQ-4 their budget gates hold on adversarial data — []
+    straddle_T127_G128/CQ-4+: T=127 D=64 e2e_abs=3.786e-02 e2e/|V|=1.893e-02 pmax=2888 psum=32710 their_gates=CLEAN
+  PASS  straddle_T127_G128/CQ-4+ their budget gates hold on adversarial data — []
+    straddle_T129_G128/CQ-8: T=129 D=64 e2e_abs=2.038e-02 e2e/|V|=1.019e-02 pmax=1324 psum=32701 their_gates=CLEAN
+  PASS  straddle_T129_G128/CQ-8 their budget gates hold on adversarial data — []
+    straddle_T129_G128/CQ-4: T=129 D=64 e2e_abs=3.233e-02 e2e/|V|=1.616e-02 pmax=1355 psum=32690 their_gates=CLEAN
+  PASS  straddle_T129_G128/CQ-4 their budget gates hold on adversarial data — []
+    straddle_T129_G128/CQ-4+: T=129 D=64 e2e_abs=3.871e-02 e2e/|V|=1.935e-02 pmax=1386 psum=32697 their_gates=CLEAN
+  PASS  straddle_T129_G128/CQ-4+ their budget gates hold on adversarial data — []
+    straddle_T3_G128/CQ-8: T=3 D=64 e2e_abs=1.200e-02 e2e/|V|=6.001e-03 pmax=13142 psum=32767 their_gates=CLEAN
+  PASS  straddle_T3_G128/CQ-8 their budget gates hold on adversarial data — []
+    straddle_T3_G128/CQ-4: T=3 D=64 e2e_abs=1.179e-01 e2e/|V|=5.894e-02 pmax=13583 psum=32767 their_gates=CLEAN
+  PASS  straddle_T3_G128/CQ-4 their budget gates hold on adversarial data — []
+    straddle_T3_G128/CQ-4+: T=3 D=64 e2e_abs=1.189e-01 e2e/|V|=5.945e-02 pmax=13560 psum=32766 their_gates=CLEAN
+  PASS  straddle_T3_G128/CQ-4+ their budget gates hold on adversarial data — []
+[9] score-dequant INT32 envelope (legal fp16 inputs, |K|~2000)
+  NOTE  score-dequant INT32 assert TRIPS on legal fp16 magnitudes: 'score-dequant INT32 overflow' -> RTL saturation semantics + max-|K|,|q| envelope are UNDERIVED
+[11] brute-force [Q] hard factors (0.57s INT8 / 0.51s INT4)
+  PASS  [Q] INT8 factor 0.57 sound (measured worst |x̂−x|/s) — worst=0.5000
+  PASS  [Q] INT4 factor 0.51 sound (measured worst codec |x̂−x|/s) — worst=0.5000
+==============================================================================
+NOTE: T1/CQ-8: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+NOTE: T1/CQ-4: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+NOTE: T1/CQ-4+: p reaches 32768 (=1.0). asu_softmax.sv documents UNSIGNED Q1.15 0..32768 so RTL holds it, but apex_pkg says only 'Q1.15' — P-requant seam must accept 32768; never exercised by the shipped T>=16 grid
+NOTE: outlier1000 e2e/|V|: CQ-8=1.532e-02 CQ-4=1.615e-02 CQ-4+=1.887e-02 (CQ-4 unmasked degradation factor 1.1x)
+NOTE: zeroV/CQ-8: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+NOTE: zeroV/CQ-4: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+NOTE: zeroV/CQ-4+: THEIR derive_and_gate CRASHES (ZeroDivisionError('float division by zero')) on legal input with y_ref==0 (ynorm division unguarded)
+NOTE: score-dequant INT32 assert TRIPS on legal fp16 magnitudes: 'score-dequant INT32 overflow' -> RTL saturation semantics + max-|K|,|q| envelope are UNDERIVED
+AUDIT: all adversarial checks passed

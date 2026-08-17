@@ -1,0 +1,13 @@
+[8] //  F-2/D-022 fail-first probe: TIER_CTRL is readable but NOT wired to any
+
+[8] //  runtime KVQ tier mux in the pre-fix tile (kvq_engine TIER is a synthesis
+
+[8] //  parameter, tile built TIER=0). Setting TIER_CTRL=CQ4 and polling the KVQ
+
+[8] //  engine's own INFO_TIER must read 1 on a tier-routed tile; the pre-fix
+
+[8] //  tile reads 0 forever -> KVP timeout ($fatal), the kept-failing signature.
+
+[10500335000] %Fatal: tb_apex_l3.sv:740: Assertion failed in tb_apex_l3.kv_poll: KVP 0c timeout (got 00000000) @1050033
+%Error: tb_apex_l3.sv:740: Verilog $stop
+Aborting...

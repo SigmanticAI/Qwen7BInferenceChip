@@ -1,0 +1,294 @@
+{
+ "prompt": "The capital of France is",
+ "prompt_ids": [
+  785,
+  6722,
+  315,
+  9625,
+  374
+ ],
+ "mode": "hw",
+ "offload": {
+  "layer": 0,
+  "head": 0,
+  "step": null
+ },
+ "tokens_on": [
+  12095
+ ],
+ "tokens_off": [
+  12095
+ ],
+ "text_on": " Paris",
+ "text_off": " Paris",
+ "token_identity": true,
+ "milestone_c": true,
+ "seconds": {
+  "on": 169.75289491703734,
+  "off": 145.13405295897974
+ },
+ "captures": [
+  {
+   "name": "poff_s000_L00_h00",
+   "step": 0,
+   "layer": 0,
+   "head": 0,
+   "T": 1,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "hw",
+   "seconds": 4.338,
+   "acc_source": "TILE via compute_job.grade_compute_job (hw)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 164,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    65532,
+    23
+   ],
+   "rq_golden": [
+    65532,
+    23
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s001_L00_h00",
+   "step": 1,
+   "layer": 0,
+   "head": 0,
+   "T": 2,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "hw",
+   "seconds": 4.193,
+   "acc_source": "TILE via compute_job.grade_compute_job (hw)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 181,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    40599,
+    22
+   ],
+   "rq_golden": [
+    40599,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s002_L00_h00",
+   "step": 2,
+   "layer": 0,
+   "head": 0,
+   "T": 3,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "hw",
+   "seconds": 4.274,
+   "acc_source": "TILE via compute_job.grade_compute_job (hw)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 198,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    34339,
+    22
+   ],
+   "rq_golden": [
+    34339,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s003_L00_h00",
+   "step": 3,
+   "layer": 0,
+   "head": 0,
+   "T": 4,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "hw",
+   "seconds": 4.041,
+   "acc_source": "TILE via compute_job.grade_compute_job (hw)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 215,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    61530,
+    22
+   ],
+   "rq_golden": [
+    61530,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s004_L00_h00",
+   "step": 4,
+   "layer": 0,
+   "head": 0,
+   "T": 5,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "hw",
+   "seconds": 4.611,
+   "acc_source": "TILE via compute_job.grade_compute_job (hw)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 232,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    65532,
+    23
+   ],
+   "rq_golden": [
+    65532,
+    23
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  }
+ ],
+ "git": "0a82c17",
+ "timestamp": "2026-07-29T19:11:12"
+}

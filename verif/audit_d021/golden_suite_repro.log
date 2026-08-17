@@ -1,0 +1,163 @@
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python tests/test_contract.py
+d64_T128_G64__CQ8          D= 64 T=128 G= 64 tier=0 : PASS
+d64_T128_G64__CQ4          D= 64 T=128 G= 64 tier=1 : PASS
+d64_T128_G64__CQ4plus      D= 64 T=128 G= 64 tier=2 : PASS
+d64_T70_G64__CQ8           D= 64 T= 70 G= 64 tier=0 : PASS
+d64_T70_G64__CQ4           D= 64 T= 70 G= 64 tier=1 : PASS
+d64_T70_G64__CQ4plus       D= 64 T= 70 G= 64 tier=2 : PASS
+d128_T100_G128__CQ8        D=128 T=100 G=128 tier=0 : PASS
+d128_T100_G128__CQ4        D=128 T=100 G=128 tier=1 : PASS
+d128_T100_G128__CQ4plus    D=128 T=100 G=128 tier=2 : PASS
+================================================================
+APEX GOLDEN vs FROZEN VECTORS: ALL 9 CONFIGS BIT-EXACT
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python tests/test_compute.py
+[C-3 gemm_i8]
+  PASS  matches int64 matmul at K=K_MAX
+  PASS  worst-case |acc| fits INT32
+  PASS  K>2048 rejected
+[C-2 requant_i32_to_i8]
+  PASS  RNE sat scale=1 shift=0
+  PASS  RNE sat scale=3 shift=1
+  PASS  RNE sat scale=77 shift=7
+  PASS  RNE sat scale=65535 shift=31
+  PASS  RNE sat scale=256 shift=8
+  PASS  RNE sat scale=1 shift=31
+  PASS  half-to-even on exact ties — got [0, 2, 0, -2, 2, -2]
+[§6 exp LUT]
+  PASS  exhaustive domain max|err|=4.63e-04 ≤ 2^-10
+[§6 online softmax fx]
+  PASS  200 random rows, worst L1 err=0.0002 ≤ 0.02
+  PASS  uniform scores → equal probs
+[§6 rmsnorm ref sanity]
+  PASS  output RMS ≈ 1
+================================================================
+APEX COMPUTE GOLDEN: ALL PROPERTIES PASS
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python tests/test_attention.py
+[A] self-consistency vs proven primitives
+  PASS  rmsnorm_fx == verif/asu normative oracle (300 random rows)
+  PASS  feeder quant == C-1 compress_values codes (bit-exact)
+  PASS  feeder quant == C-1 compress_values scales (bit-exact)
+  PASS  chain KVQ == direct compress_keys payload+scales+sidecar
+  PASS  LEMMA-EXP |Δ| ≤ 0.00049·e^z + 2^-14 (all 16385 points)
+  PASS  score-dequant |Δ| ≤ RNE + f32 bound (100k random)
+  PASS  calib_requant never saturates sat8 (margin target=126)
+[B] error-budget measurement + [C] derived gates
+  case                                 e2e/|y|   e2e/|V|  mean/|y|  b_comp/y  b_stat/y   asu_L1 verdict
+  gauss/D64/T16/CQ-8                  1.78e-02  3.67e-03  5.00e-03  2.35e-01  1.03e-01  3.4e-04 PASS
+  gauss/D64/T16/CQ-4                  9.96e-02  2.05e-02  3.98e-02  1.82e+00  2.09e-01  3.4e-04 PASS
+  gauss/D64/T16/CQ-4+                 9.90e-02  2.04e-02  3.88e-02  1.72e+00  2.08e-01  3.7e-04 PASS
+  gauss/D64/T64/CQ-8                  5.52e-02  5.83e-03  2.04e-02  1.08e+00  5.62e-01  1.3e-03 PASS
+  gauss/D64/T64/CQ-4                  1.64e-01  1.73e-02  4.26e-02  4.22e+00  6.08e-01  1.3e-03 PASS
+  gauss/D64/T64/CQ-4+                 1.57e-01  1.65e-02  4.70e-02  4.97e+00  6.05e-01  1.1e-03 PASS
+  gauss/D64/T128/CQ-8                 1.28e-01  9.60e-03  4.21e-02  2.66e+00  1.47e+00  2.2e-03 PASS
+  gauss/D64/T128/CQ-4                 2.21e-01  1.65e-02  5.50e-02  9.39e+00  1.51e+00  2.3e-03 PASS
+  gauss/D64/T128/CQ-4+                2.51e-01  1.88e-02  5.41e-02  8.51e+00  1.51e+00  2.0e-03 PASS
+  gauss/D64/T130/CQ-8                 1.11e-01  7.56e-03  3.33e-02  3.06e+00  1.61e+00  2.3e-03 PASS
+  gauss/D64/T130/CQ-4                 1.74e-01  1.19e-02  5.36e-02  9.86e+00  1.64e+00  2.1e-03 PASS
+  gauss/D64/T130/CQ-4+                2.14e-01  1.46e-02  5.11e-02  9.00e+00  1.64e+00  2.0e-03 PASS
+  gauss/D128/T16/CQ-8                 1.43e-02  4.28e-03  4.59e-03  2.33e-01  7.69e-02  3.4e-04 PASS
+  gauss/D128/T16/CQ-4                 1.17e-01  3.52e-02  3.71e-02  1.45e+00  1.80e-01  6.1e-04 PASS
+  gauss/D128/T16/CQ-4+                1.17e-01  3.52e-02  3.71e-02  1.49e+00  1.80e-01  4.6e-04 PASS
+  gauss/D128/T64/CQ-8                 5.84e-02  5.75e-03  1.62e-02  1.12e+00  6.01e-01  1.4e-03 PASS
+  gauss/D128/T64/CQ-4                 1.37e-01  1.35e-02  3.97e-02  4.36e+00  6.48e-01  1.3e-03 PASS
+  gauss/D128/T64/CQ-4+                1.27e-01  1.25e-02  3.94e-02  4.30e+00  6.47e-01  1.5e-03 PASS
+  gauss/D128/T128/CQ-8                1.66e-01  9.65e-03  4.73e-02  3.23e+00  1.86e+00  2.4e-03 PASS
+  gauss/D128/T128/CQ-4                2.30e-01  1.33e-02  5.69e-02  1.16e+01  1.89e+00  2.3e-03 PASS
+  gauss/D128/T128/CQ-4+               2.18e-01  1.26e-02  5.90e-02  1.16e+01  1.89e+00  2.2e-03 PASS
+  gauss/D128/T130/CQ-8                1.50e-01  8.75e-03  4.08e-02  3.14e+00  1.86e+00  2.0e-03 PASS
+  gauss/D128/T130/CQ-4                1.99e-01  1.17e-02  6.00e-02  1.02e+01  1.89e+00  2.1e-03 PASS
+  gauss/D128/T130/CQ-4+               2.02e-01  1.18e-02  6.06e-02  9.23e+00  1.89e+00  2.2e-03 PASS
+  heavy/D64/T16/CQ-8                  2.80e-02  1.54e-03  7.02e-03  6.82e-01  3.09e-01  3.7e-04 PASS
+  heavy/D64/T16/CQ-4                  2.22e-01  1.22e-02  6.74e-02  3.81e+00  4.54e-01  4.3e-04 PASS
+  heavy/D64/T16/CQ-4+                 2.22e-01  1.22e-02  7.08e-02  3.40e+00  4.51e-01  4.0e-04 PASS
+  heavy/D64/T64/CQ-8                  8.40e-02  2.30e-03  2.58e-02  4.26e+00  1.88e+00  1.7e-03 PASS
+  heavy/D64/T64/CQ-4                  2.11e-01  5.78e-03  6.81e-02  1.23e+01  1.96e+00  1.6e-03 PASS
+  heavy/D64/T64/CQ-4+                 1.64e-01  4.47e-03  6.73e-02  1.16e+01  1.96e+00  1.8e-03 PASS
+  heavy/D64/T128/CQ-8                 2.29e-01  2.50e-03  7.35e-02  1.42e+01  8.85e+00  2.0e-03 PASS
+  heavy/D64/T128/CQ-4                 3.52e-01  3.85e-03  8.92e-02  1.06e+02  8.88e+00  2.1e-03 PASS
+  heavy/D64/T128/CQ-4+                3.42e-01  3.73e-03  8.83e-02  9.02e+01  8.88e+00  2.7e-03 PASS
+  heavy/D64/T130/CQ-8                 3.37e-01  3.83e-03  1.01e-01  1.37e+01  8.68e+00  2.3e-03 PASS
+  heavy/D64/T130/CQ-4                 3.15e-01  3.58e-03  1.06e-01  6.10e+01  8.71e+00  2.7e-03 PASS
+  heavy/D64/T130/CQ-4+                3.34e-01  3.80e-03  1.02e-01  6.29e+01  8.71e+00  2.2e-03 PASS
+  heavy/D128/T16/CQ-8                 1.63e-02  1.67e-03  4.51e-03  4.16e-01  1.69e-01  2.9e-04 PASS
+  heavy/D128/T16/CQ-4                 1.54e-01  1.57e-02  4.20e-02  2.88e+00  3.47e-01  2.7e-04 PASS
+  heavy/D128/T16/CQ-4+                1.47e-01  1.50e-02  4.37e-02  2.99e+00  3.15e-01  2.6e-04 PASS
+  heavy/D128/T64/CQ-8                 8.31e-02  2.28e-03  2.04e-02  3.01e+00  1.83e+00  1.6e-03 PASS
+  heavy/D128/T64/CQ-4                 2.32e-01  6.36e-03  6.53e-02  1.25e+01  1.93e+00  1.3e-03 PASS
+  heavy/D128/T64/CQ-4+                2.53e-01  6.96e-03  6.61e-02  9.79e+00  1.93e+00  1.4e-03 PASS
+  heavy/D128/T128/CQ-8                3.31e-01  3.19e-03  1.06e-01  1.41e+01  9.93e+00  2.1e-03 PASS
+  heavy/D128/T128/CQ-4                3.87e-01  3.72e-03  1.16e-01  3.15e+01  9.99e+00  1.9e-03 PASS
+  heavy/D128/T128/CQ-4+               3.87e-01  3.72e-03  1.17e-01  3.19e+01  9.99e+00  2.2e-03 PASS
+  heavy/D128/T130/CQ-8                3.50e-01  3.52e-03  9.66e-02  1.24e+01  9.62e+00  2.5e-03 PASS
+  heavy/D128/T130/CQ-4                3.49e-01  3.51e-03  1.06e-01  2.66e+01  9.65e+00  2.7e-03 PASS
+  heavy/D128/T130/CQ-4+               3.49e-01  3.51e-03  1.06e-01  2.29e+01  9.65e+00  2.5e-03 PASS
+  llmlike/D64/T16/CQ-8                8.52e-03  4.10e-03  3.27e-03  1.34e-01  5.74e-02  2.8e-04 PASS
+  llmlike/D64/T16/CQ-4                9.34e-02  4.49e-02  3.43e-02  1.98e+00  1.96e-01  3.0e-04 PASS
+  llmlike/D64/T16/CQ-4+               6.29e-02  3.02e-02  2.82e-02  3.17e-01  1.15e-01  2.5e-04 PASS
+  llmlike/D64/T64/CQ-8                3.43e-02  5.13e-03  1.12e-02  1.00e+00  4.24e-01  1.0e-03 PASS
+  llmlike/D64/T64/CQ-4                1.44e-01  2.16e-02  4.05e-02  5.88e+00  5.66e-01  1.2e-03 PASS
+  llmlike/D64/T64/CQ-4+               8.81e-02  1.32e-02  3.06e-02  1.56e+00  4.54e-01  1.2e-03 PASS
+  llmlike/D64/T128/CQ-8               3.67e-02  5.20e-03  1.57e-02  1.57e+00  8.26e-01  2.2e-03 PASS
+  llmlike/D64/T128/CQ-4               9.34e-02  1.32e-02  2.75e-02  7.20e+00  8.69e-01  2.3e-03 PASS
+  llmlike/D64/T128/CQ-4+              7.01e-02  9.92e-03  2.11e-02  1.95e+00  8.34e-01  2.1e-03 PASS
+  llmlike/D64/T130/CQ-8               5.05e-02  1.17e-02  1.19e-02  1.00e+00  5.04e-01  2.3e-03 PASS
+  llmlike/D64/T130/CQ-4               8.26e-02  1.91e-02  2.43e-02  5.86e+00  5.84e-01  2.3e-03 PASS
+  llmlike/D64/T130/CQ-4+              5.91e-02  1.37e-02  1.80e-02  1.51e+00  5.15e-01  2.4e-03 PASS
+  llmlike/D128/T16/CQ-8               1.06e-02  4.14e-03  3.16e-03  2.42e-01  6.85e-02  3.0e-04 PASS
+  llmlike/D128/T16/CQ-4               6.12e-02  2.39e-02  1.59e-02  8.83e-01  1.11e-01  3.2e-04 PASS
+  llmlike/D128/T16/CQ-4+              6.36e-02  2.49e-02  1.56e-02  5.70e-01  1.03e-01  2.8e-04 PASS
+  llmlike/D128/T64/CQ-8               3.71e-02  6.62e-03  9.22e-03  8.02e-01  3.49e-01  1.1e-03 PASS
+  llmlike/D128/T64/CQ-4               1.37e-01  2.44e-02  3.47e-02  4.15e+00  4.25e-01  1.2e-03 PASS
+  llmlike/D128/T64/CQ-4+              1.22e-01  2.18e-02  2.67e-02  1.32e+00  3.80e-01  1.0e-03 PASS
+  llmlike/D128/T128/CQ-8              5.71e-02  1.13e-02  1.11e-02  1.14e+00  5.84e-01  2.0e-03 PASS
+  llmlike/D128/T128/CQ-4              9.32e-02  1.85e-02  2.79e-02  5.63e+00  6.44e-01  1.8e-03 PASS
+  llmlike/D128/T128/CQ-4+             8.56e-02  1.70e-02  2.38e-02  1.45e+00  6.03e-01  2.0e-03 PASS
+  llmlike/D128/T130/CQ-8              7.39e-02  1.07e-02  1.64e-02  1.60e+00  7.97e-01  2.2e-03 PASS
+  llmlike/D128/T130/CQ-4              1.05e-01  1.51e-02  2.74e-02  6.18e+00  8.32e-01  2.2e-03 PASS
+  llmlike/D128/T130/CQ-4+             8.20e-02  1.18e-02  2.26e-02  2.55e+00  8.08e-01  2.3e-03 PASS
+  calib/d64_T128_G64__CQ4/CQ-8        5.67e-02  2.76e-02  1.41e-02  1.09e+00  7.37e-01  1.5e-04 PASS
+  calib/d64_T128_G64__CQ4/CQ-4        2.81e-01  1.37e-01  8.28e-02  2.39e+03  3.19e+00  1.4e-04 PASS
+  calib/d64_T128_G64__CQ4/CQ-4+       8.24e-02  4.01e-02  3.05e-02  1.96e+00  7.17e-01  2.1e-04 PASS
+  calib/d64_T70_G64__CQ4/CQ-8         1.01e-02  6.31e-03  2.82e-03  7.90e-01  1.80e-01  2.9e-04 PASS
+  calib/d64_T70_G64__CQ4/CQ-4         1.08e-01  6.77e-02  4.21e-02  4.77e+01  5.85e-01  3.0e-04 PASS
+  calib/d64_T70_G64__CQ4/CQ-4+        7.74e-02  4.84e-02  3.68e-02  1.72e+00  2.59e-01  1.8e-04 PASS
+  calib/d128_T100_G128__CQ4/CQ-8      4.37e-02  1.67e-02  1.11e-02  1.06e+00  7.04e-01  3.8e-04 PASS
+  calib/d128_T100_G128__CQ4/CQ-4      6.74e-01  2.57e-01  1.82e-01  1.27e+03  3.46e+00  2.3e-04 PASS
+  calib/d128_T100_G128__CQ4/CQ-4+     1.25e-01  4.76e-02  4.63e-02  3.36e+00  7.54e-01  2.0e-04 PASS
+  full-gauss/D64/T64/CQ-8             9.19e-02  9.88e-03  2.75e-02  1.40e+00  6.18e-01  1.1e-03 PASS
+  full-gauss/D64/T64/CQ-4             1.20e-01  1.29e-02  4.13e-02  2.94e+00  6.45e-01  1.0e-03 PASS
+  full-gauss/D64/T64/CQ-4+            1.20e-01  1.29e-02  4.12e-02  2.94e+00  6.45e-01  1.0e-03 PASS
+  full-gauss/D64/T130/CQ-8            2.24e-01  1.12e-02  6.84e-02  4.51e+00  2.29e+00  2.5e-03 PASS
+  full-gauss/D64/T130/CQ-4            2.49e-01  1.24e-02  7.34e-02  1.01e+01  2.31e+00  2.5e-03 PASS
+  full-gauss/D64/T130/CQ-4+           2.55e-01  1.27e-02  7.93e-02  9.81e+00  2.31e+00  2.4e-03 PASS
+  full-gauss/D128/T64/CQ-8            7.44e-02  8.18e-03  2.32e-02  1.33e+00  5.92e-01  1.2e-03 PASS
+  full-gauss/D128/T64/CQ-4            1.36e-01  1.50e-02  4.07e-02  3.95e+00  6.20e-01  1.2e-03 PASS
+  full-gauss/D128/T64/CQ-4+           1.41e-01  1.55e-02  4.04e-02  3.79e+00  6.19e-01  1.1e-03 PASS
+  full-gauss/D128/T130/CQ-8           1.21e-01  9.84e-03  3.94e-02  2.98e+00  1.39e+00  2.2e-03 PASS
+  full-gauss/D128/T130/CQ-4           1.66e-01  1.35e-02  5.67e-02  5.92e+00  1.41e+00  2.2e-03 PASS
+  full-gauss/D128/T130/CQ-4+          1.75e-01  1.43e-02  5.47e-02  5.92e+00  1.41e+00  2.1e-03 PASS
+  full-llmx/D64/T64/CQ-8              9.82e-02  8.96e-03  3.41e-02  1.84e+00  7.46e-01  1.1e-03 PASS
+  full-llmx/D64/T64/CQ-4              1.53e-01  1.39e-02  4.64e-02  3.94e+00  7.78e-01  1.3e-03 PASS
+  full-llmx/D64/T64/CQ-4+             1.37e-01  1.25e-02  4.33e-02  3.64e+00  7.77e-01  1.1e-03 PASS
+  full-llmx/D64/T130/CQ-8             2.07e-01  9.65e-03  6.05e-02  5.68e+00  2.46e+00  2.2e-03 PASS
+  full-llmx/D64/T130/CQ-4             2.93e-01  1.37e-02  8.44e-02  1.04e+01  2.48e+00  2.0e-03 PASS
+  full-llmx/D64/T130/CQ-4+            2.85e-01  1.33e-02  8.55e-02  1.03e+01  2.48e+00  1.9e-03 PASS
+  full-llmx/D128/T64/CQ-8             7.41e-02  7.07e-03  2.37e-02  2.22e+00  6.66e-01  1.5e-03 PASS
+  full-llmx/D128/T64/CQ-4             1.51e-01  1.44e-02  4.23e-02  3.54e+00  6.94e-01  1.3e-03 PASS
+  full-llmx/D128/T64/CQ-4+            1.50e-01  1.43e-02  4.49e-02  3.45e+00  6.94e-01  1.2e-03 PASS
+  full-llmx/D128/T130/CQ-8            1.82e-01  1.23e-02  4.47e-02  4.81e+00  1.67e+00  3.1e-03 PASS
+  full-llmx/D128/T130/CQ-4            2.01e-01  1.36e-02  5.90e-02  6.92e+00  1.68e+00  3.1e-03 PASS
+  full-llmx/D128/T130/CQ-4+           2.01e-01  1.36e-02  5.90e-02  7.03e+00  1.68e+00  3.4e-03 PASS
+  --------------------------------------------------------------------------------------------------
+  norms: /|y| = relative to max|y_ref| (harsh under flat-attention cancellation); /|V| = relative to max|V_ref|,
+  the value-pathway signal scale (|y| <= max|V| always — the usual attention-kernel error convention).
+  tier CQ-8 : cases= 35  worst e2e/|y|=3.503e-01  worst e2e/|V|=2.762e-02  worst P-lane/|V|=1.192e-02
+  tier CQ-4 : cases= 35  worst e2e/|y|=6.738e-01  worst e2e/|V|=2.567e-01  worst P-lane/|V|=1.193e-02
+  tier CQ-4+: cases= 35  worst e2e/|y|=3.867e-01  worst e2e/|V|=4.835e-02  worst P-lane/|V|=1.211e-02
+[D] gate discrimination — seeded mutants must FAIL their stage
+  PASS  mutant 'feeder-truncation' caught by 'feeder' gate — tripped: ['feeder_q', 'p_requant']
+  PASS  mutant 'score-missing-invsqrtD' caught by 'score' gate — tripped: ['score', 'e2e_stat_max', 'e2e_stat_mean']
+  PASS  mutant 'kvq-corrupted-beat' caught by 'kvq_k' gate — tripped: ['kvq_k']
+========================================================================================
+APEX ATTENTION GOLDEN: ALL 105 CASES WITHIN DERIVED BUDGET (hard + statistical), ALL SELF-CONSISTENCY CHECKS PASS
+GOLDEN SUITE: contract + compute + attention ALL PASS

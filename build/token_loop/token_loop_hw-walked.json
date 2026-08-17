@@ -1,0 +1,3284 @@
+{
+ "verdict": true,
+ "engine": "hw-walked",
+ "engine_summary": {
+  "engine": "hw-walked",
+  "walked_steps": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain)",
+  "layers_walked": 72,
+  "layers_refused": 0,
+  "binary": "None",
+  "image": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/ddr_weights_05b_24L",
+  "image_sha256": "1bfdcbb6d720283cf391bbb00e121c764a2220d62ce47fe31d8e9176ee6cd911",
+  "executor": "hw (f2_host_run on this instance)",
+  "ddr_attestation": "operator: f2_ddr_load --load --verify --full-verify on this card before the run (--ddr-attested)",
+  "fuel_audit": "hw: no sim '+fuel_audit' printer \u2014 chain is full-verified DDR + program baked checks + bit-exact grades",
+  "timing_label": "tokens/s here is a MEASUREMENT of the hybrid (walked {FPROJ,QKV,OPROJ,RES1} on silicon at the loaded clock recipe; all other steps python-on-card-CPU). No CYCMARK on hw; no tile-cycle window is claimed."
+ },
+ "prompt_ids": [
+  785,
+  6722,
+  315,
+  9625,
+  374
+ ],
+ "prompt_text": null,
+ "generated_ids": [
+  12095,
+  13,
+  1084
+ ],
+ "generated_text": null,
+ "reference_ids_host_golden": [
+  12095,
+  13,
+  1084
+ ],
+ "token_identity": true,
+ "eos_hit": false,
+ "tier": "CQ-8",
+ "group": 128,
+ "weights_dir": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/s8_weights/Qwen2.5-0.5B-Instruct-4bit",
+ "seam": {
+  "walked_steps": "none \u2014 pure host",
+  "host_steps": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+  "carry": "inter-layer and inter-token state is golden's own composition \u2014 the continuation of walked values verified bit-exact first (walk_layers_05b's seam, extended across tokens); prefill of ids[:-1] is host-golden context build"
+ },
+ "timing": {
+  "prefill_s": [
+   1.281,
+   1.336,
+   1.398,
+   1.449
+  ],
+  "per_token_wall_s": [
+   19.153,
+   12.085,
+   12.145
+  ],
+  "decode_wall_s": 43.383,
+  "host_golden_pipeline_wall_s": 5.158,
+  "tokens_per_s_host_wall": {
+   "value": 0.5816,
+   "LABEL": "MEASURED on this host \u2014 the golden PIPELINE's wall (embed + 24 golden layers + head per token). A host software number, NOT a hardware/tile claim."
+  }
+ },
+ "mac_split_per_token": [
+  {
+   "walked_macs": 44040192,
+   "walked_layers": 24,
+   "refused_layers": [],
+   "census": {
+    "proj": 379846656,
+    "attn": 215040,
+    "lm_head": 136134656,
+    "total": 516196352,
+    "note": "measured by MacCensus (golden's own calls); includes golden's per-step K/V recompute over the row history"
+   },
+   "kv_cached": {
+    "total": 494176256,
+    "note": "shape-derived deployment denominator: current-row projections only + measured attention + lm_head"
+   },
+   "walked_frac_of_census": 0.085317,
+   "walked_frac_of_kv_cached": 0.089118,
+   "host_side": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+   "walked_side": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain)"
+  },
+  {
+   "walked_macs": 44040192,
+   "walked_layers": 24,
+   "refused_layers": [],
+   "census": {
+    "proj": 385351680,
+    "attn": 258048,
+    "lm_head": 136134656,
+    "total": 521744384,
+    "note": "measured by MacCensus (golden's own calls); includes golden's per-step K/V recompute over the row history"
+   },
+   "kv_cached": {
+    "total": 494219264,
+    "note": "shape-derived deployment denominator: current-row projections only + measured attention + lm_head"
+   },
+   "walked_frac_of_census": 0.08441,
+   "walked_frac_of_kv_cached": 0.089111,
+   "host_side": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+   "walked_side": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain)"
+  },
+  {
+   "walked_macs": 44040192,
+   "walked_layers": 24,
+   "refused_layers": [],
+   "census": {
+    "proj": 390856704,
+    "attn": 301056,
+    "lm_head": 136134656,
+    "total": 527292416,
+    "note": "measured by MacCensus (golden's own calls); includes golden's per-step K/V recompute over the row history"
+   },
+   "kv_cached": {
+    "total": 494262272,
+    "note": "shape-derived deployment denominator: current-row projections only + measured attention + lm_head"
+   },
+   "walked_frac_of_census": 0.083521,
+   "walked_frac_of_kv_cached": 0.089103,
+   "host_side": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+   "walked_side": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain)"
+  }
+ ],
+ "tokens": [
+  {
+   "index": 1,
+   "consumed_id": 374,
+   "token_id": 12095,
+   "step": 4,
+   "T": 5,
+   "logits_argmax_bits": 4625342033823099606,
+   "wall_s": 19.153,
+   "phases_s": {
+    "embed": 0.0,
+    "golden_layers": 1.513,
+    "engine": 17.491,
+    "head_sample": 0.149
+   },
+   "golden_layer_s": [
+    0.0638,
+    0.0639,
+    0.0625,
+    0.0627,
+    0.0634,
+    0.0628,
+    0.0621,
+    0.0628,
+    0.0627,
+    0.0627,
+    0.0625,
+    0.0632,
+    0.0625,
+    0.0629,
+    0.0626,
+    0.063,
+    0.0624,
+    0.0626,
+    0.0637,
+    0.0623,
+    0.0641,
+    0.0645,
+    0.0642,
+    0.0632
+   ],
+   "layers": [
+    {
+     "layer": 0,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       48303,
+       25
+      ],
+      "comp": "0x4044e000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 1,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       37786,
+       24
+      ],
+      "comp": "0x3f386000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 2,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       52494,
+       23
+      ],
+      "comp": "0x3f2da000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 3,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       37977,
+       24
+      ],
+      "comp": "0x3f86c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 4,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       63831,
+       25
+      ],
+      "comp": "0x3fa9c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 5,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       51389,
+       26
+      ],
+      "comp": "0x40460000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 6,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40512,
+       23
+      ],
+      "comp": "0x3f328000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 7,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       63197,
+       23
+      ],
+      "comp": "0x3eff0000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 8,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40976,
+       24
+      ],
+      "comp": "0x3f89e000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 9,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       56199,
+       24
+      ],
+      "comp": "0x3f8ac000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 10,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       46215,
+       25
+      ],
+      "comp": "0x3ff46000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 11,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       46931,
+       24
+      ],
+      "comp": "0x3fd04000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 12,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       43645,
+       25
+      ],
+      "comp": "0x3ffb4000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 13,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       32962,
+       24
+      ],
+      "comp": "0x3fbb6000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 14,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       43366,
+       25
+      ],
+      "comp": "0x4013c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 15,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40906,
+       24
+      ],
+      "comp": "0x3f9d6000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 16,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       61736,
+       26
+      ],
+      "comp": "0x402c4000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 17,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       52120,
+       25
+      ],
+      "comp": "0x3fb2c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 18,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       50021,
+       24
+      ],
+      "comp": "0x3f286000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 19,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       42556,
+       25
+      ],
+      "comp": "0x3fdf8000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 20,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       56135,
+       24
+      ],
+      "comp": "0x3f66a000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 21,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       49826,
+       25
+      ],
+      "comp": "0x3fe40000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 22,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       53964,
+       25
+      ],
+      "comp": "0x3fb2c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 23,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       58270,
+       23
+      ],
+      "comp": "0x3f85c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "consumed_id": 12095,
+   "token_id": 13,
+   "step": 5,
+   "T": 6,
+   "logits_argmax_bits": 4626225323206328965,
+   "wall_s": 12.085,
+   "phases_s": {
+    "embed": 0.0,
+    "golden_layers": 1.596,
+    "engine": 10.34,
+    "head_sample": 0.146
+   },
+   "golden_layer_s": [
+    0.0675,
+    0.0676,
+    0.0669,
+    0.066,
+    0.0663,
+    0.0665,
+    0.0664,
+    0.0666,
+    0.0667,
+    0.0665,
+    0.0665,
+    0.0663,
+    0.0663,
+    0.0661,
+    0.0664,
+    0.0665,
+    0.0661,
+    0.0662,
+    0.0664,
+    0.0663,
+    0.0662,
+    0.0661,
+    0.0665,
+    0.0667
+   ],
+   "layers": [
+    {
+     "layer": 0,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       34766,
+       24
+      ],
+      "comp": "0x4008c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 1,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       39663,
+       24
+      ],
+      "comp": "0x3f2fc000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 2,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       47230,
+       23
+      ],
+      "comp": "0x3f410000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 3,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       60314,
+       24
+      ],
+      "comp": "0x3f29c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 4,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       33717,
+       24
+      ],
+      "comp": "0x3fa0a000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 5,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       62505,
+       26
+      ],
+      "comp": "0x4022c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 6,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       34990,
+       23
+      ],
+      "comp": "0x3f4ec000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 7,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       36524,
+       23
+      ],
+      "comp": "0x3f5ca000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 8,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       53339,
+       24
+      ],
+      "comp": "0x3f53c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 9,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40213,
+       23
+      ],
+      "comp": "0x3f41e000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 10,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       44310,
+       25
+      ],
+      "comp": "0x3ffee000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 11,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       52753,
+       24
+      ],
+      "comp": "0x3fb94000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 12,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       53145,
+       25
+      ],
+      "comp": "0x3fce6000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 13,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       48483,
+       25
+      ],
+      "comp": "0x3ffec000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 14,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       33293,
+       24
+      ],
+      "comp": "0x3fc08000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 15,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       63704,
+       25
+      ],
+      "comp": "0x3fca2000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 16,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       36869,
+       25
+      ],
+      "comp": "0x40104000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 17,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       45228,
+       25
+      ],
+      "comp": "0x3fcde000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 18,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       44946,
+       24
+      ],
+      "comp": "0x3f3b6000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 19,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       50151,
+       25
+      ],
+      "comp": "0x3fbda000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 20,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       49144,
+       24
+      ],
+      "comp": "0x3f83c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 21,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       62630,
+       25
+      ],
+      "comp": "0x3fb56000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 22,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       59963,
+       25
+      ],
+      "comp": "0x3fa0e000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 23,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       51913,
+       24
+      ],
+      "comp": "0x40162000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "consumed_id": 13,
+   "token_id": 1084,
+   "step": 6,
+   "T": 7,
+   "logits_argmax_bits": 4625868712885503113,
+   "wall_s": 12.145,
+   "phases_s": {
+    "embed": 0.0,
+    "golden_layers": 1.607,
+    "engine": 10.387,
+    "head_sample": 0.147
+   },
+   "golden_layer_s": [
+    0.0682,
+    0.0661,
+    0.0662,
+    0.0663,
+    0.067,
+    0.0671,
+    0.0667,
+    0.0669,
+    0.0673,
+    0.067,
+    0.0663,
+    0.0665,
+    0.0666,
+    0.0666,
+    0.067,
+    0.0673,
+    0.0674,
+    0.0672,
+    0.0671,
+    0.0673,
+    0.0668,
+    0.067,
+    0.0675,
+    0.0679
+   ],
+   "layers": [
+    {
+     "layer": 0,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       53746,
+       25
+      ],
+      "comp": "0x40310000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 1,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40295,
+       24
+      ],
+      "comp": "0x3f2ce000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 2,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       37241,
+       23
+      ],
+      "comp": "0x3f74c000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 3,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       45491,
+       24
+      ],
+      "comp": "0x3f610000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 4,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       47087,
+       25
+      ],
+      "comp": "0x3fe60000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 5,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40999,
+       26
+      ],
+      "comp": "0x40782000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 6,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       46182,
+       23
+      ],
+      "comp": "0x3f1ca000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 7,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       48722,
+       23
+      ],
+      "comp": "0x3f256000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 8,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       62558,
+       25
+      ],
+      "comp": "0x3fb48000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 9,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       37167,
+       23
+      ],
+      "comp": "0x3f51c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 10,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       51299,
+       25
+      ],
+      "comp": "0x3fdc2000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 11,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       46495,
+       24
+      ],
+      "comp": "0x3fd24000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 12,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       45543,
+       25
+      ],
+      "comp": "0x3ff0c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 13,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       57254,
+       25
+      ],
+      "comp": "0x3fd7c000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 14,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       52750,
+       25
+      ],
+      "comp": "0x3ff2e000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 15,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40887,
+       24
+      ],
+      "comp": "0x3f9d8000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 16,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       39646,
+       25
+      ],
+      "comp": "0x40062000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 17,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       54910,
+       24
+      ],
+      "comp": "0x3f29a000",
+      "build_s": 0.27,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 18,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       47338,
+       24
+      ],
+      "comp": "0x3f31e000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 19,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       59353,
+       25
+      ],
+      "comp": "0x3fa04000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 20,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       51910,
+       24
+      ],
+      "comp": "0x3f796000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 21,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       49551,
+       23
+      ],
+      "comp": "0x3ee54000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 22,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       40179,
+       24
+      ],
+      "comp": "0x3f700000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    },
+    {
+     "layer": 23,
+     "walked_macs": 1835008,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 0,
+      "cycles": {
+       "stamps": {}
+      },
+      "rq": [
+       55033,
+       23
+      ],
+      "comp": "0x3f8da000",
+      "build_s": 0.26,
+      "sim_wall_s": 0.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896
+     }
+    }
+   ]
+  }
+ ],
+ "git": "unknown",
+ "timestamp": "2026-08-11T17:49:52"
+}

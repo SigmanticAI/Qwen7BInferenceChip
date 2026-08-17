@@ -1,0 +1,85 @@
+make: Entering directory '/home/ubuntu/apex/verif/kvq/fparith'
+python3 gen_fparith_vectors.py 2>&1 | tee build/gen.log
+  wrote scale_exp_b4.hex: 63488 words
+  wrote scale_exp_b8.hex: 63488 words
+  wrote widen_exp.hex: 63488 words
+  wrote qscale_b4.hex: 24833 words
+  wrote qsum_b4.hex: 24833 words
+  quant bits=4: 24833 scales x 63488 x-values
+  wrote qscale_b8.hex: 23385 words
+  wrote qsum_b8.hex: 23385 words
+  quant bits=8: 23385 scales x 63488 x-values
+  wrote dsum.hex: 63488 words
+  dequant: 63488 scales x 512 codes
+  wrote fparith_sizes.svh
+GEN OK
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps -Wall +incdir+build/vec --Mdir build/obj_fparith --top-module tb_fparith \
+    ../../../rtl/kvq/cores/cq_fp_pkg.sv ../../../rtl/kvq/cores/cq_scale_unit.sv ../../../rtl/kvq/cores/cq_quant_unit.sv ../../../rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+make[1]: Entering directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_fparith'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_fparith'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.009 s (elab=0.000, cvt=0.000, bld=0.009); cpu 0.001 s on 4 threads; alloced 18.379 MB
+./build/obj_fparith/Vtb_fparith 2>&1 | tee build/run.log
+SCALE   done: 63488 finite amax x 2 qmax, fn+unit (checks=253952)
+WIDEN   done: 63488 finite patterns, fn+unit (checks=380928)
+DEQUANT done: 63488 finite scales x 512 codes (checks=573952)
+  quant b4 progress: scale 0/24833
+  quant b4 progress: scale 4000/24833
+  quant b4 progress: scale 8000/24833
+  quant b4 progress: scale 12000/24833
+  quant b4 progress: scale 16000/24833
+  quant b4 progress: scale 20000/24833
+  quant b4 progress: scale 24000/24833
+QUANT4  done: 24833 scales x 63488 x (checks=4788993)
+  quant b8 progress: scale 0/23385
+  quant b8 progress: scale 4000/23385
+  quant b8 progress: scale 8000/23385
+  quant b8 progress: scale 12000/23385
+  quant b8 progress: scale 16000/23385
+  quant b8 progress: scale 20000/23385
+QUANT8  done: 23385 scales x 63488 x (checks=8748634)
+FPARITH TB: ALL PASS (checks=8748634 fails=0)
+- tb_fparith.sv:270: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 8ms; walltime 691.802 s; speed 12.211 us/s
+- Verilator: cpu 691.724 s on 1 threads; alloced 8 MB
+cp ../../../rtl/kvq/cores/cq_fp_pkg.sv build/mut_tie/cq_fp_pkg.sv
+python3 patch_fparith_mutant.py mut_tie build/mut_tie/cq_fp_pkg.sv
+PATCH OK mut_tie: seeded in build/mut_tie/cq_fp_pkg.sv
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps \
+    +incdir+build/vec --Mdir build/obj_mut_tie --top-module tb_fparith \
+    build/mut_tie/cq_fp_pkg.sv ../../../rtl/kvq/cores/cq_scale_unit.sv \
+    ../../../rtl/kvq/cores/cq_quant_unit.sv ../../../rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+make[1]: Entering directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_mut_tie'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_mut_tie'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.010 s (elab=0.000, cvt=0.000, bld=0.009); cpu 0.001 s on 4 threads; alloced 18.379 MB
+running seeded-error check mut_tie (must FAIL)...
+mut_tie CAUGHT (TB exited non-zero):
+FAIL quant b4 cksum s=0400 exp=a597c9bc6bacbb00 got=bf3d38625ac3fb00
+FAIL quant b4 cksum s=0402 exp=5e3c4cda27216528 got=fadd4abd0d62d528
+FAIL quant b4 cksum s=0404 exp=a347072568b41bd0 got=5afb77d8105cdbd0
+cp ../../../rtl/kvq/cores/cq_fp_pkg.sv build/mut_eps/cq_fp_pkg.sv
+python3 patch_fparith_mutant.py mut_eps build/mut_eps/cq_fp_pkg.sv
+PATCH OK mut_eps: seeded in build/mut_eps/cq_fp_pkg.sv
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps \
+    +incdir+build/vec --Mdir build/obj_mut_eps --top-module tb_fparith \
+    build/mut_eps/cq_fp_pkg.sv ../../../rtl/kvq/cores/cq_scale_unit.sv \
+    ../../../rtl/kvq/cores/cq_quant_unit.sv ../../../rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+make[1]: Entering directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_mut_eps'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex/verif/kvq/fparith/build/obj_mut_eps'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.010 s (elab=0.000, cvt=0.000, bld=0.009); cpu 0.001 s on 4 threads; alloced 18.379 MB
+running seeded-error check mut_eps (must FAIL)...
+mut_eps CAUGHT (TB exited non-zero):
+FAIL scale fn b4 amax=0001 exp=0400 got=5092
+FAIL scale UNIT b4 amax=0001 exp=0400 got=5092
+FAIL scale fn b8 amax=0001 exp=0400 got=4008
+MUTATION GATE: 2/2 seeded errors caught (mut_tie, mut_eps)
+make: Leaving directory '/home/ubuntu/apex/verif/kvq/fparith'

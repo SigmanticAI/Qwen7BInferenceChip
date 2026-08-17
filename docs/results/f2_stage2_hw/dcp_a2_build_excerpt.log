@@ -1,0 +1,16 @@
+clock_recipe_a   : A2              
+clock_recipe_b   : B2              
+clock_recipe_c   : C0              
+clock_recipe_hbm : H2              
+    clock_recipe_a   : A2
+    clock_recipe_b   : B2
+    clock_recipe_c   : C0
+    clock_recipe_hbm : H2
+Command: synth_design -mode out_of_context -top cl_apex -verilog_define XSDB_SLV_DIS -verilog_define APEX_CL_D=128 -part xcvu47p-fsvh2892-2-e -keep_equivalent_registers
+CRITICAL WARNING: WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_B_EN_I.CLK_MMCM_B_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst cell not found. Clock recipe for this MMCM not applied.
+CRITICAL WARNING: WRAPPER/CL/AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst cell not found. Clock recipe for this MMCM not applied.
+CRITICAL WARNING: WRAPPER/CL/AWS_CLK_GEN/CLK_HBM_EN_I.CLK_MMCM_HBM_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst cell not found. Clock recipe for this MMCM not applied.
+INFO: aws_clock_properties.tcl successfully applied clock recipes to MMCMs
+AWS FPGA: (19:19:01): SUCCESS: Design has no negative slack path
+AWS FPGA: (19:19:21): Finished building design checkpoints for customer design cl_apex
+AWS FPGA: Build Time = 0:46:18.737151. 

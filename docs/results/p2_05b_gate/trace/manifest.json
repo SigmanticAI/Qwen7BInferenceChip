@@ -1,0 +1,176 @@
+{
+ "seed": 88,
+ "jobs": [
+  {
+   "file": "job_s001_L20_h06.npz",
+   "step": 1,
+   "layer": 20,
+   "head": 6,
+   "T": 2,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "99c131353676480f"
+  },
+  {
+   "file": "job_s004_L11_h12.npz",
+   "step": 4,
+   "layer": 11,
+   "head": 12,
+   "T": 5,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "22fcb1ed83e760de"
+  },
+  {
+   "file": "job_s006_L03_h13.npz",
+   "step": 6,
+   "layer": 3,
+   "head": 13,
+   "T": 7,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "b43b39e036164f10"
+  },
+  {
+   "file": "job_s006_L04_h08.npz",
+   "step": 6,
+   "layer": 4,
+   "head": 8,
+   "T": 7,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "2a25bc5a70885266"
+  },
+  {
+   "file": "job_s006_L04_h11.npz",
+   "step": 6,
+   "layer": 4,
+   "head": 11,
+   "T": 7,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "f97fec512ee16223"
+  },
+  {
+   "file": "job_s006_L07_h09.npz",
+   "step": 6,
+   "layer": 7,
+   "head": 9,
+   "T": 7,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "2060804530d75df8"
+  },
+  {
+   "file": "job_s007_L20_h06.npz",
+   "step": 7,
+   "layer": 20,
+   "head": 6,
+   "T": 8,
+   "tier": "CQ-8",
+   "chunk": null,
+   "digest": "9f9fcc58a58b1fe1"
+  }
+ ],
+ "run": {
+  "model": "mlx-community/Qwen2.5-0.5B-Instruct-4bit",
+  "weights_dir": "build/s8_weights/Qwen2.5-0.5B-Instruct-4bit",
+  "tier": "CQ-8",
+  "group": 128,
+  "git": "1bbd6d8",
+  "prompt": "The capital of France is",
+  "prompt_ids": [
+   785,
+   6722,
+   315,
+   9625,
+   374
+  ],
+  "generated_ids": [
+   12095,
+   13,
+   1084,
+   374
+  ],
+  "generated_text": " Paris. It is",
+  "complete": true,
+  "per_token_seconds": [
+   1.96,
+   1.35,
+   1.03,
+   1.11,
+   1.21,
+   1.17,
+   0.98,
+   0.97
+  ],
+  "silu_domain_exceed": {
+   "events": 799,
+   "total": 933888,
+   "frac": 0.0008555629797149123
+  },
+  "ref_checks": [
+   {
+    "step": 0,
+    "per_layer_e2e_rel": [
+     0.42363774981146374,
+     0.05265399446122189,
+     0.5811756549870134,
+     0.5203283670559069,
+     0.0004374222147835613,
+     0.009067361995853122,
+     0.00045369461554300457,
+     0.00022037291822671738,
+     0.0007455945519717688,
+     0.00023258776252370266,
+     0.0005280198574372021,
+     0.0006236565362671363,
+     0.0006922019463007165,
+     0.00023880630958842818,
+     0.0005319622800943446,
+     0.0006168122981337847,
+     0.0004588177718700319,
+     0.0006014697027424133,
+     0.001029512619723795,
+     0.0023090067929325666,
+     0.0011984650588706745,
+     1.208481225810505,
+     0.1440929644923671,
+     0.10512866442041308
+    ]
+   },
+   {
+    "step": 1,
+    "per_layer_e2e_rel": [
+     0.46625623161173235,
+     0.041744724036194496,
+     0.021569962711594188,
+     0.02395804231815472,
+     0.038702039847676645,
+     0.056672164017338926,
+     0.03993706952591567,
+     0.048132512026846215,
+     0.02939138091529442,
+     0.011306207952301877,
+     0.03388459027388118,
+     0.017063434354551113,
+     0.019226140209979405,
+     0.011907414788381173,
+     0.05785490752406536,
+     0.053862247470692425,
+     0.03923428526347286,
+     0.011731987360758665,
+     0.011624126937762562,
+     0.04342565706202953,
+     0.01907224165705191,
+     0.019298989723141223,
+     0.05595034158200911,
+     0.40685701744015373
+    ]
+   }
+  ],
+  "weights_disclosure": "weights = MLX 4-bit dequant \u2192 PER-TENSOR symmetric INT8 (double quantization; the golden LayerWeights/C-2 contract carries one scale per tensor). rms_norm_eps config=1e-06 vs golden EPS_INT=1 fixed-point contract (disclosed, gated).",
+  "timestamp": "2026-08-03T11:04:14"
+ },
+ "replay": "inputs (q_f16/K_f16/V_f16 fp16 bits + tier/G) fully determine the job; --verify-trace re-runs golden attention_core and asserts every stored array bit-exact. RTL: verif/top/l3 named-tensor injection or verif/kvq TBs with a build matching D/tier/G."
+}

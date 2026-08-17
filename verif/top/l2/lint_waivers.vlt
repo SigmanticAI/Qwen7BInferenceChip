@@ -1,0 +1,26 @@
+`verilator_config
+// lint_waivers.vlt — waivers for FROZEN / VENDORED files ONLY (union of the
+// per-block suites' waiver files: verif/{seam,asu/sb,kvq/smoke,mxe/sb}).
+// NONE of the new top-level RTL (rtl/top/*, rtl/top/glue/*), the SVA packs,
+// or the smoke TB is waived — those files must be -Wall clean on their own.
+
+// apex_pkg.sv is the frozen tile-wide contract; the full-tile build still
+// leaves a few of its constants unreferenced (e.g. RSQRT_LATENCY is consumed
+// by asu_rmsnorm, so at top level everything IS used — kept for safety).
+lint_off -rule UNUSEDPARAM -file "*apex_pkg.sv"
+
+// same per-line waivers as verif/asu/sb/lint_waivers.vlt.
+lint_off -rule WIDTHEXPAND -file "*vendor/rsqrt_unit.sv" -lines 128
+lint_off -rule WIDTHTRUNC  -file "*vendor/rsqrt_unit.sv" -lines 128
+lint_off -rule WIDTHEXPAND -file "*vendor/rsqrt_unit.sv" -lines 133
+lint_off -rule WIDTHEXPAND -file "*vendor/rsqrt_unit.sv" -lines 153
+lint_off -rule WIDTHEXPAND -file "*vendor/rsqrt_unit.sv" -lines 209
+lint_off -rule SYNCASYNCNET -file "*vendor/rsqrt_unit.sv"
+
+// verif/kvq/smoke/lint_waivers.vlt (per-line, individually justified there).
+
+// kvq_engine.sv + its vendor tree use @(posedge clk or negedge rst_n) while
+// all new APEX RTL is sync-reset: rst_n legitimately feeds both styles in
+// the combined tile build (same situation the asu suite waives for the
+// vendored rsqrt). Scoped to the vendored-lineage files only.
+lint_off -rule SYNCASYNCNET -file "*kvq/*"

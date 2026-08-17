@@ -1,0 +1,2 @@
+gen_kvq_vectors: T=70 D=64 G=64 CQ-4 -> 2 groups (full 64 + partial 6), 128 scales, 2240 payload bytes, 4480 khat words, 70x40B records (ssids [0, 1]), 2x64 bank rows -> build/gen_t70
+GEN SELF-CHECK: python-golden output is bit-identical to the frozen d64_T70_G64__CQ4 set (incl. the partial g=6 tail group and the D-026 record/scale-bank images)

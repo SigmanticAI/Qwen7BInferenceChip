@@ -1,0 +1,34 @@
+`verilator_config
+// scoped per-line and individually justified against the V0 triage
+// (verif/v0/kve/RESULT.md §6). kvq_engine.sv and every TB in this directory
+// are -Wall clean with NO waivers. Line numbers are for the vendored copies
+// (upstream + 9/16/18-line provenance headers).
+
+// ── cq_units_syn.sv (V0 §6: every WIDTH site individually triaged benign) ───
+// dequant/scale/quant fp16 cores: sign-extended adds/compares (lossless) and
+// two masked truncations ((Q>>sh)&mask keeps only in-range bits). The quant
+// clamp COND (l.299) selects between two values both provably <= 127 post-
+// clamp; proven bit-exact vs golden across all 9 vector sets.
+// (Line numbers re-based 2026-07-08 for the D-020 header + `clear` additions
+//  in the vendored copies — SAME waivers on the SAME constructs, nothing new
+//  waived; the D-020 clear logic itself is warning-free.)
+// unused high/sign bits of unpack intermediates (mantissa fields consumed
+// piecewise); cq_quant_comb is dead in this hierarchy by design
+// upstream keeps the four cq cores in one file (P4b layout)
+
+// ── amax_unit.sv ─────────────────────────────────────────────────────────────
+// l.107-109: `nm` blocking scratch inside the sequential block is DELIBERATE
+// (yosys mem2reg workaround, documented in the file); l.35: fp16 sign bits of
+// `vec` are intentionally not consumed (magnitude compare clears them).
+
+// ── cq_key_path.sv ───────────────────────────────────────────────────────────
+// upstream style: unused counter top bits (l.122 rb_fill / l.133 ch,sch guard
+// bits) and int-vs-sized compares in the FSM (l.247/262/273), all lossless;
+// scale_token deliberately unconnected in key mode (l.141)
+// (re-based 2026-07-08 for the D-020 clear/busy additions — same constructs)
+
+// ── cq_value_path.sv ─────────────────────────────────────────────────────────
+// (re-based 2026-07-08 for the D-020 clear addition — same constructs)
+
+// ── sram_controller.sv ───────────────────────────────────────────────────────
+// occupancy/full compares zero-extend (V0 §6 WIDTHEXPAND, lossless)

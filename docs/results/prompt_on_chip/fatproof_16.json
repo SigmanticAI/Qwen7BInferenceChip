@@ -1,0 +1,87 @@
+{
+ "meta": {
+  "tensor": "Wq",
+  "layer": 0,
+  "K": 896,
+  "blocks": 16,
+  "amax_code": 127,
+  "weights": "build/s8_weights/Qwen2.5-0.5B-Instruct-4bit/L00_Wq.npy"
+ },
+ "image": "b64_05b",
+ "agfi": "agfi-0ecab46b8a8376b21",
+ "rows_per_desc": {
+  "sim": 31,
+  "hw": 31,
+  "legacy_agfi": 1
+ },
+ "binary": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/verif/f2sim/obj_b64_05b/f2sim",
+ "arms": {
+  "fat_burst": {
+   "wall_s": 0.6389429999981076,
+   "ops": 52504,
+   "peeks": 1722,
+   "pokes": 51181,
+   "bytes": 1681966,
+   "programs": 1,
+   "gz_bytes": 165194
+  },
+  "fat_nonburst": {
+   "wall_s": 0.74761337498785,
+   "ops": 51407,
+   "peeks": 18170,
+   "pokes": 51181,
+   "bytes": 1648881,
+   "programs": 1,
+   "gz_bytes": 162941
+  },
+  "thin": {
+   "wall_s": 1.9378316249931231,
+   "ops": 123872,
+   "peeks": 54080,
+   "pokes": 122656,
+   "bytes": 3842090,
+   "programs": 16,
+   "gz_bytes": 232542
+  },
+  "red_base_row": {
+   "blocks_matching_golden": 0,
+   "max_abs_delta_block0": 7169
+  },
+  "red_drop_audit": {
+   "rows": [
+    {
+     "blind_pushes": 16,
+     "fails": 0,
+     "free_slots_after": [
+      2
+     ],
+     "want_fail": false,
+     "ok": true
+    },
+    {
+     "blind_pushes": 24,
+     "fails": 1,
+     "free_slots_after": [
+      0
+     ],
+     "want_fail": true,
+     "ok": true
+    }
+   ],
+   "pass": true,
+   "depth": 16
+  }
+ },
+ "ratios_thin_over_fat": {
+  "programs": 16.0,
+  "ops": 2.3592869114734114,
+  "peeks": 31.40534262485482,
+  "bytes": 2.2842851758002243,
+  "gz_bytes": 1.4076903519498287,
+  "sim_wall": 3.0328708898898067
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "timestamp": "2026-08-04T16:32:00",
+ "git": "7d5cf58"
+}

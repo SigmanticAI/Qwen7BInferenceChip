@@ -1,0 +1,29 @@
+{
+ "executor": "hw",
+ "mask": "0xe9c0",
+ "caps": 138,
+ "grade": {
+  "fs": {
+   "equal": true,
+   "n": 2,
+   "want": [
+    12189,
+    9500
+   ],
+   "got": [
+    12189,
+    9500
+   ]
+  },
+  "h2_codes": {
+   "equal": true
+  },
+  "r1_row": {
+   "equal": true,
+   "n_diff": 0
+  },
+  "equal": true
+ },
+ "wall_s": 1.6,
+ "verdict": true
+}

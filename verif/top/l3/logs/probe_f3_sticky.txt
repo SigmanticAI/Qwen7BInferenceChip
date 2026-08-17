@@ -1,0 +1,14 @@
+// F-3 fail-first probe: err_sticky bits are set-only in the pre-fix tile
+// (TIP frame_err_clear tied 0; every other per-source sticky rst_n-only).
+// Set a sticky (illegal K=0 descriptor -> err_sticky[0]), W1C it via the
+// tile ERR_STICKY window (0x58), verify clear + readback. Pre-fix: the
+// write is a no-op (csr reserved), ESTK still reads 0x0001 and CSRR 0x58
+// returns 0xDEADBEEF -> 2 scripted FAILs, the kept-failing signature.
+CSRW 00 00000001
+DESC 00000000 00000000 00000001 00000101
+CSRP 04 00000002 00000002
+ESTK ffff 0001
+CSRW 58 0000ffff
+ESTK ffff 0000
+CSRR 58 ffffffff 00000000
+DONE

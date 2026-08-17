@@ -1,0 +1,16 @@
+==== tb_kvq_top config=d128_cq8 D=128 T=100 TIER=0 G=128 K=0 NGRP=0 partial=0 stall=0 expect_bug=0
+     VECDIR=../../../golden/vectors/d128_T100_G128__CQ8
+     KEYDIR=../../../golden/vectors/d128_T100_G128__CQ8
+[V] streaming 100 value tokens
+[V] compress side-effects: checking 100 SRAM value records
+[V] decompress: reading back 100 tokens (fp32)
+[K] CQ-8 per-token keys: streaming 100 key tokens
+[K] compress side-effects: checking 100 SRAM key records
+[K] decompress: reading back 100 key tokens (fp32)
+============================================================
+CONFIG d128_cq8: checks=77403 fails=0
+KVQ PARITY [d128_cq8]: PASS (bit-exact records + fp32 readback, irq=0)
+- tb_kvq_top.sv:542: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 1ms; walltime 0.060 s; speed 22.132 ms/s
+- Verilator: cpu 0.051 s on 1 threads; alloced 2 MB

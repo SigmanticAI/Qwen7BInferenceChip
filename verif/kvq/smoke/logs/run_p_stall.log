@@ -1,0 +1,18 @@
+==== tb_kvq_top config=stall_kvq D=64 T=128 TIER=1 G=64 K=0 NGRP=1 partial=0 stall=1 expect_bug=0
+     VECDIR=../../../golden/vectors/d64_T128_G64__CQ4
+     KEYDIR=../../../golden/vectors/d64_T128_G64__CQ4
+[S] writing 8 value tokens
+[S] writing one key group (G=64) at base 8
+[S] read bursts under random tready stalls (1..8-cycle stretches, ~50% duty)
+  burst[0] addr=0: beats_accepted=64/64 tlast_seen=1
+  burst[1] addr=1: beats_accepted=64/64 tlast_seen=1
+  burst[2] addr=2: beats_accepted=64/64 tlast_seen=1
+============================================================
+STALL: bursts=216 beats_expected=13824 beats_accepted=13824 beats_dropped=0
+STALL: data_mismatches_on_accepted=0 bursts_missing_tlast=0
+STALL: stability_violations proc=0 sva=0
+KVQ STALL [stall_kvq]: PASS — all beats delivered bit-exact under backpressure (irq=0)
+- tb_kvq_top.sv:593: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 414us; walltime 0.026 s; speed 16.782 ms/s
+- Verilator: cpu 0.025 s on 1 threads; alloced 2 MB

@@ -1,0 +1,3269 @@
+{
+ "verdict": true,
+ "engine": "sim-walked",
+ "engine_summary": {
+  "engine": "sim-walked",
+  "walked_steps": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain) + per-layer FFN\u2192DOWN slice {gate, up, swiglu, product-stage, DOWN, RES2} over d_ffn[0:1024] of 4864",
+  "layers_walked": 24,
+  "layers_refused": 0,
+  "binary": "verif/f2sim/obj_tokenloop/f2sim",
+  "image": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/ddr_weights_05b_24L",
+  "image_sha256": "1bfdcbb6d720283cf391bbb00e121c764a2220d62ce47fe31d8e9176ee6cd911",
+  "ffn": {
+   "slice": {
+    "d_ffn_walk": 1024,
+    "d_ffn": 4864,
+    "chunks": 16
+   },
+   "ffn_windows_walked": 24,
+   "ffn_windows_refused": 0,
+   "image": "build/token_loop/ffn_slice_image",
+   "image_sha256": "754a134ddfdf201b769c5c0501e5c1ddb26720786557b7b79141c93aa42d0c8f",
+   "seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+  }
+ },
+ "prompt_ids": [
+  785,
+  6722,
+  315,
+  9625,
+  374
+ ],
+ "prompt_text": "The capital of France is",
+ "generated_ids": [
+  12095
+ ],
+ "generated_text": " Paris",
+ "reference_ids_host_golden": [
+  12095
+ ],
+ "token_identity": true,
+ "eos_hit": false,
+ "tier": "CQ-8",
+ "group": 128,
+ "weights_dir": "/Users/nabilabdelazizferhattaleb/Desktop/apex_npu/build/s8_weights/Qwen2.5-0.5B-Instruct-4bit",
+ "seam": {
+  "walked_steps": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain) + per-layer FFN\u2192DOWN slice {gate, up, swiglu, product-stage, DOWN, RES2} over d_ffn[0:1024] of 4864",
+  "host_steps": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+  "carry": "inter-layer and inter-token state is golden's own composition \u2014 the continuation of walked values verified bit-exact first (walk_layers_05b's seam, extended across tokens); prefill of ids[:-1] is host-golden context build",
+  "ffn_windows": {
+   "windows": 24,
+   "bit_exact": 24,
+   "refused": 0,
+   "missing": 0
+  },
+  "ffn_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+ },
+ "timing": {
+  "prefill_s": [
+   0.775,
+   0.896,
+   0.924,
+   0.913
+  ],
+  "per_token_wall_s": [
+   556.365
+  ],
+  "decode_wall_s": 556.365,
+  "host_golden_pipeline_wall_s": 1.445,
+  "tokens_per_s_host_wall": {
+   "value": 0.692,
+   "LABEL": "MEASURED on this host \u2014 the golden PIPELINE's wall (embed + 24 golden layers + head per token). A host software number, NOT a hardware/tile claim."
+  },
+  "tokens_per_s_including_sim": {
+   "value": 0.0018,
+   "LABEL": "Verilator wall included \u2014 a property of the SIMULATOR on this host. Meaningless as a hardware number; recorded only for run bookkeeping."
+  },
+  "walked_window_prediction_per_token": [
+   {
+    "measured": {
+     "n_layers_measured": 24,
+     "tile_div": 2,
+     "walk_shell_cycles": [
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788,
+      2238788
+     ],
+     "walk_tile_cycles": [
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697,
+      559697
+     ],
+     "tile_cycles_mean": 559697.0,
+     "tile_cycles_min_max": [
+      559697,
+      559697
+     ],
+     "tile_cycles_per_job_mean": 2186.3,
+     "sim_wall_s_per_layer": [
+      11.49,
+      10.87,
+      10.71,
+      10.11,
+      10.64,
+      10.71,
+      10.16,
+      10.67,
+      10.87,
+      10.63,
+      10.83,
+      10.33,
+      10.68,
+      10.08,
+      9.82,
+      9.9,
+      9.93,
+      9.81,
+      10.08,
+      10.13,
+      10.08,
+      10.11,
+      10.08,
+      10.1
+     ],
+     "sim_wall_s_total": 248.8,
+     "conversion": "tile = shell / (2*TILE_DIV)  [cl_apex.sv:82, the corrected E-6 receipts rule]"
+    },
+    "prediction": {
+     "LABEL": "PREDICTION \u2014 sim-derived, hardware-unvalidated. Walls count the WALK WINDOW only: today's seam also spends ~12.3k host regops/layer on pre-walk staging + readback (measured census in this record), which on hardware is MMIO-bound and NOT included. They are NOT hardware measurements.",
+     "basis": {
+      "measured_layers": 24,
+      "extrapolated_to_24_layers": false,
+      "walked_jobs_per_layer": 256,
+      "full_layer_jobs": 1808,
+      "tile_cycles_per_job": 2186.3
+     },
+     "walked_steps_only_per_token": {
+      "tile_cycles": 13432728,
+      "wall_ms_at_15p625MHz_flown": 859.7,
+      "wall_ms_at_62p5MHz_analyzed": 214.9,
+      "covers": "24 x walked {QKV, OPROJ, RES1} ONLY \u2014 3 of 13 step families; NOT a full token"
+     },
+     "if_fully_walked_per_token": {
+      "tile_cycles": 94868642,
+      "wall_ms_at_15p625MHz_flown": 6072,
+      "wall_ms_at_62p5MHz_analyzed": 1518,
+      "covers": "24 x ALL 1808 MXE jobs/layer at the measured cycles/job \u2014 HYPOTHETICAL: NORM1/2, attention, FFN/SWIGLU/DOWN, RES2 do not walk on today's RTL (loud S2_CHECK refusals, WALKED_EPILOGUE_E6.md)"
+     }
+    }
+   }
+  ],
+  "ffn_window_tile_cycles_per_token": {
+   "value": [
+    20191032
+   ],
+   "LABEL": "sim-MEASURED tile cycles summed over the layers' FFN slice windows (CYCMARK FFN-PREGO..WALKDONE). NOT part of walk_layers_05b.predict \u2014 that model covers the E-6 chain only."
+  }
+ },
+ "mac_split_per_token": [
+  {
+   "walked_macs": 110100480,
+   "walked_layers": 24,
+   "refused_layers": [],
+   "census": {
+    "proj": 379846656,
+    "attn": 215040,
+    "lm_head": 136134656,
+    "total": 516196352,
+    "note": "measured by MacCensus (golden's own calls); includes golden's per-step K/V recompute over the row history"
+   },
+   "kv_cached": {
+    "total": 494176256,
+    "note": "shape-derived deployment denominator: current-row projections only + measured attention + lm_head"
+   },
+   "walked_frac_of_census": 0.213292,
+   "walked_frac_of_kv_cached": 0.222796,
+   "host_side": "NORM1, attention (score/softmax/PV), NORM2, FFN (gate/up/swiglu/down), RES2, embedding, final norm, lm_head, argmax",
+   "walked_side": "{FPROJ, QKV, OPROJ, RES1} (wfl.MASK_B \u2014 the E-6 chain) + per-layer FFN\u2192DOWN slice {gate, up, swiglu, product-stage, DOWN, RES2} over d_ffn[0:1024] of 4864"
+  }
+ ],
+ "tokens": [
+  {
+   "index": 1,
+   "consumed_id": 374,
+   "token_id": 12095,
+   "step": 4,
+   "T": 5,
+   "logits_argmax_bits": 4625342033823099606,
+   "wall_s": 556.365,
+   "phases_s": {
+    "embed": 0.0,
+    "golden_layers": 0.939,
+    "engine": 554.92,
+    "head_sample": 0.506
+   },
+   "golden_layer_s": [
+    0.0362,
+    0.0719,
+    0.0377,
+    0.0369,
+    0.0493,
+    0.035,
+    0.0406,
+    0.0351,
+    0.0362,
+    0.0429,
+    0.0354,
+    0.0346,
+    0.034,
+    0.0345,
+    0.0353,
+    0.0353,
+    0.0343,
+    0.0505,
+    0.0454,
+    0.0374,
+    0.0341,
+    0.0348,
+    0.0356,
+    0.0361
+   ],
+   "layers": [
+    {
+     "layer": 0,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       48303,
+       25
+      ],
+      "comp": "0x4044e000",
+      "build_s": 0.19,
+      "sim_wall_s": 11.49,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         12472,
+         11596,
+         11844,
+         12519
+        ],
+        "want": [
+         12472,
+         11596,
+         11844,
+         12519,
+         11738,
+         11322,
+         13284,
+         11309,
+         13609,
+         11413,
+         12537,
+         14262,
+         11679,
+         12077,
+         12549,
+         12690
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        43651,
+        23
+       ],
+       "comp": {
+        "gate": "0x39c64000",
+        "up": "0x39610000",
+        "down": "0x3e638000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.53,
+       "sim_wall_s": 12.64,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 1,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       37786,
+       24
+      ],
+      "comp": "0x3f386000",
+      "build_s": 0.2,
+      "sim_wall_s": 10.87,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11388,
+         12209,
+         10486,
+         11609
+        ],
+        "want": [
+         11388,
+         12209,
+         10486,
+         11609,
+         10490,
+         10811,
+         10727,
+         11581,
+         11684,
+         10958,
+         10547,
+         11370,
+         11522,
+         12115,
+         11193,
+         10059
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        47068,
+        23
+       ],
+       "comp": {
+        "gate": "0x39686000",
+        "up": "0x391a4000",
+        "down": "0x3d784000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.52,
+       "sim_wall_s": 12.33,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 2,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       52494,
+       23
+      ],
+      "comp": "0x3f2da000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.71,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         10983,
+         12511,
+         10410,
+         10420
+        ],
+        "want": [
+         10983,
+         12511,
+         10410,
+         10420,
+         11625,
+         11571,
+         13004,
+         12097,
+         11032,
+         10606,
+         12240,
+         11918,
+         11443,
+         11368,
+         10375,
+         10120
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        34391,
+        22
+       ],
+       "comp": {
+        "gate": "0x39880000",
+        "up": "0x39bf2000",
+        "down": "0x3db86000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.52,
+       "sim_wall_s": 12.32,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 3,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       37977,
+       24
+      ],
+      "comp": "0x3f86c000",
+      "build_s": 0.2,
+      "sim_wall_s": 10.11,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11067,
+         10666,
+         10551,
+         11570
+        ],
+        "want": [
+         11067,
+         10666,
+         10551,
+         11570,
+         11747,
+         11298,
+         11064,
+         10799,
+         11771,
+         12290,
+         10671,
+         11849,
+         11947,
+         10589,
+         11526,
+         10837
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        54924,
+        22
+       ],
+       "comp": {
+        "gate": "0x39584000",
+        "up": "0x395f0000",
+        "down": "0x3d1de000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.53,
+       "sim_wall_s": 11.66,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 4,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       63831,
+       25
+      ],
+      "comp": "0x3fa9c000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.64,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         12722,
+         10316,
+         11694,
+         10865
+        ],
+        "want": [
+         12722,
+         10316,
+         11694,
+         10865,
+         11469,
+         10593,
+         11771,
+         11210,
+         11744,
+         11888,
+         13389,
+         11914,
+         10932,
+         12136,
+         11684,
+         11651
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        46067,
+        22
+       ],
+       "comp": {
+        "gate": "0x39a1c000",
+        "up": "0x39d6a000",
+        "down": "0x3db9c000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.52,
+       "sim_wall_s": 12.19,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 5,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       51389,
+       26
+      ],
+      "comp": "0x40460000",
+      "build_s": 0.18,
+      "sim_wall_s": 10.71,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13673,
+         13495,
+         14390,
+         13557
+        ],
+        "want": [
+         13673,
+         13495,
+         14390,
+         13557,
+         12252,
+         12226,
+         13706,
+         13767,
+         12234,
+         13515,
+         13357,
+         12650,
+         13756,
+         12847,
+         13105,
+         13146
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        47624,
+        22
+       ],
+       "comp": {
+        "gate": "0x39b96000",
+        "up": "0x3a720000",
+        "down": "0x3e4de000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.56,
+       "sim_wall_s": 11.61,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 6,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       40512,
+       23
+      ],
+      "comp": "0x3f328000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.16,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11517,
+         12458,
+         12160,
+         12396
+        ],
+        "want": [
+         11517,
+         12458,
+         12160,
+         12396,
+         12196,
+         11487,
+         11510,
+         11157,
+         12394,
+         11343,
+         13389,
+         10658,
+         11020,
+         11144,
+         12581,
+         11720
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        39670,
+        22
+       ],
+       "comp": {
+        "gate": "0x39aae000",
+        "up": "0x39a34000",
+        "down": "0x3dc24000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.51,
+       "sim_wall_s": 11.77,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 7,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       63197,
+       23
+      ],
+      "comp": "0x3eff0000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.67,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11627,
+         12707,
+         11285,
+         12493
+        ],
+        "want": [
+         11627,
+         12707,
+         11285,
+         12493,
+         12671,
+         12422,
+         11229,
+         12702,
+         12645,
+         12297,
+         12020,
+         10836,
+         10884,
+         11198,
+         13446,
+         12411
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        60672,
+        23
+       ],
+       "comp": {
+        "gate": "0x3997c000",
+        "up": "0x3a05a000",
+        "down": "0x3e032000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.54,
+       "sim_wall_s": 12.99,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 8,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       40976,
+       24
+      ],
+      "comp": "0x3f89e000",
+      "build_s": 0.2,
+      "sim_wall_s": 10.87,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11436,
+         12015,
+         12975,
+         11842
+        ],
+        "want": [
+         11436,
+         12015,
+         12975,
+         11842,
+         11987,
+         12382,
+         10982,
+         13579,
+         12043,
+         12217,
+         11635,
+         12172,
+         12157,
+         11094,
+         12529,
+         12475
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        50418,
+        23
+       ],
+       "comp": {
+        "gate": "0x39878000",
+        "up": "0x39a1c000",
+        "down": "0x3e116000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.52,
+       "sim_wall_s": 12.2,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 9,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       56199,
+       24
+      ],
+      "comp": "0x3f8ac000",
+      "build_s": 0.18,
+      "sim_wall_s": 10.63,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11033,
+         11441,
+         11631,
+         10830
+        ],
+        "want": [
+         11033,
+         11441,
+         11631,
+         10830,
+         11896,
+         11706,
+         11937,
+         11549,
+         11802,
+         12113,
+         11649,
+         11687,
+         10460,
+         12953,
+         12627,
+         12343
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        47939,
+        22
+       ],
+       "comp": {
+        "gate": "0x39a08000",
+        "up": "0x39976000",
+        "down": "0x3dacc000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.53,
+       "sim_wall_s": 12.28,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 10,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       46215,
+       25
+      ],
+      "comp": "0x3ff46000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.83,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11284,
+         11602,
+         12650,
+         12019
+        ],
+        "want": [
+         11284,
+         11602,
+         12650,
+         12019,
+         11634,
+         12095,
+         12798,
+         12396,
+         12363,
+         12418,
+         12131,
+         12336,
+         12297,
+         11655,
+         12123,
+         11088
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        38299,
+        22
+       ],
+       "comp": {
+        "gate": "0x39d92000",
+        "up": "0x399f4000",
+        "down": "0x3d968000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.58,
+       "sim_wall_s": 12.34,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 11,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       46931,
+       24
+      ],
+      "comp": "0x3fd04000",
+      "build_s": 0.2,
+      "sim_wall_s": 10.33,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         10414,
+         11767,
+         9615,
+         10288
+        ],
+        "want": [
+         10414,
+         11767,
+         9615,
+         10288,
+         10211,
+         10802,
+         10523,
+         11343,
+         10263,
+         10695,
+         11309,
+         12147,
+         10562,
+         10743,
+         11454,
+         11808
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        33117,
+        22
+       ],
+       "comp": {
+        "gate": "0x3991c000",
+        "up": "0x39c88000",
+        "down": "0x3d8e2000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.52,
+       "sim_wall_s": 12.07,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 12,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       43645,
+       25
+      ],
+      "comp": "0x3ffb4000",
+      "build_s": 0.22,
+      "sim_wall_s": 10.68,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11888,
+         11092,
+         9793,
+         11088
+        ],
+        "want": [
+         11888,
+         11092,
+         9793,
+         11088,
+         11505,
+         11184,
+         10690,
+         11668,
+         11773,
+         12436,
+         11372,
+         11505,
+         10579,
+         11889,
+         11702,
+         12314
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        36549,
+        23
+       ],
+       "comp": {
+        "gate": "0x39698000",
+        "up": "0x3985c000",
+        "down": "0x3de8c000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.56,
+       "sim_wall_s": 11.51,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 13,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       32962,
+       24
+      ],
+      "comp": "0x3fbb6000",
+      "build_s": 0.21,
+      "sim_wall_s": 10.08,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13065,
+         11347,
+         10417,
+         10869
+        ],
+        "want": [
+         13065,
+         11347,
+         10417,
+         10869,
+         11439,
+         12785,
+         11362,
+         10700,
+         9575,
+         10390,
+         13064,
+         11333,
+         10384,
+         11609,
+         11503,
+         11943
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        36659,
+        22
+       ],
+       "comp": {
+        "gate": "0x39a56000",
+        "up": "0x39b36000",
+        "down": "0x3dd12000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.51,
+       "sim_wall_s": 11.33,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 14,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       43366,
+       25
+      ],
+      "comp": "0x4013c000",
+      "build_s": 0.18,
+      "sim_wall_s": 9.82,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         12141,
+         11024,
+         11367,
+         11431
+        ],
+        "want": [
+         12141,
+         11024,
+         11367,
+         11431,
+         11983,
+         10826,
+         11440,
+         10895,
+         11780,
+         12323,
+         12536,
+         11700,
+         11414,
+         10394,
+         11564,
+         11623
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        54156,
+        23
+       ],
+       "comp": {
+        "gate": "0x399a8000",
+        "up": "0x399a8000",
+        "down": "0x3da46000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.51,
+       "sim_wall_s": 11.26,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 15,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       40906,
+       24
+      ],
+      "comp": "0x3f9d6000",
+      "build_s": 0.19,
+      "sim_wall_s": 9.9,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         12162,
+         13365,
+         11851,
+         11876
+        ],
+        "want": [
+         12162,
+         13365,
+         11851,
+         11876,
+         11381,
+         11763,
+         11709,
+         12034,
+         11723,
+         11448,
+         12363,
+         11434,
+         11920,
+         11721,
+         12156,
+         10895
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        33364,
+        22
+       ],
+       "comp": {
+        "gate": "0x39bac000",
+        "up": "0x3a136000",
+        "down": "0x3de82000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.5,
+       "sim_wall_s": 11.47,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 16,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       61736,
+       26
+      ],
+      "comp": "0x402c4000",
+      "build_s": 0.18,
+      "sim_wall_s": 9.93,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11699,
+         12346,
+         12834,
+         12186
+        ],
+        "want": [
+         11699,
+         12346,
+         12834,
+         12186,
+         12446,
+         12483,
+         12543,
+         13419,
+         12292,
+         12657,
+         12445,
+         11611,
+         11940,
+         13883,
+         12470,
+         12423
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        51725,
+        24
+       ],
+       "comp": {
+        "gate": "0x39e56000",
+        "up": "0x39d22000",
+        "down": "0x3ee1c000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.6,
+       "sim_wall_s": 11.29,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 17,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       52120,
+       25
+      ],
+      "comp": "0x3fb2c000",
+      "build_s": 0.18,
+      "sim_wall_s": 9.81,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13756,
+         13664,
+         14394,
+         12152
+        ],
+        "want": [
+         13756,
+         13664,
+         14394,
+         12152,
+         14346,
+         13687,
+         14612,
+         12610,
+         14295,
+         13035,
+         13491,
+         13572,
+         14582,
+         13455,
+         12747,
+         13246
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        62043,
+        23
+       ],
+       "comp": {
+        "gate": "0x3a3e2000",
+        "up": "0x39b4c000",
+        "down": "0x3e78c000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.49,
+       "sim_wall_s": 11.42,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 18,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       50021,
+       24
+      ],
+      "comp": "0x3f286000",
+      "build_s": 0.18,
+      "sim_wall_s": 10.08,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13589,
+         12972,
+         12629,
+         12343
+        ],
+        "want": [
+         13589,
+         12972,
+         12629,
+         12343,
+         13646,
+         13063,
+         12483,
+         13385,
+         12254,
+         13534,
+         13762,
+         13683,
+         15209,
+         13048,
+         13788,
+         13441
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        40151,
+        23
+       ],
+       "comp": {
+        "gate": "0x3a04a000",
+        "up": "0x39dd6000",
+        "down": "0x3f300000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.5,
+       "sim_wall_s": 11.59,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 19,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       42556,
+       25
+      ],
+      "comp": "0x3fdf8000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.13,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13898,
+         13418,
+         13437,
+         12244
+        ],
+        "want": [
+         13898,
+         13418,
+         13437,
+         12244,
+         12620,
+         13602,
+         13657,
+         13813,
+         13841,
+         13214,
+         13974,
+         13691,
+         13642,
+         13389,
+         14450,
+         13119
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        41082,
+        23
+       ],
+       "comp": {
+        "gate": "0x3a5fc000",
+        "up": "0x3a230000",
+        "down": "0x3e90c000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.5,
+       "sim_wall_s": 11.51,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 20,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       56135,
+       24
+      ],
+      "comp": "0x3f66a000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.08,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13333,
+         15463,
+         13175,
+         14276
+        ],
+        "want": [
+         13333,
+         15463,
+         13175,
+         14276,
+         13214,
+         12164,
+         13339,
+         13852,
+         13345,
+         13557,
+         13459,
+         13104,
+         12835,
+         12833,
+         14018,
+         13854
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        57487,
+        23
+       ],
+       "comp": {
+        "gate": "0x3a40c000",
+        "up": "0x3a178000",
+        "down": "0x3eea0000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.58,
+       "sim_wall_s": 11.56,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 21,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       49826,
+       25
+      ],
+      "comp": "0x3fe40000",
+      "build_s": 0.2,
+      "sim_wall_s": 10.11,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         9429,
+         11274,
+         11623,
+         11961
+        ],
+        "want": [
+         9429,
+         11274,
+         11623,
+         11961,
+         10158,
+         10495,
+         13443,
+         10678,
+         10610,
+         11493,
+         11834,
+         11493,
+         10291,
+         11708,
+         12578,
+         11647
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        38365,
+        22
+       ],
+       "comp": {
+        "gate": "0x39df8000",
+        "up": "0x3a118000",
+        "down": "0x3e1b6000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.55,
+       "sim_wall_s": 11.47,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 22,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       53964,
+       25
+      ],
+      "comp": "0x3fb2c000",
+      "build_s": 0.19,
+      "sim_wall_s": 10.08,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         11801,
+         13537,
+         10969,
+         11740
+        ],
+        "want": [
+         11801,
+         13537,
+         10969,
+         11740,
+         10935,
+         11507,
+         10637,
+         12627,
+         11321,
+         11579,
+         12988,
+         11491,
+         11613,
+         11120,
+         11671,
+         11422
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        37271,
+        23
+       ],
+       "comp": {
+        "gate": "0x39f66000",
+        "up": "0x39702000",
+        "down": "0x3e38e000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.49,
+       "sim_wall_s": 11.64,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    },
+    {
+     "layer": 23,
+     "walked_macs": 4587520,
+     "refused": null,
+     "walk": {
+      "qkv": {
+       "jobs": 144,
+       "bad": 0,
+       "all_bit_exact": true
+      },
+      "r1": {
+       "n": 896,
+       "bad": 0,
+       "bit_exact": true,
+       "first_bad": []
+      },
+      "silence": {
+       "window_ops": 1586,
+       "writes": 144,
+       "ro_advances": 144,
+       "control_writes": 0,
+       "silent": true,
+       "offenders": []
+      },
+      "fuel_audit_ok": 1,
+      "cycles": {
+       "stamps": {
+        "E6R-PREGO": 1044986,
+        "E6R-WALKDONE": 3283774
+       },
+       "walk_shell_cycles": 2238788,
+       "walk_tile_cycles": 559697
+      },
+      "rq": [
+       58270,
+       23
+      ],
+      "comp": "0x3f85c000",
+      "build_s": 0.21,
+      "sim_wall_s": 10.1,
+      "walked_macs": {
+       "qkv": 1032192,
+       "oproj": 802816
+      },
+      "res1_f16_adds": 896,
+      "ffn": {
+       "refused": null,
+       "macs_total": 2752512,
+       "slice": {
+        "d_ffn_walk": 1024,
+        "d_ffn": 4864,
+        "chunks": 16
+       },
+       "fs": {
+        "equal": true,
+        "got": [
+         13506,
+         15533,
+         12677,
+         13786
+        ],
+        "want": [
+         13506,
+         15533,
+         12677,
+         13786,
+         12738,
+         14076,
+         13707,
+         12223,
+         13757,
+         12726,
+         12859,
+         14076,
+         13809,
+         13832,
+         14237,
+         13514
+        ]
+       },
+       "p_codes": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "r2_row": {
+        "equal": true,
+        "n_diff": 0
+       },
+       "silence": {
+        "window_ops": 0,
+        "writes": 0,
+        "ro_advances": 0,
+        "control_writes": 0,
+        "silent": true,
+        "offenders": []
+       },
+       "fuel_audit_ok": 1,
+       "cycles": {
+        "stamps": {
+         "FFN-PREGO": 360874,
+         "FFN-WALKDONE": 3726046
+        },
+        "ffn_shell_cycles": 3365172,
+        "ffn_tile_cycles": 841293
+       },
+       "rq_d": [
+        57805,
+        23
+       ],
+       "comp": {
+        "gate": "0x39e7c000",
+        "up": "0x39c08000",
+        "down": "0x3f346000"
+       },
+       "walked_macs": {
+        "gate": 917504,
+        "up": 917504,
+        "down": 917504
+       },
+       "build_s": 0.53,
+       "sim_wall_s": 11.49,
+       "grade_seam": "PROBE semantics: the FFN\u2192DOWN window walks d_ffn[0:S] of the model's d_ffn (the stage-bank bound) on the layer's real Wg/Wu/Wd and live h2, graded bit-exact against golden's own functions on the framed operands (per-chunk product scales; composites C2 f16-graded). It does NOT replace the host FFN in the token composition \u2014 fx carries the state, exactly as the E-6 chain's seam already states."
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "git": "8740a90",
+ "timestamp": "2026-08-11T20:16:36"
+}

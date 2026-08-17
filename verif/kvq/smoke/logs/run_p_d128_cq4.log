@@ -1,0 +1,19 @@
+==== tb_kvq_top config=d128_cq4 D=128 T=100 TIER=1 G=128 K=0 NGRP=0 partial=1 stall=0 expect_bug=0
+     VECDIR=../../../golden/vectors/d128_T100_G128__CQ4
+     KEYDIR=../../../golden/vectors/d128_T100_G128__CQ4
+[V] streaming 100 value tokens
+[V] compress side-effects: checking 100 SRAM value records
+[V] decompress: reading back 100 tokens (fp32)
+[P] PARTIAL-GROUP DEMO: streaming 100-token tail (g<G=128) — no flush path in the top
+[P] confirmed: STATUS.idle=0 — engine wedged in ST_KACCEPT waiting for 28 more tokens
+[P] confirmed: OCCUPANCY unchanged (100) — the 100 tail tokens are stranded in the residual buffer
+[P] confirmed: READ_ADDR write while wedged is silently dropped (0 output beats in 5000 cycles)
+[P] soft reset recovers the engine (STATUS.idle=1); tail data is LOST
+[P] post-recovery value round-trip OK — limitation demonstrated, engine usable again
+============================================================
+CONFIG d128_cq4: checks=32665 fails=0
+KVQ PARITY [d128_cq4]: PASS (bit-exact records + fp32 readback, irq=0)
+- tb_kvq_top.sv:542: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 945us; walltime 0.076 s; speed 12.907 ms/s
+- Verilator: cpu 0.073 s on 1 threads; alloced 2 MB

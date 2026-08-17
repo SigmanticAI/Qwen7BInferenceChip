@@ -1,0 +1,960 @@
+{
+ "executor": "hw",
+ "n_stages": 94,
+ "n_pass": 94,
+ "wall_s": 73.6,
+ "ok": true,
+ "rows": [
+  {
+   "name": "nf_resid_probe",
+   "stage": "resid_probe",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 0
+  },
+  {
+   "name": "nf_resid_r1",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_norm2",
+   "stage": "norm2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_norm2_probe",
+   "stage": "norm2_probe",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 0
+  },
+  {
+   "name": "nf_norm2c",
+   "stage": "norm2c",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 4088
+  },
+  {
+   "name": "nf_norm2x",
+   "stage": "norm2x",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 4060
+  },
+  {
+   "name": "nf_sum2m",
+   "stage": "sum2m",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 261
+  },
+  {
+   "name": "nf_resid_r2",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_swiglu_probe",
+   "stage": "swiglu_probe",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 0
+  },
+  {
+   "name": "nf_swiglu",
+   "stage": "swiglu",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 21460
+  },
+  {
+   "name": "nf_rope_h00",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h01",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h02",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h03",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h04",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h05",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h06",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h07",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h08",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h09",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h10",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h11",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h12",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h13",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h14",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h15",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h16",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h17",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h18",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h19",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h20",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h21",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h22",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h23",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h24",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h25",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h26",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_rope_h27",
+   "stage": "rope",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 145
+  },
+  {
+   "name": "nf_residfull_r1_00",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_01",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_02",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_03",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_04",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_05",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_06",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_07",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_08",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_09",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_10",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_11",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_12",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_13",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_14",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_15",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_16",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_17",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_18",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_19",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_20",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_21",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_22",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_23",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_24",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_25",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_26",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r1_27",
+   "stage": "resid_r1",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_00",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_01",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_02",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_03",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_04",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_05",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_06",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_07",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_08",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_09",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_10",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_11",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_12",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_13",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_14",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_15",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_16",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_17",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_18",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_19",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_20",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_21",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_22",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_23",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_24",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_25",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_26",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  },
+  {
+   "name": "nf_residfull_r2_27",
+   "stage": "resid_r2",
+   "run_ok": true,
+   "grade": {
+    "equal": true
+   },
+   "caps": 128
+  }
+ ],
+ "resid_full_reassembly": {
+  "r1": {
+   "equal": true,
+   "d_model": 3584,
+   "n_slices": 28,
+   "slices_with_full_capture": 28,
+   "covered": 3584,
+   "n_diff": 0,
+   "first_idx": -1,
+   "notes": []
+  },
+  "r2": {
+   "equal": true,
+   "d_model": 3584,
+   "n_slices": 28,
+   "slices_with_full_capture": 28,
+   "covered": 3584,
+   "n_diff": 0,
+   "first_idx": -1,
+   "notes": []
+  }
+ },
+ "resid_full_ok": true,
+ "norm2m": {
+  "sum2_moved_u32": 120498,
+  "n_beats": 29,
+  "host_adds": 0,
+  "sensitivity": {
+   "dm": 3584,
+   "rows": 28,
+   "host_total": 120498,
+   "delta_min": 4943,
+   "r_base": 1638,
+   "r_at_delta": 1365,
+   "n_code_diff": 872,
+   "n_scale_diff": 28,
+   "plus_one_absorbed": true,
+   "why": "sum2 reaches the graded row ONLY through the integer r; deltas inside one r bucket are invisible to golden itself, so the discriminator uses the first delta that leaves it"
+  },
+  "ext": {
+   "name": "nf_norm2m",
+   "armed": 120498,
+   "delta": 0,
+   "csr_word": 120498,
+   "run_ok": true,
+   "caps": 4060,
+   "grade": {
+    "equal": true,
+    "n": 3584,
+    "codes_equal": true,
+    "scales_equal": true,
+    "got_codes": 3584,
+    "got_scales": 28,
+    "n_code_diff": 0
+   },
+   "green": true,
+   "as_expected": true,
+   "notes": []
+  },
+  "disc": {
+   "name": "nf_norm2m_disc",
+   "armed": 125441,
+   "delta": 4943,
+   "csr_word": 125441,
+   "run_ok": true,
+   "caps": 4060,
+   "grade": {
+    "equal": false,
+    "n": 3584,
+    "codes_equal": false,
+    "scales_equal": false,
+    "got_codes": 3584,
+    "got_scales": 28,
+    "n_code_diff": 872
+   },
+   "green": false,
+   "as_expected": true,
+   "notes": []
+  },
+  "ctl": {
+   "name": "nf_norm2m_ctl",
+   "armed": 120499,
+   "delta": 1,
+   "csr_word": 120499,
+   "run_ok": true,
+   "caps": 4060,
+   "grade": {
+    "equal": true,
+    "n": 3584,
+    "codes_equal": true,
+    "scales_equal": true,
+    "got_codes": 3584,
+    "got_scales": 28,
+    "n_code_diff": 0
+   },
+   "green": true,
+   "as_expected": true,
+   "notes": []
+  },
+  "discriminator_caught": true,
+  "plus_one_absorbed_measured": true,
+  "ok": true
+ },
+ "norm2m_ok": true,
+ "claim_note": "the nf_norm2 stage is a 128-wide UNIT demo; the FULL-ROW norm is norm2c/norm2x/norm2m (R4 chunk composition on this narrow build) \u2014 norm2m is the same full row with the host's 27 INT32 adds REMOVED: the MXE computes sum2 and accumulates it across descriptors ON THE TILE, and the host only moves one u32 into RMS_SUM2. The RESIDUAL is full-fidelity: the whole D_model row as 28 aligned 128-element slices per row, graded per slice AND by reassembly against golden's r1/r2"
+}

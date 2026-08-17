@@ -1,0 +1,53 @@
+# KVQ D-016/D-008 regression repro (fix-side, clean-room engine).
+# The historical third-party 'baseline bug' halves are retired (that checkout is
+# not part of this repo); the fix-side proofs below verify the required behavior.
+
+===== logs/run_r_alias.log =====
+==== tb_residual_alias G=64 expect_bug=0 (D-016c: cnt==G write alias)
+============================================================
+CONFIG resid_alias: checks=4 fails=0
+D-016c RESULT [resid_alias]: PASS — overflow write dropped, mem[0..G-1] and fill intact
+- tb_residual_alias.sv:123: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 745ns; walltime 0.000 s; speed 7.450 ms/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 1 MB
+
+===== logs/run_r_collide.log =====
+==== tb_kvq_collide config=collide expect_bug=0 (D-016b: read_req vs accepted beat)
+[C] token 0 stored at addr 0; arming the collision
+============================================================
+CONFIG collide: checks=166 fails=0 (irq=0)
+D-016b RESULT [collide]: PASS — accepted beat wins, token stored bit-exact, read deferred not dropped
+- tb_kvq_collide.sv:274: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 3us; walltime 0.009 s; speed 339.272 us/s
+- Verilator: cpu 0.009 s on 1 threads; alloced 2 MB
+
+===== logs/run_r_flush.log =====
+==== tb_kvq_flush config=flush expect_bug=0 (D-008: partial-group flush, T=70 G=64 tail g=6)
+[F] streaming full key group 0 (G=64) at base 0
+[F] streaming partial tail (g=6) at base 64
+[F] confirmed: engine parked waiting for 58 more tokens (STATUS.idle=0)
+[F] pulsing flush_req
+[F] flush emitted the tail: OCCUPANCY 64 -> 70
+[F] checking 70 unified key records (full group + flushed tail) vs python golden
+[F] reading back ALL 70 tokens (fp32) vs python golden
+============================================================
+CONFIG flush: checks=17996 fails=0 (irq=0)
+D-008 RESULT [flush]: PASS — partial group (g=6) flushed, all 70 tokens bit-exact vs python golden
+- tb_kvq_flush.sv:281: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 100us; walltime 0.028 s; speed 3.657 ms/s
+- Verilator: cpu 0.027 s on 1 threads; alloced 5 MB
+
+===== logs/run_r_rwait.log =====
+==== tb_kvq_rwait config=rwait expect_bug=0 (D-016a: unwritten-address read)
+[R] sanity round-trip at addr 0 OK (checks=65 fails=0)
+============================================================
+CONFIG rwait: checks=137 fails=0
+D-016a RESULT [rwait]: PASS — bounded RWAIT, clean drop, RD_ERR irq + W1C, engine usable
+- tb_kvq_rwait.sv:234: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 3us; walltime 0.007 s; speed 403.972 us/s
+- Verilator: cpu 0.007 s on 1 threads; alloced 2 MB
+

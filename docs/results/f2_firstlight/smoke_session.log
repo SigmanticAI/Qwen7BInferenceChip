@@ -1,0 +1,32 @@
+script written
+SSH up on 34.222.123.251
+[22:36:33] == F2 SMOKE SESSION start
+Cloning into '/home/ubuntu/aws-fpga'...
+[22:37:02] sdk_setup rc=0 (/usr/local/bin/fpga-load-local-image)
+Type  FpgaImageSlot  VendorId    DeviceId    DBDF
+AFIDEVICE    0       0x1d0f      0x9048      0000:34:00.0
+[22:37:02] loading agfi-0f7c93ffa798ecc3f into slot 0
+AFI          0       agfi-0f7c93ffa798ecc3f  loaded            0        ok               0       0x10212415
+AFIDEVICE    0       0x1d0f      0xf006      0000:34:00.0
+Type  FpgaImageSlot  FpgaImageId             StatusName    StatusCode   ErrorName    ErrorCode   ShVersion
+AFI          0       agfi-0f7c93ffa798ecc3f  loaded            0        ok               0       0x10212415
+Type  FpgaImageSlot  VendorId    DeviceId    DBDF
+AFIDEVICE    0       0x1d0f      0xf006      0000:34:00.0
+[22:37:09] running probe
+BAR0 attached
+  peek 0x0000 = 0x41394558
+  peek 0x0008 = 0xa5a55a5a
+  peek 0x0008 = 0x5a5aa5a5
+ KVQ INFO window:
+  peek 0x2008 = 0x00000040
+  peek 0x200c = 0x00000001
+  peek 0x2010 = 0x00000080
+  peek 0x2020 = 0x00020001
+ tile CSR window:
+  peek 0x1000 = 0x00000000
+  peek 0x1004 = 0x00000001
+ bridge status:
+  peek 0x0010 = 0x00000000
+  peek 0x0018 = 0x00000000
+PROBE: ALL PASS
+[22:37:09] == F2 SMOKE SESSION done probe_rc=0

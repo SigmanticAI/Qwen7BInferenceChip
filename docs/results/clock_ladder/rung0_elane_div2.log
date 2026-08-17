@@ -1,0 +1,11 @@
+  [walk_nfeed] rc=0 ok=True caps=274 0.6s grade=True
+[disc] running the perturbations (each MUST go red)
+
+E-LANE E-3 walked norm-feed @ tile_div=2 (binary=bridge default)
+  walk_nfeed       rc=0 ok=True caps=274  grade=True
+  disc walk_off     caught=True
+  disc x_ulp        caught=True
+  disc gamma        caught=True
+  disc cap_code     caught=True
+  disc cap_scale    caught=True
+ELANE-WALK SMOKE: PASS

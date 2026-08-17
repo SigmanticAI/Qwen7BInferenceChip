@@ -1,0 +1,453 @@
+{
+ "prompt": "The largest planet in our solar system is",
+ "prompt_ids": [
+  785,
+  7772,
+  11580,
+  304,
+  1039,
+  12941,
+  1849,
+  374
+ ],
+ "mode": "sim",
+ "offload": {
+  "layer": 13,
+  "head": 7,
+  "step": null
+ },
+ "tokens_on": [
+  279
+ ],
+ "tokens_off": [
+  279
+ ],
+ "text_on": " the",
+ "text_off": " the",
+ "token_identity": true,
+ "milestone_c": true,
+ "seconds": {
+  "on": 248.37097708403599,
+  "off": 227.78090324997902
+ },
+ "captures": [
+  {
+   "name": "poff_s000_L13_h07",
+   "step": 0,
+   "layer": 13,
+   "head": 7,
+   "T": 1,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.192,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 164,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    65532,
+    23
+   ],
+   "rq_golden": [
+    65532,
+    23
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s001_L13_h07",
+   "step": 1,
+   "layer": 13,
+   "head": 7,
+   "T": 2,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.212,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 181,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    65532,
+    23
+   ],
+   "rq_golden": [
+    65532,
+    23
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s002_L13_h07",
+   "step": 2,
+   "layer": 13,
+   "head": 7,
+   "T": 3,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.259,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 198,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    33250,
+    22
+   ],
+   "rq_golden": [
+    33250,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s003_L13_h07",
+   "step": 3,
+   "layer": 13,
+   "head": 7,
+   "T": 4,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.291,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 215,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    33936,
+    22
+   ],
+   "rq_golden": [
+    33936,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s004_L13_h07",
+   "step": 4,
+   "layer": 13,
+   "head": 7,
+   "T": 5,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.328,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 232,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    33853,
+    22
+   ],
+   "rq_golden": [
+    33853,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s005_L13_h07",
+   "step": 5,
+   "layer": 13,
+   "head": 7,
+   "T": 6,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.373,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 249,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    35900,
+    22
+   ],
+   "rq_golden": [
+    35900,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s006_L13_h07",
+   "step": 6,
+   "layer": 13,
+   "head": 7,
+   "T": 7,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.447,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 266,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    35326,
+    22
+   ],
+   "rq_golden": [
+    35326,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  },
+  {
+   "name": "poff_s007_L13_h07",
+   "step": 7,
+   "layer": 13,
+   "head": 7,
+   "T": 8,
+   "D": 128,
+   "tier": "CQ-8",
+   "G": 128,
+   "mode": "sim",
+   "seconds": 0.43,
+   "acc_source": "TILE via compute_job.grade_compute_job (sim)",
+   "s_c_source": "TILE (captured s_c, via grade_compute_job)",
+   "n_captures": 283,
+   "executor_ok": true,
+   "executor_rc": 0,
+   "notes": [],
+   "compute_job_ok": true,
+   "grade_acc": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_out_hat": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "grade_o8": {
+    "equal": true,
+    "n": 128,
+    "n_diff": 0,
+    "worst": 0.0,
+    "first_idx": -1
+   },
+   "rq_tile": [
+    34071,
+    22
+   ],
+   "rq_golden": [
+    34071,
+    22
+   ],
+   "poisoned": null,
+   "substituted": true,
+   "consumed": true,
+   "head_is_core": true
+  }
+ ],
+ "git": "1652bdf",
+ "timestamp": "2026-07-29T19:00:35"
+}

@@ -1,0 +1,9 @@
+// F-2/D-022 fail-first probe: TIER_CTRL is readable but NOT wired to any
+// runtime KVQ tier mux in the pre-fix tile (kvq_engine TIER is a synthesis
+// parameter, tile built TIER=0). Setting TIER_CTRL=CQ4 and polling the KVQ
+// engine's own INFO_TIER must read 1 on a tier-routed tile; the pre-fix
+// tile reads 0 forever -> KVP timeout ($fatal), the kept-failing signature.
+CSRW 20 00000001
+KVW 00 00000002
+KVP 0c ffffffff 00000001
+DONE

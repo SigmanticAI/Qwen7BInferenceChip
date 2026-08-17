@@ -1,0 +1,96 @@
+{
+ "model": {
+  "per_program_s": 0.045822538325714944,
+  "per_peek_s": 2.2115487957579813e-05,
+  "c_inv_s": 4.8,
+  "inputs": {
+   "s3_peeks": 21381120,
+   "p05b_peeks": 7394304
+  },
+  "points": {
+   "s3_sweep": {
+    "programs": 29696,
+    "invocations": 68,
+    "seconds": 2160.0,
+    "source": "docs/results/prompt_on_chip/PROJ_SWEEP_RESULT.md"
+   },
+   "p05b_layer": {
+    "programs": 2190,
+    "invocations": 43,
+    "seconds": 470.28,
+    "source": "build/p05b_hw_check2.log (layer 0)"
+   }
+  },
+  "well_posed": true
+ },
+ "s3_reference": {
+  "k": 128,
+  "rows_per_desc": 1,
+  "d": 128,
+  "ops": 1323,
+  "peeks": 720,
+  "pokes": 1276,
+  "bytes": 41522,
+  "by_op": {
+   "note": 7,
+   "r": 19,
+   "w": 596,
+   "poll": 10,
+   "pw": 658,
+   "jf": 22,
+   "cap": 9,
+   "rn": 2
+  }
+ },
+ "old": {
+  "programs": 2160.0,
+  "peeks": 7372704.0,
+  "ops": 16889568.0,
+  "bytes": 525008488.0,
+  "blocks": 2160.0,
+  "nonproj_programs": 30.0,
+  "n_layers": 2,
+  "proj_invocations": 13.0,
+  "fat": false,
+  "burst": false,
+  "rows_per_desc": 16,
+  "batch_size": 256
+ },
+ "new": {
+  "programs": 25.0,
+  "peeks": 192896.0,
+  "ops": 6614750.0,
+  "bytes": 214026954.5,
+  "blocks": 1936.0,
+  "nonproj_programs": 30.0,
+  "n_layers": 2,
+  "proj_invocations": 7.0,
+  "fat": true,
+  "burst": true,
+  "rows_per_desc": 31,
+  "batch_size": 256
+ },
+ "peeks_old": 7394304.0,
+ "peeks_new": 214496.0,
+ "predicted_old_s": 470.28,
+ "predicted_new_s": 184.86392331286336,
+ "predicted_speedup": 2.5439252373979913,
+ "predicted_new_terms": {
+  "invocation setup": 177.6,
+  "per-program (TILE_RST + parse + marker)": 2.520239607914322,
+  "BAR0 peeks": 4.7436837049490395
+ },
+ "sensitivity_c_inv_s": {
+  "4.8": 184.86392331286336,
+  "2.5": 99.76392331286335,
+  "1.5": 62.76392331286336,
+  "1.0": 44.26392331286336
+ },
+ "invocations": {
+  "old": 43,
+  "new": 37
+ },
+ "measured_old_s": 578.5,
+ "labelled": "PREDICTION \u2014 fitted to committed hw runs, evaluated on sim-emitted program sets; no hardware touched",
+ "timestamp": "2026-08-04T16:32:07"
+}

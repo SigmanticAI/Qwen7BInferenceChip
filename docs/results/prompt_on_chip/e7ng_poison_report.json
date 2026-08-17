@@ -1,0 +1,178 @@
+{
+ "mut": {
+  "byte_offset": 14913537,
+  "k": 0,
+  "old": 19,
+  "new": 83,
+  "v_old": 4992,
+  "v_new": 21376
+ },
+ "ran": true,
+ "h2_moved_right": true,
+ "r1_held": true,
+ "red": true,
+ "restore": {
+  "image": "/home/ubuntu/ddrswap_nggood/ddr_image.bin",
+  "image_sha256": "c5ce6e5d4396c2240b4b190db0717750247c32d2cf66b37df4505a43aaa6b347",
+  "slot": 0,
+  "preflight": {
+   "FUEL_STAT": 2057,
+   "FUEL_CTRL": 0,
+   "FUEL_ERR": 0
+  },
+  "load": {
+   "bytes": 29842432,
+   "bursts": 468,
+   "seconds": 0.28,
+   "MB_per_s": 100.34
+  },
+  "verify": {
+   "mode": "full",
+   "tensors": [
+    {
+     "tensor": "L00_Wq",
+     "words": 12544,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wk",
+     "words": 1792,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wv",
+     "words": 1792,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wo",
+     "words": 12544,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wg",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wu",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_Wd",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_g1",
+     "words": 28,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_g2",
+     "words": 28,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L00_phase",
+     "words": 128,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wq",
+     "words": 12544,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wk",
+     "words": 1792,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wv",
+     "words": 1792,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wo",
+     "words": 12544,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wg",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wu",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_Wd",
+     "words": 68096,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_g1",
+     "words": 28,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_g2",
+     "words": 28,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    },
+    {
+     "tensor": "L01_phase",
+     "words": 128,
+     "bad_words": 0,
+     "sha_ok": true,
+     "ok": true
+    }
+   ],
+   "fails": 0,
+   "words_read": 466288
+  },
+  "FUEL_ERR_after": 0
+ }
+}

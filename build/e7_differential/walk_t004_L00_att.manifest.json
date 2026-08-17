@@ -1,0 +1,15 @@
+{
+ "name": "walk_t004_L00_att",
+ "regops": 14064,
+ "checks": 75,
+ "caps": 1666,
+ "cap_sites_rewritten": 1666,
+ "erd_reads": 0,
+ "path": "build/tl_e7_nobatch/walk_t004_L00_att.regops.jsonl",
+ "stage": "walk_e7_att",
+ "d": 64,
+ "T": 5,
+ "pos": 4,
+ "walk_mask": "0x0030",
+ "act_rows": 14
+}

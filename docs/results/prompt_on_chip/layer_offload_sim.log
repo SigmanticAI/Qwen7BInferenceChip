@@ -1,0 +1,190 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[C2] model=mlx-community/Qwen2.5-7B-4bit L=28 H=28 tier=CQ-8 G=128; prompt=5 tok + 1 new = 6 <= 128 OK
+[C2] target: layer 0 step 4  mode=sim  ops=proj,rope,attn,resid,norm,swiglu
+[C2] === run 1/3: OFFLOAD ON ===
+  [prefill 1/5] pos=0 T=1 tok=785 28s
+  [prefill 2/5] pos=1 T=2 tok=6722 55s
+  [prefill 3/5] pos=2 T=3 tok=315 82s
+  [prefill 4/5] pos=3 T=4 tok=9625 110s
+[layer_offload] proj Wq: 8/3584 values from the tile, bit-exact=True (0.68s)
+[layer_offload] proj Wk: 8/2560 values from the tile, bit-exact=True (0.7s)
+[layer_offload] proj Wv: 8/2560 values from the tile, bit-exact=True (0.71s)
+[layer_offload] proj Wo: 8/3584 values from the tile, bit-exact=True (0.68s)
+[layer_offload] resid r1: 3584/3584 elements from the tile in 28 slices, bit-exact=True (0.73s)
+[layer_offload] proj Wg: 8/18944 values from the tile, bit-exact=True (0.7s)
+[layer_offload] proj Wu: 8/18944 values from the tile, bit-exact=True (0.7s)
+[layer_offload] swiglu: 18944/18944 columns from the tile (296 x 64-col jobs), C-1 view bit-exact=True (61.23s)
+[layer_offload] proj Wd: 8/3584 values from the tile, bit-exact=True (3.58s)
+[layer_offload] resid r2: 3584/3584 elements from the tile in 28 slices, bit-exact=True (0.74s)
+  [prefill 5/5] pos=4 T=5 tok=374 226s
+[C2] === run 2/3: OFFLOAD OFF (pure golden, default bus) ===
+  [prefill 1/5] pos=0 T=1 tok=785 29s
+  [prefill 2/5] pos=1 T=2 tok=6722 58s
+  [prefill 3/5] pos=2 T=3 tok=315 86s
+  [prefill 4/5] pos=3 T=4 tok=9625 114s
+  [prefill 5/5] pos=4 T=5 tok=374 142s
+[C2] === run 3/3: HOST ONLY, target layer in C-LBUS BUS_ON ===
+  [prefill 1/5] pos=0 T=1 tok=785 29s
+  [prefill 2/5] pos=1 T=2 tok=6722 55s
+  [prefill 3/5] pos=2 T=3 tok=315 84s
+  [prefill 4/5] pos=3 T=4 tok=9625 112s
+  [prefill 5/5] pos=4 T=5 tok=374 141s
+[C2] === discriminator: every tile value x0.5 ===
+  [prefill 1/5] pos=0 T=1 tok=785 30s
+  [prefill 2/5] pos=1 T=2 tok=6722 57s
+  [prefill 3/5] pos=2 T=3 tok=315 87s
+  [prefill 4/5] pos=3 T=4 tok=9625 115s
+[layer_offload] proj Wq: 8/3584 values from the tile, bit-exact=True (0.77s)
+[layer_offload] proj Wk: 8/2560 values from the tile, bit-exact=True (0.78s)
+[layer_offload] proj Wv: 8/2560 values from the tile, bit-exact=True (0.79s)
+[layer_offload] proj Wo: 8/3584 values from the tile, bit-exact=True (0.71s)
+[layer_offload] resid r1: 3584/3584 elements from the tile in 28 slices, bit-exact=True (0.78s)
+[layer_offload] proj Wg: 8/18944 values from the tile, bit-exact=True (0.71s)
+[layer_offload] proj Wu: 8/18944 values from the tile, bit-exact=True (0.69s)
+[layer_offload] swiglu: 18944/18944 columns from the tile (296 x 64-col jobs), C-1 view bit-exact=True (60.84s)
+[layer_offload] proj Wd: 8/3584 values from the tile, bit-exact=True (3.55s)
+[layer_offload] resid r2: 3584/3584 elements from the tile in 28 slices, bit-exact=True (0.79s)
+  [prefill 5/5] pos=4 T=5 tok=374 231s
+
+==============================================================================
+MILESTONE C2 — ONE DECODER LAYER OF A REAL PROMPT, EVERY OP TYPE ON THE TILE
+==============================================================================
+  prompt          : 'The capital of France is'
+  prompt ids      : [785, 6722, 315, 9625, 374] (5 tokens)
+  fence           : 5+1 = 6 <= 128 tokens  OK (chunked heads cannot be offloaded — N8)
+  model           : mlx-community/Qwen2.5-7B-4bit  L=28 H=28 head_dim=128 d_ffn=18944
+  offloaded layer : 0  step 4   composition: C-LBUS BUS_ON (apex_layer_deq.sv:90-92 refuses an ungraded composite)
+  executor        : sim
+  tile jobs       : 272 programs, 86940 capture records, 144.9s in the executor
+
+  PER-OP LEDGER — who computed each op type of the offloaded layer
+  ----------------------------------------------------------------------------
+  op type                    who              served/total values   exact?
+  projections q/k/v/o/g/u/d  TILE (sim)       56/53760              BIT-EXACT
+      egress      : RO lanes, raw INT32                 EXACT
+      instances   : 7/7 op calls served, 22 tile programs, 198 caps, 7.75s
+      tile vs golden (same view): bit-exact
+  RoPE (decode-token q)      TILE (sim)       3584/3584             reconstructed
+      egress      : C-1 view (codes + row scale)        EXACT where consumed*
+      instances   : 28/28 op calls served, 28 tile programs, 4060 caps, 4.84s
+      tile vs golden (same view): bit-exact
+        max_abs_delta                   : 0.07861328125
+        requant_identical               : True
+        downstream_codes_match_golden   : True
+  attention (score + PV)     TILE (sim)       3584/3584             BIT-EXACT
+      egress      : RO lanes INT32 + captured s_c       EXACT
+      instances   : 28/28 op calls served, 28 tile programs, 6496 caps, 6.45s
+      tile vs golden (same view): bit-exact
+  residual (r1, r2)          TILE (sim)       7168/7168             BIT-EXACT
+      egress      : LAYER_RDATA fp16 words              EXACT
+      instances   : 2/2 op calls served, 56 tile programs, 7168 caps, 1.47s
+      tile vs golden (same view): bit-exact
+        reassembled_equal_golden        : True
+        per_slice_pass                  : 28
+        slices                          : 28
+  RMSNorm-2                  TILE (sim)       3584/3584             reconstructed
+      egress      : C-1 view, 128-wide frames           LOSSY (B-FEED-WIDTH)
+      instances   : 1/1 op calls served, 1 tile programs, 4088 caps, 4.14s
+      tile vs golden (same view): bit-exact
+        max_abs_delta_q78               : 6
+        downstream_c1_codes_n_diff      : 46
+        downstream_c1_scale_equal       : True
+        rows                            : 28
+  SwiGLU                     TILE (sim)       18944/18944           reconstructed
+      egress      : C-1 view, 128-wide frames           LOSSY (B-FEED-WIDTH)
+      instances   : 1/1 op calls served, 1 tile programs, 21460 caps, 61.23s
+      tile vs golden (same view): bit-exact
+        max_abs_delta                   : 0.00673675537109375
+        downstream_c1_codes_n_diff      : 411
+        downstream_c1_scale_equal       : True
+        chunks                          : 296
+  * RoPE: the C-1 reconstruction is re-quantized by golden's very next stage
+    (attention_core Q7, quant_rows_i8) — measured identical to golden's own codes,
+    so the substituted row is exact WHERE THE MODEL CONSUMES IT.
+
+  SUBSTITUTION / CONSUMPTION CHECKS (the tile's value reached the model)
+    PASS  rope h00: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h00: the row the model consumes quantizes exactly as golden's
+    PASS  rope h01: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h01: the row the model consumes quantizes exactly as golden's
+    PASS  rope h02: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h02: the row the model consumes quantizes exactly as golden's
+    PASS  rope h03: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h03: the row the model consumes quantizes exactly as golden's
+    PASS  rope h04: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h04: the row the model consumes quantizes exactly as golden's
+    PASS  rope h05: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h05: the row the model consumes quantizes exactly as golden's
+    PASS  rope h06: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h06: the row the model consumes quantizes exactly as golden's
+    PASS  rope h07: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h07: the row the model consumes quantizes exactly as golden's
+    PASS  rope h08: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h08: the row the model consumes quantizes exactly as golden's
+    PASS  rope h09: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h09: the row the model consumes quantizes exactly as golden's
+    PASS  rope h10: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h10: the row the model consumes quantizes exactly as golden's
+    PASS  rope h11: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h11: the row the model consumes quantizes exactly as golden's
+    PASS  rope h12: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h12: the row the model consumes quantizes exactly as golden's
+    PASS  rope h13: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h13: the row the model consumes quantizes exactly as golden's
+    PASS  rope h14: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h14: the row the model consumes quantizes exactly as golden's
+    PASS  rope h15: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h15: the row the model consumes quantizes exactly as golden's
+    PASS  rope h16: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h16: the row the model consumes quantizes exactly as golden's
+    PASS  rope h17: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h17: the row the model consumes quantizes exactly as golden's
+    PASS  rope h18: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h18: the row the model consumes quantizes exactly as golden's
+    PASS  rope h19: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h19: the row the model consumes quantizes exactly as golden's
+    PASS  rope h20: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h20: the row the model consumes quantizes exactly as golden's
+    PASS  rope h21: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h21: the row the model consumes quantizes exactly as golden's
+    PASS  rope h22: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h22: the row the model consumes quantizes exactly as golden's
+    PASS  rope h23: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h23: the row the model consumes quantizes exactly as golden's
+    PASS  rope h24: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h24: the row the model consumes quantizes exactly as golden's
+    PASS  rope h25: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h25: the row the model consumes quantizes exactly as golden's
+    PASS  rope h26: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h26: the row the model consumes quantizes exactly as golden's
+    PASS  rope h27: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)
+    PASS  rope h27: the row the model consumes quantizes exactly as golden's
+    PASS  rope: substituted q rows are the model's r.q_rope
+    PASS  attention: tile o8/s_out are the model's r.attn
+    PASS  projections: the spliced Wq accumulators are r.q_real
+    PASS  residual r1: the tile row IS the model's r.r1
+    PASS  residual r2: the tile row IS the model's r.r2
+    PASS  RMSNorm-2: the tile row IS the model's r.h2
+    PASS  SwiGLU: the tile row IS the model's r.swiglu
+
+  token OFFLOAD ON  : ids=[12095] text=' Paris' (228s)
+  token PURE HOST   : ids=[12095] text=' Paris' (145s)
+  token HOST+BUS_ON : ids=[12095] text=' Paris' (144s, layer composed BUS_ON 1x) -> same as pure host
+  discriminator     : tile values x0.5 -> ids=[279], max|dlogit|=12.97 (substitutions ARE load-bearing)
+------------------------------------------------------------------------------
+  OP TYPES SERVED BY THE TILE: 6/6 (proj, rope, attn, resid, norm, swiglu)
+  TOKEN IDENTITY: PASS   (offload-on == pure-host)
+  MILESTONE C2  : PASS
+==============================================================================
+  WHAT THE HOST STILL DID (in the offloaded layer and outside it)
+    - tokenizer, embedding lookup, the lm_head logits and the argmax
+    - every other decoder layer: 27 of 28 layers ran entirely on the host
+    - all data movement: weights, the KV rows, every operand staged into the tile and every value read back
+    - the C-2 requant epilogues (calib_requant + requant_i32_to_i8) of the attention output, the o-projection and the down-projection — the standing fence: the tile returns raw INT32, the host calibrates
+    - the attention path's score-dequant composites (s_q*s_k/sqrt(D), compute_job.py build_script score_phase) are host-computed and pushed as CSRs; the online softmax itself runs on the tile's ASU
+    - the per-token C-1 quantizations that feed each op (quant_rows_i8) — the tile's own C-1 feeder is frozen at 128 (B-FEED-WIDTH), so the whole-row C-1 golden composes with is a host step
+    - the 27 INT32 adds that accumulate the RMSNorm chunk sums (golden rmsnorm_fx_wide's own step 2 — the tile exported all 28 chunk sums and every one is graded)
+    - the RoPE of the CACHED K rows: the rotated K must reach the KVQ codec as exact fp16 bits, and the tile's q_sink egress is a C-1 view (B-ROPE-EGRESS) — decode-token q rows only
+    - the projection columns outside --proj-cols 8 / --proj-rows 1: 53704 of 53760 accumulators
+==============================================================================
+  record -> build/layer_offload/run7b/layer_offload_result.json

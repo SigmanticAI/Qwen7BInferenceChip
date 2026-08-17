@@ -1,0 +1,8 @@
+[../../build/p2_05b_regops_b64cl/job_s001_L20_h06.regops.jsonl] 2003 ops, 113 checks, 0 fails (cyc 239119)
+[../../build/p2_05b_regops_b64cl/job_s004_L11_h12.regops.jsonl] 3992 ops, 140 checks, 0 fails (cyc 720459)
+[../../build/p2_05b_regops_b64cl/job_s006_L03_h13.regops.jsonl] 5318 ops, 158 checks, 0 fails (cyc 1363279)
+[../../build/p2_05b_regops_b64cl/job_s006_L04_h08.regops.jsonl] 5318 ops, 158 checks, 0 fails (cyc 2006099)
+[../../build/p2_05b_regops_b64cl/job_s006_L04_h11.regops.jsonl] 5318 ops, 158 checks, 0 fails (cyc 2648919)
+[../../build/p2_05b_regops_b64cl/job_s006_L07_h09.regops.jsonl] 5318 ops, 158 checks, 0 fails (cyc 3291739)
+[../../build/p2_05b_regops_b64cl/job_s007_L20_h06.regops.jsonl] 5981 ops, 167 checks, 0 fails (cyc 4015299)
+F2SIM RESULT: files=7 checks=1052 fails=0 -> PASS

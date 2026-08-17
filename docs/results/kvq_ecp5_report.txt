@@ -1,0 +1,32 @@
+KVQ engine — placed & routed on ECP5 LFE5U-85F (SHIP CONFIG, post-S10a/S10b)
+=============================================================================
+Regenerated 2026-07-18 from the S10b seed-2 route. Supersedes the retired
+2026-07-13 report (a D=16/DEPTH=2 proxy of the pre-dedup record layout —
+its 9.04 MHz was never a fair shipping-config number; kept in git history).
+
+Config    : kvq_ship_top = kvq_engine @ VECTOR_DIM=64, TIER=2 (CQ-4+),
+            KEY_GROUP=128, OUTLIER_K=2, SCALE_SETS=8, SRAM_DEPTH=128
+            (the apex_top ship parameters; D-026 record layout)
+RTL state : post-A2/D-026 dedup + S10a BRAM inference + S10b pipelined
+            fp16 divider (II=1) — commit eac38ee
+Flow      : sv2v -> yosys synth_ecp5 -abc9 -> nextpnr-ecp5 --85k
+            --package CABGA381 --speed 6 --freq 40 --seed 2
+            (scripts/fpga/s10_baseline.sh)
+
+Post-route timing (nextpnr, speed-6):
+  Max frequency clk: 34.11 MHz  (40 MHz constraint not met — reported
+                                 honestly; 3.8x up from the 9.04 MHz
+                                 un-pipelined baseline)
+
+Device utilisation (LFE5U-85F):
+  logic LUTs : 19368/83640  23%
+  carry LUTs :  4484/83640   5%
+  DP16KD BRAM:    38/208    18%
+  MULT18X18D :     1/156     0%
+  TRELLIS_IO :   161/365    44%
+
+Bitstream  : kvq_engine_ecp5-85f.bit (ecppack, from the routed seed-2 cfg)
+Route note : seed 1 fails to converge on this design at every tested freq
+             target (congestion rip-up loop, killed twice after 11-35 h);
+             seed 2 places and routes in ~4.5 min. Full story:
+             docs/results/s10_fmax/RESULT.md.

@@ -1,0 +1,4 @@
+sv2v: flat netlist OK (    2459 lines)
+probe maskless: yosys elaborate+stat OK
+probe rom: yosys elaborate+stat OK
+SYNTH PROBE: PASS (sv2v + yosys, K=2 maskless AND ROM arms)

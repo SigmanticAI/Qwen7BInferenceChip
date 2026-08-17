@@ -1,0 +1,15 @@
+[8] //  F-3 fail-first probe: err_sticky bits are set-only in the pre-fix tile
+
+[8] //  (TIP frame_err_clear tied 0; every other per-source sticky rst_n-only).
+
+[8] //  Set a sticky (illegal K=0 descriptor -> err_sticky[0]), W1C it via the
+
+[8] //  tile ERR_STICKY window (0x58), verify clear + readback. Pre-fix: the
+
+[8] //  write is a no-op (csr reserved), ESTK still reads 0x0001 and CSRR 0x58
+
+[8] //  returns 0xDEADBEEF -> 2 scripted FAILs, the kept-failing signature.
+
+[370000] %Error: tb_apex_l3.sv:750: Assertion failed in tb_apex_l3.chk32: [ESTK] got 00000001 exp 00000000
+%Error: tb_apex_l3.sv:750: Verilog $stop
+Aborting...

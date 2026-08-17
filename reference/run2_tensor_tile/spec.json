@@ -1,0 +1,247 @@
+{
+  "spec_contract_version": "1.0",
+  "module_name": "tensor_core_tile",
+  "design_name": "INT8 Systolic-Array GEMM Accelerator Tile (Tensor Core Tile)",
+  "design_purpose": "One-line: A parameterizable NxN INT8 output-stationary systolic-array GEMM/MAC engine with weight buffer, activation input FIFO, 32-bit accumulators, a requantize-and-clip stage to INT8, and a control FSM with valid/ready streaming interfaces, representing a single fully-verifiable compute tile of a transformer QKV/FFN projection matmul (LLM inference bottleneck).",
+
+  "scope": [
+    "The user asked for 'a chip to accelerate inference of a 7B-parameter LLM (e.g. Qwen-7B)'. A full 7B chip cannot be built/compiled/simulated in this environment. We scope to a REPRESENTATIVE, FULLY VERIFIABLE core compute subsystem: an INT8 systolic-array GEMM engine ('Tensor Core Tile') that captures the real bottleneck of LLM inference (matmul in attention QKV/FFN projections).",
+    "IN SCOPE: A parameterizable INT8 systolic-array style MAC/GEMM engine ('Tensor Core Tile'): NxN PE array (choose 8x8 PEs as default parameter) doing output-stationary INT8 multiply-accumulate with 32-bit accumulation, representing one tile of a transformer's QKV/FFN projection matmul.",
+    "IN SCOPE: Local weight buffer (SRAM/register-file model) and activation input buffer/FIFO feeding the array, with simple streaming load control (double-buffering optional).",
+    "IN SCOPE: Output accumulator array with a requantization/scale-and-clip stage down to INT8 (post-GEMM quantization).",
+    "IN SCOPE: A control FSM sequencing weight-load -> stream -> drain/output phases, plus a simple streaming register interface (valid/ready handshake) so a testbench can drive it like a real accelerator tile.",
+    "IN SCOPE: Basic top-level integration wiring these into one accelerator core module with a documented port list."
+  ],
+
+  "out_of_scope": [
+    "Full 7B-parameter weight storage/HBM/DDR memory controller, tokenizer, embedding table, full multi-layer transformer datapath (28+ decoder layers), softmax/LayerNorm/RoPE full pipelines, multi-core NoC/mesh interconnect, floating point formats, PCIe/host interface, compiler/ISA/instruction decode.",
+    "Anything requiring commercial place-and-route/synthesis or real HBM/DDR PHY.",
+    "This is a single representative accelerator TILE/core, not the full chip. Make that explicit so nobody downstream claims '7B model verified.'",
+    "DESCOPED (RTL Director, this deliverable): Weight double-buffering (ENABLE_DOUBLE_BUFFER=1) behavior. The original user scope stated double-buffering was OPTIONAL ('double-buffering or simple streaming load control', 'double-buffering optional'). The shipped RTL implements SINGLE-BUFFER only, where LOAD_WEIGHTS and COMPUTE are mutually-exclusive FSM phases. ENABLE_DOUBLE_BUFFER=1 (load-next-while-compute) is OUT OF SCOPE / deferred for this deliverable; the parameter remains documented with default 0 (single buffer), which is the only supported mode shipped. See REQ-GEMM-020."
+  ],
+
+  "parameters": [
+    {"name": "N", "default": 8, "description": "Systolic array dimension; NxN PE grid (default 8x8 = 64 PEs). Computes an NxK by KxN tile.", "constraints": "N >= 1, power-of-two recommended; default 8"},
+    {"name": "DW_ACT", "default": 8, "description": "Activation input data width (INT8, signed).", "constraints": "fixed 8 for INT8"},
+    {"name": "DW_W", "default": 8, "description": "Weight data width (INT8, signed).", "constraints": "fixed 8 for INT8"},
+    {"name": "ACC_W", "default": 32, "description": "Accumulator width (signed 32-bit) for MAC accumulation.", "constraints": "fixed 32"},
+    {"name": "DW_OUT", "default": 8, "description": "Requantized output data width (INT8, signed).", "constraints": "fixed 8 for INT8"},
+    {"name": "SCALE_W", "default": 16, "description": "Width of the requant multiplier (scale) input. Interpreted as UNSIGNED per resolved decision RESOLVED-006.", "constraints": "16-bit unsigned scale (RESOLVED-006)"},
+    {"name": "SHIFT_W", "default": 5, "description": "Width of the requant right-shift amount input (0..31).", "constraints": "design choice; supports shifts up to 31"},
+    {"name": "WBUF_DEPTH", "default": 64, "description": "Weight buffer depth in INT8 entries = N*N (one weight per PE for output-stationary tile). Default 64 for N=8.", "constraints": "must hold >= N*N weights"},
+    {"name": "AFIFO_DEPTH", "default": 16, "description": "Activation input FIFO depth (in words). Design choice for streaming buffering.", "constraints": ">= 2"},
+    {"name": "ENABLE_DOUBLE_BUFFER", "default": 0, "description": "Weight-buffer buffering mode. Default 0 = SINGLE buffer = the ONLY supported mode in this deliverable (LOAD_WEIGHTS and COMPUTE are mutually exclusive). The 1 = double-buffer (load next weight set while current tile computes) behavior is OUT OF SCOPE / deferred for this deliverable (see out_of_scope and REQ-GEMM-020).", "constraints": "0 or 1; only 0 (single buffer) is implemented/supported this deliverable"}
+  ],
+
+  "clocks": [
+    {"name": "clk", "description": "Single system clock. All sequential logic on posedge clk.", "edge": "posedge"}
+  ],
+
+  "resets": [
+    {"name": "rst_n", "polarity": "active-low", "sync_async": "SYNCHRONOUS active-low reset (RESOLVED-001, RTL Director). Sampled on posedge clk.", "description": "Primary reset. On assertion, all state elements return to reset values (see reset_behavior)."}
+  ],
+
+  "ports": [
+    {"name": "clk", "dir": "input", "width": 1, "group": "clock", "description": "System clock."},
+    {"name": "rst_n", "dir": "input", "width": 1, "group": "reset", "description": "Active-low reset (see resets)."},
+
+    {"name": "start", "dir": "input", "width": 1, "group": "control", "description": "Single-cycle pulse to begin a GEMM tile operation once weights and config are loaded (RESOLVED-002)."},
+    {"name": "cfg_mode", "dir": "input", "width": 2, "group": "control", "description": "RESERVED / ignored input (RESOLVED-002). FSM auto-sequences on last markers; cfg_mode is not decoded in this deliverable."},
+
+    {"name": "w_load_valid", "dir": "input", "width": 1, "group": "weight_load", "description": "Weight-load stream valid."},
+    {"name": "w_load_ready", "dir": "output", "width": 1, "group": "weight_load", "description": "Weight-load stream ready (backpressure to source)."},
+    {"name": "w_load_data", "dir": "input", "width": "DW_W (8)", "group": "weight_load", "description": "One INT8 weight per accepted beat, written into weight buffer in load order (row-major linear addr=k*N+j; RESOLVED-003)."},
+    {"name": "w_load_last", "dir": "input", "width": 1, "group": "weight_load", "description": "Marks the final weight beat of a full weight-buffer load (N*N weights). INFORMATIONAL only: load completion is count-governed by N*N=64 accepted beats, not by w_load_last (RESOLVED-003)."},
+
+    {"name": "a_in_valid", "dir": "input", "width": 1, "group": "stream_input", "description": "Activation input stream valid."},
+    {"name": "a_in_ready", "dir": "output", "width": 1, "group": "stream_input", "description": "Activation input stream ready (backpressure). Outputs 0 in reset and outside COMPUTE phase (RESOLVED-008)."},
+    {"name": "a_in_data", "dir": "input", "width": "N*DW_ACT (8*8=64)", "group": "stream_input", "description": "One column vector of N INT8 activations per accepted beat feeding the array. Packing: element i in bits [i*8 +: 8]. Output-stationary parallel-broadcast MAC, no inter-PE skew (RESOLVED-004/010/011)."},
+    {"name": "a_in_last", "dir": "input", "width": 1, "group": "stream_input", "description": "Marks final activation beat of the streamed K dimension for the current tile."},
+
+    {"name": "y_out_valid", "dir": "output", "width": 1, "group": "stream_output", "description": "Requantized output stream valid."},
+    {"name": "y_out_ready", "dir": "input", "width": 1, "group": "stream_output", "description": "Downstream ready (backpressure into the tile)."},
+    {"name": "y_out_data", "dir": "output", "width": "N*DW_OUT (8*8=64)", "group": "stream_output", "description": "One row of N INT8 requantized results per accepted beat during drain. Packing: element i in bits [i*8 +: 8]."},
+    {"name": "y_out_last", "dir": "output", "width": 1, "group": "stream_output", "description": "Marks final output beat of the drained result tile."},
+
+    {"name": "req_scale", "dir": "input", "width": "SCALE_W (16)", "group": "requant", "description": "Requantization multiplier applied to each 32-bit accumulator before shift/clip. UNSIGNED 16-bit (RESOLVED-006)."},
+    {"name": "req_shift", "dir": "input", "width": "SHIFT_W (5)", "group": "requant", "description": "Requantization arithmetic right-shift amount applied after multiply. Round-to-nearest: add (1<<(shift-1)) when shift>0, then arithmetic >>> shift (RESOLVED-006)."},
+
+    {"name": "busy", "dir": "output", "width": 1, "group": "status", "description": "High while FSM is not IDLE (operation in progress). busy = (state != IDLE) (RESOLVED-005)."},
+    {"name": "done", "dir": "output", "width": 1, "group": "status", "description": "Single-cycle pulse asserted after the final drain beat is accepted (RESOLVED-005)."},
+    {"name": "overflow", "dir": "output", "width": 1, "group": "status", "description": "STICKY flag set on requant saturation/clip; cleared by reset and by an IDLE-qualified start that initiates a new load (RESOLVED-007). Accumulator wrap does NOT set this flag."}
+  ],
+
+  "interfaces": [
+    {
+      "name": "weight_load_if",
+      "type": "valid/ready streaming (AXI-Stream-like)",
+      "signals": ["w_load_valid", "w_load_ready", "w_load_data", "w_load_last"],
+      "description": "Loads INT8 weights into the local weight buffer, one weight per accepted beat. Transfer occurs when w_load_valid && w_load_ready both high on posedge clk."
+    },
+    {
+      "name": "activation_in_if",
+      "type": "valid/ready streaming (AXI-Stream-like)",
+      "signals": ["a_in_valid", "a_in_ready", "a_in_data", "a_in_last"],
+      "description": "Streams activation vectors into the array during the compute phase. Transfer when a_in_valid && a_in_ready."
+    },
+    {
+      "name": "result_out_if",
+      "type": "valid/ready streaming (AXI-Stream-like)",
+      "signals": ["y_out_valid", "y_out_ready", "y_out_data", "y_out_last"],
+      "description": "Streams requantized INT8 results out during drain phase. Transfer when y_out_valid && y_out_ready."
+    },
+    {
+      "name": "control_status_if",
+      "type": "discrete control/status ports",
+      "signals": ["start", "cfg_mode", "busy", "done", "overflow"],
+      "description": "Discrete control (start op, mode) and status (busy/done/overflow) signals."
+    },
+    {
+      "name": "requant_if",
+      "type": "static/quasi-static config inputs",
+      "signals": ["req_scale", "req_shift"],
+      "description": "Scale and shift used by the requantize-and-clip stage. Expected stable during the drain phase."
+    }
+  ],
+
+  "handshake_protocol": {
+    "semantics": "All three streaming interfaces use valid/ready handshaking. A beat transfers on the rising edge of clk when both valid and ready are asserted. Data/last must be held stable by the producer while valid is asserted and until the beat is accepted.",
+    "backpressure": "A consumer deasserting ready must stall the producer without data loss. Specifically: (a) tile deasserts a_in_ready when the activation FIFO is full or FSM not in compute phase; (b) tile deasserts w_load_ready when weight buffer full or FSM not in load phase; (c) tile holds y_out_valid and y_out_data stable when downstream deasserts y_out_ready.",
+    "valid_stability_rule": "Once valid is asserted it must remain asserted (with stable payload) until the corresponding beat is accepted; valid must not be dependent combinationally on ready in a way that creates a valid<->ready combinational loop (recommend valid not derived from ready)."
+  },
+
+  "reset_behavior": {
+    "polarity": "active-low (rst_n)",
+    "sync_async": "SYNCHRONOUS (RESOLVED-001)",
+    "effects": [
+      "FSM returns to IDLE state.",
+      "busy deasserted (0), done deasserted (0), overflow flag cleared (0).",
+      "All output-stream signals deasserted: y_out_valid=0, y_out_last=0; y_out_data value undefined/dont-care while valid low.",
+      "All ready outputs deasserted (w_load_ready=0, a_in_ready=0). Ready outputs are 0 in reset and outside their phase (RESOLVED-008).",
+      "All PE accumulators cleared to 0.",
+      "Activation input FIFO emptied (read/write pointers cleared).",
+      "Weight buffer contents NOT force-cleared on reset; only the loaded/valid flag is cleared (RESOLVED-009).",
+      "Weight-buffer-valid / loaded flag cleared to 0 (a fresh weight load is required after reset)."
+    ]
+  },
+
+  "fsm_phases": [
+    {"state": "IDLE", "description": "Waiting. busy=0. Accepts entry into weight-load or waits for start. Activation FIFO is flushed on entry to IDLE (robustness fix, see NOTE-FIFO-FLUSH).", "exits_to": ["LOAD_WEIGHTS"]},
+    {"state": "LOAD_WEIGHTS", "description": "Accept weights over weight_load_if until N*N=64 weights loaded (count-governed; w_load_last informational). busy=1. Activation FIFO is flushed on entry to LOAD_WEIGHTS (robustness fix, see NOTE-FIFO-FLUSH). Single-buffer: mutually exclusive with COMPUTE.", "exits_to": ["COMPUTE", "IDLE"]},
+    {"state": "COMPUTE", "description": "Stream activations over activation_in_if; PEs perform INT8 MAC into 32-bit accumulators using output-stationary parallel-broadcast (no inter-PE skew), FIXED K=N=8, single pass; accumulators cleared before COMPUTE. Continues until a_in_last / K exhausted.", "exits_to": ["DRAIN"]},
+    {"state": "DRAIN", "description": "Requantize each accumulator (scale, shift, clip to INT8) and emit results over result_out_if honoring backpressure until y_out_last.", "exits_to": ["IDLE"]}
+  ],
+
+  "functional_requirements": [
+    {"id": "REQ-GEMM-001", "text": "Each PE shall compute a signed INT8 x INT8 multiply and accumulate the product into a signed ACC_W (32-bit) accumulator, implementing output-stationary MAC across the streamed K dimension.", "source": "IN SCOPE: NxN PE array output-stationary INT8 MAC with 32-bit accumulation.", "category": "mac_correctness"},
+    {"id": "REQ-GEMM-002", "text": "For a complete tile, the accumulator for output position (i,j) shall equal acc[i][j] += a_k[i]*W[k][j] summed over k (output-stationary parallel-broadcast), i.e. C = A*B, FIXED K=N=8, single pass, accumulators cleared before COMPUTE, matching a bit-exact software INT8 reference model (RESOLVED-004/010/011).", "source": "Representative tile of QKV/FFN projection matmul; MAC correctness.", "category": "mac_correctness"},
+    {"id": "REQ-GEMM-003", "text": "Multiply results shall be sign-extended to ACC_W before accumulation so no precision is lost within the 32-bit accumulator range for supported K.", "source": "32-bit accumulation requirement.", "category": "accumulation_width"},
+    {"id": "REQ-GEMM-004", "text": "Accumulation shall use ACC_W=32-bit signed arithmetic. On overflow of the 32-bit signed range the accumulator WRAPS (two's complement) and does NOT set the overflow flag (RESOLVED-007).", "source": "Accumulation width/overflow behavior.", "category": "overflow"},
+    {"id": "REQ-GEMM-005", "text": "The requant stage shall compute out = clip( (acc * req_scale + round) >>> req_shift, -128, 127 ) for each accumulator, where req_scale is UNSIGNED 16b, round = (1<<(req_shift-1)) when req_shift>0 else 0, and >>> is an arithmetic right shift; no zero-point/bias (RESOLVED-006).", "source": "Output accumulator array with requantization/scale-and-clip to INT8.", "category": "requant_clip"},
+    {"id": "REQ-GEMM-006", "text": "Requant clipping shall saturate values above +127 to +127 and below -128 to -128 (symmetric signed INT8 range) before output. No asymmetric/zero-point support (RESOLVED-006).", "source": "scale-and-clip stage down to INT8.", "category": "requant_clip"},
+    {"id": "REQ-GEMM-007", "text": "The weight buffer shall store at least N*N INT8 weights and present the correct weight to each PE for the computation. Load order is row-major linear addr=k*N+j (RESOLVED-003).", "source": "Local weight buffer feeding the array.", "category": "storage"},
+    {"id": "REQ-GEMM-008", "text": "The activation input FIFO shall buffer streamed activation beats of depth AFIFO_DEPTH and feed the array without data loss under producer bursts and internal stalls.", "source": "activation input buffer/FIFO feeding the array.", "category": "storage"},
+    {"id": "REQ-GEMM-009", "text": "The control FSM shall sequence phases IDLE -> LOAD_WEIGHTS -> COMPUTE -> DRAIN -> IDLE, and shall not begin COMPUTE before a full weight buffer is loaded, nor DRAIN before compute completes.", "source": "Control FSM sequencing weight-load -> stream -> drain/output phases.", "category": "fsm_sequencing"},
+    {"id": "REQ-GEMM-010", "text": "busy shall be asserted whenever the FSM is not in IDLE and deasserted in IDLE (RESOLVED-005).", "source": "control/status interface.", "category": "fsm_sequencing"},
+    {"id": "REQ-GEMM-011", "text": "done shall be a single-cycle pulse asserted after the final output beat is accepted (y_out_last accepted) (RESOLVED-005).", "source": "control/status interface.", "category": "fsm_sequencing"},
+    {"id": "REQ-GEMM-012", "text": "Weight-load interface shall transfer one INT8 weight per beat when w_load_valid && w_load_ready, and shall not accept weights outside the LOAD_WEIGHTS phase (w_load_ready held low otherwise).", "source": "streaming load control + handshake.", "category": "handshake"},
+    {"id": "REQ-GEMM-013", "text": "Activation input interface shall transfer one beat when a_in_valid && a_in_ready, only accepting during COMPUTE phase and only when the FIFO can hold the beat.", "source": "streaming register interface valid/ready handshake.", "category": "handshake"},
+    {"id": "REQ-GEMM-014", "text": "Result output interface shall assert y_out_valid with stable y_out_data during DRAIN and hold both stable while y_out_ready is low; a beat transfers only when y_out_valid && y_out_ready.", "source": "streaming output handshake + backpressure.", "category": "handshake"},
+    {"id": "REQ-GEMM-015", "text": "The tile shall correctly stall (apply backpressure) on all three streams without dropping or duplicating data when the counterpart deasserts ready/valid.", "source": "handshake/backpressure requirement.", "category": "backpressure"},
+    {"id": "REQ-GEMM-016", "text": "On rst_n asserted, the design shall enter the reset state defined in reset_behavior (FSM IDLE, accumulators 0, FIFO empty, status flags 0, weight-loaded flag cleared; weight SRAM contents NOT force-cleared per RESOLVED-009).", "source": "reset behavior requirement.", "category": "reset"},
+    {"id": "REQ-GEMM-017", "text": "After reset deassertion, the tile shall require a fresh weight load before COMPUTE can produce valid results.", "source": "reset behavior + FSM sequencing.", "category": "reset"},
+    {"id": "REQ-GEMM-018", "text": "Top-level accelerator core module shall instantiate and wire together: PE array, weight buffer, activation FIFO, accumulator+requant stage, and control FSM, exposing the documented top-level port list.", "source": "Basic top-level integration.", "category": "integration"},
+    {"id": "REQ-GEMM-019", "text": "The design shall be synthesizable/simulatable Verilog-2001/SystemVerilog parseable by Verilator and iverilog (no vendor-specific or non-synthesizable constructs in RTL).", "source": "Target Verilog-2001/SystemVerilog that Verilator and iverilog can parse.", "category": "toolchain"},
+    {"id": "REQ-GEMM-020", "text": "Single-buffer mutual-exclusion (ENABLE_DOUBLE_BUFFER=0) is REQUIRED and implemented: LOAD_WEIGHTS and COMPUTE are mutually-exclusive FSM phases and weight load and compute do not overlap. Double-buffer mode (ENABLE_DOUBLE_BUFFER=1, loading the next weight set while the current tile computes) is OUT OF SCOPE / deferred for this deliverable and is NOT implemented.", "source": "double-buffering optional; descoped per RTL Director.", "category": "storage"}
+  ],
+
+  "timing_requirements": [
+    {"id": "REQ-TIME-001", "text": "All streaming handshakes are evaluated synchronously to posedge clk; a transfer is defined to occur on the clock edge where valid and ready are both high.", "source": "streaming register interface.", "category": "handshake_timing"},
+    {"id": "REQ-TIME-002", "text": "PE array MAC uses output-stationary parallel-broadcast with NO inter-PE skew (RESOLVED-004); fill/drain latency is deterministic per that dataflow and reflected in output timing.", "source": "systolic-array dataflow.", "category": "latency"},
+    {"id": "REQ-TIME-003", "text": "req_scale and req_shift must be stable during the DRAIN phase for a given tile; changing them mid-drain yields undefined per-beat scaling (assumption, see ASSUMPTION-003).", "source": "requant scale/shift inputs.", "category": "config_timing"}
+  ],
+
+  "state_requirements": [
+    {"id": "REQ-STATE-001", "text": "FSM states: IDLE, LOAD_WEIGHTS, COMPUTE, DRAIN. Illegal/unreachable state encodings shall default back to IDLE (defensive).", "source": "Control FSM.", "category": "fsm"},
+    {"id": "REQ-STATE-002", "text": "A weight-loaded valid flag shall track whether a complete N*N weight set is resident; cleared by reset and (single-buffer) by starting a new load.", "source": "weight buffer + FSM.", "category": "fsm"}
+  ],
+
+  "storage_requirements": [
+    {"id": "REQ-STOR-001", "text": "Weight buffer: >= N*N INT8 entries (64 for N=8), modeled as register-file/SRAM; addressable/writable during LOAD_WEIGHTS. Row-major linear addr=k*N+j (RESOLVED-003).", "source": "Local weight buffer.", "category": "storage"},
+    {"id": "REQ-STOR-002", "text": "Activation FIFO: AFIFO_DEPTH-deep, width N*DW_ACT, standard full/empty flags gating a_in_ready and internal read. Flushed on entry to IDLE/LOAD_WEIGHTS (NOTE-FIFO-FLUSH).", "source": "activation input buffer/FIFO.", "category": "storage"},
+    {"id": "REQ-STOR-003", "text": "Accumulator array: N*N signed 32-bit accumulators (one per output position for output-stationary).", "source": "Output accumulator array.", "category": "storage"}
+  ],
+
+  "protocol_rules": [
+    {"id": "REQ-PROT-001", "text": "valid must not be withdrawn before acceptance; payload held stable while valid high.", "source": "handshake semantics.", "category": "protocol"},
+    {"id": "REQ-PROT-002", "text": "ready may be asserted/deasserted freely; no forward-progress guarantee is required from the consumer beyond eventual acceptance.", "source": "handshake semantics.", "category": "protocol"},
+    {"id": "REQ-PROT-003", "text": "last markers (w_load_last, a_in_last, y_out_last) delimit tile boundaries. w_load_last is informational (weight-load completion is count-governed by N*N=64 beats, RESOLVED-003); a_in_last and y_out_last are asserted on the final beat of their respective phases.", "source": "streaming interfaces.", "category": "protocol"}
+  ],
+
+  "error_cases": [
+    {"id": "ERR-001", "text": "Accumulator 32-bit signed overflow during accumulation: WRAPS (two's complement) and does NOT set the overflow flag (RESOLVED-007).", "category": "overflow"},
+    {"id": "ERR-002", "text": "Requant result outside INT8 range: shall be clipped/saturated per REQ-GEMM-006 and SETS the sticky overflow flag (RESOLVED-007).", "category": "clip"},
+    {"id": "ERR-003", "text": "start asserted while weight buffer not fully loaded / FSM not IDLE-qualified: start is ignored and does not begin COMPUTE (RESOLVED-002/007).", "category": "illegal_sequence"},
+    {"id": "ERR-004", "text": "More/fewer weight beats than N*N: load completion is count-governed by N*N=64 accepted beats; w_load_last is informational only (RESOLVED-003).", "category": "illegal_input"},
+    {"id": "ERR-005", "text": "Activation stream shorter/longer than expected K before a_in_last: over-supplied stream residue is prevented from corrupting the next tile by FLUSHING the activation FIFO on entry to IDLE/LOAD_WEIGHTS (NOTE-FIFO-FLUSH robustness fix).", "category": "illegal_input"},
+    {"id": "ERR-006", "text": "y_out_ready never asserted (permanent downstream stall): tile must hold results indefinitely without corruption (no timeout in scope).", "category": "backpressure"}
+  ],
+
+  "assumptions": [
+    {"id": "ASSUMPTION-001", "text": "All data values are two's-complement signed INT8/INT32 unless a resolved question states otherwise."},
+    {"id": "ASSUMPTION-002", "text": "Single clock domain; no CDC. All interfaces synchronous to clk."},
+    {"id": "ASSUMPTION-003", "text": "req_scale/req_shift are quasi-static per tile and stable through DRAIN."},
+    {"id": "ASSUMPTION-004", "text": "The tile computes a single NxN output tile per LOAD->COMPUTE->DRAIN cycle; larger GEMMs are tiled externally by the testbench/driver (out of scope for this module)."},
+    {"id": "ASSUMPTION-005", "text": "Data packing for vector ports is little-endian element order: element i occupies bits [i*8 +: 8]."}
+  ],
+
+  "module_breakdown": [
+    {"module": "tensor_core_tile", "role": "Top-level accelerator core: port list + instantiation/wiring of all submodules and the FSM."},
+    {"module": "pe", "role": "Single processing element: INT8*INT8 multiply, 32-bit accumulate, register pipeline for output-stationary operation."},
+    {"module": "pe_array", "role": "NxN grid of pe instances with output-stationary parallel-broadcast interconnect (no inter-PE skew)."},
+    {"module": "weight_buffer", "role": "N*N INT8 register-file/SRAM model with load-side write port and per-PE read; single buffer (double buffer out of scope)."},
+    {"module": "act_fifo", "role": "Synchronous FIFO buffering activation input beats; full/empty flags; flushed on entry to IDLE/LOAD_WEIGHTS."},
+    {"module": "requant_unit", "role": "Per-output scale-multiply, arithmetic shift (round-to-nearest), and INT8 clip/saturate stage; drives sticky overflow flag."},
+    {"module": "ctrl_fsm", "role": "IDLE/LOAD_WEIGHTS/COMPUTE/DRAIN sequencer generating handshake enables and status (busy/done)."}
+  ],
+
+  "requirement_ids": [
+    "REQ-GEMM-001","REQ-GEMM-002","REQ-GEMM-003","REQ-GEMM-004","REQ-GEMM-005","REQ-GEMM-006","REQ-GEMM-007","REQ-GEMM-008","REQ-GEMM-009","REQ-GEMM-010","REQ-GEMM-011","REQ-GEMM-012","REQ-GEMM-013","REQ-GEMM-014","REQ-GEMM-015","REQ-GEMM-016","REQ-GEMM-017","REQ-GEMM-018","REQ-GEMM-019","REQ-GEMM-020",
+    "REQ-TIME-001","REQ-TIME-002","REQ-TIME-003",
+    "REQ-STATE-001","REQ-STATE-002",
+    "REQ-STOR-001","REQ-STOR-002","REQ-STOR-003",
+    "REQ-PROT-001","REQ-PROT-002","REQ-PROT-003",
+    "ERR-001","ERR-002","ERR-003","ERR-004","ERR-005","ERR-006"
+  ],
+
+  "traceability": [
+    {"requirement": "REQ-GEMM-001..004", "source_text": "NxN PE array doing output-stationary INT8 multiply-accumulate with 32-bit accumulation"},
+    {"requirement": "REQ-GEMM-005..006, ERR-002", "source_text": "Output accumulator array with a requantization/scale-and-clip stage down to INT8 (post-GEMM quantization)"},
+    {"requirement": "REQ-GEMM-007, REQ-STOR-001", "source_text": "Local weight buffer (SRAM/register-file model)"},
+    {"requirement": "REQ-GEMM-008, REQ-STOR-002", "source_text": "activation input buffer/FIFO feeding the array"},
+    {"requirement": "REQ-GEMM-009..011, REQ-STATE-001..002", "source_text": "A control FSM sequencing weight-load -> stream -> drain/output phases"},
+    {"requirement": "REQ-GEMM-012..015, REQ-PROT-001..003, REQ-TIME-001", "source_text": "simple streaming register interface (valid/ready handshake)"},
+    {"requirement": "REQ-GEMM-016..017, ERR-003", "source_text": "reset behavior (what resets to what)"},
+    {"requirement": "REQ-GEMM-018", "source_text": "Basic top-level integration wiring these into one accelerator core module"},
+    {"requirement": "REQ-GEMM-019", "source_text": "Target Verilog-2001/SystemVerilog that Verilator and iverilog can parse"},
+    {"requirement": "REQ-GEMM-020", "source_text": "double-buffering optional (single-buffer required/implemented; double-buffer descoped per RTL Director)"},
+    {"requirement": "REQ-TIME-003, ASSUMPTION-003", "source_text": "plus scale/shift inputs for requant"}
+  ],
+
+  "resolved_decisions": [
+    {"id": "RESOLVED-001", "resolves": "UNRESOLVED-001", "status": "RESOLVED", "authority": "RTL Director", "text": "Reset is SYNCHRONOUS active-low (rst_n), sampled on posedge clk.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-002", "resolves": "UNRESOLVED-002", "status": "RESOLVED", "authority": "RTL Director", "text": "start is a single-cycle PULSE. cfg_mode is RESERVED/ignored (not decoded); the FSM auto-sequences on last markers.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-003", "resolves": "UNRESOLVED-003", "status": "RESOLVED", "authority": "RTL Director", "text": "Weight load is row-major linear address addr=k*N+j, N*N=64 beats total. Load completion is COUNT-governed (64 accepted beats); w_load_last is INFORMATIONAL only.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-004", "resolves": "UNRESOLVED-004", "status": "RESOLVED", "authority": "RTL Director", "text": "Output-stationary parallel-broadcast MAC with NO inter-PE skew.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-005", "resolves": "UNRESOLVED-005", "status": "RESOLVED", "authority": "RTL Director", "text": "done is a single-cycle pulse asserted after the final drain beat is accepted. busy = (state != IDLE).", "reflected_in_rtl": true},
+    {"id": "RESOLVED-006", "resolves": "UNRESOLVED-006", "status": "RESOLVED", "authority": "RTL Director", "text": "Requant: req_scale is UNSIGNED 16b; round-to-nearest by adding (1<<(shift-1)) when shift>0, then arithmetic >>> shift; clip to [-128,127]; NO zero-point.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-007", "resolves": "UNRESOLVED-007", "status": "RESOLVED", "authority": "RTL Director", "text": "Accumulator WRAPS on overflow (no flag). overflow is a STICKY flag set on requant saturation/clip; cleared by reset and by an IDLE-qualified start that initiates a new load (per Risk-2 fix).", "reflected_in_rtl": true},
+    {"id": "RESOLVED-008", "resolves": "UNRESOLVED-008", "status": "RESOLVED", "authority": "RTL Director", "text": "ready outputs (w_load_ready, a_in_ready) drive 0 in reset and outside their respective phase.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-009", "resolves": "UNRESOLVED-009", "status": "RESOLVED", "authority": "RTL Director", "text": "On reset: accumulators, FIFO pointers, and loaded-flag are cleared; weight SRAM is NOT force-cleared (contents retained, only loaded flag invalidated).", "reflected_in_rtl": true},
+    {"id": "RESOLVED-010", "resolves": "UNRESOLVED-010", "status": "RESOLVED", "authority": "RTL Director", "text": "Matmul orientation pinned: acc[i][j] += a_k[i]*W[k][j], i.e. C = A*B, FIXED K=N=8.", "reflected_in_rtl": true},
+    {"id": "RESOLVED-011", "resolves": "UNRESOLVED-011", "status": "RESOLVED", "authority": "RTL Director", "text": "Single pass only; accumulators are CLEARED before COMPUTE. No multi-pass accumulate/clear control; K is FIXED at N=8.", "reflected_in_rtl": true},
+    {"id": "NOTE-FIFO-FLUSH", "resolves": "ERR-005 territory", "status": "NOTE", "authority": "RTL Director", "text": "The activation FIFO is FLUSHED on entry to IDLE/LOAD_WEIGHTS to prevent residue from over-supplied activation streams from corrupting the next tile (robustness fix).", "reflected_in_rtl": true}
+  ],
+
+  "unresolved_questions": []
+}

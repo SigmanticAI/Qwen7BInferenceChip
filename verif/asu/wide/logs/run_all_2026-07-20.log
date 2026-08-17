@@ -1,0 +1,288 @@
+mkdir -p build
+python3 ../../../rtl/asu/gen_wide_rms_params.py --out build/asu_wide_rms_params.regen.svh
+wrote build/asu_wide_rms_params.regen.svh: k = 1..64 (d = 128..8192), MU[28] = 74898, S[28] = 12 (D = 3584)
+diff -q build/asu_wide_rms_params.regen.svh ../../../rtl/asu/asu_wide_rms_params.svh
+PARAMS CHECK: rtl/asu/asu_wide_rms_params.svh matches the golden arbiter (_wide_mu)
+mkdir -p build
+python3 gen_wide_rms_vectors.py --outdir build | tee build/gen.log
+wide ties  : lanes 2 (odd->up) / 3 (even->hold) r=112
+μ boundary : sum2=10752 -> den 1 (MU) vs 2 (MU+1) — dbg_norm kills the off-by-one mutant
+wide_directed: 17 rows, 5 rejects, 3 narrow rows == smoke oracle
+wide_random : 60 rows, 3 rejects, 16 narrow rows == smoke oracle, k coverage 2..28 complete
+wide_reset  : 14 verify rows, 11 targeted + 3 cycle resets
+wide8k      : 4 rows, 1 rejects — all-(−128) corner (r,nrm)=(64,128) == D=128 corner
+GEN: all wide vector files written
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps lint_waivers.vlt -I../../../verif/common +incdir+../../../rtl/asu --top-module asu_rmsnorm \
+	    -GRMS_D_MAX=3584 ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/asu/rsqrt.sv ../../../rtl/asu/asu_rmsnorm.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.117 MB sources in 5 modules, into 0.065 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.024 s (elab=0.005, cvt=0.009, bld=0.000); cpu 0.015 s on 1 threads; alloced 9.906 MB
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps lint_waivers.vlt -I../../../verif/common +incdir+../../../rtl/asu --top-module asu_rmsnorm \
+	    -GRMS_D_MAX=8192 ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/asu/rsqrt.sv ../../../rtl/asu/asu_rmsnorm.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.117 MB sources in 5 modules, into 0.064 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.012 s (elab=0.001, cvt=0.006, bld=0.000); cpu 0.012 s on 1 threads; alloced 9.234 MB
+LINT CLEAN (-Wall, wide elaborations 3584 + 8192; waivers scoped to frozen apex_pkg.sv only)
+mkdir -p build/obj_wide
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps lint_waivers.vlt -I../../../verif/common +incdir+../../../rtl/asu --trace-fst --top-module tb_asu_rmsnorm_wide \
+	    -Mdir build/obj_wide ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/asu/rsqrt.sv ../../../rtl/asu/asu_rmsnorm.sv tb_asu_rmsnorm_wide.sv
+make[1]: Nothing to be done for `default'.
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.015 s (elab=0.000, cvt=0.000, bld=0.014); cpu 0.001 s on 1 threads; alloced 2.734 MB
+mkdir -p build/obj_wide8k
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps lint_waivers.vlt -I../../../verif/common +incdir+../../../rtl/asu --trace-fst --top-module tb_asu_rmsnorm_wide \
+	    -GD_MAX=8192 \
+	    -Mdir build/obj_wide8k ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/asu/rsqrt.sv ../../../rtl/asu/asu_rmsnorm.sv tb_asu_rmsnorm_wide.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_fst_c.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_fst_c.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_asu_rmsnorm_wide.cpp Vtb_asu_rmsnorm_wide___024root__0.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__0.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__03a__03a__VDynScope_9__Vclpkg__0.cpp Vtb_asu_rmsnorm_wide__main.cpp Vtb_asu_rmsnorm_wide__Trace__0.cpp Vtb_asu_rmsnorm_wide___024root__Slow.cpp Vtb_asu_rmsnorm_wide___024root__0__Slow.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__Slow.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__0__Slow.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__03a__03a__VDynScope_9__Vclpkg__Slow.cpp Vtb_asu_rmsnorm_wide_tb_asu_rmsnorm_wide__03a__03a__VDynScope_9__Vclpkg__0__Slow.cpp Vtb_asu_rmsnorm_wide__Syms__Slow.cpp Vtb_asu_rmsnorm_wide__Trace__0__Slow.cpp Vtb_asu_rmsnorm_wide__TraceDecls__0__Slow.cpp > Vtb_asu_rmsnorm_wide__ALL.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_asu_rmsnorm_wide__ALL.o Vtb_asu_rmsnorm_wide__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_fst_c.o verilated_timing.o verilated_threads.o Vtb_asu_rmsnorm_wide__ALL.a   -lz  -pthread -lpthread   -o Vtb_asu_rmsnorm_wide
+rm Vtb_asu_rmsnorm_wide__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.174 MB sources in 7 modules, into 0.341 MB in 15 C++ files needing 0.001 MB
+- Verilator: Walltime 6.208 s (elab=0.003, cvt=0.018, bld=6.174); cpu 0.032 s on 1 threads; alloced 11.438 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_directed.txt +bp_mode=1 \
+	    +stall_mode=1 +g_mode=0 +seed=31 | tee build/run_wide_directed.log
+COV rmsw_d_eq_1 1
+COV rmsw_d_narrow 2
+COV rmsw_d_wide_pow2 4
+COV rmsw_d_wide_np2 2
+COV rmsw_d_eq_max 8
+COV rmsw_x_extreme 11
+COV rmsw_all_zero_x 1
+COV rmsw_g_zero_lane 1
+COV rmsw_g_extreme 1
+COV rmsw_tie_odd 1
+COV rmsw_tie_even 1
+COV rmsw_mu_boundary 1
+COV rmsw_rej_bad 3
+COV rmsw_rej_over_direct 1
+COV rmsw_rej_over_flush 1
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 17 rows, 5 rejects, 0 mid-op resets, 0 errors (D_MAX=3584 bp=1 stall=1 g=0 seed=31)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 2ms; walltime 0.068 s; speed 29.000 ms/s
+- Verilator: cpu 0.068 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_directed.txt +bp_mode=0 \
+	    +stall_mode=0 +g_mode=0 +seed=32 | tee build/run_wide_fast.log
+COV rmsw_d_eq_1 1
+COV rmsw_d_narrow 2
+COV rmsw_d_wide_pow2 4
+COV rmsw_d_wide_np2 2
+COV rmsw_d_eq_max 8
+COV rmsw_x_extreme 11
+COV rmsw_all_zero_x 1
+COV rmsw_g_zero_lane 1
+COV rmsw_g_extreme 1
+COV rmsw_tie_odd 1
+COV rmsw_tie_even 1
+COV rmsw_mu_boundary 1
+COV rmsw_rej_bad 3
+COV rmsw_rej_over_direct 1
+COV rmsw_rej_over_flush 1
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 17 rows, 5 rejects, 0 mid-op resets, 0 errors (D_MAX=3584 bp=0 stall=0 g=0 seed=32)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 2ms; walltime 0.056 s; speed 27.113 ms/s
+- Verilator: cpu 0.056 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_random.txt +bp_mode=1 \
+	    +stall_mode=1 +g_mode=1 +seed=33 | tee build/run_wide_random.log
+COV rmsw_d_eq_1 3
+COV rmsw_d_narrow 13
+COV rmsw_d_wide_pow2 6
+COV rmsw_d_wide_np2 36
+COV rmsw_d_eq_max 2
+COV rmsw_x_extreme 44
+COV rmsw_all_zero_x 0
+COV rmsw_g_zero_lane 0
+COV rmsw_g_extreme 3
+COV rmsw_tie_odd 0
+COV rmsw_tie_even 0
+COV rmsw_mu_boundary 0
+COV rmsw_rej_bad 0
+COV rmsw_rej_over_direct 0
+COV rmsw_rej_over_flush 3
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 60 rows, 3 rejects, 0 mid-op resets, 0 errors (D_MAX=3584 bp=1 stall=1 g=1 seed=33)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 12ms; walltime 0.312 s; speed 38.029 ms/s
+- Verilator: cpu 0.312 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_directed.txt +bp_mode=2 \
+	    +stall_mode=2 +g_mode=2 +seed=34 | tee build/run_wide_storm.log
+COV rmsw_d_eq_1 1
+COV rmsw_d_narrow 2
+COV rmsw_d_wide_pow2 4
+COV rmsw_d_wide_np2 2
+COV rmsw_d_eq_max 8
+COV rmsw_x_extreme 11
+COV rmsw_all_zero_x 1
+COV rmsw_g_zero_lane 1
+COV rmsw_g_extreme 1
+COV rmsw_tie_odd 1
+COV rmsw_tie_even 1
+COV rmsw_mu_boundary 1
+COV rmsw_rej_bad 3
+COV rmsw_rej_over_direct 1
+COV rmsw_rej_over_flush 1
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 17 rows, 5 rejects, 0 mid-op resets, 0 errors (D_MAX=3584 bp=2 stall=2 g=2 seed=34)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 7ms; walltime 0.168 s; speed 39.051 ms/s
+- Verilator: cpu 0.168 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_random.txt +bp_mode=1 \
+	    +stall_mode=0 +g_mode=2 +seed=35 | tee build/run_wide_geager.log
+COV rmsw_d_eq_1 3
+COV rmsw_d_narrow 13
+COV rmsw_d_wide_pow2 6
+COV rmsw_d_wide_np2 36
+COV rmsw_d_eq_max 2
+COV rmsw_x_extreme 44
+COV rmsw_all_zero_x 0
+COV rmsw_g_zero_lane 0
+COV rmsw_g_extreme 3
+COV rmsw_tie_odd 0
+COV rmsw_tie_even 0
+COV rmsw_mu_boundary 0
+COV rmsw_rej_bad 0
+COV rmsw_rej_over_direct 0
+COV rmsw_rej_over_flush 3
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 60 rows, 3 rejects, 0 mid-op resets, 0 errors (D_MAX=3584 bp=1 stall=0 g=2 seed=35)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 3ms; walltime 0.129 s; speed 25.971 ms/s
+- Verilator: cpu 0.129 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide_reset.txt +bp_mode=1 \
+	    +stall_mode=0 +g_mode=0 +seed=36 | tee build/run_wide_reset.log
+RESET [Z1 d=384 phase=1 abort=0] cyc=10: mid-op reset in FSM phase 1
+RESET [Z2 d=3584 phase=1 abort=0] cyc=1105: mid-op reset in FSM phase 1
+RESET [Z3 d=384 phase=3 abort=0] cyc=2966: mid-op reset in FSM phase 3
+RESET [Z4 d=3584 phase=3 abort=0] cyc=11227: mid-op reset in FSM phase 3
+RESET [Z5 d=384 phase=4 abort=0] cyc=13089: mid-op reset in FSM phase 4
+RESET [Z6 d=3584 phase=4 abort=0] cyc=21351: mid-op reset in FSM phase 4
+RESET [Z7 d=384 phase=5 abort=0] cyc=23245: mid-op reset in FSM phase 5
+RESET [Z8 d=3584 phase=5 abort=0] cyc=31539: mid-op reset in FSM phase 5
+RESET [Z9 d=384 phase=6 abort=0] cyc=34203: mid-op reset in FSM phase 6
+RESET [Z10 d=3584 phase=6 abort=0] cyc=49774: mid-op reset in FSM phase 6
+RESET [Z11 d=3614 phase=2 abort=0] cyc=58037: mid-op reset in FSM phase 2
+RESET [Z12 d=3584 phase=0 abort=5] cyc=58609: mid-op reset in FSM phase 1
+RESET [Z13 d=3584 phase=0 abort=401] cyc=60616: mid-op reset in FSM phase 1
+RESET [Z14 d=3584 phase=0 abort=3901] cyc=66123: mid-op reset in FSM phase 1
+COV rmsw_d_eq_1 0
+COV rmsw_d_narrow 1
+COV rmsw_d_wide_pow2 10
+COV rmsw_d_wide_np2 3
+COV rmsw_d_eq_max 0
+COV rmsw_x_extreme 14
+COV rmsw_all_zero_x 0
+COV rmsw_g_zero_lane 0
+COV rmsw_g_extreme 0
+COV rmsw_tie_odd 0
+COV rmsw_tie_even 0
+COV rmsw_mu_boundary 0
+COV rmsw_rej_bad 0
+COV rmsw_rej_over_direct 0
+COV rmsw_rej_over_flush 0
+COV rmsw_rst_collect 2
+COV rmsw_rst_flush 1
+COV rmsw_rst_issue 2
+COV rmsw_rst_wait 2
+COV rmsw_rst_emit 2
+COV rmsw_rst_drain 2
+COV rmsw_rst_random 3
+COV rmsw_rst_idle 0
+TB PASS: 14 rows, 0 rejects, 14 mid-op resets, 0 errors (D_MAX=3584 bp=1 stall=0 g=0 seed=36)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 677us; walltime 0.020 s; speed 34.094 ms/s
+- Verilator: cpu 0.020 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_wide8k/Vtb_asu_rmsnorm_wide +vectors=build/vectors_wide8k.txt +bp_mode=1 \
+	    +stall_mode=0 +g_mode=0 +seed=37 | tee build/run_wide8k.log
+COV rmsw_d_eq_1 0
+COV rmsw_d_narrow 1
+COV rmsw_d_wide_pow2 0
+COV rmsw_d_wide_np2 1
+COV rmsw_d_eq_max 2
+COV rmsw_x_extreme 4
+COV rmsw_all_zero_x 0
+COV rmsw_g_zero_lane 0
+COV rmsw_g_extreme 0
+COV rmsw_tie_odd 0
+COV rmsw_tie_even 0
+COV rmsw_mu_boundary 0
+COV rmsw_rej_bad 0
+COV rmsw_rej_over_direct 1
+COV rmsw_rej_over_flush 0
+COV rmsw_rst_collect 0
+COV rmsw_rst_flush 0
+COV rmsw_rst_issue 0
+COV rmsw_rst_wait 0
+COV rmsw_rst_emit 0
+COV rmsw_rst_drain 0
+COV rmsw_rst_random 0
+COV rmsw_rst_idle 0
+TB PASS: 4 rows, 1 rejects, 0 mid-op resets, 0 errors (D_MAX=8192 bp=1 stall=0 g=0 seed=37)
+- tb_asu_rmsnorm_wide.sv:633: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 975us; walltime 0.054 s; speed 18.032 ms/s
+- Verilator: cpu 0.054 s on 1 threads; alloced 2 MB
+python3 mutation_check_wide.py | tee build/mutants.txt
+MUTANT MW1_rms_rne_to_half_up: DETECTED (rc=1) — FAIL [N2 d=3584] cyc=36130: y[10] got 0xfcb1 exp 0xfcb0
+MUTANT MW2_mu_off_by_one: DETECTED (rc=1) — FAIL [N7 d=3584] cyc=101325: y[1] got 0xf564 exp 0xeac8
+MUTANT MW3_mu_shift_off_by_one: DETECTED (rc=1) — FAIL [N1 d=3584] cyc=14377: y[0] got 0xffde exp 0xffd0
+MUTANT MW4_sumw_trunc_27: DETECTED (rc=1) — FAIL [N1 d=8192] cyc=33022: y[0] got 0x8000 exp 0xff00
+WIDE MUTATION GATE: 4/4 mutants detected — checkers proven live
+ASU WIDE: full suite passed (params provenance, bit-exact vs rmsnorm_fx_wide, rejects, resets, mutation gate)

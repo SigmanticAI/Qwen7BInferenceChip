@@ -1,0 +1,236 @@
+{
+  "module_name": "gemm_systolic_accel",
+  "design_purpose": "A parameterizable INT8 systolic/MAC-array GEMM/GEMV accelerator core representing the dominant compute kernel of transformer LLM inference (Q/K/V projections, attention score matmuls, and FFN matmuls all reduce to matrix multiply). It performs descriptor-driven tiled matrix multiplication with INT32 accumulation and INT32->INT8 requantization. It is a SCALED, parameterized core whose microarchitecture generalizes to full-model matmul shapes; it is NOT a full 7B-weight-capacity chip.",
+  "top_level_intent": "Accept a descriptor plus streamed INT8 weights and activations, compute a tiled INT8 GEMM using an NxN systolic PE array with INT32 accumulators, requantize the INT32 partial results to INT8 (scale multiply + arithmetic right shift + saturate), and stream INT8 results back to the host over a valid/ready handshake.",
+
+  "scoping": {
+    "in_scope": [
+      "Parameterizable NxN systolic/MAC PE array; default N=8, supports N=16 via parameter.",
+      "INT8 signed weights and INT8 signed activations with INT32 signed accumulators.",
+      "Local on-chip weight buffer and activation buffer modeled as SRAM-style memory (register-file / small BRAM behavioral model).",
+      "Descriptor/instruction-driven control FSM: DECODE descriptor -> LOAD weights -> STREAM activations -> MAC/ACCUMULATE -> REQUANTIZE (INT32->INT8) -> WRITEBACK results.",
+      "INT32->INT8 requantization: multiply by a per-descriptor INT32 scale, arithmetic right shift by a per-descriptor shift amount, saturate to signed INT8 range [-128, 127].",
+      "Simple host interface using valid/ready streaming channels for descriptor in, weight in, activation in, and result out (chosen protocol; see interface section).",
+      "Single clock, single synchronous active-low reset.",
+      "Tiled operation: a GEMM larger than the physical array is decomposed into NxN tiles driven by descriptor fields (tile counts along M/K/N).",
+      "Backpressure via valid/ready on all streaming channels."
+    ],
+    "out_of_scope": [
+      "Full 7B parameter weight storage on chip.",
+      "HBM/DDR/GDDR PHY and memory controller.",
+      "Multi-core scheduling and Network-on-Chip (NoC).",
+      "Full ~30-layer decoder pipeline / end-to-end model execution.",
+      "Full attention mechanism, softmax, and KV-cache management over 4096+ context.",
+      "Nonlinear activation function LUTs (GELU/SiLU/softmax/layernorm) beyond the minimal requantize step.",
+      "Floating-point datapath (design is fixed-point INT8/INT32).",
+      "DMA engines, weight decompression, sparsity, and mixed-precision beyond INT8.",
+      "Physical implementation: synthesis timing closure, floorplan, place-and-route, power."
+    ],
+    "rationale": "A complete 7B LLM inference chip (HBM subsystem, NoC, ~30 decoder layers, full weight streaming, full attention/KV-cache over 4096+ context, multi-core scheduler) cannot be authored as synthesizable RTL and fully verified in a single session. GEMM/GEMV is the numerically dominant operation of transformer inference, so a representative parameterizable INT8 systolic MAC-array core with requantization captures the essential accelerator datapath and control while remaining simulation-tractable and fully verifiable. Dimensions are kept small (default 8x8) and parameterized so the same RTL scales to realistic matmul tile shapes."
+  },
+
+  "parameters": [
+    {"name": "N",            "description": "PE array dimension (N rows x N cols of MAC PEs); also tile edge size.", "default": 8,   "legal_values": [8, 16], "type": "int"},
+    {"name": "DATA_W",       "description": "Signed INT8 element width for weights and activations.",                 "default": 8,   "type": "int"},
+    {"name": "ACC_W",        "description": "Signed accumulator width.",                                              "default": 32,  "type": "int"},
+    {"name": "SCALE_W",      "description": "Width of per-descriptor requantization scale multiplier (signed).",       "default": 32,  "type": "int"},
+    {"name": "SHIFT_W",      "description": "Width of per-descriptor arithmetic right-shift amount.",                  "default": 6,   "type": "int"},
+    {"name": "WBUF_DEPTH",   "description": "Weight buffer depth in words (each word = N INT8 elements = one column/row of a tile).", "default": 64, "type": "int"},
+    {"name": "ABUF_DEPTH",   "description": "Activation buffer depth in words.",                                      "default": 64,  "type": "int"},
+    {"name": "MAX_TILES_M",  "description": "Maximum tile count along M (output rows) supported by a descriptor.",     "default": 8,   "type": "int"},
+    {"name": "MAX_TILES_K",  "description": "Maximum tile count along K (contraction) supported by a descriptor.",     "default": 8,   "type": "int"},
+    {"name": "MAX_TILES_N",  "description": "Maximum tile count along N (output cols) supported by a descriptor.",     "default": 8,   "type": "int"},
+    {"name": "DESC_W",       "description": "Descriptor word width in bits (sum of packed descriptor fields).",        "default": 128, "type": "int"}
+  ],
+
+  "clocks": [
+    {"name": "clk", "edge": "posedge", "description": "Single system clock. All sequential logic is clocked on the rising edge of clk. No multiple clock domains."}
+  ],
+  "resets": [
+    {"name": "rst_n", "polarity": "active_low", "synchronization": "synchronous", "description": "Synchronous active-low reset sampled on posedge clk. On assertion, the control FSM returns to IDLE, all valid outputs are deasserted, accumulators are cleared, and internal counters/pointers reset. Buffer memory contents are not required to be cleared (treated as undefined until written)."}
+  ],
+
+  "interfaces": [
+    {
+      "name": "descriptor_in",
+      "type": "valid/ready streaming (AXI-Stream-like, no side channels)",
+      "direction": "input to core",
+      "description": "Carries one packed descriptor word per handshake describing a GEMM job (tile counts, requant scale/shift, dimensions, flags).",
+      "ports": ["desc_valid", "desc_ready", "desc_data"]
+    },
+    {
+      "name": "weight_in",
+      "type": "valid/ready streaming",
+      "direction": "input to core",
+      "description": "Streams INT8 weight elements, N per beat (one word = N packed INT8), loaded into the weight buffer in the order required by the array.",
+      "ports": ["w_valid", "w_ready", "w_data", "w_last"]
+    },
+    {
+      "name": "activation_in",
+      "type": "valid/ready streaming",
+      "direction": "input to core",
+      "description": "Streams INT8 activation elements, N per beat, into the activation buffer / array.",
+      "ports": ["a_valid", "a_ready", "a_data", "a_last"]
+    },
+    {
+      "name": "result_out",
+      "type": "valid/ready streaming",
+      "direction": "output from core",
+      "description": "Streams requantized INT8 result elements, N per beat, back to host. Backpressured by y_ready.",
+      "ports": ["y_valid", "y_ready", "y_data", "y_last"]
+    },
+    {
+      "name": "status",
+      "type": "sideband status flags",
+      "direction": "output from core",
+      "description": "Coarse status/telemetry.",
+      "ports": ["busy", "done", "err_overflow"]
+    }
+  ],
+
+  "ports": [
+    {"name": "clk",         "dir": "input",  "width": 1,               "description": "System clock."},
+    {"name": "rst_n",       "dir": "input",  "width": 1,               "description": "Synchronous active-low reset."},
+
+    {"name": "desc_valid",  "dir": "input",  "width": 1,               "description": "Descriptor stream valid."},
+    {"name": "desc_ready",  "dir": "output", "width": 1,               "description": "Descriptor stream ready (core can accept a descriptor)."},
+    {"name": "desc_data",   "dir": "input",  "width": "DESC_W",        "description": "Packed descriptor word."},
+
+    {"name": "w_valid",     "dir": "input",  "width": 1,               "description": "Weight stream valid."},
+    {"name": "w_ready",     "dir": "output", "width": 1,               "description": "Weight stream ready."},
+    {"name": "w_data",      "dir": "input",  "width": "N*DATA_W",      "description": "N packed signed INT8 weight elements per beat."},
+    {"name": "w_last",      "dir": "input",  "width": 1,               "description": "Marks last weight beat of the current weight-load phase."},
+
+    {"name": "a_valid",     "dir": "input",  "width": 1,               "description": "Activation stream valid."},
+    {"name": "a_ready",     "dir": "output", "width": 1,               "description": "Activation stream ready."},
+    {"name": "a_data",      "dir": "input",  "width": "N*DATA_W",      "description": "N packed signed INT8 activation elements per beat."},
+    {"name": "a_last",      "dir": "input",  "width": 1,               "description": "Marks last activation beat of the current activation-stream phase."},
+
+    {"name": "y_valid",     "dir": "output", "width": 1,               "description": "Result stream valid."},
+    {"name": "y_ready",     "dir": "input",  "width": 1,               "description": "Result stream ready (host backpressure)."},
+    {"name": "y_data",      "dir": "output", "width": "N*DATA_W",      "description": "N packed signed INT8 requantized result elements per beat."},
+    {"name": "y_last",      "dir": "output", "width": 1,               "description": "Marks last result beat of the current GEMM job."},
+
+    {"name": "busy",        "dir": "output", "width": 1,               "description": "High while the core is processing a descriptor (not IDLE)."},
+    {"name": "done",        "dir": "output", "width": 1,               "description": "Pulses high for one cycle when a GEMM job's final result beat is accepted."},
+    {"name": "err_overflow","dir": "output", "width": 1,               "description": "Sticky flag set if any accumulation or requant computation would exceed representable range beyond the defined saturation policy; cleared on reset or new descriptor accept."}
+  ],
+
+  "descriptor_format": {
+    "description": "Packed into desc_data (DESC_W bits). Field bit positions are an implementation detail left to RTL but the following fields MUST exist. Unused upper bits are reserved (must be zero).",
+    "fields": [
+      {"name": "tiles_m",  "description": "Number of output-row tiles (1..MAX_TILES_M)."},
+      {"name": "tiles_k",  "description": "Number of contraction tiles to accumulate over (1..MAX_TILES_K)."},
+      {"name": "tiles_n",  "description": "Number of output-col tiles (1..MAX_TILES_N)."},
+      {"name": "req_scale","description": "Signed INT32 requantization multiplier (SCALE_W bits)."},
+      {"name": "req_shift","description": "Arithmetic right-shift amount applied after scale multiply (SHIFT_W bits)."},
+      {"name": "flags",    "description": "Reserved control flags (e.g., bias-enable placeholder); default 0."}
+    ]
+  },
+
+  "functional_requirements": [
+    {"id": "REQ-GEMM-001", "title": "Descriptor decode", "text": "When desc_valid and desc_ready are both high on a posedge clk, the core SHALL latch desc_data and decode tiles_m, tiles_k, tiles_n, req_scale, req_shift, and flags. desc_ready SHALL be high only when the core is IDLE and able to accept a new job.", "source": "USER REQUEST: descriptor decode; MANDATORY SCOPING: descriptor/instruction-driven control FSM."},
+    {"id": "REQ-GEMM-002", "title": "Weight load phase", "text": "After a descriptor is accepted, the core SHALL enter a weight-load phase and accept weight beats on the weight_in channel (w_valid/w_ready handshake), storing N INT8 weight elements per beat into the weight buffer. The phase ends when w_last is asserted on an accepted beat or the required number of weight words for the descriptor has been received.", "source": "MANDATORY SCOPING: load weights."},
+    {"id": "REQ-GEMM-003", "title": "Activation streaming phase", "text": "After weights are loaded, the core SHALL accept activation beats on the activation_in channel (a_valid/a_ready handshake), N INT8 elements per beat, feeding the systolic array. The phase ends when a_last is asserted on an accepted beat or the required number of activation words has been received.", "source": "MANDATORY SCOPING: stream activations."},
+    {"id": "REQ-GEMM-004", "title": "MAC accumulation", "text": "The NxN PE array SHALL compute signed INT8 x INT8 products and accumulate them into signed ACC_W (INT32) accumulators, contracting over the K dimension across tiles_k tiles. Each output element = sum over K of (activation * weight).", "source": "USER REQUEST: MAC accumulation; MANDATORY SCOPING: MAC/accumulate."},
+    {"id": "REQ-GEMM-005", "title": "Tile decomposition", "text": "For descriptors whose logical dimensions exceed N, the core SHALL iterate over tiles_m x tiles_k x tiles_n tiles, accumulating K-tiles into the same output accumulators before requantization of that output tile.", "source": "MANDATORY SCOPING: parameterized core generalizes to full-model matmul shapes; small tractable dimensions."},
+    {"id": "REQ-GEMM-006", "title": "Requantization INT32->INT8", "text": "Before writeback, each INT32 accumulator result SHALL be requantized to INT8 by: (a) multiplying by signed req_scale, (b) applying an arithmetic right shift by req_shift bits (rounding policy: truncate toward negative infinity via arithmetic shift; MUST be documented in RTL), (c) saturating to signed INT8 range [-128, 127].", "source": "USER REQUEST: requantize (INT32->INT8 with scale/shift + saturate)."},
+    {"id": "REQ-GEMM-007", "title": "Saturation policy", "text": "Requantized values greater than 127 SHALL be clamped to 127; values less than -128 SHALL be clamped to -128. No wraparound is permitted on the INT8 output.", "source": "USER REQUEST: saturate."},
+    {"id": "REQ-GEMM-008", "title": "Result writeback", "text": "Requantized INT8 results SHALL be presented on result_out, N elements per beat, using the y_valid/y_ready handshake. y_last SHALL be asserted on the final result beat of the descriptor's job.", "source": "USER REQUEST: result writeback."},
+    {"id": "REQ-GEMM-009", "title": "Backpressure / handshake compliance", "text": "All four streaming channels SHALL obey valid/ready semantics: a transfer occurs only when valid and ready are both high on a rising clk edge; asserted valid data SHALL remain stable and valid SHALL NOT be deasserted until the transfer completes; the core SHALL correctly stall (hold data) when a downstream ready is low (y_ready) and when upstream valid is low (desc/w/a).", "source": "USER REQUEST: backpressure/handshake."},
+    {"id": "REQ-GEMM-010", "title": "Reset behavior", "text": "On synchronous assertion of rst_n=0, the control FSM SHALL return to IDLE within one clock, desc_ready may assert once IDLE, y_valid/w_ready/a_ready/busy/done SHALL be deasserted (done and y_valid = 0), accumulators SHALL be cleared to 0, internal counters/pointers SHALL reset, and err_overflow SHALL clear.", "source": "USER REQUEST: reset behavior; clock/reset scheme."},
+    {"id": "REQ-GEMM-011", "title": "Control FSM ordering", "text": "The control FSM SHALL enforce the phase order IDLE/DECODE -> LOAD_WEIGHT -> STREAM_ACT/MAC -> REQUANT -> WRITEBACK -> IDLE, and SHALL NOT begin activation streaming before required weights are loaded, nor writeback before requantization completes for a produced output tile.", "source": "MANDATORY SCOPING: descriptor-driven control FSM sequence."},
+    {"id": "REQ-GEMM-012", "title": "busy/done/status", "text": "busy SHALL be high whenever the FSM is not in IDLE. done SHALL pulse for exactly one cycle when the final result beat (y_last) is accepted. err_overflow SHALL be sticky until reset or acceptance of a new descriptor.", "source": "Interface: status flags derived from scoping requirements."},
+    {"id": "REQ-GEMM-013", "title": "INT8 signed interpretation", "text": "Weight, activation, and result elements SHALL be interpreted as two's-complement signed 8-bit values. The accumulator SHALL be two's-complement signed ACC_W-bit.", "source": "MANDATORY SCOPING: INT8 weights/activations with INT32 accumulators."},
+    {"id": "REQ-GEMM-014", "title": "Parameterizable array size", "text": "The design SHALL be parameterizable via N with a default of 8 and a required supported value of 16, without source edits other than the parameter override.", "source": "MANDATORY SCOPING: parameterizable NxN array default 8x8, parameter for 16x16."}
+  ],
+
+  "timing_requirements": [
+    {"id": "REQ-TIME-001", "text": "All I/O is synchronous to the single clk rising edge; there are no combinational paths from any input directly to result data outside a registered stage boundary (outputs are registered)."},
+    {"id": "REQ-TIME-002", "text": "A valid/ready transfer on any channel completes in the cycle where valid and ready are simultaneously high; no fixed-latency assumptions are placed on the host for supplying or draining data (fully handshaked)."},
+    {"id": "REQ-TIME-003", "text": "done pulses for exactly one clk cycle per completed descriptor job."}
+  ],
+
+  "state_requirements": [
+    {"id": "REQ-STATE-001", "text": "Control FSM states: IDLE, DECODE, LOAD_WEIGHT, STREAM_ACT_MAC, REQUANT, WRITEBACK. Transitions are governed by handshake completion and internal tile counters."},
+    {"id": "REQ-STATE-002", "text": "Internal counters track weight-load progress, activation-stream progress, K-tile accumulation index, and M/N output-tile indices. All reset to 0 on rst_n and on entry to a new descriptor."}
+  ],
+
+  "storage_requirements": [
+    {"id": "REQ-STORE-001", "text": "Weight buffer: behavioral SRAM/register-file model, WBUF_DEPTH words x (N*DATA_W) bits. Contents undefined until written; not required to be reset-cleared."},
+    {"id": "REQ-STORE-002", "text": "Activation buffer: behavioral SRAM/register-file model, ABUF_DEPTH words x (N*DATA_W) bits. Contents undefined until written."},
+    {"id": "REQ-STORE-003", "text": "Accumulator storage: NxN array of signed ACC_W-bit accumulators, cleared at the start of each output-tile K-accumulation and on reset."}
+  ],
+
+  "protocol_rules": [
+    {"id": "REQ-PROTO-001", "text": "Protocol chosen: valid/ready streaming (AXI-Stream-like) on all four data channels; a lightweight register/MMIO control bus is NOT used (descriptors are streamed via descriptor_in). This is the single documented host-interface choice."},
+    {"id": "REQ-PROTO-002", "text": "Once a producer asserts valid with payload, payload and valid must hold stable until the corresponding ready is observed high (no valid-drop before handshake)."},
+    {"id": "REQ-PROTO-003", "text": "ready may be asserted or deasserted freely by the consumer independent of valid; the core must not assume ready is high."},
+    {"id": "REQ-PROTO-004", "text": "The core must not accept a new descriptor (desc_ready high) while busy processing a prior descriptor."}
+  ],
+
+  "error_cases": [
+    {"id": "ERR-001", "text": "Accumulation or requantized value exceeds representable range: output SHALL saturate (REQ-GEMM-007) and err_overflow SHALL be set sticky (REQ-GEMM-012). No wraparound.", "handling": "saturate + sticky flag"},
+    {"id": "ERR-002", "text": "Descriptor field out of legal range OR descriptor too large for on-chip buffers: RESOLVED as conservative reject-to-IDLE. This covers TWO reject conditions: (1) a tile-count violation (tiles_* = 0 or > MAX_TILES_*), and (2) a buffer-capacity violation where the descriptor's required word counts exceed on-chip buffer depth ((tiles_k*tiles_n*N) > WBUF_DEPTH OR (tiles_m*tiles_k*N) > ABUF_DEPTH), added to gemm_ctrl.sv during integration repair to prevent silent buffer address wraparound / data corruption. In either case the illegal descriptor is decoded in DECODE and the job is discarded; the FSM returns to IDLE with no weight-load/activation/MAC/requant/writeback, emits no result beats, does not pulse done, and does NOT set err_overflow (that flag is reserved for numeric overflow per ERR-001/REQ-GEMM-012). desc_ready re-asserts in IDLE. See UQ-003.", "handling": "reject-to-IDLE for both tile-count and buffer-capacity violations (see UQ-003)"},
+    {"id": "ERR-003", "text": "Premature w_last or a_last (fewer beats than the descriptor requires): RESOLVED as truncate-and-proceed. The early last ends that load phase immediately; the effective weight-word/activation-word count is clamped to the beats actually received and the MAC loop iterates only over received data (never reading unwritten buffer words). No error is raised and done is not suppressed. See UQ-004.", "handling": "truncate-and-proceed (see UQ-004)"},
+    {"id": "ERR-004", "text": "Reset asserted mid-job: job is abandoned, no results/done emitted for the abandoned job, FSM returns to IDLE (REQ-GEMM-010).", "handling": "defined"}
+  ],
+
+  "assumptions": [
+    {"id": "ASM-001", "text": "Single clock domain; no CDC. Host drives clk/rst_n."},
+    {"id": "ASM-002", "text": "Reset is synchronous active-low (chosen). Assumed asserted for at least one clk cycle before normal operation."},
+    {"id": "ASM-003", "text": "INT8 is signed two's complement; no unsigned/zero-point asymmetric quantization is modeled (symmetric quantization assumed)."},
+    {"id": "ASM-004", "text": "Weights are loaded fresh per descriptor (no weight-stationary reuse across descriptors is required, though the microarchitecture may implement weight-stationary within a job)."},
+    {"id": "ASM-005", "text": "The host is responsible for ordering/packing weight and activation streams in the layout the array expects; the core does not reorder arbitrary layouts beyond the documented tile order."},
+    {"id": "ASM-006", "text": "Result element packing order on y_data mirrors the natural output-tile row/column order produced by the array (documented in RTL). RESOLVED: row-major output-tile order, m-outer/n-inner, N beats per tile (one per output row), column 0 in LSByte, y_last on final beat of final tile (see UQ-008)."},
+    {"id": "ASM-007", "text": "No bias addition or nonlinear activation is applied; flags field is reserved for future bias-enable and defaults to 0 (no-op)."}
+  ],
+
+  "requirement_ids": [
+    "REQ-GEMM-001","REQ-GEMM-002","REQ-GEMM-003","REQ-GEMM-004","REQ-GEMM-005",
+    "REQ-GEMM-006","REQ-GEMM-007","REQ-GEMM-008","REQ-GEMM-009","REQ-GEMM-010",
+    "REQ-GEMM-011","REQ-GEMM-012","REQ-GEMM-013","REQ-GEMM-014",
+    "REQ-TIME-001","REQ-TIME-002","REQ-TIME-003",
+    "REQ-STATE-001","REQ-STATE-002",
+    "REQ-STORE-001","REQ-STORE-002","REQ-STORE-003",
+    "REQ-PROTO-001","REQ-PROTO-002","REQ-PROTO-003","REQ-PROTO-004",
+    "ERR-001","ERR-002","ERR-003","ERR-004"
+  ],
+
+  "traceability": [
+    {"requirement_id": "REQ-GEMM-001", "source": "USER REQUEST 'descriptor decode' + MANDATORY SCOPING descriptor-driven FSM"},
+    {"requirement_id": "REQ-GEMM-002", "source": "MANDATORY SCOPING 'load weights'"},
+    {"requirement_id": "REQ-GEMM-003", "source": "MANDATORY SCOPING 'stream activations'"},
+    {"requirement_id": "REQ-GEMM-004", "source": "USER REQUEST 'MAC accumulation' / MANDATORY SCOPING 'MAC/accumulate'"},
+    {"requirement_id": "REQ-GEMM-005", "source": "MANDATORY SCOPING 'architecture generalizes to full-model matmul shapes'"},
+    {"requirement_id": "REQ-GEMM-006", "source": "USER REQUEST 'requantize (INT32->INT8 with scale/shift + saturate)'"},
+    {"requirement_id": "REQ-GEMM-007", "source": "USER REQUEST 'saturate'"},
+    {"requirement_id": "REQ-GEMM-008", "source": "USER REQUEST 'result writeback'"},
+    {"requirement_id": "REQ-GEMM-009", "source": "USER REQUEST 'backpressure/handshake'"},
+    {"requirement_id": "REQ-GEMM-010", "source": "USER REQUEST 'reset behavior' + clock/reset scheme"},
+    {"requirement_id": "REQ-GEMM-011", "source": "MANDATORY SCOPING control FSM sequence"},
+    {"requirement_id": "REQ-GEMM-014", "source": "MANDATORY SCOPING 'default 8x8, parameter for 16x16'"},
+    {"requirement_id": "REQ-PROTO-001", "source": "MANDATORY SCOPING 'choose one, document it' host interface"}
+  ],
+
+  "modules": [
+    {"file": "gemm_pe_array.sv",        "module": "gemm_pe_array",        "role": "NxN output-stationary signed INT8 MAC array",                    "source_agent": "datapath",            "requirements": ["REQ-GEMM-004", "REQ-GEMM-005", "REQ-GEMM-013", "REQ-STORE-003"]},
+    {"file": "gemm_abuf.sv",            "module": "gemm_abuf",            "role": "activation buffer (sync SRAM model, 1-cycle read)",              "source_agent": "register_storage",    "requirements": ["REQ-STORE-002"]},
+    {"file": "gemm_wbuf.sv",            "module": "gemm_wbuf",            "role": "weight buffer (sync SRAM model, 1-cycle read)",                  "source_agent": "register_storage",    "requirements": ["REQ-STORE-001"]},
+    {"file": "gemm_requant.sv",         "module": "gemm_requant",         "role": "per-row INT32->INT8 requantize (scale/shift/saturate, sticky ovf)", "source_agent": "datapath",         "requirements": ["REQ-GEMM-006", "REQ-GEMM-007", "REQ-GEMM-013", "ERR-001"]},
+    {"file": "stream_skid.sv",          "module": "stream_skid",          "role": "generic 2-deep valid/ready skid buffer",                         "source_agent": "interface_protocol", "requirements": ["REQ-GEMM-009", "REQ-PROTO-002", "REQ-PROTO-003"]},
+    {"file": "gemm_ctrl.sv",            "module": "gemm_ctrl",            "role": "control FSM + descriptor decode",                                "source_agent": "fsm_control",         "requirements": ["REQ-STATE-001", "REQ-STATE-002", "REQ-GEMM-001", "REQ-GEMM-002", "REQ-GEMM-003", "REQ-GEMM-005", "REQ-GEMM-011", "REQ-GEMM-012", "ERR-002", "ERR-003"]},
+    {"file": "gemm_systolic_accel.sv",  "module": "gemm_systolic_accel",  "role": "top-level integration + external skid channels",                 "source_agent": "interface_protocol", "requirements": ["REQ-GEMM-008", "REQ-GEMM-009", "REQ-GEMM-010", "REQ-GEMM-014", "REQ-PROTO-001", "REQ-PROTO-004", "ASM-006"]}
+  ],
+
+  "unresolved_questions": [
+    {"id": "UQ-001", "text": "Requantization rounding mode is not specified by the request. Spec assumes plain arithmetic-shift truncation. Should round-half-to-even / round-half-up be required instead? Confirm desired rounding."},
+    {"id": "UQ-002", "text": "RESOLVED: Fixed descriptor bit map mandated for host-software compatibility. desc_data[127:0] (DESC_W=128), LSB-first: bits [7:0]=tiles_m, [15:8]=tiles_k, [23:16]=tiles_n, [31:24]=req_shift (SHIFT_W=6, only bits [29:24] used, [31:30] reserved=0), [63:32]=req_scale (signed INT32), [95:64]=flags (reserved, default 0), [127:96]=reserved (must be 0). Implemented in gemm_ctrl.sv."},
+    {"id": "UQ-003", "text": "RESOLVED: Conservative reject. An illegal descriptor (any of tiles_m/tiles_k/tiles_n == 0 or greater than its MAX_TILES_*) is decoded in DECODE and the job is discarded: the FSM returns to IDLE with no weight-load/activation/MAC/requant/writeback, emits no result beats, does not pulse done, and does NOT set err_overflow (that flag is reserved for numeric overflow per ERR-001/REQ-GEMM-012). desc_ready re-asserts in IDLE. Implemented in gemm_ctrl.sv. ADDITIONALLY, a descriptor is rejected on the same conservative-reject path when its required word counts exceed on-chip buffer depth: (tiles_k*tiles_n*N) > WBUF_DEPTH OR (tiles_m*tiles_k*N) > ABUF_DEPTH. This prevents silent weight/activation buffer address wraparound and data corruption for descriptors that are legal by tile-count but too large for the buffers at the current parameter set (e.g. defaults N=8, MAX_TILES_*=8 imply up to 512 words versus 64-deep buffers). Every accepted descriptor is thus guaranteed to fit with no address aliasing."},
+    {"id": "UQ-004", "text": "RESOLVED: Truncate-and-proceed. A premature w_last or a_last ends that load phase immediately; the effective weight-word / activation-word count is clamped to the number of beats actually received, and the MAC loop iterates only over received data (never reading unwritten/undefined buffer words). No error is raised and done is not suppressed. This is the deterministic zero-pad-by-not-accumulating resolution. Implemented in gemm_ctrl.sv."},
+    {"id": "UQ-005", "text": "Whether weight-stationary vs output-stationary dataflow is required, or free to implementer. Assumed free (ASM-004)."},
+    {"id": "UQ-006", "text": "Whether a bias add and/or ReLU-style clamp should be included via the reserved flags field. Currently out of scope (ASM-007)."},
+    {"id": "UQ-007", "text": "Target clock frequency / performance (throughput, cycles per tile) is unspecified; only functional correctness is required. Confirm no perf target is needed for verification sign-off."},
+    {"id": "UQ-008", "text": "RESOLVED (also documents ASM-006): Result packing is row-major. Output tiles are emitted in order m_idx=0..tiles_m-1 (outer) then n_idx=0..tiles_n-1 (inner). Per output tile, N result beats are emitted, one per output row i=0..N-1; each beat packs N signed INT8 columns j with column 0 in the LSByte. y_last asserts on the final row beat of the final (m,n) tile. Implemented in gemm_ctrl.sv / gemm_systolic_accel.sv."}
+  ]
+}

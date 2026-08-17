@@ -1,0 +1,176 @@
+{
+ "seed": 88,
+ "jobs": [
+  {
+   "file": "job_s001_L23_h26.npz",
+   "step": 1,
+   "layer": 23,
+   "head": 26,
+   "T": 2,
+   "tier": "CQ-8",
+   "digest": "eb01c3213fb48862"
+  },
+  {
+   "file": "job_s004_L14_h02.npz",
+   "step": 4,
+   "layer": 14,
+   "head": 2,
+   "T": 5,
+   "tier": "CQ-8",
+   "digest": "3d683a6bf4ea828d"
+  },
+  {
+   "file": "job_s006_L04_h20.npz",
+   "step": 6,
+   "layer": 4,
+   "head": 20,
+   "T": 7,
+   "tier": "CQ-8",
+   "digest": "569f48ff14bef165"
+  },
+  {
+   "file": "job_s006_L05_h12.npz",
+   "step": 6,
+   "layer": 5,
+   "head": 12,
+   "T": 7,
+   "tier": "CQ-8",
+   "digest": "d5bceba33289451f"
+  },
+  {
+   "file": "job_s006_L05_h16.npz",
+   "step": 6,
+   "layer": 5,
+   "head": 16,
+   "T": 7,
+   "tier": "CQ-8",
+   "digest": "d4636e8ba4d11dd8"
+  },
+  {
+   "file": "job_s006_L09_h02.npz",
+   "step": 6,
+   "layer": 9,
+   "head": 2,
+   "T": 7,
+   "tier": "CQ-8",
+   "digest": "e82616bd6357e4e0"
+  },
+  {
+   "file": "job_s007_L23_h25.npz",
+   "step": 7,
+   "layer": 23,
+   "head": 25,
+   "T": 8,
+   "tier": "CQ-8",
+   "digest": "f904661d35c38d6d"
+  }
+ ],
+ "run": {
+  "model": "mlx-community/Qwen2.5-7B-4bit",
+  "weights_dir": "/Users/nabilabdelazizferhattaleb/Desktop/apex_npu/build/s8_weights/Qwen2.5-7B-4bit",
+  "tier": "CQ-8",
+  "group": 128,
+  "git": "d77f2dd",
+  "prompt": "The capital of France is",
+  "prompt_ids": [
+   785,
+   6722,
+   315,
+   9625,
+   374
+  ],
+  "generated_ids": [
+   12095,
+   624,
+   785,
+   4226
+  ],
+  "generated_text": " Paris.\nThe answer",
+  "per_token_seconds": [
+   42.21,
+   40.0,
+   30.87,
+   29.75,
+   35.84,
+   32.28,
+   36.2,
+   35.76
+  ],
+  "silu_domain_exceed": {
+   "events": 125864,
+   "total": 4243456,
+   "frac": 0.029660729367760617
+  },
+  "ref_checks": [
+   {
+    "step": 0,
+    "per_layer_e2e_rel": [
+     0.34888948997007596,
+     0.06454715132406959,
+     0.04070523718493584,
+     0.14259595541920073,
+     0.05356600030369879,
+     0.012319172680339056,
+     0.016143494217847044,
+     0.011984662153929498,
+     0.008861098546080613,
+     0.0738612657392966,
+     0.009312189962208993,
+     0.0035268533675003435,
+     0.014272721852435038,
+     0.005141163602601141,
+     0.04460418720774944,
+     0.0034795848447415627,
+     0.02488205309212872,
+     0.005884030553249305,
+     0.028510464387127264,
+     0.01951375581954399,
+     0.02095755651973237,
+     0.004361982377530593,
+     0.006813166793447122,
+     0.020267123840941387,
+     0.010513050004908773,
+     0.03386830149516818,
+     0.13321590983014656,
+     0.4915266109612417
+    ]
+   },
+   {
+    "step": 1,
+    "per_layer_e2e_rel": [
+     0.10081865230445865,
+     0.13680602858663968,
+     0.27607977725069216,
+     0.3745872241811675,
+     0.03544320131198015,
+     0.0031533224794319165,
+     0.014852850733792115,
+     0.007760593128451842,
+     0.0067256500302708445,
+     0.01728818857886231,
+     0.00463024890805566,
+     0.006451252960544655,
+     0.012568322335157051,
+     0.004817426469199209,
+     0.001916064037250559,
+     0.0021464245465043362,
+     0.00112401590273036,
+     0.0004596386617755586,
+     0.0010920861346804152,
+     0.0012667065425381878,
+     0.0058989320170742664,
+     0.0020633235350995096,
+     0.00467476008444497,
+     0.00811207386790166,
+     0.011274615962564752,
+     0.05870567798828483,
+     1.458977303115987,
+     0.2450708539440863
+    ]
+   }
+  ],
+  "weights_disclosure": "weights = MLX 4-bit dequant \u2192 PER-TENSOR symmetric INT8 (double quantization; the golden LayerWeights/C-2 contract carries one scale per tensor). rms_norm_eps config=1e-06 vs golden EPS_INT=1 fixed-point contract (disclosed, gated).",
+  "timestamp": "2026-07-14T15:52:35"
+ },
+ "replay": "inputs (q_f16/K_f16/V_f16 fp16 bits + tier/G) fully determine the job; --verify-trace re-runs golden attention_core and asserts every stored array bit-exact. RTL: verif/top/l3 named-tensor injection or verif/kvq TBs with a build matching D/tier/G."
+}

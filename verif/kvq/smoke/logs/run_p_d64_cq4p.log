@@ -1,0 +1,17 @@
+==== tb_kvq_top config=d64_cq4p D=64 T=128 TIER=2 G=64 K=2 NGRP=2 partial=0 stall=0 expect_bug=0
+     VECDIR=../../../golden/vectors/d64_T128_G64__CQ4plus
+     KEYDIR=../../../golden/vectors/d64_T128_G64__CQ4plus
+[V] streaming 128 value tokens
+[V] compress side-effects: checking 128 SRAM value records
+[V] decompress: reading back 128 tokens (fp32)
+[K] streaming key group 0 (G=64 tokens) at base 128
+[K] group 0 flushed (commit seq 0 -> ssid 0); checking 64 D-026 key records + bank row + readback
+[K] streaming key group 1 (G=64 tokens) at base 192
+[K] group 1 flushed (commit seq 1 -> ssid 1); checking 64 D-026 key records + bank row + readback
+============================================================
+CONFIG d64_cq4p: checks=46340 fails=0
+KVQ PARITY [d64_cq4p]: PASS (bit-exact records + fp32 readback, irq=0)
+- tb_kvq_top.sv:542: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 674us; walltime 0.044 s; speed 16.398 ms/s
+- Verilator: cpu 0.041 s on 1 threads; alloced 2 MB

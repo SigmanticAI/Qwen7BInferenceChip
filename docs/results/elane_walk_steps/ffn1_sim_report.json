@@ -1,0 +1,6 @@
+{
+ "executor": "sim",
+ "verdict": true,
+ "wall_s": 8.1,
+ "grade": "{'fs': {'equal': True, 'got': [5574], 'want': [5574]}, 'p_codes': {'equal': True, 'n_diff': 0}, 'equal': True}"
+}

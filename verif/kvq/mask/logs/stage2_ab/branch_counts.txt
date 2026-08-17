@@ -1,0 +1,79 @@
+CONFIG d64_cq8: checks=49923 fails=0
+CONFIG d64_cq4: checks=46084 fails=0
+CONFIG d64_cq4p: checks=46340 fails=0
+CONFIG d64_t70_cq4: checks=24162 fails=0
+CONFIG d128_cq8: checks=77403 fails=0
+CONFIG d128_cq4: checks=32665 fails=0
+CONFIG g128_cq4: checks=46019 fails=0
+CONFIG resid_alias: checks=4 fails=0
+CONFIG rwait: checks=137 fails=0
+CONFIG collide: checks=166 fails=0 (irq=0)
+CONFIG flush: checks=13714 fails=0 (irq=0)
+CONFIG d128_cq4: checks=32665 fails=0
+CONFIG d128_cq8: checks=77403 fails=0
+CONFIG d64_cq4: checks=46084 fails=0
+CONFIG d64_cq4p: checks=46340 fails=0
+CONFIG d64_cq8: checks=49923 fails=0
+CONFIG d64_t70_cq4: checks=24162 fails=0
+CONFIG g128_cq4: checks=46019 fails=0
+CONFIG resid_alias: checks=4 fails=0
+CONFIG collide: checks=166 fails=0 (irq=0)
+CONFIG flush: checks=13714 fails=0 (irq=0)
+CONFIG rwait: checks=137 fails=0
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq8: checks=4737 fails=0
+CONFIG cq4p: checks=1502 fails=0
+CONFIG d64: checks=3715 fails=0
+CONFIG k5: checks=6112 fails=0
+CONFIG cq4: checks=148 fails=0
+CONFIG cq4: checks=980 fails=0
+COVERAGE GATE: PASS — all required buckets closed
+MUTATION CAUGHT [data]
+MUTATION CAUGHT [round]
+MUTATION CAUGHT [last]
+MUTATION CAUGHT [ssid]
+MUTATION CAUGHT [bank]
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq4: checks=4324 fails=0
+CONFIG cq4p: checks=1502 fails=0
+CONFIG cq8: checks=4737 fails=0
+CONFIG d64: checks=3715 fails=0
+CONFIG cq4: checks=148 fails=0
+CONFIG k5: checks=6112 fails=0
+CONFIG cq4: checks=4324 fails=51
+CONFIG cq4: checks=4324 fails=61
+CONFIG cq4: checks=4324 fails=118
+CONFIG cq4: checks=4324 fails=10
+CONFIG cq4: checks=4324 fails=452
+CONFIG cq4: checks=980 fails=0
+COVERAGE GATE: PASS — all required buckets closed
+GATE: PASS — all runs, coverage and mutation checks clean
+CONFIG rst_cq4: checks=21443 fails=0
+CONFIG rst_cq4p: checks=8253 fails=0
+CONFIG rst_d64: checks=48138 fails=0
+CONFIG rst_cq8: checks=1073 fails=0
+CONFIG negz_d64p: checks=29184 fails=0
+CONFIG rst_cq4p: checks=1758 fails=0
+CONFIG negz_d64p: checks=5410 fails=0
+COVERAGE GATE: PASS — all required buckets closed
+MUTATION CAUGHT [b1]
+MUTATION CAUGHT [b2]
+MUTATION CAUGHT [b4]
+CONFIG rst_cq4: checks=7949 fails=10
+CONFIG rst_cq4: checks=7918 fails=30
+CONFIG rst_cq4p: checks=1758 fails=8
+CONFIG rst_cq4p: checks=1758 fails=0
+CONFIG negz_d64p: checks=5410 fails=0
+CONFIG rst_cq4: checks=21443 fails=0
+CONFIG rst_cq4p: checks=8253 fails=0
+CONFIG rst_cq8: checks=1073 fails=0
+CONFIG rst_d64: checks=48138 fails=0
+CONFIG negz_d64p: checks=29184 fails=0
+COVERAGE GATE: PASS — all required buckets closed
+GATE: PASS — all runs, coverage and fix-revert mutations clean
+DATAPATH INTEGER-MODEL PROOF: ALL PASS
+FPARITH TB: ALL PASS (checks=8748634 fails=0)
+MUTATION GATE: 2/2 seeded errors caught (mut_tie, mut_eps)

@@ -1,0 +1,56 @@
+DDRLOAD [job_s019_L19_h03] base=0x0 words=656 tag=0 ok
+DDRLOAD [job_s027_L23_h02] base=0xb000 words=912 tag=1 ok
+DDRLOAD [job_s033_L05_h18] base=0x1a000 words=1104 tag=2 ok
+DDRLOAD [job_s050_L17_h08] base=0x2c000 words=1648 tag=3 ok
+DDRLOAD [job_s079_L17_h13] base=0x46000 words=2576 tag=4 ok
+DDRLOAD [job_s080_L17_h08] base=0x6f000 words=2608 tag=5 ok
+DDRLOAD [job_s093_L09_h01] base=0x98000 words=3024 tag=6 ok
+DDRLOAD [job_s106_L18_h03] base=0xc8000 words=3440 tag=7 ok
+DDRLOAD [job_s110_L11_h00] base=0xfe000 words=3568 tag=8 ok
+DDRLOAD [job_s110_L23_h15] base=0x136000 words=3568 tag=9 ok
+DDRLOAD [job_s110_L25_h06] base=0x16e000 words=3568 tag=10 ok
+DDRLOAD [job_s113_L05_h18] base=0x1a6000 words=3664 tag=11 ok
+DDRLOAD [job_s113_L18_h27] base=0x1e0000 words=3664 tag=12 ok
+DDRLOAD [job_s120_L13_h20] base=0x21a000 words=3888 tag=13 ok
+DDRLOAD [job_s140_L14_h05_c0] base=0x257000 words=4112 tag=14 ok
+DDRLOAD [job_s140_L14_h05_c1] base=0x298000 words=432 tag=15 ok
+DDRLOAD [job_s151_L04_h07_c0] base=0x29f000 words=4112 tag=16 ok
+DDRLOAD [job_s151_L04_h07_c1] base=0x2e0000 words=784 tag=17 ok
+DDRLOAD RESULT: regions=18 words=47328 rb_fails=0 sha_fails=0 -> PASS
+[../../build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] 11862 ops, 507 checks, 0 fails (cyc 3372807)
+FUELAUDIT [../../build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] err=00000000 stat=00000009 -> ok
+[../../build/fuel_regops/job_s027_L23_h02.fuel.regops.jsonl] 16263 ops, 643 checks, 0 fails (cyc 7869831)
+FUELAUDIT [../../build/fuel_regops/job_s027_L23_h02.fuel.regops.jsonl] err=00000000 stat=00000109 -> ok
+[../../build/fuel_regops/job_s033_L05_h18.fuel.regops.jsonl] 19578 ops, 745 checks, 0 fails (cyc 13303987)
+FUELAUDIT [../../build/fuel_regops/job_s033_L05_h18.fuel.regops.jsonl] err=00000000 stat=00000209 -> ok
+[../../build/fuel_regops/job_s050_L17_h08.fuel.regops.jsonl] 28923 ops, 1034 checks, 0 fails (cyc 21376989)
+FUELAUDIT [../../build/fuel_regops/job_s050_L17_h08.fuel.regops.jsonl] err=00000000 stat=00000309 -> ok
+[../../build/fuel_regops/job_s079_L17_h13.fuel.regops.jsonl] 44841 ops, 1527 checks, 0 fails (cyc 33942017)
+FUELAUDIT [../../build/fuel_regops/job_s079_L17_h13.fuel.regops.jsonl] err=00000000 stat=00000409 -> ok
+[../../build/fuel_regops/job_s080_L17_h08.fuel.regops.jsonl] 45441 ops, 1544 checks, 0 fails (cyc 46681177)
+FUELAUDIT [../../build/fuel_regops/job_s080_L17_h08.fuel.regops.jsonl] err=00000000 stat=00000509 -> ok
+[../../build/fuel_regops/job_s093_L09_h01.fuel.regops.jsonl] 52557 ops, 1765 checks, 0 fails (cyc 61426355)
+FUELAUDIT [../../build/fuel_regops/job_s093_L09_h01.fuel.regops.jsonl] err=00000000 stat=00000609 -> ok
+[../../build/fuel_regops/job_s106_L18_h03.fuel.regops.jsonl] 59730 ops, 1986 checks, 0 fails (cyc 78200301)
+FUELAUDIT [../../build/fuel_regops/job_s106_L18_h03.fuel.regops.jsonl] err=00000000 stat=00000709 -> ok
+[../../build/fuel_regops/job_s110_L11_h00.fuel.regops.jsonl] 61902 ops, 2054 checks, 0 fails (cyc 95584325)
+FUELAUDIT [../../build/fuel_regops/job_s110_L11_h00.fuel.regops.jsonl] err=00000000 stat=00000809 -> ok
+[../../build/fuel_regops/job_s110_L23_h15.fuel.regops.jsonl] 61902 ops, 2054 checks, 0 fails (cyc 112968349)
+FUELAUDIT [../../build/fuel_regops/job_s110_L23_h15.fuel.regops.jsonl] err=00000000 stat=00000909 -> ok
+[../../build/fuel_regops/job_s110_L25_h06.fuel.regops.jsonl] 61902 ops, 2054 checks, 0 fails (cyc 130352373)
+FUELAUDIT [../../build/fuel_regops/job_s110_L25_h06.fuel.regops.jsonl] err=00000000 stat=00000a09 -> ok
+[../../build/fuel_regops/job_s113_L05_h18.fuel.regops.jsonl] 63588 ops, 2105 checks, 0 fails (cyc 148216387)
+FUELAUDIT [../../build/fuel_regops/job_s113_L05_h18.fuel.regops.jsonl] err=00000000 stat=00000b09 -> ok
+[../../build/fuel_regops/job_s113_L18_h27.fuel.regops.jsonl] 63588 ops, 2105 checks, 0 fails (cyc 166080401)
+FUELAUDIT [../../build/fuel_regops/job_s113_L18_h27.fuel.regops.jsonl] err=00000000 stat=00000c09 -> ok
+[../../build/fuel_regops/job_s120_L13_h20.fuel.regops.jsonl] 67446 ops, 2224 checks, 0 fails (cyc 185034483)
+FUELAUDIT [../../build/fuel_regops/job_s120_L13_h20.fuel.regops.jsonl] err=00000000 stat=00000d09 -> ok
+[../../build/fuel_regops/job_s140_L14_h05_c0.fuel.regops.jsonl] 71247 ops, 2343 checks, 0 fails (cyc 205057451)
+FUELAUDIT [../../build/fuel_regops/job_s140_L14_h05_c0.fuel.regops.jsonl] err=00000000 stat=00000e09 -> ok
+[../../build/fuel_regops/job_s140_L14_h05_c1.fuel.regops.jsonl] 8004 ops, 388 checks, 0 fails (cyc 207221613)
+FUELAUDIT [../../build/fuel_regops/job_s140_L14_h05_c1.fuel.regops.jsonl] err=00000000 stat=00000f09 -> ok
+[../../build/fuel_regops/job_s151_L04_h07_c0.fuel.regops.jsonl] 71247 ops, 2343 checks, 0 fails (cyc 227244581)
+FUELAUDIT [../../build/fuel_regops/job_s151_L04_h07_c0.fuel.regops.jsonl] err=00000000 stat=00001009 -> ok
+[../../build/fuel_regops/job_s151_L04_h07_c1.fuel.regops.jsonl] 14034 ops, 575 checks, 0 fails (cyc 231108777)
+FUELAUDIT [../../build/fuel_regops/job_s151_L04_h07_c1.fuel.regops.jsonl] err=00000000 stat=00001109 -> ok
+F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS

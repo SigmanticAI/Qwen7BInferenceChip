@@ -1,0 +1,46 @@
+{
+ "arms": {
+  "walk_e7ng_dbg0": {
+   "rc": 0,
+   "ok": true,
+   "caps": 138,
+   "wall_s": 2.2,
+   "as_expected": true
+  },
+  "walk_e6_silicon_dbg": {
+   "rc": 1,
+   "ok": false,
+   "caps": 2,
+   "wall_s": 6.3,
+   "as_expected": true,
+   "walk_dbg": 2,
+   "lines": [
+    "poll stall L1592 @0x1068: last 0x00003703 want 0x0/0x1",
+    "F2HOST RESULT: files=1 checks=13 fails=1 -> FAIL"
+   ]
+  },
+  "hostattn_fuelarm": {
+   "rc": 0,
+   "ok": true,
+   "caps": 0,
+   "wall_s": 1.2,
+   "as_expected": true
+  },
+  "walk_e6_plain": {
+   "rc": 1,
+   "ok": false,
+   "caps": 1,
+   "wall_s": 6.4,
+   "as_expected": true,
+   "lines": [
+    "poll stall L1587 @0x1068: last 0x00003703 want 0x0/0x1",
+    "F2HOST RESULT: files=1 checks=11 fails=1 -> FAIL"
+   ]
+  }
+ },
+ "walk_dbg": 2,
+ "verdict": "err_stale: the walked score found an unwritten scale-cache entry / missing s_q \u2014 matches the sim empty-cache repro",
+ "control_clean": true,
+ "fuel_arm_exonerated": true,
+ "note": "walk-mode composite interaction confirmed as the seam"
+}

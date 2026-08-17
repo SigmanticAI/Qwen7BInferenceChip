@@ -1,0 +1,166 @@
+[remote_hw_exec] executor 'hw' -> ubuntu@35.90.250.213:~/apex_d (clock gate ON)
+==============================================================================
+FIRST NON-ATTENTION OP ON THE SILICON TWIN — a projection GEMM
+  op      L00 Wq[:, 0:8] x h8  (K=3584, N=8)
+  weights build/s8_weights/Qwen2.5-7B-4bit/L00_Wq.npy  (real Qwen2.5-7B INT8)
+  act     h8 of token 8420 = prompt_ids[0] of the committed S8 run, prompt 'Here are five interesting facts about the Moon:\n1.'
+  act     re-derived with golden's own quant/rmsnorm_fx_wide; s_h=0x214b amax code 127 at k*=658
+==============================================================================
+[build] qwen_l00_wq_k0: rows 0..0 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k0.regops.jsonl
+[run  ] [./qwen_l00_wq_k0.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k0: rc=0 ok=True captures=9 (4.3s wall)
+[build] qwen_l00_wq_k1: rows 1..1 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k1.regops.jsonl
+[run  ] [./qwen_l00_wq_k1.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k1: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k2: rows 2..2 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k2.regops.jsonl
+[run  ] [./qwen_l00_wq_k2.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k2: rc=0 ok=True captures=9 (3.9s wall)
+[build] qwen_l00_wq_k3: rows 3..3 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k3.regops.jsonl
+[run  ] [./qwen_l00_wq_k3.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k3: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k4: rows 4..4 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k4.regops.jsonl
+[run  ] [./qwen_l00_wq_k4.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k4: rc=0 ok=True captures=9 (4.1s wall)
+[build] qwen_l00_wq_k5: rows 5..5 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k5.regops.jsonl
+[run  ] [./qwen_l00_wq_k5.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k5: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k6: rows 6..6 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k6.regops.jsonl
+[run  ] [./qwen_l00_wq_k6.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k6: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k7: rows 7..7 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k7.regops.jsonl
+[run  ] [./qwen_l00_wq_k7.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k7: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k8: rows 8..8 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k8.regops.jsonl
+[run  ] [./qwen_l00_wq_k8.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k8: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k9: rows 9..9 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k9.regops.jsonl
+[run  ] [./qwen_l00_wq_k9.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k9: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k10: rows 10..10 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k10.regops.jsonl
+[run  ] [./qwen_l00_wq_k10.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k10: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k11: rows 11..11 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k11.regops.jsonl
+[run  ] [./qwen_l00_wq_k11.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k11: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k12: rows 12..12 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k12.regops.jsonl
+[run  ] [./qwen_l00_wq_k12.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k12: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k13: rows 13..13 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k13.regops.jsonl
+[run  ] [./qwen_l00_wq_k13.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k13: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k14: rows 14..14 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k14.regops.jsonl
+[run  ] [./qwen_l00_wq_k14.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k14: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k15: rows 15..15 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k15.regops.jsonl
+[run  ] [./qwen_l00_wq_k15.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k15: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k16: rows 16..16 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k16.regops.jsonl
+[run  ] [./qwen_l00_wq_k16.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k16: rc=0 ok=True captures=9 (3.9s wall)
+[build] qwen_l00_wq_k17: rows 17..17 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k17.regops.jsonl
+[run  ] [./qwen_l00_wq_k17.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k17: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k18: rows 18..18 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k18.regops.jsonl
+[run  ] [./qwen_l00_wq_k18.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k18: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k19: rows 19..19 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k19.regops.jsonl
+[run  ] [./qwen_l00_wq_k19.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k19: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k20: rows 20..20 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k20.regops.jsonl
+[run  ] [./qwen_l00_wq_k20.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k20: rc=0 ok=True captures=9 (5.5s wall)
+[build] qwen_l00_wq_k21: rows 21..21 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k21.regops.jsonl
+[run  ] [./qwen_l00_wq_k21.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k21: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k22: rows 22..22 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k22.regops.jsonl
+[run  ] [./qwen_l00_wq_k22.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k22: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k23: rows 23..23 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k23.regops.jsonl
+[run  ] [./qwen_l00_wq_k23.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k23: rc=0 ok=True captures=9 (3.9s wall)
+[build] qwen_l00_wq_k24: rows 24..24 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k24.regops.jsonl
+[run  ] [./qwen_l00_wq_k24.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k24: rc=0 ok=True captures=9 (3.6s wall)
+[build] qwen_l00_wq_k25: rows 25..25 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k25.regops.jsonl
+[run  ] [./qwen_l00_wq_k25.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k25: rc=0 ok=True captures=9 (3.9s wall)
+[build] qwen_l00_wq_k26: rows 26..26 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k26.regops.jsonl
+[run  ] [./qwen_l00_wq_k26.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k26: rc=0 ok=True captures=9 (3.7s wall)
+[build] qwen_l00_wq_k27: rows 27..27 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k27.regops.jsonl
+[run  ] [./qwen_l00_wq_k27.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k27: rc=0 ok=True captures=9 (3.8s wall)
+[build] qwen_l00_wq_k28: rows 28..28 k=128 1323 regops 23 checks 9 caps 128 weight beats (0.0s) -> build/f2_gemm_hw_k128/qwen_l00_wq_k28.regops.jsonl
+[run  ] [./qwen_l00_wq_k28.regops.jsonl] 1323 ops, 21 checks, 0 fails
+[run  ] F2HOST RESULT: files=1 checks=21 fails=0 -> PASS
+[run  ] qwen_l00_wq_k28: rc=0 ok=True captures=9 (3.8s wall)
+------------------------------------------------------------------------------
+[plan ] K_real=3584 -> K_staged=3712 in 29 stage rows of 128 (lane 0 of every row = channel k*=658, |code|=127, so MODE_QUANT is the identity; the 128 duplicate/pad lanes carry ZERO weight rows)
+[plan ] C-KSPLIT: 29 tile jobs, k = [128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] (K_MAX=2048)
+[part ] qwen_l00_wq_k0: k=128 rows 0..0  INT32 partial [1105, 1207, 1231, 1520, -2204, 329, -660, -891]
+[part ] qwen_l00_wq_k1: k=128 rows 1..1  INT32 partial [1141, -149, -522, 415, 628, -95, -297, -1001]
+[part ] qwen_l00_wq_k2: k=128 rows 2..2  INT32 partial [1085, 1299, -580, 1323, 1990, 1909, -2153, 658]
+[part ] qwen_l00_wq_k3: k=128 rows 3..3  INT32 partial [-150, 1512, 1694, 21, 1005, 1342, 1141, 190]
+[part ] qwen_l00_wq_k4: k=128 rows 4..4  INT32 partial [78, 994, 294, 383, 1085, 1536, 92, 789]
+[part ] qwen_l00_wq_k5: k=128 rows 5..5  INT32 partial [253, -1111, -1195, -324, -1706, 40, -1402, -1226]
+[part ] qwen_l00_wq_k6: k=128 rows 6..6  INT32 partial [-254, 1590, 1195, 872, -33, 272, 1174, 843]
+[part ] qwen_l00_wq_k7: k=128 rows 7..7  INT32 partial [95, 952, 1456, -44, 1136, 475, 607, 1140]
+[part ] qwen_l00_wq_k8: k=128 rows 8..8  INT32 partial [35, -1068, 1366, -627, 3, -1522, -267, 733]
+[part ] qwen_l00_wq_k9: k=128 rows 9..9  INT32 partial [-181, 21, 124, -398, 1472, -28, -288, -1574]
+[part ] qwen_l00_wq_k10: k=128 rows 10..10  INT32 partial [369, 789, 1063, 164, -162, 105, -413, -54]
+[part ] qwen_l00_wq_k11: k=128 rows 11..11  INT32 partial [1610, -836, -106, 237, 198, 1364, -784, -4]
+[part ] qwen_l00_wq_k12: k=128 rows 12..12  INT32 partial [-174, 853, -721, -1061, 1067, -167, -493, 1151]
+[part ] qwen_l00_wq_k13: k=128 rows 13..13  INT32 partial [-711, 1358, -20, -317, 1596, 2040, 553, 441]
+[part ] qwen_l00_wq_k14: k=128 rows 14..14  INT32 partial [-977, 38, 66, -16, 157, -647, -290, -18]
+[part ] qwen_l00_wq_k15: k=128 rows 15..15  INT32 partial [152, -2242, 1820, -838, -1582, -1353, -278, -716]
+[part ] qwen_l00_wq_k16: k=128 rows 16..16  INT32 partial [1444, 1046, 840, -89, 1315, 63, -228, -642]
+[part ] qwen_l00_wq_k17: k=128 rows 17..17  INT32 partial [-163, 1653, -558, 374, 1239, 1806, 733, -358]
+[part ] qwen_l00_wq_k18: k=128 rows 18..18  INT32 partial [1051, -622, -391, 703, -90, -517, 213, -1256]
+[part ] qwen_l00_wq_k19: k=128 rows 19..19  INT32 partial [-36, -179, -798, -995, -1381, 1400, 359, -915]
+[part ] qwen_l00_wq_k20: k=128 rows 20..20  INT32 partial [74, -1233, 14, -727, -391, -331, 639, 811]
+[part ] qwen_l00_wq_k21: k=128 rows 21..21  INT32 partial [620, 129, 695, 744, 1409, 1190, 420, 1663]
+[part ] qwen_l00_wq_k22: k=128 rows 22..22  INT32 partial [-472, 1380, 1622, -116, 1729, -2153, 785, -947]
+[part ] qwen_l00_wq_k23: k=128 rows 23..23  INT32 partial [-147, 790, 94, -321, 1006, 509, 0, 256]
+[part ] qwen_l00_wq_k24: k=128 rows 24..24  INT32 partial [-308, -517, 401, -700, -682, -107, 549, -135]
+[part ] qwen_l00_wq_k25: k=128 rows 25..25  INT32 partial [1034, -697, -1260, 510, -1041, 63, -1253, -1880]
+[part ] qwen_l00_wq_k26: k=128 rows 26..26  INT32 partial [615, 869, -1623, 1016, -1572, 1573, 427, -930]
+[part ] qwen_l00_wq_k27: k=128 rows 27..27  INT32 partial [-2254, -312, 2556, -1320, 1625, -375, 327, -843]
+[part ] qwen_l00_wq_k28: k=128 rows 28..28  INT32 partial [-328, -150, -222, -74, -289, -52, 9, -160]
+[sum  ] host-accumulated INT32 : [4606, 7364, 8535, 315, 7527, 8669, -778, -4875]
+[gold ] golden wide matmul     : [4606, 7364, 8535, 315, 7527, 8669, -778, -4875]
+[grade] {'equal': True, 'n': 8, 'n_diff': 0, 'worst': 0.0, 'first_idx': -1}
+[grade] zero-padded output lanes read 0: True
+[time ] per-job wall clock [4.31, 3.62, 3.93, 3.8, 4.12, 3.65, 3.77, 3.74, 3.7, 3.72, 3.75, 3.66, 3.77, 3.7, 3.58, 3.64, 3.9, 3.58, 3.76, 3.71, 5.5, 3.77, 3.62, 3.91, 3.58, 3.87, 3.68, 3.81, 3.82] s (total 111.3s incl. build+golden)
+[disc ] (a) +1 on one accumulated lane -> RED: True
+[disc ] (b) correct captures vs golden with ONE weight byte changed -> RED: True
+------------------------------------------------------------------------------
+PROJECTION GEMM ON THE TWIN: bit_exact=True (3584 INT8 channels contracted, 3712 weight beats pushed on the external xw port, 667 structural checks, 0 result expectations)
+GEMM_JOB SMOKE: PASS

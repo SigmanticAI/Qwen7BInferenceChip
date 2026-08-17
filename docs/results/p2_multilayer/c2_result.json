@@ -1,0 +1,1612 @@
+{
+ "prompt": "The capital of France is",
+ "prompt_ids": [
+  785,
+  6722,
+  315,
+  9625,
+  374
+ ],
+ "mode": "sim",
+ "layer": 0,
+ "step": 4,
+ "scope": {
+  "ops": [
+   "proj",
+   "rope",
+   "attn",
+   "resid",
+   "norm",
+   "swiglu"
+  ],
+  "proj_cols": 8,
+  "proj_rows": 1,
+  "heads": -1,
+  "rope_heads": -1,
+  "resid_cols": -1,
+  "resid_slice": 128,
+  "norm_dm": -1,
+  "norm1_rows": 0,
+  "swiglu_chunks": -1
+ },
+ "tokens_on": [
+  12095
+ ],
+ "tokens_host": [
+  12095
+ ],
+ "tokens_bus_on": [
+  12095
+ ],
+ "text_on": " Paris",
+ "text_host": " Paris",
+ "token_identity": true,
+ "bus_on_token_identity": true,
+ "op_types_served": [
+  "proj",
+  "rope",
+  "attn",
+  "resid",
+  "norm",
+  "swiglu"
+ ],
+ "milestone_c2": true,
+ "ledger": {
+  "proj": {
+   "instances": 7,
+   "served_instances": 7,
+   "values": 56,
+   "values_total": 53760,
+   "jobs": 22,
+   "caps": 198,
+   "seconds": 0.92,
+   "grade_ok": true,
+   "exact": true,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "A": [
+      1,
+      3584
+     ],
+     "B": [
+      3584,
+      3584
+     ],
+     "rows_served": 1,
+     "cols_served": 8
+    },
+    {
+     "A": [
+      5,
+      3584
+     ],
+     "B": [
+      3584,
+      512
+     ],
+     "rows_served": 1,
+     "cols_served": 8
+    }
+   ]
+  },
+  "rope": {
+   "instances": 28,
+   "served_instances": 28,
+   "values": 3584,
+   "values_total": 3584,
+   "jobs": 28,
+   "caps": 4060,
+   "seconds": 0.84,
+   "grade_ok": true,
+   "exact": false,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "grade": {
+      "equal": true,
+      "n": 128,
+      "codes_equal": true,
+      "scales_equal": true,
+      "got_codes": 128,
+      "got_scales": 1,
+      "n_code_diff": 0
+     },
+     "requant_identical": true,
+     "downstream_codes_match_golden": true,
+     "max_abs_delta": 0.07861328125
+    },
+    {
+     "grade": {
+      "equal": true,
+      "n": 128,
+      "codes_equal": true,
+      "scales_equal": true,
+      "got_codes": 128,
+      "got_scales": 1,
+      "n_code_diff": 0
+     },
+     "requant_identical": true,
+     "downstream_codes_match_golden": true,
+     "max_abs_delta": 0.01837158203125
+    }
+   ]
+  },
+  "attn": {
+   "instances": 28,
+   "served_instances": 28,
+   "values": 3584,
+   "values_total": 3584,
+   "jobs": 28,
+   "caps": 6496,
+   "seconds": 0.57,
+   "grade_ok": true,
+   "exact": true,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "T": 5,
+     "D": 128,
+     "tier": "CQ-8",
+     "acc_grade": {
+      "equal": true,
+      "n": 128,
+      "n_diff": 0,
+      "worst": 0.0,
+      "first_idx": -1
+     },
+     "o8_grade": {
+      "equal": true,
+      "n": 128,
+      "n_diff": 0,
+      "worst": 0.0,
+      "first_idx": -1
+     },
+     "rq_tile": [
+      65532,
+      23
+     ],
+     "rq_golden": [
+      65532,
+      23
+     ],
+     "compute_job_ok": true
+    },
+    {
+     "T": 5,
+     "D": 128,
+     "tier": "CQ-8",
+     "acc_grade": {
+      "equal": true,
+      "n": 128,
+      "n_diff": 0,
+      "worst": 0.0,
+      "first_idx": -1
+     },
+     "o8_grade": {
+      "equal": true,
+      "n": 128,
+      "n_diff": 0,
+      "worst": 0.0,
+      "first_idx": -1
+     },
+     "rq_tile": [
+      34992,
+      22
+     ],
+     "rq_golden": [
+      34992,
+      22
+     ],
+     "compute_job_ok": true
+    }
+   ]
+  },
+  "resid": {
+   "instances": 2,
+   "served_instances": 2,
+   "values": 7168,
+   "values_total": 7168,
+   "jobs": 56,
+   "caps": 7168,
+   "seconds": 0.23,
+   "grade_ok": true,
+   "exact": true,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "slices": 28,
+     "slice": 128,
+     "reassembled_equal_golden": true,
+     "per_slice_pass": 28,
+     "jobc": "0x3cc76000",
+     "egress": "LAYER_RDATA fp16"
+    },
+    {
+     "slices": 28,
+     "slice": 128,
+     "reassembled_equal_golden": true,
+     "per_slice_pass": 28,
+     "jobc": "0x3c686000",
+     "egress": "LAYER_RDATA fp16"
+    }
+   ]
+  },
+  "norm": {
+   "instances": 1,
+   "served_instances": 1,
+   "values": 3584,
+   "values_total": 3584,
+   "jobs": 1,
+   "caps": 4088,
+   "seconds": 0.71,
+   "grade_ok": true,
+   "exact": false,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "which": "norm2",
+     "dm": 3584,
+     "rows": 28,
+     "grade": {
+      "equal": true,
+      "n": 3584,
+      "codes_equal": true,
+      "scales_equal": true,
+      "got_codes": 3584,
+      "got_scales": 28,
+      "n_code_diff": 0,
+      "sums_equal": true,
+      "sum_total_equal": true
+     },
+     "max_abs_delta_q78": 6,
+     "downstream_c1_codes_n_diff": 46,
+     "downstream_c1_scale_equal": true,
+     "egress": "C-1 view, 128-wide frames (B-FEED-WIDTH)"
+    }
+   ]
+  },
+  "swiglu": {
+   "instances": 1,
+   "served_instances": 1,
+   "values": 18944,
+   "values_total": 18944,
+   "jobs": 1,
+   "caps": 21460,
+   "seconds": 11.39,
+   "grade_ok": true,
+   "exact": false,
+   "notes": [],
+   "source": "TILE (sim)",
+   "detail": [
+    {
+     "chunks": 296,
+     "chunks_total": 296,
+     "feeder_rows": 148,
+     "grade": {
+      "equal": true,
+      "n": 18944,
+      "codes_equal": true,
+      "scales_equal": true,
+      "got_codes": 18944,
+      "got_scales": 148,
+      "n_code_diff": 0
+     },
+     "max_abs_delta": 0.00673675537109375,
+     "downstream_c1_codes_n_diff": 411,
+     "downstream_c1_scale_equal": true,
+     "egress": "C-1 view, 128-wide frames (B-FEED-WIDTH)"
+    }
+   ]
+  }
+ },
+ "checks": [
+  {
+   "name": "rope h00: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h00: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h01: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h01: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h02: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h02: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h03: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h03: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h04: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h04: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h05: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h05: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h06: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h06: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h07: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h07: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h08: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h08: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h09: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h09: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h10: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h10: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h11: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h11: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h12: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h12: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h13: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h13: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h14: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h14: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h15: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h15: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h16: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h16: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h17: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h17: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h18: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h18: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h19: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h19: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h20: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h20: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h21: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h21: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h22: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h22: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h23: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h23: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h24: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h24: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h25: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h25: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h26: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h26: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h27: C-1 reconstruction re-quantizes to the tile's own codes (idempotent)",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope h27: the row the model consumes quantizes exactly as golden's",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "rope: substituted q rows are the model's r.q_rope",
+   "ok": true,
+   "detail": "{'heads': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]}"
+  },
+  {
+   "name": "attention: tile o8/s_out are the model's r.attn",
+   "ok": true,
+   "detail": "{'core_identity': True, 'consumed': True}"
+  },
+  {
+   "name": "projections: the spliced Wq accumulators are r.q_real",
+   "ok": true,
+   "detail": "{'n_diff': 0}"
+  },
+  {
+   "name": "residual r1: the tile row IS the model's r.r1",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "residual r2: the tile row IS the model's r.r2",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "RMSNorm-2: the tile row IS the model's r.h2",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "SwiGLU: the tile row IS the model's r.swiglu",
+   "ok": true,
+   "detail": "None"
+  }
+ ],
+ "ops": [
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wq",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 3584,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.08,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wk",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 2560,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.09,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wv",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 2560,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.08,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h00",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h00",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h01",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h01",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h02",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h02",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h03",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h03",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h04",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h04",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h05",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h05",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h06",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h06",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h07",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h07",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h08",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h08",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h09",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h09",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h10",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h10",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h11",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h11",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h12",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h12",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h13",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h13",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h14",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h14",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h15",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h15",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h16",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h16",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h17",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h17",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h18",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h18",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h19",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h19",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h20",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h20",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h21",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h21",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.03,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h22",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h22",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h23",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h23",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h24",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h24",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h25",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h25",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h26",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h26",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "rope",
+   "name": "lo_s004_L00_h27",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 145,
+   "seconds": 0.03,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "attn",
+   "name": "lo_s004_L00_h27",
+   "source": "TILE (sim)",
+   "n_served": 128,
+   "n_total": 128,
+   "jobs": 1,
+   "caps": 232,
+   "seconds": 0.02,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wo",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 3584,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.08,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "resid",
+   "name": "lo_s004_L00_r1",
+   "source": "TILE (sim)",
+   "n_served": 3584,
+   "n_total": 3584,
+   "jobs": 28,
+   "caps": 3584,
+   "seconds": 0.11,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "norm",
+   "name": "lo_s004_L00_norm2",
+   "source": "TILE (sim)",
+   "n_served": 3584,
+   "n_total": 3584,
+   "jobs": 1,
+   "caps": 4088,
+   "seconds": 0.71,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wg",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 18944,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.08,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wu",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 18944,
+   "jobs": 2,
+   "caps": 18,
+   "seconds": 0.09,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "swiglu",
+   "name": "lo_s004_L00_swiglu",
+   "source": "TILE (sim)",
+   "n_served": 18944,
+   "n_total": 18944,
+   "jobs": 1,
+   "caps": 21460,
+   "seconds": 11.39,
+   "exact": false,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "proj",
+   "name": "lo_s004_L00_Wd",
+   "source": "TILE (sim)",
+   "n_served": 8,
+   "n_total": 3584,
+   "jobs": 10,
+   "caps": 90,
+   "seconds": 0.42,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  },
+  {
+   "op": "resid",
+   "name": "lo_s004_L00_r2",
+   "source": "TILE (sim)",
+   "n_served": 3584,
+   "n_total": 3584,
+   "jobs": 28,
+   "caps": 3584,
+   "seconds": 0.12,
+   "exact": true,
+   "grade_ok": true,
+   "notes": []
+  }
+ ],
+ "seconds": {
+  "on": 385.17642125001294,
+  "host": 175.83507283299696,
+  "bus_on": 182.8643267499865,
+  "executor": 281.0
+ },
+ "transport": {
+  "collapse": true,
+  "invocations": 14,
+  "programs": 372,
+  "distinct_programs": 372,
+  "audited_programs": 372,
+  "pool_hits": 391,
+  "pool_misses": 143,
+  "uploaded_bytes": 393020918,
+  "max_batch_mb": 64,
+  "flushes": [
+   {
+    "tag": "lo_s004_L00_p1_f00",
+    "programs": 97,
+    "bytes": 24484642,
+    "caps": 18336
+   },
+   {
+    "tag": "lo_s004_L00_p1_f01",
+    "programs": 1,
+    "bytes": 77556285,
+    "caps": 21460
+   },
+   {
+    "tag": "lo_s004_L00_p1_f02",
+    "programs": 10,
+    "bytes": 4703057,
+    "caps": 90
+   },
+   {
+    "tag": "lo_s004_L00_p2_f00",
+    "programs": 32,
+    "bytes": 8603266,
+    "caps": 6532
+   },
+   {
+    "tag": "lo_s004_L00_p2_f01",
+    "programs": 1,
+    "bytes": 77556674,
+    "caps": 21460
+   },
+   {
+    "tag": "lo_s004_L00_p2_f02",
+    "programs": 38,
+    "bytes": 5649275,
+    "caps": 3674
+   },
+   {
+    "tag": "lo_s004_L00_p3_f00",
+    "programs": 38,
+    "bytes": 5649633,
+    "caps": 3674
+   },
+   {
+    "tag": "lo_s004_L00_p1_f00",
+    "programs": 63,
+    "bytes": 15845657,
+    "caps": 14222
+   },
+   {
+    "tag": "lo_s004_L00_p1_f01",
+    "programs": 1,
+    "bytes": 77558390,
+    "caps": 21460
+   },
+   {
+    "tag": "lo_s004_L00_p1_f02",
+    "programs": 10,
+    "bytes": 4705350,
+    "caps": 90
+   },
+   {
+    "tag": "lo_s004_L00_p2_f00",
+    "programs": 4,
+    "bytes": 1827666,
+    "caps": 36
+   },
+   {
+    "tag": "lo_s004_L00_p2_f01",
+    "programs": 1,
+    "bytes": 77558364,
+    "caps": 21460
+   },
+   {
+    "tag": "lo_s004_L00_p2_f02",
+    "programs": 38,
+    "bytes": 5661312,
+    "caps": 3674
+   },
+   {
+    "tag": "lo_s004_L00_p3_f00",
+    "programs": 38,
+    "bytes": 5661347,
+    "caps": 3674
+   }
+  ],
+  "passes_per_layer": {
+   "0": 4
+  },
+  "invocations_per_layer": {
+   "0": 7
+  },
+  "executor_s": 280.97
+ },
+ "tile_jobs": 372,
+ "tile_caps": 139842,
+ "git": "fe6595f",
+ "timestamp": "2026-08-04T17:45:30"
+}

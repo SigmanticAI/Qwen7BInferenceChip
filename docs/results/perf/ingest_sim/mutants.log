@@ -1,0 +1,27 @@
+set -o pipefail; verilator --cc --exe --build -j 0 -Wno-fatal -Werror-USERERROR -CFLAGS -std=gnu++17  \
+	  --timescale 1ns/1ps +define+APEX_CL_D=128 +define+APEX_SIM_TILE_DIV  \
+	  +define+APEX_CL_DDR=1 \
+	  -I../../tools/aws-fpga/hdk/common/shell_stable/design/interfaces -I../../scripts/fpga/f2/cl_apex/design -I../../rtl/asu -I../../rtl/rope -I../../verif/common \
+	  --top-module cl_apex --Mdir obj_d128_ddr1 \
+	  sh_ddr_beh.sv ../../rtl/apex_pkg.sv ../../rtl/misc/f16_arith_pkg.sv ../../rtl/mxe/mxe_cfg_pkg.sv ../../rtl/xbr/stream_skid.sv ../../rtl/mxe/mxe_pe.sv ../../rtl/mxe/mxe_array.sv ../../rtl/mxe/mxe_buf.sv ../../rtl/mxe/mxe_requant.sv ../../rtl/mxe/mxe_ctrl.sv ../../rtl/mxe/mxe_top.sv ../../rtl/asu/asu_exp_lut.sv ../../rtl/asu/asu_softmax.sv ../../rtl/asu/rsqrt.sv ../../rtl/asu/asu_rmsnorm.sv ../../rtl/rope/rope_pair_fx.sv ../../rtl/rope/rope_row.sv ../../rtl/top/glue/apex_layer_deq.sv ../../rtl/top/glue/apex_residual.sv ../../rtl/asu/asu_silu.sv ../../rtl/asu/asu_swiglu.sv ../../rtl/kvq/cores/cq_fp_pkg.sv ../../rtl/kvq/cores/cq_scale_unit.sv ../../rtl/kvq/cores/cq_quant_unit.sv ../../rtl/kvq/cores/cq_dequant_unit.sv ../../rtl/kvq/cores/scale_bank.sv ../../rtl/kvq/cores/scale_bank_store.sv ../../rtl/kvq/cores/cq_rne_div_pipe.sv ../../rtl/kvq/cores/cq_quant_pipe.sv ../../rtl/kvq/cores/cq_scale_pipe.sv ../../rtl/kvq/cores/residual_buffer.sv ../../rtl/kvq/cores/sram_controller.sv ../../rtl/kvq/cores/cq_value_path.sv ../../rtl/kvq/cores/cq_key_path.sv ../../rtl/kvq/kvq_engine.sv ../../rtl/top/glue/apex_kvq_bank.sv ../../rtl/top/glue/apex_kvq_gqa_bank.sv ../../rtl/top/glue/apex_wcomp_bank.sv ../../rtl/tip/tip_decide.sv ../../rtl/tip/tip_importance.sv ../../rtl/tip/tip_top.sv ../../rtl/seq/seq_walker_pkg.sv ../../rtl/seq/seq_walker.sv ../../rtl/seq/seq_walker_comp.sv ../../rtl/seq/seq_layer_walker.sv ../../rtl/seq/seq_layer_walker2.sv ../../rtl/csr/csr_regs.sv ../../rtl/seam/seam_feeder_quant.sv ../../rtl/seam/seam_score_dequant.sv ../../rtl/top/glue/apex_q78_to_fp32.sv ../../rtl/top/glue/apex_lane32_ser.sv ../../rtl/top/glue/apex_lane8_unpack.sv ../../rtl/top/glue/apex_gam_unpack.sv ../../rtl/top/glue/apex_stage_buf.sv ../../rtl/top/glue/apex_score_fork.sv ../../rtl/top/glue/apex_proj_bias.sv ../../rtl/top/glue/apex_scale_quant.sv ../../rtl/top/apex_top.sv ../../scripts/fpga/f2/cl_apex/design/apex_ocl_cdc.sv ../../scripts/fpga/f2/cl_apex/design/apex_pcis_slv.sv ../../scripts/fpga/f2/cl_apex/design/apex_afifo.sv ../../scripts/fpga/f2/cl_apex/design/apex_fuel_reader.sv ../../scripts/fpga/f2/cl_apex/design/apex_fuel_ctl.sv ../../scripts/fpga/f2/cl_apex/design/apex_f2_mailbox.sv ../../scripts/fpga/f2/cl_apex/design/cl_apex.sv sim_main.cpp -o f2sim 2>&1 | tail -3
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 16.552 MB sources in 66 modules, into 10.922 MB in 13 C++ files needing 0.028 MB
+- Verilator: Walltime 4.165 s (elab=0.090, cvt=1.203, bld=2.687); cpu 1.521 s on 12 threads; alloced 119.281 MB
+AWS_FPGA=../../tools/aws-fpga ./mutants.sh
+== CONTROL (clean gate binary must PASS) ==
+FUELAUDIT [/Users/nabilabdelazizferhattaleb/Desktop/apex-ingest/build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] err=00000000 stat=00000009 -> ok
+F2SIM RESULT: files=1 checks=507 fails=0 -> PASS
+GATE[control]: exit=0 want=PASS got=PASS  OK
+== M1 reader lane-slice swap ==
+FUELAUDIT [/Users/nabilabdelazizferhattaleb/Desktop/apex-ingest/build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] err=00000000 stat=00000009 -> ok
+F2SIM RESULT: files=1 checks=507 fails=469 -> FAIL
+GATE[M1]: exit=1 want=FAIL got=FAIL  OK
+== M2 record beats off-by-one ==
+FUELAUDIT [/Users/nabilabdelazizferhattaleb/Desktop/apex-ingest/build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] err=00000000 stat=00000008 -> FAIL
+F2SIM RESULT: files=1 checks=507 fails=128 -> FAIL
+GATE[M2]: exit=1 want=FAIL got=FAIL  OK
+== M3 afifo read-pointer wrap bit lost ==
+FUELAUDIT [/Users/nabilabdelazizferhattaleb/Desktop/apex-ingest/build/fuel_regops/job_s019_L19_h03.fuel.regops.jsonl] err=00000000 stat=00000009 -> ok
+F2SIM RESULT: files=1 checks=9 fails=1 -> FAIL
+GATE[M3]: exit=1 want=FAIL got=FAIL  OK
+MUTANTS RESULT: control PASS + 3/3 mutants RED -> PASS

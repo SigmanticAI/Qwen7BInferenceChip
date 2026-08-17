@@ -1,0 +1,56 @@
+{
+ "model": "mlx-community/Qwen2.5-7B-4bit",
+ "wtier": "w4-g16-b",
+ "kv_tier": "identity",
+ "task": "hellaswag",
+ "limit": 1000,
+ "device": "mlx-metal",
+ "stderr_method": "lm-eval analytic binomial sqrt(p*(1-p)/(n-1))",
+ "acc": 0.503,
+ "acc_stderr": 0.015819015179246724,
+ "acc_norm": 0.657,
+ "acc_norm_stderr": 0.015019206922356951,
+ "twin_gate": "TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS \u2014 eval twin == golden compress->decompress",
+ "weight_twin_gate": "checks=583760 fails=0",
+ "mlx_pack_gate": "checks=8192 fails=0",
+ "weight_install_gate": {
+  "wtier": "w4-g16-b",
+  "cache": "/Users/nabilabdelazizferhattaleb/Desktop/apex-weightpath/build/s8_weights/Qwen2.5-7B-4bit",
+  "cache_format": "apex-s8-golden-weights-v1",
+  "cache_model": "mlx-community/Qwen2.5-7B-4bit",
+  "tensors": 197,
+  "golden_stripe_checks": 54002250,
+  "golden_stripes": 586,
+  "composite_cast_max_rel": 0.00048091603053424187,
+  "subnormal_scales": 0,
+  "install_dequant_probe_max_ulp": 0.0,
+  "note": "realization (B) modeled with a HOST-COMPUTED stripe-global requant scale (K > K_MAX=2048 makes the D-021 feeder-derived per-job scale unable to ride the single K-split epilogue factor; no (B) RTL exists). Conservative for the lever: a per-job-scale design would use finer scales. See module docstring."
+ },
+ "preflight": {
+  "artifact": "Qwen2.5-7B-4bit_preflight_base_n100.json",
+  "docs": 100,
+  "mismatches": 0,
+  "timestamp": "2026-07-21T12:44:53"
+ },
+ "weights": {
+  "quantization_of_checkpoint": {
+   "group_size": 64,
+   "bits": 4
+  },
+  "disclosure": "Baseline = the model's real shipped weights (MLX 4-bit affine, group_size 64). Weight tiers are DOUBLE-quantized on top of that checkpoint: mlx-4bit dequant \u2192 per-tensor INT8 (the S8 golden feed, bytes read from the committed cache) \u2192 for W4 tiers the B3 weight_codec chain. Effective values are installed in the model's own quantized format with q/scales/biases constructed directly from the golden chain (no re-quantization hop); the only narrowing is the f64\u2192fp16 RNE cast of the composite scale (measured, recorded) \u2014 the same 11-bit grade the hardware f16_grade applies. All tiers including base share the same fp16 dequant grid, so tier deltas are format-symmetric. KV cache is an identity hook on the S5 code path in every tier: deltas isolate the weight path."
+ },
+ "model_shape": {
+  "num_hidden_layers": 28,
+  "num_attention_heads": 28,
+  "num_key_value_heads": 4,
+  "hidden_size": 3584
+ },
+ "versions": {
+  "mlx": "0.32.0",
+  "mlx_lm": "0.31.3",
+  "lm_eval": "0.4.12",
+  "numpy": "2.4.6"
+ },
+ "timestamp": "2026-07-21T13:50:05",
+ "method": "Identical scoring semantics to S5 (docs/results/s5_eval7b): one full-sequence forward per (context, ending), fresh cache, batch_size=1, mlx-lm whole-string tokenization. Harness equivalence with the committed S5 base is asserted ONLY by the 'preflight' field of this JSON (an artifact reference with doc/mismatch counts, or an explicit not-established marker). Paired per-doc deltas vs the committed S5 base samples are the comparable quantity; absolutes carry the checkpoint's 4-bit weight penalty."
+}

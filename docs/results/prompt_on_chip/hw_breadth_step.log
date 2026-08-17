@@ -1,0 +1,144 @@
+[remote_hw_exec] executor 'hw' -> ubuntu@54.69.8.188:~/apex_d (clock gate ON)
+[C1] mlx-community/Qwen2.5-7B-4bit L=28 H=28 H_kv=4; prompt 11 tokens; capturing layer 0 step 10 (full 28-layer decode)
+  [prefill 1/11] pos=0 T=1 tok=8420 (27s)
+  [prefill 2/11] pos=1 T=2 tok=525 (57s)
+  [prefill 3/11] pos=2 T=3 tok=4236 (91s)
+  [prefill 4/11] pos=3 T=4 tok=7040 (121s)
+  [prefill 5/11] pos=4 T=5 tok=13064 (153s)
+  [prefill 6/11] pos=5 T=6 tok=911 (185s)
+  [prefill 7/11] pos=6 T=7 tok=279 (216s)
+  [prefill 8/11] pos=7 T=8 tok=17330 (248s)
+  [prefill 9/11] pos=8 T=9 tok=510 (277s)
+  [prefill 10/11] pos=9 T=10 tok=16 (306s)
+  [prefill 11/11] pos=10 T=11 tok=13 (336s)
+  [head 00/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.3s run)
+  [head 01/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.5s run)
+  [head 02/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 03/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 04/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 05/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 06/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.2s run)
+  [head 07/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 08/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 09/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 10/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 11/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 12/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 13/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 14/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.3s run)
+  [head 15/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 16/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 17/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 18/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 19/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 20/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 21/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 22/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.1s run)
+  [head 23/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.0s run)
+  [head 24/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [head 25/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.5s run)
+  [head 26/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 4.5s run)
+  [head 27/28] T=11 caps=334 acc=== out_hat=== (0.0s build + 3.9s run)
+  [Wq blk 0/448 n0000] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (108.5s)
+  [Wq blk 447/448 n3576] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (110.0s)
+  [Wk blk 0/64 n0000] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (108.5s)
+  [Wk blk 63/64 n0504] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (111.0s)
+  [Wv blk 0/64 n0000] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (108.1s)
+  [Wv blk 63/64 n0504] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (108.6s)
+  [Wo blk 0/448 n0000] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (106.9s)
+  [Wo blk 447/448 n3576] 29 K-split jobs k=[128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128] acc==model (110.2s)
+
+============================================================================================
+C1 — T10(B) BREADTH: the WHOLE ATTENTION STACK of ONE real Qwen2.5-7B decode step
+============================================================================================
+  model        mlx-community/Qwen2.5-7B-4bit  L=28 H=28 H_kv=4 head_dim=128 D_model=3584
+  prompt       'Here are five interesting facts about the Moon:\n1.'
+  prompt ids   [8420, 525, 4236, 7040, 13064, 911, 279, 17330, 510, 16, 13] (11 tokens)   source: docs/results/s8_7b_token/artifact_trace/run.json (committed S8 run)
+  step         10 of 11 (T=11 rows, q_pos=10, self-inclusive) ; layer 00 ; tier CQ-8 G=128
+  decode       FULL 28-layer step — 308 decoder_layer_fx evaluations, 337s
+  next token   argmax(logits) = 576  vs the committed S8 run's generated_ids[0] = 576  -> MATCH
+  provenance   r.heads[h] IS the captured core: 28/28 ; its out_hat is the value the layer wrote into r.attn: 28/28
+  executor     hw   mode: PRODUCE (requant_en=0 in every program; the host runs the Q13 epilogue)
+--------------------------------------------------------------------------------------------
+  COVERAGE (nothing is sampled silently)
+    heads              28/28 = 100.00%  (heads are never sampled)
+    Wq   3584x3584     2/448  8-column blocks =   0.45%   blocks run: [0, 447]
+    Wk   3584x512      2/64   8-column blocks =   3.12%   blocks run: [0, 63]
+    Wv   3584x512      2/64   8-column blocks =   3.12%   blocks run: [0, 63]
+    Wo   3584x3584     2/448  8-column blocks =   0.45%   blocks run: [0, 447]
+    projection cols    64/8192 = 0.78%   (--n-blocks-per-proj 2, evenly spaced, endpoints included)
+    K contraction      every block that ran contracted the FULL K=3584 (2 K-split jobs, 100% of the contraction — only OUTPUT COLUMNS are sampled)
+--------------------------------------------------------------------------------------------
+  ATTENTION HEADS — 28/28 run, 28/28 green
+    head kv   T   D   caps/cens  acc_i32  vs.model  o8   out_hat  rq  s_q s_c s_k s_v   s
+    h00  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.3
+    h01  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.5
+    h02  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h03  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h04  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    3.9
+    h05  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h06  0   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.2
+    h07  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h08  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h09  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h10  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h11  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    3.9
+    h12  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h13  1   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h14  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.3
+    h15  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h16  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    3.9
+    h17  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h18  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h19  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h20  2   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h21  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h22  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.1
+    h23  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.0
+    h24  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    3.9
+    h25  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.5
+    h26  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    4.5
+    h27  3   11 128    334/334  bit-exact  ok   ==   ==     ok  ok ok ok ok    3.9
+    totals: acc_i32 bit-exact vs golden 28/28 ; vs the MODEL's own core 28/28 ; out_hat 28/28
+--------------------------------------------------------------------------------------------
+  PROJECTIONS (K-split GEMM, N=8 per descriptor) — 8 blocks, 8 green, 232 tile jobs
+    tensor  block  cols        K    jobs  regops  checks caps  acc_i32   vs.model    s
+    Wq         0     0..7      3584    29   38367    667  261  bit-exact    ok    108.5
+    Wq       447  3576..3583   3584    29   38367    667  261  bit-exact    ok    110.0
+    Wk         0     0..7      3584    29   38367    667  261  bit-exact    ok    108.5
+    Wk        63   504..511    3584    29   38367    667  261  bit-exact    ok    111.0
+    Wv         0     0..7      3584    29   38367    667  261  bit-exact    ok    108.1
+    Wv        63   504..511    3584    29   38367    667  261  bit-exact    ok    108.6
+    Wo         0     0..7      3584    29   38367    667  261  bit-exact    ok    106.9
+    Wo       447  3576..3583   3584    29   38367    667  261  bit-exact    ok    110.2
+    Wq  activation: r.h8[T] (RMSNorm-1 + quant of the decode row)
+        golden accumulator re-composed into the layer's own tensor bit-exactly: True
+    Wk  activation: r.h8[T-1] (the new token's KV row; == the decode row: True)
+        golden accumulator re-composed into the layer's own tensor bit-exactly: True
+    Wv  activation: r.h8[T-1] (the new token's KV row; == the decode row: True)
+        golden accumulator re-composed into the layer's own tensor bit-exactly: True
+    Wo  activation: quant_rows_i8(r.attn) — the C-1 feeder of the 28 concatenated head outputs
+        golden accumulator re-composed into the layer's own tensor bit-exactly: True
+--------------------------------------------------------------------------------------------
+  ZERO-OUTPUT-EXPECTATION AUDIT (each program re-read from its own emitted file: 260 programs)
+    747796 regops, 19680 structural checks, 11440 caps
+    caps carrying an expectation      : 0  (must be 0)
+    compares on a capture-window addr : 0  (must be 0)
+    the canonical replay arm (build/f2_regops) is untouched — no check is lost from it
+--------------------------------------------------------------------------------------------
+  DISCRIMINATION (a grader that cannot go red is not evidence)
+    a_head_one_count       RED=True  {'tag': 'ro_w0_25'}
+    b_head_cross           RED=True  {'pair': (0, 1)}
+    c_proj_one_count       RED=True
+    d_proj_wrong_weight    RED=True
+--------------------------------------------------------------------------------------------
+  COST
+    tile jobs this invocation : 260  (28 head + 232 projection K-split)
+    sim wall clock            : 989s  (build+run, all jobs)
+    PROJECTED SILICON         : 260 x 3.8 s/job = 988s = 16.5 min
+    projected silicon, --full : 2076 jobs x 3.8 s = 2.19 h (28 heads + 1024 blocks x 2 K-split jobs)
+--------------------------------------------------------------------------------------------
+  SCOPE RUN     : ALL 28 heads + 8/1024 projection blocks (0.78% of the output columns; full K)
+  BREADTH (C1)  : PASS
+============================================================================================
+  record -> /Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/f2_breadth/breadth_step_result.json

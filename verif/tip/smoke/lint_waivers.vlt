@@ -1,0 +1,12 @@
+`verilator_config
+// lint_waivers.vlt — waivers for FROZEN / vendored files only.
+//
+// NONE of the new TIP RTL (rtl/tip/*), the SVA checker, or the TB is waived
+// here; those files must be -Wall clean on their own.
+//
+// apex_pkg.sv is the frozen tile-wide contract (do-not-modify). It declares
+// constants for ALL blocks (MXE geometry, ASU LUT, rsqrt latency, version),
+// so any single block's build necessarily leaves some of them unreferenced.
+// Waiving UNUSEDPARAM for that one file is a statement about the package's
+// role, not about dead code in TIP.
+lint_off -rule UNUSEDPARAM -file "*apex_pkg.sv"

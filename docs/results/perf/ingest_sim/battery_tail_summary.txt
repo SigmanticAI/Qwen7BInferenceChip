@@ -1,0 +1,5 @@
+BATTERY[mutants]: PASS (control + 3/3 RED)
+BATTERY[build-ddr0]: OK
+BATTERY[capgate]: PASS
+BATTERY[walk-selftest]: PASS
+BATTERY-TAIL RESULT: PASS

@@ -1,0 +1,119 @@
+<svg viewBox="0 0 1000 860" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <!-- S13 hand-authored block diagram. Sources: docs/spec/APEX7B_SPEC.md §5,
+       docs/results/perf_model/PERF_MODEL.md §2/§3/§8, D-026 record geometry.
+       EVERY PERFORMANCE NUMBER SHOWN IS PROJECTED. Edit by hand; no generator. -->
+  <rect x="0" y="0" width="1000" height="860" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="24" y="34" font-size="20" font-weight="bold" fill="#1f2328">APEX-7B — paper architecture (S13)</text>
+  <text x="24" y="54" font-size="12" fill="#9a6700" font-weight="bold">EVERY PERFORMANCE NUMBER PROJECTED — no APEX silicon exists. Quotes: docs/results/perf_model/PERF_MODEL.md</text>
+
+  <!-- legend -->
+  <g font-size="11" fill="#1f2328">
+    <rect x="628" y="66" width="348" height="64" fill="#f6f8fa" stroke="#d0d7de"/>
+    <rect x="640" y="76" width="26" height="12" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+    <text x="672" y="86">bit-exact-verified RTL today (MEASURED/PINNED)</text>
+    <rect x="640" y="94" width="26" height="12" fill="#fff8c5" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="672" y="104">PROPOSED / unbuilt — ⚠ = floor-critical (spec §4)</text>
+    <rect x="640" y="112" width="26" height="12" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5" stroke-dasharray="2 3"/>
+    <text x="672" y="122">out of charter (third-party IP / host)</text>
+  </g>
+
+  <!-- host -->
+  <rect x="24" y="150" width="120" height="76" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5" stroke-dasharray="2 3"/>
+  <text x="84" y="182" font-size="12" text-anchor="middle" fill="#1f2328" font-weight="bold">Host CPU</text>
+  <text x="84" y="198" font-size="10" text-anchor="middle" fill="#57606a">(off-chip)</text>
+
+  <!-- MMIO arrow host -> CSR -->
+  <line x1="144" y1="188" x2="206" y2="188" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="150" y="178" font-size="10" fill="#1f2328">MMIO</text>
+
+  <!-- tile boundary -->
+  <rect x="210" y="146" width="600" height="530" fill="none" stroke="#1f2328" stroke-width="2"/>
+  <text x="222" y="166" font-size="13" font-weight="bold" fill="#1f2328">APEX-7B tile (paper)</text>
+
+  <!-- CSR / descriptor queue -->
+  <rect x="234" y="180" width="260" height="52" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+  <text x="364" y="200" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">CSR + descriptor queue</text>
+  <text x="364" y="216" font-size="10" text-anchor="middle" fill="#57606a">128-b apex_pkg descriptor format, frozen</text>
+
+  <!-- B1 walker -->
+  <line x1="364" y1="232" x2="364" y2="256" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="234" y="260" width="260" height="70" fill="#fff8c5" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="364" y="280" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">⚠ B1 layer-walker (sequencer)</text>
+  <text x="364" y="296" font-size="10" text-anchor="middle" fill="#57606a">28 layer-steps/token, ≤3 MMIO/layer-step</text>
+  <text x="364" y="310" font-size="10" text-anchor="middle" fill="#57606a">without it: 486,016 host jobs/token → 0.27 tok/s</text>
+  <text x="364" y="323" font-size="10" text-anchor="middle" fill="#9a6700">[PROPOSED — PERF_MODEL.md §3c]</text>
+
+  <!-- descriptors to MXE and ASU -->
+  <line x1="320" y1="330" x2="320" y2="366" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="440" y1="330" x2="620" y2="366" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="452" y="352" font-size="10" fill="#1f2328">descriptors</text>
+
+  <!-- MXE -->
+  <rect x="234" y="370" width="280" height="96" fill="#fff8c5" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="374" y="390" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">MXE 64×64 INT8 systolic</text>
+  <text x="374" y="406" font-size="10" text-anchor="middle" fill="#57606a">4,096 MACs · WS (proj/FFN) + OS (Q·K̂ᵀ, P·V̂)</text>
+  <text x="374" y="420" font-size="10" text-anchor="middle" fill="#57606a">0.65–0.8 GHz — prefill sizes the array</text>
+  <text x="374" y="434" font-size="10" text-anchor="middle" fill="#9a6700">[PROPOSED scale-up of the verified 8×8</text>
+  <text x="374" y="447" font-size="10" text-anchor="middle" fill="#9a6700">bit-exact tile — 135,241 checks]</text>
+
+  <!-- ASU -->
+  <rect x="546" y="370" width="240" height="96" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+  <text x="666" y="390" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">ASU + RoPE + residual</text>
+  <text x="666" y="406" font-size="10" text-anchor="middle" fill="#57606a">RMSNorm · online softmax · SiLU</text>
+  <text x="666" y="420" font-size="10" text-anchor="middle" fill="#57606a">verified bit-exact (SiLU exhaustive 65,536)</text>
+  <text x="666" y="434" font-size="10" text-anchor="middle" fill="#9a6700">[A1 radix-4 divider + wide-D RMSNorm</text>
+  <text x="666" y="447" font-size="10" text-anchor="middle" fill="#9a6700">assumed for the 65%-util scenario]</text>
+
+  <!-- MXE <-> ASU -->
+  <line x1="514" y1="410" x2="546" y2="410" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="546" y1="430" x2="514" y2="430" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- K,V arrows down to KVQ -->
+  <line x1="374" y1="466" x2="374" y2="498" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="560" y1="466" x2="500" y2="498" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="385" y="486" font-size="10" fill="#1f2328">K,V write / K̂,V̂ stream-read</text>
+
+  <!-- KVQ engines (shadow rect behind = ×4 stack) -->
+  <rect x="240" y="508" width="380" height="82" fill="#ffffff" stroke="#1a7f37" stroke-width="0.75"/>
+  <rect x="234" y="502" width="380" height="82" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+  <text x="424" y="524" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">KVQ engines ×4 (one per GQA KV head, D=128)</text>
+  <text x="424" y="540" font-size="10" text-anchor="middle" fill="#57606a">per-channel INT4 keys + persistent scale bank (D-026 records)</text>
+  <text x="424" y="554" font-size="10" text-anchor="middle" fill="#57606a">compress on write · decompress on stream-read · 43 KiB SRAM each</text>
+  <text x="424" y="568" font-size="10" text-anchor="middle" fill="#1a7f37">[verified RTL: 8.7M checks, stored 3.51× PINNED; S10a/b for Fmax]</text>
+
+  <!-- on-die SRAM note -->
+  <rect x="646" y="502" width="140" height="82" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5"/>
+  <text x="716" y="524" font-size="11" text-anchor="middle" font-weight="bold" fill="#1f2328">on-die SRAM</text>
+  <text x="716" y="540" font-size="10" text-anchor="middle" fill="#57606a">≈ 2.2 MiB total</text>
+  <text x="716" y="554" font-size="10" text-anchor="middle" fill="#57606a">172 KiB KVQ [DERIVED]</text>
+  <text x="716" y="568" font-size="10" text-anchor="middle" fill="#9a6700">rest [PROPOSED] — §6.2</text>
+
+  <!-- W4 decompressor; weight stream routes up the left side into the MXE -->
+  <polyline points="234,638 222,638 222,438 230,438" fill="none" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="228" y="605" font-size="10" fill="#1f2328" transform="rotate(-90 228 605)">W4 weight stream</text>
+  <rect x="234" y="612" width="380" height="52" fill="#fff8c5" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="424" y="632" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">⚠ W4 weight-stream decompressor (B3)</text>
+  <text x="424" y="648" font-size="10" text-anchor="middle" fill="#57606a">4.125 b/w incl. scales — weights never resident, re-streamed per token/chunk</text>
+
+  <!-- LPDDR -->
+  <line x1="424" y1="676" x2="424" y2="704" stroke="#1f2328" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="464" y1="704" x2="464" y2="676" stroke="#1f2328" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="476" y="696" font-size="10" fill="#1f2328">68.3 GB/s peak, 70% sustained-eff. assumption</text>
+  <rect x="254" y="708" width="440" height="88" fill="#f6f8fa" stroke="#57606a" stroke-width="1.5" stroke-dasharray="2 3"/>
+  <text x="474" y="730" font-size="12" text-anchor="middle" font-weight="bold" fill="#1f2328">⚠ LPDDR5X ×64 (e.g. dual-x32), ≥ 8 GB</text>
+  <text x="474" y="746" font-size="10" text-anchor="middle" fill="#57606a">W4 weights ~3.65 GB + embedding ~0.28 GB + KV records 16.0 KiB/token (128k ctx = 2.0 GiB)</text>
+  <text x="474" y="760" font-size="10" text-anchor="middle" fill="#57606a">controller/PHY = third-party IP, out of charter — model abstracts to flat efficiency</text>
+  <text x="474" y="776" font-size="10" text-anchor="middle" fill="#9a6700">single ×32 channel FAILS the decode floor (5.7 tok/s @32k) — ×64 is floor-critical [PERF_MODEL.md §8]</text>
+
+  <!-- floors footer -->
+  <text x="24" y="826" font-size="11" fill="#1f2328" font-weight="bold">Floors (PERF_MODEL.md §8): decode ≥10 tok/s through ≥32k ctx · TTFT(1k) ≤5 s · ≤5 W.</text>
+  <text x="24" y="842" font-size="11" fill="#1f2328">PASS only as drawn: 64×64 @ ≥0.65 GHz + LPDDR5X ×64 + W4 (B3) + B1 walker + KVQ → 11.4 tok/s @32k, TTFT(1k) 3.4 s, 2.9 W — ALL PROJECTED.</text>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1f2328"/>
+    </marker>
+  </defs>
+</svg>

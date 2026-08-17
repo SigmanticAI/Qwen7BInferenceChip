@@ -1,0 +1,9 @@
+{"tag":"fs_0","addr":"0x00003244","mask":"0x0001ffff","value":82059,"i":0}
+{"tag":"ff_walk_dbg","addr":"0x00001098","mask":"0xffffffff","value":2,"i":1}
+{"tag":"ff_walk_status","addr":"0x00001068","mask":"0xffffffff","value":14083,"i":2}
+{"tag":"ff_err_sticky","addr":"0x00001058","mask":"0xffffffff","value":1,"i":3}
+{"tag":"ff_layer_status","addr":"0x00001080","mask":"0xffffffff","value":0,"i":4}
+{"tag":"ff_l_ctrl","addr":"0x00001070","mask":"0xffffffff","value":0,"i":5}
+{"tag":"ff_fuel_stat","addr":"0x0000002c","mask":"0xffffffff","value":9,"i":6}
+{"tag":"ff_fuel_err","addr":"0x00000030","mask":"0xffffffff","value":0,"i":7}
+{"tag":"ff_walk_rq","addr":"0x0000106c","mask":"0xffffffff","value":3735928559,"i":8}

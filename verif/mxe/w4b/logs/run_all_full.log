@@ -1,0 +1,79 @@
+# W4B full suite log — assembled from complete per-gate logs (build/*.log),
+# NOT tail-truncated. make all exit=0. Reproduce: make clean && make all,
+# then concatenate build/{gen,pkg,run_*,sweep}.log + build/mutants.txt.
+
+===== build/gen.log =====
+directed: 18 jobs, 3 illegal
+random: 120 jobs + interleaved illegals
+resets: 4 targeted + 3 cycle aborts
+
+===== build/pkg.log =====
+W4B PKG GATE: 31024 vectors, ALL PASS
+- tb_w4b_pkg.sv:26: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 0s; walltime 0.020 s; speed 0.000 s/s
+- Verilator: cpu 0.020 s on 1 threads; alloced 1 MB
+
+===== build/run_directed.log =====
+COV w4b_odd 5 cmin 1 cmax 17 czero 1 cneg 17 satr 14 pass 1 illegal 3 rst_run 0 rst_drain 0 rst_cyc 0
+TB PASS: 18 jobs, 3 illegal, 0 resets, 0 errors (bp=1 stall=1 gs=0 seed=51)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 103us; walltime 0.013 s; speed 7.993 ms/s
+- Verilator: cpu 0.013 s on 1 threads; alloced 2 MB
+
+===== build/run_fast.log =====
+COV w4b_odd 5 cmin 1 cmax 17 czero 1 cneg 17 satr 14 pass 1 illegal 3 rst_run 0 rst_drain 0 rst_cyc 0
+TB PASS: 18 jobs, 3 illegal, 0 resets, 0 errors (bp=0 stall=0 gs=0 seed=52)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 77us; walltime 0.011 s; speed 7.203 ms/s
+- Verilator: cpu 0.011 s on 1 threads; alloced 2 MB
+
+===== build/run_random.log =====
+COV w4b_odd 29 cmin 0 cmax 119 czero 4 cneg 120 satr 89 pass 0 illegal 7 rst_run 0 rst_drain 0 rst_cyc 0
+TB PASS: 120 jobs, 7 illegal, 0 resets, 0 errors (bp=1 stall=1 gs=1 seed=53)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 4ms; walltime 0.275 s; speed 13.692 ms/s
+- Verilator: cpu 0.274 s on 1 threads; alloced 2 MB
+
+===== build/run_storm.log =====
+COV w4b_odd 29 cmin 0 cmax 119 czero 4 cneg 120 satr 89 pass 0 illegal 7 rst_run 0 rst_drain 0 rst_cyc 0
+TB PASS: 120 jobs, 7 illegal, 0 resets, 0 errors (bp=2 stall=2 gs=2 seed=54)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 11ms; walltime 0.620 s; speed 17.227 ms/s
+- Verilator: cpu 0.619 s on 1 threads; alloced 2 MB
+
+===== build/run_gslate.log =====
+COV w4b_odd 29 cmin 0 cmax 119 czero 4 cneg 120 satr 89 pass 0 illegal 7 rst_run 0 rst_drain 0 rst_cyc 0
+TB PASS: 120 jobs, 7 illegal, 0 resets, 0 errors (bp=1 stall=0 gs=1 seed=55)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 4ms; walltime 0.269 s; speed 13.647 ms/s
+- Verilator: cpu 0.269 s on 1 threads; alloced 2 MB
+
+===== build/run_reset.log =====
+COV w4b_odd 3 cmin 0 cmax 5 czero 0 cneg 7 satr 4 pass 0 illegal 0 rst_run 2 rst_drain 2 rst_cyc 3
+TB PASS: 7 jobs, 0 illegal, 7 resets, 0 errors (bp=1 stall=1 gs=0 seed=56)
+- tb_w4b_sb.sv:345: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 11us; walltime 0.001 s; speed 8.697 ms/s
+- Verilator: cpu 0.001 s on 1 threads; alloced 2 MB
+
+===== build/sweep.log =====
+W4B EXHAUSTIVE SWEEP: 4063104 operand points, ALL PASS
+- tb_w4b_sweep.sv:41: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 0s; walltime 2.686 s; speed 0.000 s/s
+- Verilator: cpu 2.653 s on 1 threads; alloced 9 MB
+
+===== build/mutants.txt =====
+MUTANT MW1_shortcut_removed: DETECTED (rc=1) — FAIL [F16 K=64 N=8 en=1] beat 35: got 8080008080807f80 exp 8080808080807f80
+MUTANT MW2_gid_cadence: DETECTED (rc=1) — FAIL [F4 K=33 N=3 en=1] beat 12: got 0000000000000086 exp 0000000000000085
+MUTANT MW3_sideband_desync: DETECTED (rc=1) — FAIL [F1 K=8 N=1 en=1] beat 0: got 247f122424007f36 exp dc81ee2424007f36
+MUTANT MW4_odd_tail_hang: DETECTED (rc=1) — FAIL [F2 K=16 N=2 en=1] beat 0: got dc81ee2424007f36 exp 003600496deedcb7
+MUTANT MW5_legality_removed: DETECTED (rc=1) — FAIL [I beats=63]: no reject pulse
+W4B MUTATION GATE: 5/5 mutants detected — checkers proven live
+W4B SUITE: all gates green (pkg, 6 regimes, exhaustive sweep, mutants)

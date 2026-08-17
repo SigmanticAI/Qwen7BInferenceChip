@@ -1,0 +1,63 @@
+IID=i-013437f5cefdaca4b T_START=1785461294
+IP=54.218.129.110
+sudo: fpga-load-local-image: command not found
+Cloning into '/home/ubuntu/aws-fpga'...
+sdk_setup rc=0 tools=/usr/local/bin/fpga-load-local-image
+AFI          0       agfi-0ae06ea568e5667ba  loaded            0        ok               0       0x10212415
+AFIDEVICE    0       0x1d0f      0xf006      0000:34:00.0
+Type  FpgaImageSlot  FpgaImageId             StatusName    StatusCode   ErrorName    ErrorCode   ShVersion
+AFI          0       agfi-0ae06ea568e5667ba  loaded            0        ok               0       0x10212415
+Type  FpgaImageSlot  VendorId    DeviceId    DBDF
+AFIDEVICE    0       0x1d0f      0xf006      0000:34:00.0
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ValueError: could not convert string to float: ''
+CLKGEN GATE FAIL: clk_extra_a1 =  MHz - ABORT
+Clock Group A Frequency (Mhz)
+| clk_extra_a1 | clk_extra_a2 | clk_extra_a3 |
+|--------------|--------------|--------------|
+|      15.62   |     125.00   |      62.50   |
+
+CLKGEN GATE PASS: clk_extra_a1 = 15.62 MHz
+BATCH: files=1 ok=True wall=5.27s (one invocation)
+real 5.48
+BATCH: files=1 ok=True wall=5.04s (one invocation)
+real 5.18
+BATCH: files=1 ok=True wall=5.63s (one invocation)
+real 5.79
+[remote_hw_exec] executor 'hw' -> ubuntu@54.218.129.110:~/apexrun (clock gate ON)
+BATCH FILE: job_s019_L19_h03.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s027_L23_h02.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s033_L05_h18.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s050_L17_h08.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s079_L17_h13.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s080_L17_h08.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s093_L09_h01.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s106_L18_h03.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s110_L11_h00.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s110_L23_h15.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s110_L25_h06.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s113_L05_h18.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s113_L18_h27.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s120_L13_h20.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s140_L14_h05_c0.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s140_L14_h05_c1.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s151_L04_h07_c0.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH FILE: job_s151_L04_h07_c1.regops.jsonl caps=0/0 complete=True attributed=True
+BATCH: files=18 ok=True wall=30.10s (one invocation)
+real 31.98
+user 2.25
+sys 0.38
+[remote_hw_exec] executor 'hw' -> ubuntu@54.218.129.110:~/apexrun (clock gate ON)
+proving attribution on 8 produce-mode K-split jobs (real caps)
+  bs_L00_s010_Wv_n0000_k0.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k1.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k10.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k11.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k12.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k13.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k14.regops.jsonl: caps=9 sep==bat:True
+  bs_L00_s010_Wv_n0000_k15.regops.jsonl: caps=9 sep==bat:True
+SEP wall=29.0s (3.63s/job)  BAT wall=6.5s (0.82s/job)  speedup=4.5x  total_caps=72
+HW ATTRIBUTION PROOF: PASS

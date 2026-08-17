@@ -1,0 +1,700 @@
+{
+ "npz": "build/f2_layer/layer_step_full.npz",
+ "meta": {
+  "layer": 0,
+  "step": 10,
+  "tier": "CQ-8",
+  "group": 128,
+  "q_pos": 10,
+  "T": 11,
+  "D_model": 3584,
+  "d_ffn": 18944,
+  "H": 28,
+  "H_kv": 4,
+  "head_dim": 128,
+  "n_ffn": 18944,
+  "arbiter": "decoder_layer_fx(bus=BUS_ON)",
+  "bus_off_r2_equal": false,
+  "source": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/docs/results/s8_7b_token/artifact_trace/run.json"
+ },
+ "stages": [
+  {
+   "name": "nf_resid_probe",
+   "regops": 298,
+   "checks": 17,
+   "caps": 0,
+   "cap_sites_rewritten": 0,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_resid_probe.regops.jsonl",
+   "stage": "resid_probe",
+   "kind": "R3 geometry-refusal guard",
+   "cols": 1024,
+   "base": 3,
+   "expect": "LAYER_STATUS sticky + err_code 3 (FRAME class), then W1C",
+   "audit": {
+    "caps": 0,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_resid_r1",
+   "regops": 1056,
+   "checks": 23,
+   "caps": 128,
+   "cap_sites_rewritten": 0,
+   "erd_reads": 128,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_resid_r1.regops.jsonl",
+   "stage": "resid_r1",
+   "kind": "deq->residual->RDATA",
+   "cols": 128,
+   "windows": [
+    [
+     0,
+     0,
+     128
+    ]
+   ],
+   "jobc": "0x3cbee000",
+   "inject": "k2",
+   "expect_sem": "lrd",
+   "n_expect": 128,
+   "audit": {
+    "caps": 128,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_norm2",
+   "regops": 6989,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_norm2.regops.jsonl",
+   "stage": "norm2",
+   "kind": "xa->asu_rmsnorm(wide)->widen->feeder->act->RO",
+   "dm": 128,
+   "feeder_rows": 1,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_resid_r2",
+   "regops": 1056,
+   "checks": 23,
+   "caps": 128,
+   "cap_sites_rewritten": 0,
+   "erd_reads": 128,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_resid_r2.regops.jsonl",
+   "stage": "resid_r2",
+   "kind": "deq->residual->RDATA",
+   "cols": 128,
+   "windows": [
+    [
+     0,
+     0,
+     128
+    ]
+   ],
+   "jobc": "0x3bf3c000",
+   "inject": "k2",
+   "expect_sem": "lrd",
+   "n_expect": 128,
+   "audit": {
+    "caps": 128,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_swiglu_probe",
+   "regops": 7162,
+   "checks": 17,
+   "caps": 0,
+   "cap_sites_rewritten": 0,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_swiglu_probe.regops.jsonl",
+   "stage": "swiglu_probe",
+   "kind": "B-SWG-PHASE regression guard",
+   "cols": 64,
+   "gate_frame": 64,
+   "up_frame": 64,
+   "expect": "LAYER_STATUS error sticky CLEAR",
+   "audit": {
+    "caps": 0,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_swiglu",
+   "regops": 2800626,
+   "checks": 24,
+   "caps": 21460,
+   "cap_sites_rewritten": 21460,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_swiglu.regops.jsonl",
+   "stage": "swiglu",
+   "kind": "serializer->asu_swiglu->feeder->act->RO",
+   "chunks": 296,
+   "cols_per_job": 64,
+   "n_values": 18944,
+   "feeder_rows": 148,
+   "jobc_gate": "0x39b76000",
+   "jobc_up": "0x3910e000",
+   "inject": "k128",
+   "audit": {
+    "caps": 21460,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h00",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h00.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 0,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h01",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h01.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 1,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h02",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h02.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 2,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h03",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h03.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 3,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h04",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h04.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 4,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h05",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h05.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 5,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h06",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h06.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 6,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h07",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h07.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 7,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h08",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h08.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 8,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h09",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h09.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 9,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h10",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h10.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 10,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h11",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h11.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 11,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h12",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h12.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 12,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h13",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h13.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 13,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h14",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h14.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 14,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h15",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h15.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 15,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h16",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h16.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 16,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h17",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h17.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 17,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h18",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h18.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 18,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h19",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h19.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 19,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h20",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h20.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 20,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h21",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h21.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 21,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h22",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h22.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 22,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h23",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h23.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 23,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h24",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h24.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 24,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h25",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h25.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 25,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h26",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h26.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 26,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  },
+  {
+   "name": "nf_rope_h27",
+   "regops": 7411,
+   "checks": 23,
+   "caps": 145,
+   "cap_sites_rewritten": 145,
+   "erd_reads": 0,
+   "path": "/Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/n_flight/nf_rope_h27.regops.jsonl",
+   "stage": "rope",
+   "kind": "squant F16->rope_row->q_sink->feeder->act->RO",
+   "head": 27,
+   "head_dim": 128,
+   "audit": {
+    "caps": 145,
+    "caps_with_e": 0,
+    "violations": 0,
+    "first": null
+   }
+  }
+ ],
+ "audit_violations": 0,
+ "swiglu_chunks": 296,
+ "rope_heads": 28,
+ "claim_note": "norm2/resid are 128-wide UNIT demos; full-row forms stay gated on aws-fpga#799"
+}

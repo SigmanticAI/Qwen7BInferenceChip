@@ -1,0 +1,20 @@
+{
+ "model": "Qwen/Qwen2-0.5B",
+ "tier": "kvq4",
+ "limit": 1000,
+ "group": 128,
+ "device": "mps",
+ "acc": 0.374,
+ "acc_stderr": 0.015308767369006363,
+ "acc_norm": 0.486,
+ "acc_norm_stderr": 0.015813097547730987,
+ "twin_gate": "TWIN BIT-EXACT GATE: PASS \u2014 eval twin == golden compress->decompress",
+ "outliers": null,
+ "versions": {
+  "transformers": "5.13.1",
+  "lm_eval": "0.4.12",
+  "torch": "2.13.0"
+ },
+ "timestamp": "2026-07-13T19:17:51",
+ "method": "KV routed through bit-exact-certified twin of golden cq_codec via Cache.update(); post-RoPE keys; fp32 dequant cast to fp16 (conservative); baseline uses identity hook on the same code path; batch_size=1 (no padding pollution)."
+}

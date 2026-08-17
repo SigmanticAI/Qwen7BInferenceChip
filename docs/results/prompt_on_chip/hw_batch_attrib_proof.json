@@ -1,0 +1,16 @@
+{
+ "paths": [
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k0.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k1.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k10.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k11.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k12.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k13.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k14.regops.jsonl",
+  "build/f2_breadth/proj/bs_L00_s010_Wv_n0000_k15.regops.jsonl"
+ ],
+ "sep_wall_s": 29.043834583000717,
+ "bat_wall_s": 6.523292832996958,
+ "n_caps": 72,
+ "ok": true
+}

@@ -1,0 +1,8 @@
+==== tb_residual_alias G=64 expect_bug=0 (D-016c: cnt==G write alias)
+============================================================
+CONFIG resid_alias: checks=4 fails=0
+D-016c RESULT [resid_alias]: PASS — overflow write dropped, mem[0..G-1] and fill intact
+- tb_residual_alias.sv:124: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 765ns; walltime 0.000 s; speed 17.386 ms/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 1 MB

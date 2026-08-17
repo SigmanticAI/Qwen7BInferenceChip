@@ -1,0 +1,13 @@
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c0.regops.jsonl] 169930 ops, 2343 checks, 0 fails (cyc 425262380)
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c1.regops.jsonl] 32845 ops, 575 checks, 0 fails (cyc 432469308)
+F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c0.regops.jsonl] 169930 ops, 2343 checks, 0 fails (cyc 372105059)
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c1.regops.jsonl] 32845 ops, 575 checks, 0 fails (cyc 378411149)
+F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c0.regops.jsonl] 169930 ops, 2343 checks, 0 fails (cyc 116962358)
+[/home/ubuntu/apex/build/f2_regops/job_s151_L04_h07_c1.regops.jsonl] 32845 ops, 575 checks, 0 fails (cyc 118946062)
+F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS
+=== CDC CHAIN COMPLETE ===
+Verilator 5.044 2026-01-01 rev v5.044
+  --timescale 1ns/1ps +define+APEX_CL_D=128 +define+APEX_SIM_TILE_DIV \
+ 22:52:24 up 20 min,  1 user,  load average: 0.24, 0.95, 1.03

@@ -1,0 +1,569 @@
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps -I../../../verif/common -I. lint_waivers.vlt --top-module mxe_wfeed_w4 ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/mxe/mxe_wfeed_w4.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.085 MB sources in 4 modules, into 0.049 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.020 s (elab=0.004, cvt=0.007, bld=0.000); cpu 0.012 s on 1 threads; alloced 9.344 MB
+LINT CLEAN (-Wall, waivers scoped to frozen apex_pkg.sv only)
+mkdir -p build
+set -o pipefail; python3 gen_w4_vectors.py build | tee build/gen.log
+gen_w4_vectors: directed=17 random=220 storm=40 reset=15
+gen_w4_vectors: golden arbiter = apex_golden.weight_codec (realization A, S1-S6); wrote 4 vector sets to build
+mkdir -p build/obj_w4
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps -I../../../verif/common -I. lint_waivers.vlt --trace-fst \
+	    --top-module tb_wfeed_w4_sb -Mdir build/obj_w4 \
+	    ../../../rtl/apex_pkg.sv ../../../rtl/xbr/stream_skid.sv ../../../rtl/mxe/mxe_wfeed_w4.sv tb_wfeed_w4_sb.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_fst_c.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_fst_c.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_wfeed_w4_sb.cpp Vtb_wfeed_w4_sb___024root__0.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__0.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__03a__03a__VDynScope_7__Vclpkg__0.cpp Vtb_wfeed_w4_sb__main.cpp Vtb_wfeed_w4_sb__Trace__0.cpp Vtb_wfeed_w4_sb___024root__Slow.cpp Vtb_wfeed_w4_sb___024root__0__Slow.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__Slow.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__0__Slow.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__03a__03a__VDynScope_7__Vclpkg__Slow.cpp Vtb_wfeed_w4_sb_tb_wfeed_w4_sb__03a__03a__VDynScope_7__Vclpkg__0__Slow.cpp Vtb_wfeed_w4_sb__Syms__Slow.cpp Vtb_wfeed_w4_sb__Trace__0__Slow.cpp Vtb_wfeed_w4_sb__TraceDecls__0__Slow.cpp > Vtb_wfeed_w4_sb__ALL.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=1 -DVM_TRACE_FST=1 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_wfeed_w4_sb__ALL.o Vtb_wfeed_w4_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_fst_c.o verilated_timing.o verilated_threads.o Vtb_wfeed_w4_sb__ALL.a   -lz  -pthread -lpthread   -o Vtb_wfeed_w4_sb
+rm Vtb_wfeed_w4_sb__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.136 MB sources in 7 modules, into 0.285 MB in 15 C++ files needing 0.001 MB
+- Verilator: Walltime 6.615 s (elab=0.003, cvt=0.016, bld=6.584); cpu 0.030 s on 1 threads; alloced 12.719 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_directed.txt +bp_mode=1 \
+	    +stall_mode=1 +seed=201 | tee build/run_directed.log
+PERF [F1 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+PERF [F2 beats=128 w4=1]: consumed=64 emitted=128 ratio=128/64
+PERF [F3 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F4 beats=24 w4=1]: consumed=12 emitted=24 ratio=24/12
+PERF [F5 beats=1 w4=1]: consumed=1 emitted=1 ratio=1/1
+PERF [F6 beats=5 w4=1]: consumed=3 emitted=5 ratio=5/3
+PERF [F7 beats=15 w4=1]: consumed=8 emitted=15 ratio=15/8
+PERF [F8 beats=256 w4=1]: consumed=128 emitted=256 ratio=256/128
+PERF [F9 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+PERF [F10 beats=5 w4=1]: consumed=3 emitted=5 ratio=5/3
+PERF [F17 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+COV w4_mode_w4 11
+COV w4_mode_pass 6
+COV w4_tail_odd 4
+COV w4_tail_even 13
+COV w4_beats_1 2
+COV w4_beats_max 2
+COV w4_beats_mid 13
+COV w4_code_min 2
+COV w4_code_max 11
+COV w4_code_zero 3
+COV w4_code_neg 14
+COV w4_ill_beats0 1
+COV w4_ill_beats_big 1
+COV w4_rst_idle 0
+COV w4_rst_run 0
+COV w4_rst_wait 0
+COV w4_rst_random 0
+COV w4_bp_full 0
+COV w4_bp_random 1
+COV w4_bp_storm 0
+COV w4_stall_none 0
+COV w4_stall_random 1
+COV w4_stall_storm 0
+COV w4_perf_halved 7
+COV w4_perf_oddtail 4
+COV w4_perf_pass 6
+TB PASS: 17 legal jobs, 2 illegal jobs, 0 mid-op resets, 0 errors (bp=1 stall=1 seed=201)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 24us; walltime 0.002 s; speed 12.294 ms/s
+- Verilator: cpu 0.002 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_directed.txt +bp_mode=0 \
+	    +stall_mode=0 +seed=202 | tee build/run_fast.log
+PERF [F1 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+PERF [F2 beats=128 w4=1]: consumed=64 emitted=128 ratio=128/64
+PERF [F3 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F4 beats=24 w4=1]: consumed=12 emitted=24 ratio=24/12
+PERF [F5 beats=1 w4=1]: consumed=1 emitted=1 ratio=1/1
+PERF [F6 beats=5 w4=1]: consumed=3 emitted=5 ratio=5/3
+PERF [F7 beats=15 w4=1]: consumed=8 emitted=15 ratio=15/8
+PERF [F8 beats=256 w4=1]: consumed=128 emitted=256 ratio=256/128
+PERF [F9 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+PERF [F10 beats=5 w4=1]: consumed=3 emitted=5 ratio=5/3
+PERF [F17 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+COV w4_mode_w4 11
+COV w4_mode_pass 6
+COV w4_tail_odd 4
+COV w4_tail_even 13
+COV w4_beats_1 2
+COV w4_beats_max 2
+COV w4_beats_mid 13
+COV w4_code_min 2
+COV w4_code_max 11
+COV w4_code_zero 3
+COV w4_code_neg 14
+COV w4_ill_beats0 1
+COV w4_ill_beats_big 1
+COV w4_rst_idle 0
+COV w4_rst_run 0
+COV w4_rst_wait 0
+COV w4_rst_random 0
+COV w4_bp_full 1
+COV w4_bp_random 0
+COV w4_bp_storm 0
+COV w4_stall_none 1
+COV w4_stall_random 0
+COV w4_stall_storm 0
+COV w4_perf_halved 7
+COV w4_perf_oddtail 4
+COV w4_perf_pass 6
+TB PASS: 17 legal jobs, 2 illegal jobs, 0 mid-op resets, 0 errors (bp=0 stall=0 seed=202)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 16us; walltime 0.002 s; speed 9.588 ms/s
+- Verilator: cpu 0.002 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_random.txt +bp_mode=1 \
+	    +stall_mode=1 +seed=203 +watchdog=30000000 \
+	    | tee build/run_random.log
+PERF [F1 beats=140 w4=1]: consumed=70 emitted=140 ratio=140/70
+PERF [F2 beats=210 w4=1]: consumed=105 emitted=210 ratio=210/105
+PERF [F3 beats=82 w4=1]: consumed=41 emitted=82 ratio=82/41
+PERF [F5 beats=80 w4=1]: consumed=40 emitted=80 ratio=80/40
+PERF [F6 beats=111 w4=1]: consumed=56 emitted=111 ratio=111/56
+PERF [F7 beats=136 w4=1]: consumed=68 emitted=136 ratio=136/68
+PERF [F9 beats=237 w4=1]: consumed=119 emitted=237 ratio=237/119
+PERF [F10 beats=150 w4=1]: consumed=75 emitted=150 ratio=150/75
+PERF [F11 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F12 beats=27 w4=1]: consumed=14 emitted=27 ratio=27/14
+PERF [F13 beats=96 w4=1]: consumed=48 emitted=96 ratio=96/48
+PERF [F14 beats=32 w4=1]: consumed=16 emitted=32 ratio=32/16
+PERF [F15 beats=40 w4=1]: consumed=20 emitted=40 ratio=40/20
+PERF [F16 beats=114 w4=1]: consumed=57 emitted=114 ratio=114/57
+PERF [F18 beats=133 w4=1]: consumed=67 emitted=133 ratio=133/67
+PERF [F19 beats=192 w4=1]: consumed=96 emitted=192 ratio=192/96
+PERF [F20 beats=4 w4=1]: consumed=2 emitted=4 ratio=4/2
+PERF [F22 beats=114 w4=1]: consumed=57 emitted=114 ratio=114/57
+PERF [F23 beats=186 w4=1]: consumed=93 emitted=186 ratio=186/93
+PERF [F24 beats=232 w4=1]: consumed=116 emitted=232 ratio=232/116
+PERF [F26 beats=54 w4=1]: consumed=27 emitted=54 ratio=54/27
+PERF [F27 beats=142 w4=1]: consumed=71 emitted=142 ratio=142/71
+PERF [F29 beats=38 w4=1]: consumed=19 emitted=38 ratio=38/19
+PERF [F30 beats=216 w4=1]: consumed=108 emitted=216 ratio=216/108
+PERF [F31 beats=204 w4=1]: consumed=102 emitted=204 ratio=204/102
+PERF [F32 beats=231 w4=1]: consumed=116 emitted=231 ratio=231/116
+PERF [F33 beats=41 w4=1]: consumed=21 emitted=41 ratio=41/21
+PERF [F34 beats=54 w4=1]: consumed=27 emitted=54 ratio=54/27
+PERF [F36 beats=222 w4=1]: consumed=111 emitted=222 ratio=222/111
+PERF [F37 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F38 beats=174 w4=1]: consumed=87 emitted=174 ratio=174/87
+PERF [F39 beats=57 w4=1]: consumed=29 emitted=57 ratio=57/29
+PERF [F41 beats=135 w4=1]: consumed=68 emitted=135 ratio=135/68
+PERF [F42 beats=66 w4=1]: consumed=33 emitted=66 ratio=66/33
+PERF [F43 beats=28 w4=1]: consumed=14 emitted=28 ratio=28/14
+PERF [F44 beats=250 w4=1]: consumed=125 emitted=250 ratio=250/125
+PERF [F45 beats=245 w4=1]: consumed=123 emitted=245 ratio=245/123
+PERF [F46 beats=140 w4=1]: consumed=70 emitted=140 ratio=140/70
+PERF [F47 beats=144 w4=1]: consumed=72 emitted=144 ratio=144/72
+PERF [F48 beats=32 w4=1]: consumed=16 emitted=32 ratio=32/16
+PERF [F49 beats=24 w4=1]: consumed=12 emitted=24 ratio=24/12
+PERF [F50 beats=189 w4=1]: consumed=95 emitted=189 ratio=189/95
+PERF [F51 beats=199 w4=1]: consumed=100 emitted=199 ratio=199/100
+PERF [F52 beats=184 w4=1]: consumed=92 emitted=184 ratio=184/92
+PERF [F53 beats=172 w4=1]: consumed=86 emitted=172 ratio=172/86
+PERF [F54 beats=234 w4=1]: consumed=117 emitted=234 ratio=234/117
+PERF [F56 beats=64 w4=1]: consumed=32 emitted=64 ratio=64/32
+PERF [F58 beats=140 w4=1]: consumed=70 emitted=140 ratio=140/70
+PERF [F59 beats=80 w4=1]: consumed=40 emitted=80 ratio=80/40
+PERF [F62 beats=168 w4=1]: consumed=84 emitted=168 ratio=168/84
+PERF [F64 beats=94 w4=1]: consumed=47 emitted=94 ratio=94/47
+PERF [F65 beats=176 w4=1]: consumed=88 emitted=176 ratio=176/88
+PERF [F67 beats=252 w4=1]: consumed=126 emitted=252 ratio=252/126
+PERF [F68 beats=90 w4=1]: consumed=45 emitted=90 ratio=90/45
+PERF [F69 beats=44 w4=1]: consumed=22 emitted=44 ratio=44/22
+PERF [F70 beats=96 w4=1]: consumed=48 emitted=96 ratio=96/48
+PERF [F71 beats=132 w4=1]: consumed=66 emitted=132 ratio=132/66
+PERF [F72 beats=195 w4=1]: consumed=98 emitted=195 ratio=195/98
+PERF [F73 beats=19 w4=1]: consumed=10 emitted=19 ratio=19/10
+PERF [F74 beats=133 w4=1]: consumed=67 emitted=133 ratio=133/67
+PERF [F75 beats=210 w4=1]: consumed=105 emitted=210 ratio=210/105
+PERF [F76 beats=210 w4=1]: consumed=105 emitted=210 ratio=210/105
+PERF [F77 beats=119 w4=1]: consumed=60 emitted=119 ratio=119/60
+PERF [F78 beats=84 w4=1]: consumed=42 emitted=84 ratio=84/42
+PERF [F79 beats=198 w4=1]: consumed=99 emitted=198 ratio=198/99
+PERF [F80 beats=240 w4=1]: consumed=120 emitted=240 ratio=240/120
+PERF [F82 beats=114 w4=1]: consumed=57 emitted=114 ratio=114/57
+PERF [F83 beats=153 w4=1]: consumed=77 emitted=153 ratio=153/77
+PERF [F84 beats=165 w4=1]: consumed=83 emitted=165 ratio=165/83
+PERF [F85 beats=156 w4=1]: consumed=78 emitted=156 ratio=156/78
+PERF [F86 beats=188 w4=1]: consumed=94 emitted=188 ratio=188/94
+PERF [F87 beats=55 w4=1]: consumed=28 emitted=55 ratio=55/28
+PERF [F89 beats=90 w4=1]: consumed=45 emitted=90 ratio=90/45
+PERF [F90 beats=240 w4=1]: consumed=120 emitted=240 ratio=240/120
+PERF [F91 beats=56 w4=1]: consumed=28 emitted=56 ratio=56/28
+PERF [F92 beats=145 w4=1]: consumed=73 emitted=145 ratio=145/73
+PERF [F93 beats=98 w4=1]: consumed=49 emitted=98 ratio=98/49
+PERF [F94 beats=42 w4=1]: consumed=21 emitted=42 ratio=42/21
+PERF [F95 beats=13 w4=1]: consumed=7 emitted=13 ratio=13/7
+PERF [F96 beats=116 w4=1]: consumed=58 emitted=116 ratio=116/58
+PERF [F97 beats=246 w4=1]: consumed=123 emitted=246 ratio=246/123
+PERF [F98 beats=239 w4=1]: consumed=120 emitted=239 ratio=239/120
+PERF [F99 beats=16 w4=1]: consumed=8 emitted=16 ratio=16/8
+PERF [F100 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F101 beats=248 w4=1]: consumed=124 emitted=248 ratio=248/124
+PERF [F102 beats=108 w4=1]: consumed=54 emitted=108 ratio=108/54
+PERF [F104 beats=220 w4=1]: consumed=110 emitted=220 ratio=220/110
+PERF [F105 beats=152 w4=1]: consumed=76 emitted=152 ratio=152/76
+PERF [F106 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F107 beats=255 w4=1]: consumed=128 emitted=255 ratio=255/128
+PERF [F108 beats=80 w4=1]: consumed=40 emitted=80 ratio=80/40
+PERF [F110 beats=86 w4=1]: consumed=43 emitted=86 ratio=86/43
+PERF [F112 beats=42 w4=1]: consumed=21 emitted=42 ratio=42/21
+PERF [F114 beats=47 w4=1]: consumed=24 emitted=47 ratio=47/24
+PERF [F116 beats=94 w4=1]: consumed=47 emitted=94 ratio=94/47
+PERF [F117 beats=185 w4=1]: consumed=93 emitted=185 ratio=185/93
+PERF [F118 beats=18 w4=1]: consumed=9 emitted=18 ratio=18/9
+PERF [F119 beats=42 w4=1]: consumed=21 emitted=42 ratio=42/21
+PERF [F121 beats=50 w4=1]: consumed=25 emitted=50 ratio=50/25
+PERF [F122 beats=224 w4=1]: consumed=112 emitted=224 ratio=224/112
+PERF [F123 beats=144 w4=1]: consumed=72 emitted=144 ratio=144/72
+PERF [F125 beats=56 w4=1]: consumed=28 emitted=56 ratio=56/28
+PERF [F126 beats=184 w4=1]: consumed=92 emitted=184 ratio=184/92
+PERF [F127 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F129 beats=242 w4=1]: consumed=121 emitted=242 ratio=242/121
+PERF [F132 beats=192 w4=1]: consumed=96 emitted=192 ratio=192/96
+PERF [F133 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F139 beats=130 w4=1]: consumed=65 emitted=130 ratio=130/65
+PERF [F140 beats=32 w4=1]: consumed=16 emitted=32 ratio=32/16
+PERF [F141 beats=98 w4=1]: consumed=49 emitted=98 ratio=98/49
+PERF [F142 beats=16 w4=1]: consumed=8 emitted=16 ratio=16/8
+PERF [F143 beats=234 w4=1]: consumed=117 emitted=234 ratio=234/117
+PERF [F144 beats=126 w4=1]: consumed=63 emitted=126 ratio=126/63
+PERF [F145 beats=147 w4=1]: consumed=74 emitted=147 ratio=147/74
+PERF [F146 beats=16 w4=1]: consumed=8 emitted=16 ratio=16/8
+PERF [F147 beats=217 w4=1]: consumed=109 emitted=217 ratio=217/109
+PERF [F148 beats=90 w4=1]: consumed=45 emitted=90 ratio=90/45
+PERF [F149 beats=180 w4=1]: consumed=90 emitted=180 ratio=180/90
+PERF [F151 beats=154 w4=1]: consumed=77 emitted=154 ratio=154/77
+PERF [F154 beats=102 w4=1]: consumed=51 emitted=102 ratio=102/51
+PERF [F155 beats=246 w4=1]: consumed=123 emitted=246 ratio=246/123
+PERF [F157 beats=28 w4=1]: consumed=14 emitted=28 ratio=28/14
+PERF [F158 beats=212 w4=1]: consumed=106 emitted=212 ratio=212/106
+PERF [F159 beats=32 w4=1]: consumed=16 emitted=32 ratio=32/16
+PERF [F160 beats=26 w4=1]: consumed=13 emitted=26 ratio=26/13
+PERF [F162 beats=116 w4=1]: consumed=58 emitted=116 ratio=116/58
+PERF [F163 beats=256 w4=1]: consumed=128 emitted=256 ratio=256/128
+PERF [F164 beats=24 w4=1]: consumed=12 emitted=24 ratio=24/12
+PERF [F166 beats=192 w4=1]: consumed=96 emitted=192 ratio=192/96
+PERF [F167 beats=65 w4=1]: consumed=33 emitted=65 ratio=65/33
+PERF [F169 beats=10 w4=1]: consumed=5 emitted=10 ratio=10/5
+PERF [F170 beats=25 w4=1]: consumed=13 emitted=25 ratio=25/13
+PERF [F172 beats=222 w4=1]: consumed=111 emitted=222 ratio=222/111
+PERF [F173 beats=32 w4=1]: consumed=16 emitted=32 ratio=32/16
+PERF [F174 beats=145 w4=1]: consumed=73 emitted=145 ratio=145/73
+PERF [F175 beats=210 w4=1]: consumed=105 emitted=210 ratio=210/105
+PERF [F176 beats=161 w4=1]: consumed=81 emitted=161 ratio=161/81
+PERF [F177 beats=184 w4=1]: consumed=92 emitted=184 ratio=184/92
+PERF [F178 beats=240 w4=1]: consumed=120 emitted=240 ratio=240/120
+PERF [F180 beats=222 w4=1]: consumed=111 emitted=222 ratio=222/111
+PERF [F181 beats=152 w4=1]: consumed=76 emitted=152 ratio=152/76
+PERF [F182 beats=10 w4=1]: consumed=5 emitted=10 ratio=10/5
+PERF [F185 beats=50 w4=1]: consumed=25 emitted=50 ratio=50/25
+PERF [F186 beats=99 w4=1]: consumed=50 emitted=99 ratio=99/50
+PERF [F187 beats=177 w4=1]: consumed=89 emitted=177 ratio=177/89
+PERF [F188 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F189 beats=15 w4=1]: consumed=8 emitted=15 ratio=15/8
+PERF [F190 beats=20 w4=1]: consumed=10 emitted=20 ratio=20/10
+PERF [F192 beats=144 w4=1]: consumed=72 emitted=144 ratio=144/72
+PERF [F193 beats=141 w4=1]: consumed=71 emitted=141 ratio=141/71
+PERF [F194 beats=256 w4=1]: consumed=128 emitted=256 ratio=256/128
+PERF [F195 beats=160 w4=1]: consumed=80 emitted=160 ratio=160/80
+PERF [F196 beats=129 w4=1]: consumed=65 emitted=129 ratio=129/65
+PERF [F197 beats=76 w4=1]: consumed=38 emitted=76 ratio=76/38
+PERF [F198 beats=232 w4=1]: consumed=116 emitted=232 ratio=232/116
+PERF [F199 beats=57 w4=1]: consumed=29 emitted=57 ratio=57/29
+PERF [F200 beats=30 w4=1]: consumed=15 emitted=30 ratio=30/15
+PERF [F203 beats=80 w4=1]: consumed=40 emitted=80 ratio=80/40
+PERF [F205 beats=246 w4=1]: consumed=123 emitted=246 ratio=246/123
+PERF [F206 beats=124 w4=1]: consumed=62 emitted=124 ratio=124/62
+PERF [F207 beats=104 w4=1]: consumed=52 emitted=104 ratio=104/52
+PERF [F208 beats=90 w4=1]: consumed=45 emitted=90 ratio=90/45
+PERF [F210 beats=234 w4=1]: consumed=117 emitted=234 ratio=234/117
+PERF [F211 beats=44 w4=1]: consumed=22 emitted=44 ratio=44/22
+PERF [F212 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F213 beats=16 w4=1]: consumed=8 emitted=16 ratio=16/8
+PERF [F214 beats=81 w4=1]: consumed=41 emitted=81 ratio=81/41
+PERF [F215 beats=85 w4=1]: consumed=43 emitted=85 ratio=85/43
+PERF [F216 beats=77 w4=1]: consumed=39 emitted=77 ratio=77/39
+PERF [F217 beats=10 w4=1]: consumed=5 emitted=10 ratio=10/5
+PERF [F218 beats=220 w4=1]: consumed=110 emitted=220 ratio=220/110
+PERF [F219 beats=72 w4=1]: consumed=36 emitted=72 ratio=72/36
+PERF [F220 beats=106 w4=1]: consumed=53 emitted=106 ratio=106/53
+COV w4_mode_w4 173
+COV w4_mode_pass 47
+COV w4_tail_odd 39
+COV w4_tail_even 181
+COV w4_beats_1 1
+COV w4_beats_max 2
+COV w4_beats_mid 217
+COV w4_code_min 18
+COV w4_code_max 196
+COV w4_code_zero 11
+COV w4_code_neg 220
+COV w4_ill_beats0 0
+COV w4_ill_beats_big 0
+COV w4_rst_idle 0
+COV w4_rst_run 0
+COV w4_rst_wait 0
+COV w4_rst_random 0
+COV w4_bp_full 0
+COV w4_bp_random 1
+COV w4_bp_storm 0
+COV w4_stall_none 0
+COV w4_stall_random 1
+COV w4_stall_storm 0
+COV w4_perf_halved 134
+COV w4_perf_oddtail 39
+COV w4_perf_pass 47
+TB PASS: 220 legal jobs, 0 illegal jobs, 0 mid-op resets, 0 errors (bp=1 stall=1 seed=203)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 396us; walltime 0.039 s; speed 10.143 ms/s
+- Verilator: cpu 0.039 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_storm.txt +bp_mode=2 \
+	    +stall_mode=2 +seed=204 | tee build/run_storm.log
+PERF [F1 beats=236 w4=1]: consumed=118 emitted=236 ratio=236/118
+PERF [F2 beats=48 w4=1]: consumed=24 emitted=48 ratio=48/24
+PERF [F3 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F4 beats=66 w4=1]: consumed=33 emitted=66 ratio=66/33
+PERF [F5 beats=240 w4=1]: consumed=120 emitted=240 ratio=240/120
+PERF [F7 beats=168 w4=1]: consumed=84 emitted=168 ratio=168/84
+PERF [F8 beats=95 w4=1]: consumed=48 emitted=95 ratio=95/48
+PERF [F9 beats=30 w4=1]: consumed=15 emitted=30 ratio=30/15
+PERF [F12 beats=104 w4=1]: consumed=52 emitted=104 ratio=104/52
+PERF [F13 beats=108 w4=1]: consumed=54 emitted=108 ratio=108/54
+PERF [F14 beats=40 w4=1]: consumed=20 emitted=40 ratio=40/20
+PERF [F15 beats=71 w4=1]: consumed=36 emitted=71 ratio=71/36
+PERF [F18 beats=238 w4=1]: consumed=119 emitted=238 ratio=238/119
+PERF [F19 beats=244 w4=1]: consumed=122 emitted=244 ratio=244/122
+PERF [F20 beats=35 w4=1]: consumed=18 emitted=35 ratio=35/18
+PERF [F21 beats=207 w4=1]: consumed=104 emitted=207 ratio=207/104
+PERF [F22 beats=104 w4=1]: consumed=52 emitted=104 ratio=104/52
+PERF [F25 beats=132 w4=1]: consumed=66 emitted=132 ratio=132/66
+PERF [F26 beats=176 w4=1]: consumed=88 emitted=176 ratio=176/88
+PERF [F27 beats=216 w4=1]: consumed=108 emitted=216 ratio=216/108
+PERF [F28 beats=27 w4=1]: consumed=14 emitted=27 ratio=27/14
+PERF [F29 beats=207 w4=1]: consumed=104 emitted=207 ratio=207/104
+PERF [F30 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F31 beats=164 w4=1]: consumed=82 emitted=164 ratio=164/82
+PERF [F33 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F35 beats=108 w4=1]: consumed=54 emitted=108 ratio=108/54
+PERF [F36 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F37 beats=165 w4=1]: consumed=83 emitted=165 ratio=165/83
+PERF [F39 beats=175 w4=1]: consumed=88 emitted=175 ratio=175/88
+PERF [F40 beats=192 w4=1]: consumed=96 emitted=192 ratio=192/96
+COV w4_mode_w4 30
+COV w4_mode_pass 10
+COV w4_tail_odd 8
+COV w4_tail_even 32
+COV w4_beats_1 0
+COV w4_beats_max 0
+COV w4_beats_mid 40
+COV w4_code_min 6
+COV w4_code_max 38
+COV w4_code_zero 1
+COV w4_code_neg 40
+COV w4_ill_beats0 0
+COV w4_ill_beats_big 0
+COV w4_rst_idle 0
+COV w4_rst_run 0
+COV w4_rst_wait 0
+COV w4_rst_random 0
+COV w4_bp_full 0
+COV w4_bp_random 0
+COV w4_bp_storm 1
+COV w4_stall_none 0
+COV w4_stall_random 0
+COV w4_stall_storm 1
+COV w4_perf_halved 22
+COV w4_perf_oddtail 8
+COV w4_perf_pass 10
+TB PASS: 40 legal jobs, 0 illegal jobs, 0 mid-op resets, 0 errors (bp=2 stall=2 seed=204)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 737us; walltime 0.023 s; speed 31.723 ms/s
+- Verilator: cpu 0.023 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_storm.txt +bp_mode=0 \
+	    +stall_mode=2 +seed=205 | tee build/run_stall.log
+PERF [F1 beats=236 w4=1]: consumed=118 emitted=236 ratio=236/118
+PERF [F2 beats=48 w4=1]: consumed=24 emitted=48 ratio=48/24
+PERF [F3 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F4 beats=66 w4=1]: consumed=33 emitted=66 ratio=66/33
+PERF [F5 beats=240 w4=1]: consumed=120 emitted=240 ratio=240/120
+PERF [F7 beats=168 w4=1]: consumed=84 emitted=168 ratio=168/84
+PERF [F8 beats=95 w4=1]: consumed=48 emitted=95 ratio=95/48
+PERF [F9 beats=30 w4=1]: consumed=15 emitted=30 ratio=30/15
+PERF [F12 beats=104 w4=1]: consumed=52 emitted=104 ratio=104/52
+PERF [F13 beats=108 w4=1]: consumed=54 emitted=108 ratio=108/54
+PERF [F14 beats=40 w4=1]: consumed=20 emitted=40 ratio=40/20
+PERF [F15 beats=71 w4=1]: consumed=36 emitted=71 ratio=71/36
+PERF [F18 beats=238 w4=1]: consumed=119 emitted=238 ratio=238/119
+PERF [F19 beats=244 w4=1]: consumed=122 emitted=244 ratio=244/122
+PERF [F20 beats=35 w4=1]: consumed=18 emitted=35 ratio=35/18
+PERF [F21 beats=207 w4=1]: consumed=104 emitted=207 ratio=207/104
+PERF [F22 beats=104 w4=1]: consumed=52 emitted=104 ratio=104/52
+PERF [F25 beats=132 w4=1]: consumed=66 emitted=132 ratio=132/66
+PERF [F26 beats=176 w4=1]: consumed=88 emitted=176 ratio=176/88
+PERF [F27 beats=216 w4=1]: consumed=108 emitted=216 ratio=216/108
+PERF [F28 beats=27 w4=1]: consumed=14 emitted=27 ratio=27/14
+PERF [F29 beats=207 w4=1]: consumed=104 emitted=207 ratio=207/104
+PERF [F30 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F31 beats=164 w4=1]: consumed=82 emitted=164 ratio=164/82
+PERF [F33 beats=88 w4=1]: consumed=44 emitted=88 ratio=88/44
+PERF [F35 beats=108 w4=1]: consumed=54 emitted=108 ratio=108/54
+PERF [F36 beats=200 w4=1]: consumed=100 emitted=200 ratio=200/100
+PERF [F37 beats=165 w4=1]: consumed=83 emitted=165 ratio=165/83
+PERF [F39 beats=175 w4=1]: consumed=88 emitted=175 ratio=175/88
+PERF [F40 beats=192 w4=1]: consumed=96 emitted=192 ratio=192/96
+COV w4_mode_w4 30
+COV w4_mode_pass 10
+COV w4_tail_odd 8
+COV w4_tail_even 32
+COV w4_beats_1 0
+COV w4_beats_max 0
+COV w4_beats_mid 40
+COV w4_code_min 6
+COV w4_code_max 38
+COV w4_code_zero 1
+COV w4_code_neg 40
+COV w4_ill_beats0 0
+COV w4_ill_beats_big 0
+COV w4_rst_idle 0
+COV w4_rst_run 0
+COV w4_rst_wait 0
+COV w4_rst_random 0
+COV w4_bp_full 1
+COV w4_bp_random 0
+COV w4_bp_storm 0
+COV w4_stall_none 0
+COV w4_stall_random 0
+COV w4_stall_storm 1
+COV w4_perf_halved 22
+COV w4_perf_oddtail 8
+COV w4_perf_pass 10
+TB PASS: 40 legal jobs, 0 illegal jobs, 0 mid-op resets, 0 errors (bp=0 stall=2 seed=205)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 76us; walltime 0.007 s; speed 11.697 ms/s
+- Verilator: cpu 0.007 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj_w4/Vtb_wfeed_w4_sb +vectors=build/vectors_w4_reset.txt +bp_mode=1 \
+	    +stall_mode=0 +seed=206 | tee build/run_reset.log
+RESET [R1 beats=64 abort=0 phase=1] cyc=9: mid-op reset in FSM phase 1
+RESET [R2 beats=5 abort=0 phase=1] cyc=27: mid-op reset in FSM phase 1
+RESET [R3 beats=64 abort=0 phase=2] cyc=141: mid-op reset in FSM phase 2
+RESET [R4 beats=5 abort=0 phase=2] cyc=168: mid-op reset in FSM phase 2
+RESET [R5 beats=64 abort=1 phase=0] cyc=187: mid-op reset in FSM phase 1
+RESET [R6 beats=64 abort=2 phase=0] cyc=207: mid-op reset in FSM phase 1
+RESET [R7 beats=64 abort=3 phase=0] cyc=228: mid-op reset in FSM phase 1
+RESET [R8 beats=64 abort=5 phase=0] cyc=251: mid-op reset in FSM phase 1
+RESET [R9 beats=64 abort=8 phase=0] cyc=277: mid-op reset in FSM phase 1
+RESET [R10 beats=64 abort=13 phase=0] cyc=308: mid-op reset in FSM phase 1
+RESET [R11 beats=64 abort=21 phase=0] cyc=347: mid-op reset in FSM phase 1
+RESET [R12 beats=64 abort=34 phase=0] cyc=399: mid-op reset in FSM phase 1
+RESET [R13 beats=32 abort=1 phase=0] cyc=418: mid-op reset in FSM phase 1
+RESET [R14 beats=32 abort=4 phase=0] cyc=440: mid-op reset in FSM phase 1
+RESET [R15 beats=32 abort=9 phase=0] cyc=467: mid-op reset in FSM phase 1
+COV w4_mode_w4 0
+COV w4_mode_pass 0
+COV w4_tail_odd 0
+COV w4_tail_even 0
+COV w4_beats_1 0
+COV w4_beats_max 0
+COV w4_beats_mid 0
+COV w4_code_min 0
+COV w4_code_max 0
+COV w4_code_zero 0
+COV w4_code_neg 0
+COV w4_ill_beats0 0
+COV w4_ill_beats_big 0
+COV w4_rst_idle 0
+COV w4_rst_run 13
+COV w4_rst_wait 2
+COV w4_rst_random 11
+COV w4_bp_full 0
+COV w4_bp_random 1
+COV w4_bp_storm 0
+COV w4_stall_none 1
+COV w4_stall_random 0
+COV w4_stall_storm 0
+COV w4_perf_halved 0
+COV w4_perf_oddtail 0
+COV w4_perf_pass 0
+TB PASS: 0 legal jobs, 0 illegal jobs, 15 mid-op resets, 0 errors (bp=1 stall=0 seed=206)
+- tb_wfeed_w4_sb.sv:603: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 5us; walltime 0.000 s; speed 10.306 ms/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 2 MB
+set -o pipefail; python3 coverage_report.py build/run_*.log \
+	    | tee build/coverage.txt
+bucket                      hits  note
+------------------------------------------------------------------------------
+w4_mode_w4                   255  w4_en = 1: unpack 1 packed beat -> 2 INT8
+w4_mode_pass                  79  w4_en = 0: transparent 1:1 passthrough
+w4_tail_odd                   63  job_beats odd: final packed beat's upper half is padding, dropped never emitted
+w4_tail_even                 271  job_beats even: exact 2x expansion
+w4_beats_1                     5  job_beats = 1 (single emitted beat)
+w4_beats_max                   6  job_beats = BEATS_MAX_TB = 256
+w4_beats_mid                 323  1 < job_beats < 256
+w4_code_min                   34  code -8 present (INT4 min, D-001)
+w4_code_max                  294  code +7 present (INT4 max, D-001)
+w4_code_zero                  19  an all-zero emitted beat (amax=0 EPS tile) — the case where a dropped sign-extension is INVISIBLE, so it must coexist with min/max
+w4_code_neg                  328  a negative code: sign extension is live
+w4_ill_beats0                  2  job_beats = 0 reject (§3)
+w4_ill_beats_big               2  job_beats > BEATS_MAX reject (§3)
+w4_rst_run                    13  mid-op reset in ST_RUN (targeted)
+w4_rst_wait                    2  mid-op reset in ST_WAIT (post-skid drain)
+w4_rst_random                 11  cycle-count (untargeted) aborts
+w4_rst_idle                    0  abort landed in ST_IDLE — the job had already completed, so not a mid-op case (informational) (optional, unhit)
+w4_bp_full                     2  run with w8_ready held high
+w4_bp_random                   3  run with ~75% duty backpressure
+w4_bp_storm                    1  run with ~6% duty backpressure storm
+w4_stall_none                  2  run with full-rate packed-W4 feed
+w4_stall_random                2  run with short random feed gaps
+w4_stall_storm                 2  run with bursty stalled feed (<=32 cyc)
+w4_perf_halved               192  w4 job with EVEN beats: emitted = 2*consumed
+w4_perf_oddtail               63  w4 job with ODD beats: emitted = 2*consumed - 1 (the corrected S6 form)
+w4_perf_pass                  79  passthrough job: emitted = consumed
+
+JOBS (parsed from 'TB PASS:' lines — never hand-written)
+------------------------------------------------------------------------------
+  runs completed      : 6 of 6 log(s)
+  legal jobs          : 334
+  illegal jobs        : 4
+  mid-op reset jobs   : 15
+  TB-reported errors  : 0
+
+PERF (parsed from 'PERF [...]: consumed/emitted' — ARCHITECTURE.md:203-205)
+------------------------------------------------------------------------------
+  w4 jobs measured    : 255 (192 even, 63 odd-tail)
+  emitted/consumed min: 1.0000x  [F5 beats=1 w4=1: consumed=1 emitted=1]
+  emitted/consumed max: 2.0000x  [F99 beats=16 w4=1: consumed=8 emitted=16]
+  aggregate           : 31595 emitted / 15829 consumed = 1.9960x
+  S6 identity emitted == 2*consumed - (emitted & 1): 255/255 jobs hold
+
+COVERAGE PASS: all required buckets hit (26 buckets, 6 logs)
+set -o pipefail; python3 mutation_check.py | tee build/mutation.txt
+MUTANT M1_nibble_order_swap: KILLED (rc=1) — FAIL [F1 beats=64 w4=1] cyc=112: beat 0
+MUTANT M2_sign_ext_dropped: KILLED (rc=1) — FAIL [F1 beats=64 w4=1] cyc=112: beat 0
+MUTANT M3_stuck_w4_en: KILLED (rc=1) — FAIL [F11 beats=1 w4=0] cyc=761: beat 0
+MUTANT M4_lane_off_by_one: KILLED (rc=1) — FAIL [F1 beats=64 w4=1] cyc=113: beat 0
+MUTANT M5_odd_tail_floor_not_ceil: KILLED (rc=1) — [4041600000] %Fatal: tb_wfeed_w4_sb.sv:287: Assertion failed in tb_wfeed_w4_sb.wait_done_rel: FAIL [F5 beats=1 w4=1]: job timeout after 400001 cycles (cyc=404160)
+
+mutant                    verdict      rc  evidence
+----------------------------------------------------------------------------------------------------
+M1_nibble_order_swap      KILLED        1  FAIL [F1 beats=64 w4=1] cyc=112: beat 0
+M2_sign_ext_dropped       KILLED        1  FAIL [F1 beats=64 w4=1] cyc=112: beat 0
+M3_stuck_w4_en            KILLED        1  FAIL [F11 beats=1 w4=0] cyc=761: beat 0
+M4_lane_off_by_one        KILLED        1  FAIL [F1 beats=64 w4=1] cyc=113: beat 0
+M5_odd_tail_floor_not_ceilKILLED        1  [4041600000] %Fatal: tb_wfeed_w4_sb.sv:287: Assertion fa
+----------------------------------------------------------------------------------------------------
+NOTE: a run that hits the subprocess timeout is counted as KILLED — a wedged feeder is a detection.
+
+MUTATION GATE: 5/5 mutants killed — checkers proven live

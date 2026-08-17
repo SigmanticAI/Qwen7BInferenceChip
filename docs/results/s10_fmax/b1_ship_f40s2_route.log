@@ -1,0 +1,949 @@
+
+
+Info: Logic utilisation before packing:
+Info:     Total LUT4s:     23852/83640    28%
+Info:         logic LUTs:  19368/83640    23%
+Info:         carry LUTs:   4484/83640     5%
+Info:           RAM LUTs:      0/10455     0%
+Info:          RAMW LUTs:      0/20910     0%
+
+Info:      Total DFFs:     20857/83640    24%
+
+Info: Packing IOs..
+Info: Packing constants..
+Info: Packing carries...
+Info: Packing LUTs...
+Info: Packing LUT5-7s...
+Info: Packing FFs...
+Info:     6651 FFs paired with LUTs.
+Info: Generating derived timing constraints...
+Info: Promoting globals...
+Info:     promoting clock net clk$TRELLIS_IO_IN to global network
+Info: Checksum: 0x7620fb4d
+
+Info: Device utilisation:
+Info: 	          TRELLIS_IO:     161/    365    44%
+Info: 	                DCCA:       1/     56     1%
+Info: 	              DP16KD:      38/    208    18%
+Info: 	          MULT18X18D:       1/    156     0%
+Info: 	              ALU54B:       0/     78     0%
+Info: 	             EHXPLLL:       0/      4     0%
+Info: 	             EXTREFB:       0/      2     0%
+Info: 	                DCUA:       0/      2     0%
+Info: 	           PCSCLKDIV:       0/      2     0%
+Info: 	             IOLOGIC:       0/    224     0%
+Info: 	            SIOLOGIC:       0/    141     0%
+Info: 	                 GSR:       0/      1     0%
+Info: 	               JTAGG:       0/      1     0%
+Info: 	                OSCG:       0/      1     0%
+Info: 	               SEDGA:       0/      1     0%
+Info: 	                 DTR:       0/      1     0%
+Info: 	             USRMCLK:       0/      1     0%
+Info: 	             CLKDIVF:       0/      4     0%
+Info: 	           ECLKSYNCB:       0/     10     0%
+Info: 	             DLLDELD:       0/      8     0%
+Info: 	              DDRDLL:       0/      4     0%
+Info: 	             DQSBUFM:       0/     14     0%
+Info: 	     TRELLIS_ECLKBUF:       0/      8     0%
+Info: 	        ECLKBRIDGECS:       0/      2     0%
+Info: 	                DCSC:       0/      2     0%
+Info: 	          TRELLIS_FF:   20857/  83640    24%
+Info: 	        TRELLIS_COMB:   24574/  83640    29%
+Info: 	        TRELLIS_RAMW:       0/  10455     0%
+
+Info: Placed 0 cells based on constraints.
+Info: Creating initial analytic placement for 32914 cells, random placement wirelen = 3235106.
+Info:     at initial placer iter 0, wirelen = 15413
+Info:     at initial placer iter 1, wirelen = 13756
+Info:     at initial placer iter 2, wirelen = 14633
+Info:     at initial placer iter 3, wirelen = 13626
+Info: Running main analytical placer, max placement attempts per cell = 260284928.
+Info:     at iteration #1, type ALL: wirelen solved = 13534, spread = 563600, legal = 593909; time = 1.52s
+Info:     at iteration #2, type ALL: wirelen solved = 56243, spread = 307037, legal = 331365; time = 1.27s
+Info:     at iteration #3, type ALL: wirelen solved = 71804, spread = 244227, legal = 281012; time = 1.24s
+Info:     at iteration #4, type ALL: wirelen solved = 82052, spread = 222940, legal = 258701; time = 1.21s
+Info:     at iteration #5, type ALL: wirelen solved = 87655, spread = 210186, legal = 248213; time = 1.20s
+Info:     at iteration #6, type ALL: wirelen solved = 91786, spread = 165692, legal = 209073; time = 1.18s
+Info:     at iteration #7, type ALL: wirelen solved = 95275, spread = 169578, legal = 203141; time = 1.18s
+Info:     at iteration #8, type ALL: wirelen solved = 97393, spread = 169669, legal = 206059; time = 1.17s
+Info:     at iteration #9, type ALL: wirelen solved = 99987, spread = 164276, legal = 204464; time = 1.16s
+Info:     at iteration #10, type ALL: wirelen solved = 101837, spread = 182298, legal = 218711; time = 1.16s
+Info:     at iteration #11, type ALL: wirelen solved = 103280, spread = 159905, legal = 204672; time = 1.15s
+Info:     at iteration #12, type ALL: wirelen solved = 105155, spread = 182877, legal = 218233; time = 1.14s
+Info: HeAP Placer Time: 21.11s
+Info:   of which solving equations: 17.07s
+Info:   of which spreading cells: 1.12s
+Info:   of which strict legalisation: 1.31s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 2676, wirelen = 203141
+Info:   at iteration #5: temp = 0.000000, timing cost = 2657, wirelen = 166937
+Info:   at iteration #10: temp = 0.000000, timing cost = 2579, wirelen = 158143
+Info:   at iteration #15: temp = 0.000000, timing cost = 2443, wirelen = 153801
+Info:   at iteration #20: temp = 0.000000, timing cost = 2370, wirelen = 150611
+Info:   at iteration #25: temp = 0.000000, timing cost = 2323, wirelen = 149399
+Info:   at iteration #30: temp = 0.000000, timing cost = 2340, wirelen = 148870
+Info:   at iteration #35: temp = 0.000000, timing cost = 2277, wirelen = 148576
+Info:   at iteration #40: temp = 0.000000, timing cost = 2350, wirelen = 148443
+Info:   at iteration #45: temp = 0.000000, timing cost = 2337, wirelen = 148335
+Info:   at iteration #49: temp = 0.000000, timing cost = 2299, wirelen = 148267 
+Info: SA placement time 118.23s
+
+Info: Max frequency for clock '$glbnet$clk$TRELLIS_IO_IN': 29.32 MHz (FAIL at 40.00 MHz)
+
+Info: Max delay <async>                           -> <async>                          : 18.08 ns
+Info: Max delay <async>                           -> posedge $glbnet$clk$TRELLIS_IO_IN: 22.86 ns
+Info: Max delay posedge $glbnet$clk$TRELLIS_IO_IN -> <async>                          : 16.20 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 213 endpoint(s)
+Info:          + represents [1,213) endpoint(s)
+Info: [ -9110,  -7442) |+
+Info: [ -7442,  -5774) |+
+Info: [ -5774,  -4106) |+
+Info: [ -4106,  -2438) |+
+Info: [ -2438,   -770) |+
+Info: [  -770,    898) |+
+Info: [   898,   2566) |+
+Info: [  2566,   4234) |+
+Info: [  4234,   5902) |+
+Info: [  5902,   7570) |+
+Info: [  7570,   9238) |**+
+Info: [  9238,  10906) |********+
+Info: [ 10906,  12574) |********+
+Info: [ 12574,  14242) |*******+
+Info: [ 14242,  15910) |********+
+Info: [ 15910,  17578) |********************+
+Info: [ 17578,  19246) |**********************+
+Info: [ 19246,  20914) |************+
+Info: [ 20914,  22582) |***************+
+Info: [ 22582,  24250) |************************************************************ 
+Info: Checksum: 0xf4897e87
+Info: Routing globals...
+Info:     routing clock net $glbnet$clk$TRELLIS_IO_IN using global 0
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 125907 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:       1000 |       97        902 |   97   902 |    125015|       0.85       0.85|
+Info:       2000 |      203       1796 |  106   894 |    124141|       0.12       0.97|
+Info:       3000 |      343       2656 |  140   860 |    123390|       0.12       1.08|
+Info:       4000 |      445       3554 |  102   898 |    122496|       0.11       1.20|
+Info:       5000 |      554       4445 |  109   891 |    121662|       0.12       1.32|
+Info:       6000 |      656       5343 |  102   898 |    120794|       0.12       1.44|
+Info:       7000 |      764       6235 |  108   892 |    119952|       0.12       1.56|
+Info:       8000 |      920       7079 |  156   844 |    119228|       0.13       1.69|
+Info:       9000 |     1045       7954 |  125   875 |    118435|       0.13       1.82|
+Info:      10000 |     1192       8807 |  147   853 |    117718|       0.14       1.96|
+Info:      11000 |     1323       9676 |  131   869 |    117070|       0.13       2.09|
+Info:      12000 |     1449      10550 |  126   874 |    116301|       0.12       2.21|
+Info:      13000 |     1579      11420 |  130   870 |    115687|       0.13       2.34|
+Info:      14000 |     1728      12271 |  149   851 |    114928|       0.14       2.48|
+Info:      15000 |     1887      13112 |  159   841 |    114308|       0.14       2.62|
+Info:      16000 |     2051      13948 |  164   836 |    113937|       0.15       2.77|
+Info:      17000 |     2213      14786 |  162   838 |    113325|       0.14       2.90|
+Info:      18000 |     2370      15629 |  157   843 |    112774|       0.14       3.04|
+Info:      19000 |     2522      16477 |  152   848 |    112005|       0.14       3.18|
+Info:      20000 |     2681      17318 |  159   841 |    111456|       0.14       3.32|
+Info:      21000 |     2855      18144 |  174   826 |    110797|       0.16       3.48|
+Info:      22000 |     3033      18966 |  178   822 |    110162|       0.15       3.63|
+Info:      23000 |     3166      19833 |  133   867 |    109471|       0.15       3.78|
+Info:      24000 |     3339      20660 |  173   827 |    108742|       0.16       3.94|
+Info:      25000 |     3472      21527 |  133   867 |    108097|       0.14       4.08|
+Info:      26000 |     3648      22351 |  176   824 |    107552|       0.16       4.24|
+Info:      27000 |     3788      23211 |  140   860 |    106836|       0.15       4.39|
+Info:      28000 |     3972      24027 |  184   816 |    106178|       0.16       4.55|
+Info:      29000 |     4164      24835 |  192   808 |    105511|       0.16       4.70|
+Info:      30000 |     4342      25657 |  178   822 |    105082|       0.16       4.86|
+Info:      31000 |     4559      26440 |  217   783 |    104371|       0.17       5.03|
+Info:      32000 |     4785      27214 |  226   774 |    103701|       0.17       5.20|
+Info:      33000 |     5029      27970 |  244   756 |    103092|       0.17       5.37|
+Info:      34000 |     5205      28794 |  176   824 |    102343|       0.16       5.52|
+Info:      35000 |     5416      29583 |  211   789 |    102055|       0.17       5.70|
+Info:      36000 |     5556      30443 |  140   860 |    101235|       0.15       5.84|
+Info:      37000 |     5767      31232 |  211   789 |    100616|       0.17       6.02|
+Info:      38000 |     5992      32007 |  225   775 |    100244|       0.19       6.20|
+Info:      39000 |     6204      32795 |  212   788 |     99720|       0.18       6.39|
+Info:      40000 |     6399      33600 |  195   805 |     99094|       0.18       6.56|
+Info:      41000 |     6649      34350 |  250   750 |     98708|       0.17       6.74|
+Info:      42000 |     6862      35137 |  213   787 |     98093|       0.18       6.92|
+Info:      43000 |     7095      35904 |  233   767 |     97444|       0.19       7.10|
+Info:      44000 |     7340      36659 |  245   755 |     96886|       0.21       7.32|
+Info:      45000 |     7622      37377 |  282   718 |     96340|       0.18       7.50|
+Info:      46000 |     7897      38102 |  275   725 |     95914|       0.17       7.67|
+Info:      47000 |     8129      38870 |  232   768 |     95431|       0.19       7.86|
+Info:      48000 |     8374      39625 |  245   755 |     94955|       0.20       8.06|
+Info:      49000 |     8669      40330 |  295   705 |     94485|       0.18       8.25|
+Info:      50000 |     8922      41077 |  253   747 |     93964|       0.18       8.42|
+Info:      51000 |     9190      41809 |  268   732 |     93409|       0.19       8.61|
+Info:      52000 |     9399      42600 |  209   791 |     92683|       0.18       8.79|
+Info:      53000 |     9705      43294 |  306   694 |     92147|       0.18       8.98|
+Info:      54000 |    10031      43968 |  326   674 |     91725|       0.18       9.15|
+Info:      55000 |    10342      44657 |  311   689 |     91178|       0.18       9.33|
+Info:      56000 |    10600      45399 |  258   742 |     90886|       0.18       9.51|
+Info:      57000 |    10792      46207 |  192   808 |     90515|       0.20       9.71|
+Info:      58000 |    11063      46936 |  271   729 |     89943|       0.17       9.89|
+Info:      59000 |    11297      47702 |  234   766 |     89292|       0.18      10.07|
+Info:      60000 |    11573      48426 |  276   724 |     88647|       0.19      10.25|
+Info:      61000 |    11821      49178 |  248   752 |     88105|       0.19      10.45|
+Info:      62000 |    12072      49927 |  251   749 |     87593|       0.20      10.64|
+Info:      63000 |    12321      50678 |  249   751 |     87129|       0.24      10.89|
+Info:      64000 |    12561      51391 |  240   713 |     86489|       0.19      11.08|
+Info:      65000 |    12792      52129 |  231   738 |     85816|       0.16      11.24|
+Info:      66000 |    13117      52786 |  325   657 |     85212|       0.18      11.43|
+Info:      67000 |    13430      53458 |  313   672 |     84709|       0.18      11.61|
+Info:      68000 |    13771      54109 |  341   651 |     84253|       0.19      11.79|
+Info:      69000 |    13996      54872 |  225   763 |     83503|       0.17      11.97|
+Info:      70000 |    14260      55595 |  264   723 |     82898|       0.18      12.15|
+Info:      71000 |    14563      56264 |  303   669 |     82230|       0.18      12.33|
+Info:      72000 |    14905      56917 |  342   653 |     82636|       0.20      12.53|
+Info:      73000 |    15035      57787 |  130   870 |     82256|       0.31      12.84|
+Info:      74000 |    15250      58560 |  215   773 |     81703|       0.23      13.07|
+Info:      75000 |    15541      59257 |  291   697 |     81042|       0.19      13.26|
+Info:      76000 |    15827      59953 |  286   696 |     80434|       0.19      13.44|
+Info:      77000 |    16101      60660 |  274   707 |     79785|       0.18      13.62|
+Info:      78000 |    16333      61409 |  232   749 |     79322|       0.22      13.84|
+Info:      79000 |    16586      62143 |  253   734 |     78746|       0.19      14.03|
+Info:      80000 |    16809      62900 |  223   757 |     78006|       0.19      14.22|
+Info:      81000 |    17055      63635 |  246   735 |     77464|       0.21      14.43|
+Info:      82000 |    17283      64384 |  228   749 |     76792|       0.20      14.63|
+Info:      83000 |    17506      65141 |  223   757 |     76168|       0.20      14.83|
+Info:      84000 |    17715      65913 |  209   772 |     75433|       0.19      15.02|
+Info:      85000 |    17927      66672 |  212   759 |     74703|       0.19      15.21|
+Info:      86000 |    18111      67437 |  184   765 |     73914|       0.18      15.39|
+Info:      87000 |    18294      68212 |  183   775 |     73143|       0.18      15.57|
+Info:      88000 |    18514      68981 |  220   769 |     72408|       0.19      15.76|
+Info:      89000 |    18750      69723 |  236   742 |     71737|       0.21      15.97|
+Info:      90000 |    18935      70515 |  185   792 |     70935|       0.19      16.16|
+Info:      91000 |    19145      71289 |  210   774 |     70337|       0.21      16.37|
+Info:      92000 |    19331      72076 |  186   787 |     69577|       0.22      16.59|
+Info:      93000 |    19499      72819 |  168   743 |     68758|       0.18      16.77|
+Info:      94000 |    19655      73655 |  156   836 |     68531|       0.34      17.11|
+Info:      95000 |    19853      74422 |  198   767 |     67798|       0.20      17.31|
+Info:      96000 |    20046      75191 |  193   769 |     67140|       0.21      17.52|
+Info:      97000 |    20250      75899 |  204   708 |     66369|       0.20      17.72|
+Info:      98000 |    20456      76662 |  206   763 |     65773|       0.20      17.92|
+Info:      99000 |    20641      77432 |  185   770 |     65001|       0.19      18.12|
+Info:     100000 |    20816      78225 |  175   793 |     64188|       0.21      18.33|
+Info:     101000 |    20985      79024 |  169   799 |     63361|       0.18      18.51|
+Info:     102000 |    21147      79759 |  162   735 |     62577|       0.20      18.70|
+Info:     103000 |    21329      80515 |  182   756 |     61833|       0.20      18.91|
+Info:     104000 |    21521      81255 |  192   740 |     61070|       0.20      19.11|
+Info:     105000 |    21662      82040 |  141   785 |     60233|       0.18      19.29|
+Info:     106000 |    21810      82847 |  148   807 |     59391|       0.19      19.49|
+Info:     107000 |    22078      83559 |  268   712 |     58805|       0.25      19.73|
+Info:     108000 |    22253      84338 |  175   779 |     58014|       0.19      19.92|
+Info:     109000 |    22424      85112 |  171   774 |     57216|       0.22      20.14|
+Info:     110000 |    22577      85927 |  153   815 |     56378|       0.20      20.34|
+Info:     111000 |    22718      86769 |  141   842 |     55639|       0.24      20.58|
+Info:     112000 |    22900      87555 |  182   786 |     54898|       0.28      20.87|
+Info:     113000 |    23012      88437 |  112   882 |     54051|       0.21      21.08|
+Info:     114000 |    23223      89199 |  211   762 |     53505|       0.31      21.38|
+Info:     115000 |    23381      90013 |  158   814 |     52709|       0.22      21.61|
+Info:     116000 |    23637      90700 |  256   687 |     52224|       0.28      21.89|
+Info:     117000 |    23803      91482 |  166   782 |     51468|       0.29      22.18|
+Info:     118000 |    23901      92251 |   98   769 |     50576|       0.17      22.34|
+Info:     119000 |    24133      92988 |  232   737 |     50150|       0.28      22.62|
+Info:     120000 |    24284      93733 |  151   745 |     49367|       0.26      22.88|
+Info:     121000 |    24355      94395 |   71   662 |     48452|       0.17      23.05|
+Info:     122000 |    24586      95104 |  231   709 |     47942|       0.33      23.38|
+Info:     123000 |    24728      95788 |  142   684 |     47120|       0.27      23.65|
+Info:     124000 |    24834      96653 |  106   865 |     46243|       0.18      23.83|
+Info:     125000 |    24971      97431 |  137   778 |     45675|       0.31      24.14|
+Info:     126000 |    25157      98187 |  186   756 |     45049|       0.31      24.45|
+Info:     127000 |    25334      98943 |  177   756 |     44310|       0.22      24.67|
+Info:     128000 |    25631      99597 |  297   654 |     43981|       0.34      25.01|
+Info:     129000 |    25847     100363 |  216   766 |     43260|       0.35      25.37|
+Info:     130000 |    26148     101053 |  301   690 |     42793|       0.38      25.75|
+Info:     131000 |    26313     101832 |  165   779 |     41988|       0.29      26.04|
+Info:     132000 |    26578     102564 |  265   732 |     41446|       0.39      26.43|
+Info:     133000 |    26778     103343 |  200   779 |     40721|       0.35      26.78|
+Info:     134000 |    26993     104128 |  215   785 |     40181|       0.51      27.28|
+Info:     135000 |    27219     104901 |  226   773 |     39740|       0.41      27.69|
+Info:     136000 |    27506     105594 |  287   693 |     39340|       0.36      28.05|
+Info:     137000 |    27798     106302 |  292   708 |     39527|       0.48      28.54|
+Info:     138000 |    28019     107081 |  221   779 |     39608|       0.34      28.88|
+Info:     139000 |    28219     107881 |  200   800 |     39044|       0.41      29.28|
+Info:     140000 |    28487     108606 |  268   725 |     38418|       0.45      29.74|
+Info:     141000 |    28816     109277 |  329   671 |     38076|       0.49      30.23|
+Info:     142000 |    29049     110043 |  233   766 |     37541|       0.38      30.61|
+Info:     143000 |    29216     110862 |  167   819 |     36786|       0.34      30.95|
+Info:     144000 |    29513     111562 |  297   700 |     36206|       0.45      31.40|
+Info:     145000 |    29794     112281 |  281   719 |     35857|       0.51      31.91|
+Info:     146000 |    30110     112965 |  316   684 |     35664|       0.40      32.31|
+Info:     147000 |    30395     113680 |  285   715 |     35145|       0.47      32.78|
+Info:     148000 |    30740     114328 |  345   648 |     34889|       0.34      33.11|
+Info:     149000 |    30948     115115 |  208   787 |     34147|       0.33      33.44|
+Info:     150000 |    31232     115827 |  284   712 |     33960|       0.44      33.88|
+Info:     151000 |    31431     116628 |  199   801 |     33327|       0.30      34.18|
+Info:     152000 |    31716     117343 |  285   715 |     32868|       0.50      34.68|
+Info:     153000 |    32031     118028 |  315   685 |     32320|       0.52      35.20|
+Info:     154000 |    32366     118693 |  335   665 |     31874|       0.45      35.64|
+Info:     155000 |    32741     119318 |  375   625 |     31670|       0.45      36.10|
+Info:     156000 |    32974     120085 |  233   767 |     30957|       0.28      36.38|
+Info:     157000 |    33275     120780 |  301   695 |     30702|       0.42      36.80|
+Info:     158000 |    33661     121394 |  386   614 |     30564|       0.47      37.27|
+Info:     159000 |    33923     122132 |  262   738 |     30040|       0.47      37.75|
+Info:     160000 |    34336     122719 |  413   587 |     29624|       0.50      38.25|
+Info:     161000 |    34710     123345 |  374   626 |     29462|       0.49      38.75|
+Info:     162000 |    35052     124003 |  342   658 |     29423|       0.38      39.12|
+Info:     163000 |    35448     124607 |  396   604 |     29156|       0.46      39.58|
+Info:     164000 |    35842     125213 |  394   606 |     28849|       0.51      40.09|
+Info:     165000 |    36217     125838 |  375   625 |     28489|       0.51      40.60|
+Info:     166000 |    36599     126456 |  382   618 |     28190|       0.44      41.04|
+Info:     167000 |    36952     127103 |  353   647 |     27957|       0.43      41.47|
+Info:     168000 |    37215     127840 |  263   737 |     27638|       0.34      41.81|
+Info:     169000 |    37555     128500 |  340   660 |     27472|       0.39      42.19|
+Info:     170000 |    37884     129171 |  329   671 |     27402|       0.40      42.60|
+Info:     171000 |    38184     129871 |  300   700 |     27271|       0.36      42.96|
+Info:     172000 |    38533     130522 |  349   651 |     26967|       0.37      43.33|
+Info:     173000 |    38771     131284 |  238   762 |     26411|       0.25      43.58|
+Info:     174000 |    39088     131967 |  317   683 |     26490|       0.42      44.00|
+Info:     175000 |    39464     132591 |  376   624 |     26010|       0.30      44.30|
+Info:     176000 |    39802     133253 |  338   662 |     25497|       0.28      44.58|
+Info:     177000 |    40092     133963 |  290   710 |     25076|       0.31      44.90|
+Info:     178000 |    40475     134580 |  383   617 |     24669|       0.35      45.24|
+Info:     179000 |    40857     135198 |  382   618 |     24322|       0.35      45.59|
+Info:     180000 |    41278     135777 |  421   579 |     23955|       0.35      45.93|
+Info:     181000 |    41658     136397 |  380   620 |     23772|       0.37      46.30|
+Info:     182000 |    42010     137045 |  352   648 |     24531|       0.36      46.67|
+Info:     183000 |    42365     137690 |  355   645 |     24088|       0.35      47.02|
+Info:     184000 |    42684     138371 |  319   681 |     23765|       0.43      47.44|
+Info:     185000 |    43101     138954 |  417   583 |     23533|       0.43      47.87|
+Info:     186000 |    43525     139530 |  424   576 |     23277|       0.44      48.30|
+Info:     187000 |    43964     140091 |  439   561 |     22904|       0.56      48.86|
+Info:     188000 |    44457     140598 |  493   507 |     22700|       0.53      49.39|
+Info:     189000 |    44893     141162 |  436   564 |     22344|       0.53      49.92|
+Info:     190000 |    45322     141733 |  429   571 |     22057|       0.60      50.52|
+Info:     191000 |    45774     142281 |  452   548 |     21773|       0.59      51.12|
+Info:     192000 |    46251     142804 |  477   523 |     21510|       0.59      51.71|
+Info:     193000 |    46695     143360 |  444   556 |     21307|       0.63      52.34|
+Info:     194000 |    46983     144072 |  288   712 |     20714|       0.28      52.62|
+Info:     195000 |    47325     144730 |  342   658 |     20288|       0.33      52.95|
+Info:     196000 |    47688     145367 |  363   637 |     19820|       0.37      53.32|
+Info:     197000 |    48149     145906 |  461   539 |     19540|       0.45      53.77|
+Info:     198000 |    48623     146432 |  474   526 |     19395|       0.53      54.30|
+Info:     199000 |    49008     147047 |  385   615 |     19081|       0.51      54.80|
+Info:     200000 |    49455     147600 |  447   553 |     18836|       0.53      55.34|
+Info:     201000 |    49934     148121 |  479   521 |     18516|       0.50      55.84|
+Info:     202000 |    50373     148682 |  439   561 |     18408|       0.51      56.34|
+Info:     203000 |    50800     149255 |  427   573 |     18294|       0.51      56.86|
+Info:     204000 |    51215     149840 |  415   585 |     17922|       0.36      57.21|
+Info:     205000 |    51620     150435 |  405   595 |     17406|       0.32      57.53|
+Info:     206000 |    52016     151039 |  396   604 |     17024|       0.32      57.85|
+Info:     207000 |    52409     151646 |  393   607 |     16561|       0.36      58.20|
+Info:     208000 |    52802     152253 |  393   607 |     16059|       0.34      58.55|
+Info:     209000 |    53206     152849 |  404   596 |     15727|       0.45      59.00|
+Info:     210000 |    53665     153390 |  459   541 |     15638|       0.51      59.51|
+Info:     211000 |    54066     153981 |  401   591 |     15441|       0.60      60.11|
+Info:     212000 |    54485     154560 |  419   579 |     15433|       0.59      60.70|
+Info:     213000 |    54871     155163 |  386   603 |     15035|       0.71      61.41|
+Info:     214000 |    55261     155764 |  390   601 |     14739|       0.71      62.12|
+Info:     215000 |    55694     156328 |  433   564 |     14734|       0.54      62.66|
+Info:     216000 |    56041     156975 |  347   647 |     14495|       0.59      63.25|
+Info:     217000 |    56465     157547 |  424   572 |     14288|       0.59      63.84|
+Info:     218000 |    56822     158184 |  357   637 |     14027|       0.67      64.51|
+Info:     219000 |    57271     158728 |  449   544 |     14026|       0.57      65.08|
+Info:     220000 |    57638     159349 |  367   621 |     13684|       0.60      65.67|
+Info:     221000 |    58025     159952 |  387   603 |     13434|       0.56      66.23|
+Info:     222000 |    58463     160511 |  438   559 |     13245|       0.59      66.82|
+Info:     223000 |    58870     161093 |  407   582 |     13028|       0.56      67.38|
+Info:     224000 |    59231     161721 |  361   628 |     12777|       0.73      68.11|
+Info:     225000 |    59613     162333 |  382   612 |     12698|       0.44      68.55|
+Info:     226000 |    60027     162919 |  414   586 |     12629|       0.56      69.11|
+Info:     227000 |    60392     163546 |  365   627 |     12348|       0.55      69.66|
+Info:     228000 |    60747     164179 |  355   633 |     11927|       0.68      70.34|
+Info:     229000 |    61104     164814 |  357   635 |     11545|       0.73      71.07|
+Info:     230000 |    61451     165458 |  347   644 |     11280|       0.69      71.76|
+Info:     231000 |    61861     166044 |  410   586 |     11223|       0.54      72.30|
+Info:     232000 |    62287     166613 |  426   569 |     11504|       0.68      72.98|
+Info:     233000 |    62672     167216 |  385   603 |     11147|       0.67      73.65|
+Info:     234000 |    63073     167807 |  401   591 |     10957|       0.69      74.34|
+Info:     235000 |    63472     168402 |  399   595 |     10820|       0.68      75.02|
+Info:     236000 |    63805     169054 |  333   652 |     10300|       0.76      75.78|
+Info:     237000 |    64173     169675 |  368   621 |      9930|       0.76      76.54|
+Info:     238000 |    64528     170310 |  355   635 |      9679|       0.76      77.30|
+Info:     239000 |    64936     170893 |  408   583 |      9458|       0.75      78.05|
+Info:     240000 |    65292     171518 |  356   625 |      8963|       0.75      78.81|
+Info:     241000 |    65653     172143 |  361   625 |      8561|       0.85      79.66|
+Info:     242000 |    66045     172735 |  392   592 |      8265|       0.75      80.40|
+Info:     243000 |    66471     173305 |  426   570 |      8110|       0.71      81.11|
+Info:     244000 |    66948     173821 |  477   516 |      7894|       0.71      81.82|
+Info:     245000 |    67364     174396 |  416   575 |      7615|       0.93      82.76|
+Info:     246000 |    67735     175009 |  371   613 |      7238|       0.81      83.57|
+Info:     247000 |    68116     175617 |  381   608 |      6988|       0.83      84.39|
+Info:     248000 |    68571     176154 |  455   537 |      6930|       0.68      85.07|
+Info:     249000 |    69018     176700 |  447   546 |      6805|       0.75      85.82|
+Info:     250000 |    69455     177254 |  437   554 |      6521|       0.81      86.63|
+Info:     251000 |    69953     177756 |  498   502 |      6498|       0.91      87.55|
+Info:     252000 |    70345     178355 |  392   599 |      6243|       0.90      88.45|
+Info:     253000 |    70783     178912 |  438   557 |      6163|       0.77      89.22|
+Info:     254000 |    71200     179487 |  417   575 |      5890|       0.89      90.11|
+Info:     255000 |    71617     180061 |  417   574 |      5519|       0.89      91.00|
+Info:     256000 |    71940     180724 |  323   663 |      5053|       1.00      91.99|
+Info:     257000 |    72388     181270 |  448   546 |      4921|       0.89      92.88|
+Info:     258000 |    72832     181818 |  444   548 |      4734|       0.92      93.81|
+Info:     259000 |    73182     182456 |  350   638 |      4329|       1.11      94.92|
+Info:     260000 |    73494     183135 |  312   679 |      3852|       1.32      96.24|
+Info:     261000 |    73845     183779 |  351   644 |      3624|       0.84      97.08|
+Info:     262000 |    74223     184397 |  378   618 |      3326|       1.12      98.20|
+Info:     263000 |    74578     185034 |  355   637 |      3005|       1.51      99.71|
+Info:     264000 |    74929     185681 |  351   647 |      2618|       1.65     101.36|
+Info:     265000 |    75303     186298 |  374   617 |      2370|       1.37     102.73|
+Info:     266000 |    75617     186974 |  314   676 |      1921|       1.32     104.05|
+Info:     267000 |    76008     187579 |  391   605 |      1626|       1.49     105.54|
+Info:     268000 |    76466     188119 |  458   540 |      1491|       1.16     106.70|
+Info:     269000 |    76875     188707 |  409   588 |      1349|       3.15     109.84|
+Info:     270000 |    77267     189305 |  392   598 |      1054|       1.92     111.77|
+Info:     271000 |    77652     189919 |  385   614 |       837|       1.67     113.44|
+Info:     272000 |    78078     190489 |  426   570 |       676|       3.28     116.72|
+Info:     273000 |    78582     190983 |  504   494 |       565|       7.14     123.86|
+Info:     274000 |    78944     191616 |  362   633 |       248|       1.77     125.63|
+Info:     274656 |    79163     192052 |  219   436 |         0|       6.08     131.71|
+Info: Routing complete.
+Info: Router1 time 131.71s
+Info: Checksum: 0xd7a90d86
+
+Info: Critical path report for clock '$glbnet$clk$TRELLIS_IO_IN' (posedge -> posedge):
+Info:       type curr  total name
+Info:   clk-to-q  0.52  0.52 Source u_eng.g_key.u_kpath.chan_TRELLIS_FF_Q_2.Q
+Info:    routing  4.05  4.58 Net u_eng.g_key.u_kpath.chan[3] (90,18) -> (60,48)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.13_DOB6_LUT4_C_Z_LUT4_Z.C
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:983.27-983.33
+Info:      logic  0.24  4.81 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.13_DOB6_LUT4_C_Z_LUT4_Z.F
+Info:    routing  2.35  7.16 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.0_DOB16_LUT4_C_Z_LUT4_Z_A_LUT4_C_Z_LUT4_Z_C_CCU2C_B0_CIN_CCU2C_COUT_B0_LUT4_C_1_Z_LUT4_D_Z_LUT4_D_Z[0] (60,48) -> (62,20)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z_LUT4_Z_1_D_LUT4_Z_2.B
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  7.39 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z_LUT4_Z_1_D_LUT4_Z_2.F
+Info:    routing  0.21  7.61 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z_LUT4_Z_1_D[1] (62,20) -> (62,20)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z_LUT4_Z_1.B
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  7.84 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z_LUT4_Z_1.F
+Info:    routing  1.75  9.60 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.6_DOB4_LUT4_C_Z_LUT4_Z_A_LUT4_D_Z_LUT4_D_Z[5] (62,20) -> (64,39)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_Z_D_LUT4_Z_D_LUT4_A_Z_LUT4_Z_2_A_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_L6MUX21_Z_D1_PFUMX_Z_ALUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  9.85 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_Z_D_LUT4_Z_D_LUT4_A_Z_LUT4_Z_2_A_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_L6MUX21_Z_D1_PFUMX_Z_ALUT_LUT4_Z.OFX
+Info:    routing  0.62  10.48 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_Z_D_LUT4_Z_D_LUT4_A_Z_LUT4_Z_2_A_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z[5] (64,39) -> (64,40)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_D_Z_PFUMX_C0_Z_L6MUX21_Z_1_D1_PFUMX_Z_ALUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  10.73 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_D_Z_PFUMX_C0_Z_L6MUX21_Z_1_D1_PFUMX_Z_ALUT_LUT4_Z.OFX
+Info:    routing  0.77  11.50 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.28_DOA2_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_CIN_CCU2C_COUT_S0_LUT4_D_Z_LUT4_D_Z_LUT4_Z_B_LUT4_C_Z_LUT4_D_Z_PFUMX_C0_Z[5] (64,40) -> (63,38)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.17_DOB4_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_B1_LUT4_D_Z_LUT4_D_Z_LUT4_D_Z_L6MUX21_Z_D1_PFUMX_Z_ALUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  11.75 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.17_DOB4_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_B1_LUT4_D_Z_LUT4_D_Z_LUT4_D_Z_L6MUX21_Z_D1_PFUMX_Z_ALUT_LUT4_Z.OFX
+Info:    routing  0.62  12.37 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.17_DOB4_LUT4_C_Z_LUT4_Z_B_CCU2C_B0_CIN_CCU2C_COUT_B1_LUT4_D_Z_LUT4_D_Z_LUT4_D_Z[6] (63,38) -> (64,38)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_L6MUX21_Z_SD_L6MUX21_SD_Z_L6MUX21_Z_1_D1_L6MUX21_Z_D0_PFUMX_Z_ALUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  12.63 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_L6MUX21_Z_SD_L6MUX21_SD_Z_L6MUX21_Z_1_D1_L6MUX21_Z_D0_PFUMX_Z_ALUT_LUT4_Z.OFX
+Info:    routing  0.81  13.44 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_L6MUX21_Z_SD_L6MUX21_SD_Z[3] (64,38) -> (63,38)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1_A0_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  13.68 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1_A0_LUT4_Z.F
+Info:    routing  0.87  14.55 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1_A0 (63,38) -> (63,35)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1$CCU2_COMB0.A
+Info:      logic  0.45  14.99 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1$CCU2_COMB0.FCO
+Info:    routing  0.00  14.99 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1$CCU2_FCI_INT (63,35) -> (63,35)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1$CCU2_COMB1.FCI
+Info:      logic  0.40  15.40 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S0_CCU2C_S1$CCU2_COMB1.F
+Info:    routing  1.12  16.51 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0[0] (63,35) -> (60,35)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1$CCU2_COMB0.B
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.45  16.96 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1$CCU2_COMB0.FCO
+Info:    routing  0.00  16.96 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1$CCU2_FCI_INT (60,35) -> (60,35)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1$CCU2_COMB1.FCI
+Info:      logic  0.40  17.36 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1$CCU2_COMB1.F
+Info:    routing  0.42  17.78 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z[5] (60,35) -> (61,35)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_A1_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  18.02 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_A1_LUT4_Z.F
+Info:    routing  1.19  19.21 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_A1 (61,35) -> (61,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.A
+Info:      logic  0.45  19.66 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  19.66 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (61,32) -> (61,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  19.73 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  19.73 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (61,32) -> (61,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  19.73 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  19.73 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (61,32) -> (61,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  19.80 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  19.80 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (61,32) -> (61,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  19.80 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  19.80 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (61,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  19.87 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  19.87 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  19.87 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  19.87 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  19.94 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  19.94 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  19.94 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  19.94 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.01 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.01 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.01 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.01 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.08 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.08 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (62,32) -> (62,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.08 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.08 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (62,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.15 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.15 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.15 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.15 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.23 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.23 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.23 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.23 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.30 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.30 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.30 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.30 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.37 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.37 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (63,32) -> (63,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.37 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.37 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (63,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.44 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.44 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.44 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.44 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.51 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.51 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.51 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.51 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.58 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.58 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.58 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.58 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.65 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.65 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,32) -> (64,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.65 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.65 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.72 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.72 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.72 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.72 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.79 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.79 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.79 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.79 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.86 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.86 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.86 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.86 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT_CIN (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  20.93 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  20.93 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,32) -> (65,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  20.93 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  20.93 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT_CIN (65,32) -> (66,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1072.11-1072.41
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  21.01 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  21.01 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT$CCU2_FCI_INT (66,32) -> (66,32)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  21.01 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  21.01 Net $nextpnr_CCU2C_139$CIN (66,32) -> (66,32)
+Info:                          Sink $nextpnr_CCU2C_139$CCU2_COMB0.FCI
+Info:      logic  0.44  21.45 Source $nextpnr_CCU2C_139$CCU2_COMB0.F
+Info:    routing  0.68  22.12 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_2_B_CCU2C_A0_COUT_CCU2C_CIN_B0_CCU2C_A0_S1[4] (66,32) -> (66,33)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1_A1_PFUMX_Z_BLUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  22.38 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1_A1_PFUMX_Z_BLUT_LUT4_Z.OFX
+Info:    routing  1.37  23.75 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1_A1 (66,33) -> (64,30)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1$CCU2_COMB1.A
+Info:      logic  0.45  24.19 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1$CCU2_COMB1.FCO
+Info:    routing  0.00  24.19 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_S1_CCU2C_S1_COUT (64,30) -> (64,30)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1073.9-1073.15
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  24.26 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0$CCU2_COMB0.FCO
+Info:    routing  0.00  24.26 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0$CCU2_FCI_INT (64,30) -> (64,30)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0$CCU2_COMB1.FCI
+Info:      logic  0.00  24.26 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0$CCU2_COMB1.FCO
+Info:    routing  0.00  24.26 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT (64,30) -> (64,30)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1073.9-1073.15
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.44  24.71 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB0.F
+Info:    routing  1.33  26.04 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0[0] (64,30) -> (62,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0$CCU2_COMB0.A
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.45  26.49 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0$CCU2_COMB0.FCO
+Info:    routing  0.00  26.49 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0$CCU2_FCI_INT (62,31) -> (62,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0$CCU2_COMB1.FCI
+Info:      logic  0.00  26.49 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0$CCU2_COMB1.FCO
+Info:    routing  0.00  26.49 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT (62,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.56 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.56 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN$CCU2_FCI_INT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.56 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.56 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.63 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.63 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_FCI_INT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.63 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.63 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.70 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.70 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_FCI_INT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.70 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.70 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.77 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.77 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_FCI_INT (63,31) -> (63,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.77 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.77 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT (63,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.84 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.84 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_FCI_INT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.84 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.84 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.92 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB0.FCO
+Info:    routing  0.00  26.92 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_FCI_INT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCI
+Info:      logic  0.00  26.92 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN$CCU2_COMB1.FCO
+Info:    routing  0.00  26.92 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_CCU2C_A0_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT_CCU2C_CIN_COUT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  26.99 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  26.99 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  26.99 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  26.99 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.06 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  27.06 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (64,31) -> (64,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  27.06 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  27.06 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (64,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.13 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  27.13 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  27.13 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  27.13 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.20 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  27.20 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  27.20 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  27.20 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT_CIN (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.27 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  27.27 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_FCI_INT (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  27.27 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  27.27 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT_CIN (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.34 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  27.34 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT$CCU2_FCI_INT (65,31) -> (65,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  27.34 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  27.34 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1_CIN (65,31) -> (66,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1074.9-1074.17
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  27.41 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1$CCU2_COMB0.FCO
+Info:    routing  0.00  27.41 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1$CCU2_FCI_INT (66,31) -> (66,31)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1$CCU2_COMB1.FCI
+Info:      logic  0.40  27.82 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_D_Z_CCU2C_S1$CCU2_COMB1.F
+Info:    routing  1.13  28.95 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_C_Z_LUT4_Z_12_B[2] (66,31) -> (64,29)
+Info:                          Sink u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_1_B_LUT4_B_Z_LUT4_C_Z_LUT4_Z_2_B_LUT4_C_Z_PFUMX_BLUT_Z_LUT4_B.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  29.18 Source u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_B0_S0_LUT4_Z_1_B_LUT4_B_Z_LUT4_C_Z_LUT4_Z_2_B_LUT4_C_Z_PFUMX_BLUT_Z_LUT4_B.F
+Info:    routing  0.13  29.31 Net u_eng.g_key.u_kpath.u_rbuf.mem.0.1_DOA12_LUT4_C_Z_CCU2C_A0_B0_LUT4_C_Z_LUT4_D_Z_LUT4_D_Z_PFUMX_C0_Z_LUT4_C_Z_CCU2C_S1_S0_LUT4_C_Z_CCU2C_A0_COUT_CCU2C_CIN_S0_LUT4_C_Z[44] (64,29) -> (64,29)
+Info:                          Sink u_eng.g_key.u_kpath.u_scale.f_r_TRELLIS_FF_Q_37.DI
+Info:      setup  0.00  29.31 Source u_eng.g_key.u_kpath.u_scale.f_r_TRELLIS_FF_Q_37.DI
+Info: 9.89 ns logic, 19.42 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source axil_bready$tr_io.O
+Info:    routing  5.76  5.76 Net axil_bready$TRELLIS_IO_IN (69,0) -> (14,29)
+Info:                          Sink axil_wready_LUT4_Z.C
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1818.13-1818.24
+Info:      logic  0.24  5.99 Source axil_wready_LUT4_Z.F
+Info:    routing  6.05  12.05 Net axil_wready$TRELLIS_IO_OUT (14,29) -> (126,29)
+Info:                          Sink axil_wready$tr_io.I
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1815.14-1815.25
+Info: 0.24 ns logic, 11.81 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge $glbnet$clk$TRELLIS_IO_IN':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source m_axis_kv_tready$tr_io.O
+Info:    routing  1.98  1.98 Net m_axis_kv_tready$TRELLIS_IO_IN (96,0) -> (101,9)
+Info:                          Sink m_axis_kv_tready_LUT4_D.D
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1833.13-1833.29
+Info:      logic  0.24  2.22 Source m_axis_kv_tready_LUT4_D.F
+Info:    routing  1.25  3.46 Net m_axis_kv_tlast_LUT4_A_D_LUT4_Z_D_LUT4_D_Z[1] (101,9) -> (101,14)
+Info:                          Sink m_axis_kv_tready_LUT4_D_Z_LUT4_D.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  3.70 Source m_axis_kv_tready_LUT4_D_Z_LUT4_D.F
+Info:    routing  2.27  5.97 Net m_axis_kv_tlast_LUT4_A_D_LUT4_Z_D[0] (101,14) -> (103,37)
+Info:                          Sink u_eng.u_sram.mem.0.2_DOA16_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  6.21 Source u_eng.u_sram.mem.0.2_DOA16_LUT4_Z.F
+Info:    routing  2.70  8.90 Net u_eng.key_cur_scale_c_LUT4_Z_2_D_LUT4_Z_1_D_LUT4_Z_1_D_LUT4_Z_1_B[2] (103,37) -> (97,4)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D_PFUMX_Z_C0_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  9.14 Source u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D_PFUMX_Z_C0_LUT4_Z.F
+Info:    routing  1.25  10.39 Net u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D_PFUMX_Z_C0[4] (97,4) -> (95,11)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D_PFUMX_Z_BLUT_LUT4_Z.M
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.26  10.65 Source u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D_PFUMX_Z_BLUT_LUT4_Z.OFX
+Info:    routing  2.76  13.41 Net u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1_D[3] (95,11) -> (86,36)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  13.65 Source u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D_LUT4_Z_1.F
+Info:    routing  0.59  14.24 Net u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2_D[1] (86,36) -> (86,36)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2.C
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  14.48 Source u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D_LUT4_Z_2.F
+Info:    routing  1.38  15.86 Net u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z_D[2] (86,36) -> (94,36)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z.C
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  16.10 Source u_eng.key_cur_scale_c_LUT4_Z_3_D_LUT4_Z.F
+Info:    routing  1.18  17.28 Net u_eng.key_cur_scale_c_LUT4_Z_3_D[2] (94,36) -> (97,35)
+Info:                          Sink u_eng.key_cur_scale_c_LUT4_Z_3.D
+Info:                          Defined in:
+Info:                               /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/tools/oss-cad-suite/libexec/../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  17.51 Source u_eng.key_cur_scale_c_LUT4_Z_3.F
+Info:    routing  0.13  17.65 Net u_eng.key_cur_scale_c[2] (97,35) -> (97,35)
+Info:                          Sink m_axis_kv_tlast_LUT4_A_D_LUT4_Z_D_LUT4_D_Z_TRELLIS_FF_CE_14_Q_TRELLIS_FF_Q.DI
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:2017.27-2017.42
+Info:      setup  0.00  17.65 Source m_axis_kv_tlast_LUT4_A_D_LUT4_Z_D_LUT4_D_Z_TRELLIS_FF_CE_14_Q_TRELLIS_FF_Q.DI
+Info: 2.14 ns logic, 15.50 ns routing
+
+Info: Critical path report for cross-domain path 'posedge $glbnet$clk$TRELLIS_IO_IN' -> '<async>':
+Info:       type curr  total name
+Info:   clk-to-q  0.52  0.52 Source axil_rdata_TRELLIS_FF_Q.Q
+Info:    routing  10.04  10.56 Net axil_rdata[10]$TRELLIS_IO_OUT (103,12) -> (6,95)
+Info:                          Sink axil_rdata[13]$tr_io.I
+Info:                          Defined in:
+Info:                               build/fpga/s10/b1_ship_flat.v:1822.20-1822.30
+Info: 0.52 ns logic, 10.04 ns routing
+
+ERROR: Max frequency for clock '$glbnet$clk$TRELLIS_IO_IN': 34.11 MHz (FAIL at 40.00 MHz)
+
+Info: Max delay <async>                           -> <async>                          : 12.05 ns
+Info: Max delay <async>                           -> posedge $glbnet$clk$TRELLIS_IO_IN: 17.65 ns
+Info: Max delay posedge $glbnet$clk$TRELLIS_IO_IN -> <async>                          : 10.56 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 224 endpoint(s)
+Info:          + represents [1,224) endpoint(s)
+Info: [ -4314,  -2895) |+
+Info: [ -2895,  -1476) |+
+Info: [ -1476,    -57) |+
+Info: [   -57,   1362) |+
+Info: [  1362,   2781) |+
+Info: [  2781,   4200) |+
+Info: [  4200,   5619) |+
+Info: [  5619,   7038) |+
+Info: [  7038,   8457) |+
+Info: [  8457,   9876) |+
+Info: [  9876,  11295) |****+
+Info: [ 11295,  12714) |*******+
+Info: [ 12714,  14133) |*****+
+Info: [ 14133,  15552) |******+
+Info: [ 15552,  16971) |*********+
+Info: [ 16971,  18390) |****************+
+Info: [ 18390,  19809) |*******************+
+Info: [ 19809,  21228) |***************+
+Info: [ 21228,  22647) |***************+
+Info: [ 22647,  24066) |************************************************************ 
+0 warnings, 1 error
+
+Info: Program finished normally.

@@ -1,0 +1,32 @@
+upstream/
+obj_dir*/
+build/
+*.out
+*.vcd
+*.fst
+__pycache__/
+verif/**/build/
+
+# SigmanticAI session logs — product internals, never publish
+_session_log.txt
+_summary.txt
+**/_session_log.txt
+**/_summary.txt
+tools/
+
+# Local-only working docs — never publish
+docs/HANDOFF.md
+docs/*.local.md
+
+# S9 disclosure workspace — internal audit + unposted drafts (competitor
+# intel, mirror SHAs, adversarial line analysis). NOTHING here is pushed;
+# posting the upstream issue is a manual, per-action decision by the owner.
+docs/disclosure/
+obj_*/
+verif/f2sim/obj_*/
+verif/f2sim/run_*.log
+verif/f2sim/beh_*.log
+verif/f2sim/ddrload_*.log
+build/f2_regops/
+build_box_logs/
+verif/f2sim/HANDOFF_NEXT.md

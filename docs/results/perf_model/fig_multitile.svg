@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="Menlo,monospace" font-size="12">
+<rect width="760" height="440" fill="#ffffff"/>
+<text x="380.0" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#24292f">PROJECTED multi-tile scaling — prefill scales, decode does not</text>
+<text x="380.0" y="38" text-anchor="middle" font-size="10" fill="#d1242f">ALL VALUES PROJECTED — analytic model, no silicon exists</text>
+<line x1="70.0" y1="46" x2="70.0" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="384.0" x2="740" y2="384.0" stroke="#eaeef2"/>
+<text x="70.0" y="400" text-anchor="middle" fill="#57606a">1</text>
+<text x="62" y="388.0" text-anchor="end" fill="#57606a">0</text>
+<line x1="181.7" y1="46" x2="181.7" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="327.7" x2="740" y2="327.7" stroke="#eaeef2"/>
+<text x="181.7" y="400" text-anchor="middle" fill="#57606a">3.5</text>
+<text x="62" y="331.7" text-anchor="end" fill="#57606a">1.02</text>
+<line x1="293.3" y1="46" x2="293.3" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="271.3" x2="740" y2="271.3" stroke="#eaeef2"/>
+<text x="293.3" y="400" text-anchor="middle" fill="#57606a">6</text>
+<text x="62" y="275.3" text-anchor="end" fill="#57606a">2.03</text>
+<line x1="405.0" y1="46" x2="405.0" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="215.0" x2="740" y2="215.0" stroke="#eaeef2"/>
+<text x="405.0" y="400" text-anchor="middle" fill="#57606a">8.5</text>
+<text x="62" y="219.0" text-anchor="end" fill="#57606a">3.05</text>
+<line x1="516.7" y1="46" x2="516.7" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="158.7" x2="740" y2="158.7" stroke="#eaeef2"/>
+<text x="516.7" y="400" text-anchor="middle" fill="#57606a">11</text>
+<text x="62" y="162.7" text-anchor="end" fill="#57606a">4.06</text>
+<line x1="628.3" y1="46" x2="628.3" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="102.3" x2="740" y2="102.3" stroke="#eaeef2"/>
+<text x="628.3" y="400" text-anchor="middle" fill="#57606a">13.5</text>
+<text x="62" y="106.3" text-anchor="end" fill="#57606a">5.08</text>
+<line x1="740.0" y1="46" x2="740.0" y2="384" stroke="#eaeef2"/>
+<line x1="70" y1="46.0" x2="740" y2="46.0" stroke="#eaeef2"/>
+<text x="740.0" y="400" text-anchor="middle" fill="#57606a">16</text>
+<text x="62" y="50.0" text-anchor="end" fill="#57606a">6.09</text>
+<rect x="70" y="46" width="670" height="338" fill="none" stroke="#57606a"/>
+<text x="405.0" y="426" text-anchor="middle" fill="#24292f">tiles (64×64 @ 0.8 GHz)</text>
+<text x="18" y="215.0" text-anchor="middle" fill="#24292f" transform="rotate(-90 18 215.0)">relative to 1 tile</text>
+<polyline points="70.0,328.5 114.7,273.1 204.0,162.3 382.7,71.0 740.0,71.0" fill="none" stroke="#1f6feb" stroke-width="2"/>
+<line x1="80" y1="58" x2="104" y2="58" stroke="#1f6feb" stroke-width="2"/>
+<text x="110" y="62" fill="#24292f">prefill speedup</text>
+<polyline points="70.0,328.5 114.7,328.5 204.0,328.5 382.7,328.5 740.0,328.5" fill="none" stroke="#d29922" stroke-width="2"/>
+<line x1="80" y1="73" x2="104" y2="73" stroke="#d29922" stroke-width="2"/>
+<text x="110" y="77" fill="#24292f">decode speedup</text>
+</svg>

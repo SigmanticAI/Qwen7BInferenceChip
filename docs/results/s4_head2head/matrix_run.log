@@ -1,0 +1,171 @@
+=== S4 MATRIX START Mon Jul 13 19:02:26 PDT 2026 ===
+--- Qwen2-0.5B_fp16 START Mon Jul 13 19:02:26 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B fp16 n=1000: acc=0.3850 acc_norm=0.4880 (stderr 0.0158) -> docs/results/s4_head2head/Qwen2-0.5B_fp16_n1000.json
+--- Qwen2-0.5B_fp16 EXIT 0 Mon Jul 13 19:09:31 PDT 2026
+--- Qwen2-0.5B_kvq8 START Mon Jul 13 19:09:31 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B kvq8 n=1000: acc=0.3810 acc_norm=0.4830 (stderr 0.0158) -> docs/results/s4_head2head/Qwen2-0.5B_kvq8_n1000.json
+--- Qwen2-0.5B_kvq8 EXIT 0 Mon Jul 13 19:13:39 PDT 2026
+--- Qwen2-0.5B_kvq4 START Mon Jul 13 19:13:39 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B kvq4 n=1000: acc=0.3740 acc_norm=0.4860 (stderr 0.0158) -> docs/results/s4_head2head/Qwen2-0.5B_kvq4_n1000.json
+--- Qwen2-0.5B_kvq4 EXIT 0 Mon Jul 13 19:17:51 PDT 2026
+--- Qwen2-0.5B_kvq4p START Mon Jul 13 19:17:51 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[calib] recording key amax over 32 HellaSwag TRAIN contexts…
+Traceback (most recent call last):
+  File "/Users/nabilabdelazizferhattaleb/Desktop/apex_npu/eval/kv_eval/run_hellaswag.py", line 128, in <module>
+    main()
+  File "/Users/nabilabdelazizferhattaleb/Desktop/apex_npu/eval/kv_eval/run_hellaswag.py", line 91, in main
+    outliers = calibrate(lm)
+               ^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/Desktop/apex_npu/eval/kv_eval/run_hellaswag.py", line 41, in calibrate
+    ds = datasets.load_dataset("hellaswag", split=f"train[:{docs_n}]")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/load.py", line 1698, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/load.py", line 1325, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/load.py", line 1217, in dataset_module_factory
+    raise e1 from None
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/load.py", line 1192, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/load.py", line 608, in get_module
+    standalone_yaml_path = cached_path(
+                           ^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/datasets/utils/file_utils.py", line 180, in cached_path
+    ).resolve_path(url_or_filename)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 305, in resolve_path
+    parsed = parse_hf_uri(f"{constants.HF_PROTOCOL}{path}")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/huggingface_hub/utils/_hf_uris.py", line 319, in parse_hf_uri
+    return _parse_repo_body(location, type_, raw=raw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nabilabdelazizferhattaleb/.venvs/apex-eval/lib/python3.11/site-packages/huggingface_hub/utils/_hf_uris.py", line 617, in _parse_repo_body
+    raise HfUriError(uri=raw, msg=f"Repository id must be 'namespace/name', got '{repo_id}'.")
+huggingface_hub.errors.HfUriError: Invalid HF URI 'hf://datasets/hellaswag@218ec52e09a7e7462a5400043bb9a69a41d06b76/.huggingface.yaml'. Repository id must be 'namespace/name', got 'hellaswag'.
+--- Qwen2-0.5B_kvq4p EXIT 1 Mon Jul 13 19:18:00 PDT 2026
+--- Qwen2-1.5B_fp16 START Mon Jul 13 19:18:00 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B fp16 n=1000: acc=0.4630 acc_norm=0.5910 (stderr 0.0156) -> docs/results/s4_head2head/Qwen2-1.5B_fp16_n1000.json
+--- Qwen2-1.5B_fp16 EXIT 0 Mon Jul 13 19:56:01 PDT 2026
+--- Qwen2-1.5B_kvq8 START Mon Jul 13 19:56:01 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B kvq8 n=1000: acc=0.4500 acc_norm=0.5740 (stderr 0.0156) -> docs/results/s4_head2head/Qwen2-1.5B_kvq8_n1000.json
+--- Qwen2-1.5B_kvq8 EXIT 0 Mon Jul 13 20:02:44 PDT 2026
+--- Qwen2-1.5B_kvq4 START Mon Jul 13 20:02:44 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B kvq4 n=1000: acc=0.4530 acc_norm=0.5810 (stderr 0.0156) -> docs/results/s4_head2head/Qwen2-1.5B_kvq4_n1000.json
+--- Qwen2-1.5B_kvq4 EXIT 0 Mon Jul 13 20:09:46 PDT 2026
+--- Qwen2-1.5B_kvq4p START Mon Jul 13 20:09:46 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[calib] recording key amax over 32 HellaSwag TRAIN contexts…
+RESULT Qwen/Qwen2-1.5B kvq4p n=1000: acc=0.4400 acc_norm=0.5740 (stderr 0.0156) -> docs/results/s4_head2head/Qwen2-1.5B_kvq4p_n1000.json
+--- Qwen2-1.5B_kvq4p EXIT 0 Mon Jul 13 20:16:52 PDT 2026
+=== S4 MATRIX DONE Mon Jul 13 20:16:52 PDT 2026 ===
+=== S4 MATRIX START Mon Jul 13 20:17:20 PDT 2026 ===
+--- skip Qwen2-0.5B_fp16 (result exists)
+--- skip Qwen2-0.5B_kvq8 (result exists)
+--- skip Qwen2-0.5B_kvq4 (result exists)
+--- Qwen2-0.5B_kvq4p START Mon Jul 13 20:17:20 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[calib] recording key amax over 32 HellaSwag TRAIN contexts…
+RESULT Qwen/Qwen2-0.5B kvq4p n=1000: acc=0.3770 acc_norm=0.4770 (stderr 0.0158) -> docs/results/s4_head2head/Qwen2-0.5B_kvq4p_n1000.json
+--- Qwen2-0.5B_kvq4p EXIT 0 Mon Jul 13 20:21:26 PDT 2026
+--- skip Qwen2-1.5B_fp16 (result exists)
+--- skip Qwen2-1.5B_kvq8 (result exists)
+--- skip Qwen2-1.5B_kvq4 (result exists)
+--- skip Qwen2-1.5B_kvq4p (result exists)
+=== S4 MATRIX DONE Mon Jul 13 20:21:26 PDT 2026 ===
+=== S4 MATRIX START (LIMIT=10042) Fri Jul 17 23:03:32 PDT 2026 ===
+--- Qwen2-0.5B_fp16 START Fri Jul 17 23:03:32 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B fp16 n=10042: acc=0.3832 acc_norm=0.4905 (stderr 0.0050) -> docs/results/s4_head2head/Qwen2-0.5B_fp16_n10042.json
+--- Qwen2-0.5B_fp16 EXIT 0 Fri Jul 17 23:31:26 PDT 2026
+--- Qwen2-0.5B_kvq8 START Fri Jul 17 23:31:26 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B kvq8 n=10042: acc=0.3809 acc_norm=0.4817 (stderr 0.0050) -> docs/results/s4_head2head/Qwen2-0.5B_kvq8_n10042.json
+--- Qwen2-0.5B_kvq8 EXIT 0 Sat Jul 18 00:12:54 PDT 2026
+--- Qwen2-0.5B_kvq4 START Sat Jul 18 00:12:54 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-0.5B kvq4 n=10042: acc=0.3742 acc_norm=0.4720 (stderr 0.0050) -> docs/results/s4_head2head/Qwen2-0.5B_kvq4_n10042.json
+--- Qwen2-0.5B_kvq4 EXIT 0 Sat Jul 18 00:55:44 PDT 2026
+--- Qwen2-0.5B_kvq4p START Sat Jul 18 00:55:44 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[calib] recording key amax over 32 HellaSwag TRAIN contexts…
+RESULT Qwen/Qwen2-0.5B kvq4p n=10042: acc=0.3759 acc_norm=0.4774 (stderr 0.0050) -> docs/results/s4_head2head/Qwen2-0.5B_kvq4p_n10042.json
+--- Qwen2-0.5B_kvq4p EXIT 0 Sat Jul 18 01:38:02 PDT 2026
+--- Qwen2-1.5B_fp16 START Sat Jul 18 01:38:02 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B fp16 n=10042: acc=0.4862 acc_norm=0.6544 (stderr 0.0047) -> docs/results/s4_head2head/Qwen2-1.5B_fp16_n10042.json
+--- Qwen2-1.5B_fp16 EXIT 0 Sat Jul 18 02:37:47 PDT 2026
+--- Qwen2-1.5B_kvq8 START Sat Jul 18 02:37:47 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B kvq8 n=10042: acc=0.4782 acc_norm=0.6400 (stderr 0.0048) -> docs/results/s4_head2head/Qwen2-1.5B_kvq8_n10042.json
+--- Qwen2-1.5B_kvq8 EXIT 0 Sat Jul 18 03:56:22 PDT 2026
+--- Qwen2-1.5B_kvq4 START Sat Jul 18 03:56:22 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+RESULT Qwen/Qwen2-1.5B kvq4 n=10042: acc=0.4785 acc_norm=0.6461 (stderr 0.0048) -> docs/results/s4_head2head/Qwen2-1.5B_kvq4_n10042.json
+--- Qwen2-1.5B_kvq4 EXIT 0 Sat Jul 18 05:15:54 PDT 2026
+--- Qwen2-1.5B_kvq4p START Sat Jul 18 05:15:54 PDT 2026
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+[calib] recording key amax over 32 HellaSwag TRAIN contexts…
+RESULT Qwen/Qwen2-1.5B kvq4p n=10042: acc=0.4797 acc_norm=0.6462 (stderr 0.0048) -> docs/results/s4_head2head/Qwen2-1.5B_kvq4p_n10042.json
+--- Qwen2-1.5B_kvq4p EXIT 0 Sat Jul 18 06:36:24 PDT 2026
+=== S4 MATRIX DONE (LIMIT=10042) Sat Jul 18 06:36:24 PDT 2026 ===

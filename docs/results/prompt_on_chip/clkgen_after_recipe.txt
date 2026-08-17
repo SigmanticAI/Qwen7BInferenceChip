@@ -1,0 +1,20 @@
+Clock Group A Frequency (Mhz)
+| clk_extra_a1 | clk_extra_a2 | clk_extra_a3 |
+|--------------|--------------|--------------|
+|      15.62   |     125.00   |      62.50   |
+
+Clock Group B Frequency (Mhz)
+| clk_extra_b0 | clk_extra_b1 |
+|--------------|--------------|
+|       0.00   |       0.00   |
+
+Clock Group C Frequency (Mhz)
+| clk_extra_c0 | clk_extra_c1 |
+|--------------|--------------|
+|       0.00   |       0.00   |
+
+Clock Group HBM Frequency (Mhz)
+| clk_hbm_axi |
+|-------------|
+|      0.00   |
+

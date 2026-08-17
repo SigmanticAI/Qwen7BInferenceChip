@@ -1,0 +1,103 @@
+[C] model=mlx-community/Qwen2.5-7B-4bit L=28 H=28 tier=CQ-8 G=128; prompt=8 tok + 1 new = 9 <= 128 OK
+[C] offload target: layer 13 head 7 (every step)  mode=sim
+[C] === run 1/2: OFFLOAD ON ===
+[offload] poff_s000_L13_h07 T=1 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=164 out_hat == golden (0.19s)
+  [prefill 1/8] pos=0 T=1 tok=785 30s
+[offload] poff_s001_L13_h07 T=2 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=181 out_hat == golden (0.21s)
+  [prefill 2/8] pos=1 T=2 tok=7772 60s
+[offload] poff_s002_L13_h07 T=3 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=198 out_hat == golden (0.26s)
+  [prefill 3/8] pos=2 T=3 tok=11580 90s
+[offload] poff_s003_L13_h07 T=4 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=215 out_hat == golden (0.29s)
+  [prefill 4/8] pos=3 T=4 tok=304 119s
+[offload] poff_s004_L13_h07 T=5 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=232 out_hat == golden (0.33s)
+  [prefill 5/8] pos=4 T=5 tok=1039 149s
+[offload] poff_s005_L13_h07 T=6 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=249 out_hat == golden (0.37s)
+  [prefill 6/8] pos=5 T=6 tok=12941 180s
+[offload] poff_s006_L13_h07 T=7 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=266 out_hat == golden (0.45s)
+  [prefill 7/8] pos=6 T=7 tok=1849 210s
+[offload] poff_s007_L13_h07 T=8 CQ-8 sim: acc<-TILE via compute_job.grade_compute_job (sim) caps=283 out_hat == golden (0.43s)
+  [prefill 8/8] pos=7 T=8 tok=374 246s
+[C] === run 2/2: OFFLOAD OFF (pure golden) ===
+  [prefill 1/8] pos=0 T=1 tok=785 29s
+  [prefill 2/8] pos=1 T=2 tok=7772 57s
+  [prefill 3/8] pos=2 T=3 tok=11580 85s
+  [prefill 4/8] pos=3 T=4 tok=304 113s
+  [prefill 5/8] pos=4 T=5 tok=1039 141s
+  [prefill 6/8] pos=5 T=6 tok=12941 169s
+  [prefill 7/8] pos=6 T=7 tok=1849 197s
+  [prefill 8/8] pos=7 T=8 tok=374 225s
+
+==============================================================================
+MILESTONE C — PROMPT SEAM: one 7B attention op offloaded to the tile
+==============================================================================
+  prompt          : 'The largest planet in our solar system is'
+  prompt ids      : [785, 7772, 11580, 304, 1039, 12941, 1849, 374] (8 tokens)
+  fence           : 8+1 = 9 <= 128 tokens  OK (chunked heads cannot be offloaded — N8)
+  model           : mlx-community/Qwen2.5-7B-4bit  L=28 H=28 head_dim=128
+  offloaded op    : attention_core  layer=13 head=7 (every step)
+  executor        : sim
+  captures        : 8 offloaded op(s), 1788 cap records
+    - poff_s000_L13_h07  T=1 D=128 CQ-8 G=128  0.192s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(65532, 23) golden=(65532, 23)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s001_L13_h07  T=2 D=128 CQ-8 G=128  0.212s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(65532, 23) golden=(65532, 23)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s002_L13_h07  T=3 D=128 CQ-8 G=128  0.259s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(33250, 22) golden=(33250, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s003_L13_h07  T=4 D=128 CQ-8 G=128  0.291s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(33936, 22) golden=(33936, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s004_L13_h07  T=5 D=128 CQ-8 G=128  0.328s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(33853, 22) golden=(33853, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s005_L13_h07  T=6 D=128 CQ-8 G=128  0.373s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(35900, 22) golden=(35900, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s006_L13_h07  T=7 D=128 CQ-8 G=128  0.447s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(35326, 22) golden=(35326, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+    - poff_s007_L13_h07  T=8 D=128 CQ-8 G=128  0.43s
+      acc source   : TILE via compute_job.grade_compute_job (sim)
+      s_c source   : TILE (captured s_c, via grade_compute_job)
+      substituted  : True   consumed by model: True   core object kept: True
+      tile vs golden: acc_o bit-exact | o8 bit-exact | out_hat bit-exact
+      rq (scale,shift): tile=(34071, 22) golden=(34071, 22)
+      executor ok   : True (rc=0) ; compute_job grade ok: True
+  tile vs golden  : out_hat bit-exact 8/8 ; acc_o bit-exact 8/8
+  token OFFLOAD ON : ids=[279] text=' the' (248s)
+  token OFFLOAD OFF: ids=[279] text=' the' (228s)
+------------------------------------------------------------------------------
+  TOKEN IDENTITY: PASS   (offload-on == pure-golden)
+  MILESTONE C   : PASS
+==============================================================================
+  record -> /Users/nabilabdelazizferhattaleb/Desktop/apex-promptdemo/build/prompt_offload/prompt_offload_result.json

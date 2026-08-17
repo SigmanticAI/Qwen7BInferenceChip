@@ -1,0 +1,35 @@
+{
+ "job_s001_L20_h06": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s004_L11_h12": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s006_L03_h13": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s006_L04_h08": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s006_L04_h11": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s006_L07_h09": {
+  "rc": 0,
+  "ok": true
+ },
+ "job_s007_L20_h06": {
+  "rc": 0,
+  "ok": true
+ },
+ "walk_e6": {
+  "rc": 1,
+  "ok": false,
+  "caps": 1
+ }
+}

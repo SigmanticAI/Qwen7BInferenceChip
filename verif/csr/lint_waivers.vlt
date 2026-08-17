@@ -1,0 +1,7 @@
+`verilator_config
+// lint_waivers.vlt — waivers for the FROZEN apex_pkg.sv ONLY.
+//
+// apex_pkg.sv is the frozen tile-wide contract: it declares constants for
+// ALL blocks, so any single-block build necessarily leaves some unused.
+// NO waivers on csr_regs.sv, the SVA checkers, or the TB.
+lint_off -rule UNUSEDPARAM -file "*apex_pkg.sv"

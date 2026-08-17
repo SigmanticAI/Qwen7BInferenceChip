@@ -1,0 +1,3 @@
+[replay-gen] /Users/nabilabdelazizferhattaleb/Desktop/apex-integration/verif/kvq/replay/build/artifact: D=128 TIER=0 G=128 K_OUT=0 NV=2940 NG=0
+[replay-gen] SELF-CHECK OK: every stored blob field matches a fresh golden compression of the raw rows
+[replay-gen] next (QUIET MACHINE ONLY): make -C verif/kvq/replay run NAME=artifact

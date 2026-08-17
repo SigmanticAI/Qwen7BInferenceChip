@@ -1,0 +1,489 @@
+=== S5 QUIET GATE start Tue Jul 14 11:32:00 PDT 2026 (need 10 consecutive quiet minutes) ===
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 11:32:00 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 11:33:00 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 11:34:00 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:35:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:36:01 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 11:37:01 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 11:38:01 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Tue Jul 14 11:39:01 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Tue Jul 14 11:40:01 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Tue Jul 14 11:41:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:42:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:43:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:44:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:45:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:46:01 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:47:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:48:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:49:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:50:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:51:02 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 11:52:02 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 11:53:02 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 11:54:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:55:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:56:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:57:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:58:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 11:59:02 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 12:00:02 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:01:02 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 12:02:03 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 12:03:03 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Tue Jul 14 12:04:03 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Tue Jul 14 12:05:03 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Tue Jul 14 12:06:03 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=6/10 Tue Jul 14 12:07:03 PDT 2026
+quiet-gate: eda_procs=15 consecutive_quiet=0/10 Tue Jul 14 12:08:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:09:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:10:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:11:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:12:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:13:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:14:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:15:03 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:16:04 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 12:17:04 PDT 2026
+quiet-gate: eda_procs=5 consecutive_quiet=0/10 Tue Jul 14 12:18:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:19:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:20:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:21:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:22:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:23:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 12:24:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 12:25:04 PDT 2026
+quiet-gate: eda_procs=1 consecutive_quiet=0/10 Tue Jul 14 12:26:04 PDT 2026
+quiet-gate: eda_procs=4 consecutive_quiet=0/10 Tue Jul 14 12:27:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 12:28:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 12:29:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Tue Jul 14 12:30:04 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Tue Jul 14 12:31:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Tue Jul 14 12:32:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=6/10 Tue Jul 14 12:33:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=7/10 Tue Jul 14 12:34:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=8/10 Tue Jul 14 12:35:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=9/10 Tue Jul 14 12:36:05 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=10/10 Tue Jul 14 12:37:05 PDT 2026
+=== machine quiet Tue Jul 14 12:37:05 PDT 2026; running identity pre-flight ===
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 6966.00it/s]
+PASS n_tok=  5 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=0.6328 kvq4=3.1250  «The capital of France is…»
+PASS n_tok= 12 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=2.9492 kvq4=5.5000  «A man is sitting on a roof. He starts pu…»
+PASS n_tok= 17 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=1.9824 kvq4=7.2500  «Members of the procession walk down the …»
+MLX IDENTITY CHECK: PASS — identity hook is bitwise-transparent; kvq tiers engage the codec
+=== S5 MATRIX START Tue Jul 14 12:37:14 PDT 2026 ===
+--- Qwen2.5-7B-4bit_base START Tue Jul 14 12:37:14 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit base n=1000: acc=0.5120 acc_norm=0.6730 (stderr 0.0148) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_base_n1000.json
+--- Qwen2.5-7B-4bit_base EXIT 0 Tue Jul 14 12:48:45 PDT 2026
+--- Qwen2.5-7B-4bit_kvq8 START Tue Jul 14 12:48:45 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq8 n=1000: acc=0.5140 acc_norm=0.6770 (stderr 0.0148) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq8_n1000.json
+--- Qwen2.5-7B-4bit_kvq8 EXIT 0 Tue Jul 14 13:02:48 PDT 2026
+--- Qwen2.5-7B-4bit_kvq4 START Tue Jul 14 13:02:48 PDT 2026
+[gate] TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq4 n=1000: acc=0.5030 acc_norm=0.6560 (stderr 0.0150) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq4_n1000.json
+--- Qwen2.5-7B-4bit_kvq4 EXIT 0 Tue Jul 14 13:15:52 PDT 2026
+=== S5 MATRIX DONE Tue Jul 14 13:15:52 PDT 2026 ===
+=== S5 QUIET GATE start Tue Jul 14 13:27:50 PDT 2026 (need 10 consecutive quiet minutes) ===
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Tue Jul 14 13:27:50 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Tue Jul 14 13:28:50 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Tue Jul 14 13:29:50 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Tue Jul 14 13:30:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Tue Jul 14 13:31:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=6/10 Tue Jul 14 13:32:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=7/10 Tue Jul 14 13:33:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=8/10 Tue Jul 14 13:34:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=9/10 Tue Jul 14 13:35:51 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=10/10 Tue Jul 14 13:36:51 PDT 2026
+=== machine quiet Tue Jul 14 13:36:51 PDT 2026; running identity pre-flight ===
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 7543.71it/s]
+PASS n_tok=  5 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=0.6328 kvq4=3.1250  «The capital of France is…»
+PASS n_tok= 12 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=2.9492 kvq4=5.5000  «A man is sitting on a roof. He starts pu…»
+PASS n_tok= 17 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=1.9824 kvq4=7.2500  «Members of the procession walk down the …»
+MLX IDENTITY CHECK: PASS — identity hook is bitwise-transparent; kvq tiers engage the codec
+=== S5 MATRIX START Tue Jul 14 13:36:59 PDT 2026 ===
+--- Qwen2.5-7B-4bit_base START Tue Jul 14 13:36:59 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit base n=1000: acc=0.5120 acc_norm=0.6730 (stderr 0.0148) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_base_n1000.json
+--- Qwen2.5-7B-4bit_base EXIT 0 Tue Jul 14 13:48:36 PDT 2026
+--- Qwen2.5-7B-4bit_kvq8 START Tue Jul 14 13:48:36 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq8 n=1000: acc=0.5140 acc_norm=0.6770 (stderr 0.0148) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq8_n1000.json
+--- Qwen2.5-7B-4bit_kvq8 EXIT 0 Tue Jul 14 14:01:56 PDT 2026
+--- Qwen2.5-7B-4bit_kvq4 START Tue Jul 14 14:01:56 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq4 n=1000: acc=0.5030 acc_norm=0.6560 (stderr 0.0150) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq4_n1000.json
+--- Qwen2.5-7B-4bit_kvq4 EXIT 0 Tue Jul 14 14:15:47 PDT 2026
+=== S5 MATRIX DONE Tue Jul 14 14:15:47 PDT 2026 ===
+=== S5 QUIET GATE start Thu Jul 16 12:34:47 PDT 2026 (need 10 consecutive quiet minutes) ===
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:34:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:35:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:36:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:37:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:38:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:39:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:40:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:41:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:42:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:43:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:44:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:45:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:46:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:47:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:48:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:49:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:50:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:51:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:52:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:53:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:54:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:55:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:56:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:57:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:58:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 12:59:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:00:48 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:01:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:02:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:03:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:04:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:05:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:06:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:07:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:08:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:09:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:10:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:11:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:12:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:13:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:14:49 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:15:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:16:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:17:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:18:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:19:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:20:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:21:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:22:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:23:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:24:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:25:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:26:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:27:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:28:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:29:50 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:30:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:31:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:32:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:33:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:34:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:35:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:36:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:37:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:38:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:39:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:40:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:41:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:42:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:43:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:44:51 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:45:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:46:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:47:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:48:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:49:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:50:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:51:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:52:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:53:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:54:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:55:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:56:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:57:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:58:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 13:59:52 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:00:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:01:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:02:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:03:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:04:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:05:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:06:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:07:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:08:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:09:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:10:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:11:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:12:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:13:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:14:53 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:15:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:16:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:17:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:18:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:19:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:20:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:21:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:22:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:23:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:24:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:25:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:26:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:27:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:28:54 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:29:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:30:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:31:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:32:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:33:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:34:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:35:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:36:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:37:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:38:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:39:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:40:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:41:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:42:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:43:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:44:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:45:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:46:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:47:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:48:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:49:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:50:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:51:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:52:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:53:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:54:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:55:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:56:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:57:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:58:56 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 14:59:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:00:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:01:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:02:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:03:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:04:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:05:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:06:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:07:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:08:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:09:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:10:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:11:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:12:57 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:13:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:14:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:15:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:16:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:17:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:18:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:19:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:20:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:21:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:22:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:23:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:24:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:25:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:26:58 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:27:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:28:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:29:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:30:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:31:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:32:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:33:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:34:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:35:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:36:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:37:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:38:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:39:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:40:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:41:59 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:43:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:44:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:45:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:46:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:47:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:48:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:49:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:50:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:51:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:52:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:53:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:54:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:55:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:56:00 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:57:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:58:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 15:59:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:00:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:01:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:02:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:03:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:04:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:05:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:06:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:07:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:08:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:09:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:10:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:11:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:12:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:13:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:14:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:15:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:16:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:17:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:18:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:19:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:20:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:21:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:22:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:26:28 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:27:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:28:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:29:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:30:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:31:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:32:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:33:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:34:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:35:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:36:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:37:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:38:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:39:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:40:29 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:41:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:42:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:43:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:44:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:45:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:46:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:47:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:48:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:49:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:50:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:51:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:52:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:53:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:54:30 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:55:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:56:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:57:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:58:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 16:59:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:00:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:01:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:02:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:03:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:04:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:05:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:06:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:07:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:08:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:09:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:10:31 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:11:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:12:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:13:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:14:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:15:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:16:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:17:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:18:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:19:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:29:01 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 17:40:28 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 18:46:45 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 20:11:05 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 20:39:55 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 20:50:02 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 20:59:12 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 21:28:17 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 22:04:47 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 22:24:40 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 22:45:16 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:05:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:06:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:07:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:08:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:09:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:10:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:11:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:12:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:13:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:14:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:15:32 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:16:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:17:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:18:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:19:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:20:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:21:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:22:33 PDT 2026
+quiet-gate: eda_procs=3 consecutive_quiet=0/10 Thu Jul 16 23:23:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Thu Jul 16 23:24:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Thu Jul 16 23:25:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Thu Jul 16 23:26:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Thu Jul 16 23:27:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Thu Jul 16 23:28:33 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=6/10 Thu Jul 16 23:29:34 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=7/10 Thu Jul 16 23:30:34 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=8/10 Thu Jul 16 23:31:34 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=9/10 Thu Jul 16 23:32:34 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=10/10 Thu Jul 16 23:33:34 PDT 2026
+=== machine quiet Thu Jul 16 23:33:34 PDT 2026; running identity pre-flight ===
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 13908.89it/s]
+PASS n_tok=  5 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=0.6328 kvq4=3.1250  «The capital of France is…»
+PASS n_tok= 12 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=2.9492 kvq4=5.5000  «A man is sitting on a roof. He starts pu…»
+PASS n_tok= 17 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=1.9824 kvq4=7.2500  «Members of the procession walk down the …»
+MLX IDENTITY CHECK: PASS — identity hook is bitwise-transparent; kvq tiers engage the codec
+=== S5 MATRIX START Thu Jul 16 23:33:46 PDT 2026 ===
+--- Qwen2.5-7B-4bit_base START Thu Jul 16 23:33:46 PDT 2026
+=== S5 QUIET GATE start Fri Jul 17 13:33:54 PDT 2026 (need 10 consecutive quiet minutes) ===
+quiet-gate: eda_procs=0 consecutive_quiet=1/10 Fri Jul 17 13:33:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=2/10 Fri Jul 17 13:34:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=3/10 Fri Jul 17 13:35:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=4/10 Fri Jul 17 13:36:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=5/10 Fri Jul 17 13:37:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=6/10 Fri Jul 17 13:38:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=7/10 Fri Jul 17 13:39:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=8/10 Fri Jul 17 13:40:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=9/10 Fri Jul 17 13:41:54 PDT 2026
+quiet-gate: eda_procs=0 consecutive_quiet=10/10 Fri Jul 17 13:42:54 PDT 2026
+=== machine quiet Fri Jul 17 13:42:54 PDT 2026; running identity pre-flight ===
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 7639.90it/s]
+PASS n_tok=  5 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=0.6328 kvq4=3.1250  «The capital of France is…»
+PASS n_tok= 12 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=2.9492 kvq4=5.5000  «A man is sitting on a roof. He starts pu…»
+PASS n_tok= 17 kvcache==nocache:True identity==nocache:True max|dlogit| kvq8=1.9824 kvq4=7.2500  «Members of the procession walk down the …»
+MLX IDENTITY CHECK: PASS — identity hook is bitwise-transparent; kvq tiers engage the codec
+=== S5 MATRIX START Fri Jul 17 13:43:04 PDT 2026 ===
+--- Qwen2.5-7B-4bit_base START Fri Jul 17 13:43:04 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit base n=10042: acc=0.5831 acc_norm=0.7814 (stderr 0.0041) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_base_n10042.json
+--- Qwen2.5-7B-4bit_base EXIT 0 Fri Jul 17 16:37:42 PDT 2026
+--- Qwen2.5-7B-4bit_kvq8 START Fri Jul 17 16:37:42 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq8 n=10042: acc=0.5831 acc_norm=0.7809 (stderr 0.0041) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq8_n10042.json
+--- Qwen2.5-7B-4bit_kvq8 EXIT 0 Fri Jul 17 19:50:28 PDT 2026
+--- Qwen2.5-7B-4bit_kvq4 START Fri Jul 17 19:50:28 PDT 2026
+[gate] TWIN BIT-EXACT GATE: checks=2254080 fails=0 | TWIN BIT-EXACT GATE: PASS — eval twin == golden compress->decompress
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+RESULT mlx-community/Qwen2.5-7B-4bit kvq4 n=10042: acc=0.5714 acc_norm=0.7698 (stderr 0.0042) -> docs/results/s5_eval7b/Qwen2.5-7B-4bit_kvq4_n10042.json
+--- Qwen2.5-7B-4bit_kvq4 EXIT 0 Fri Jul 17 23:03:32 PDT 2026
+=== S5 MATRIX DONE Fri Jul 17 23:03:32 PDT 2026 ===

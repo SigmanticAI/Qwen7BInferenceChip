@@ -1,0 +1,8 @@
+==== tb_cores d128_cq8: D=128 TIER=0 G=2 K_OUT=0
+============================================================
+CONFIG d128_cq8: checks=3250 fails=0
+CORES RESULT [d128_cq8]: PASS
+- tb_cores.sv:272: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 76us; walltime 0.008 s; speed 10.270 ms/s
+- Verilator: cpu 0.007 s on 1 threads; alloced 2 MB

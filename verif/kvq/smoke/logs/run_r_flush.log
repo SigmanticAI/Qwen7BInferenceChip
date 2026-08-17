@@ -1,0 +1,16 @@
+==== tb_kvq_flush config=flush expect_bug=0 (D-008: partial-group flush, T=70 G=64 tail g=6)
+[F] streaming full key group 0 (G=64) at base 0
+[F] streaming partial tail (g=6) at base 64
+[F] confirmed: engine parked waiting for 58 more tokens (STATUS.idle=0)
+[F] pulsing flush_req
+[F] flush emitted the tail: OCCUPANCY 64 -> 70
+[F] checking 70 unified D-026 key records (full group + flushed tail) vs python golden
+[F] checking persistent scale-bank rows (commit seq 0 -> set 0; the flushed partial group consumed ssid 1)
+[F] reading back ALL 70 tokens (fp32) vs python golden
+============================================================
+CONFIG flush: checks=13714 fails=0 (irq=0)
+D-008 RESULT [flush]: PASS — partial group (g=6) flushed, all 70 tokens bit-exact vs python golden
+- tb_kvq_flush.sv:318: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 160us; walltime 0.010 s; speed 16.768 ms/s
+- Verilator: cpu 0.010 s on 1 threads; alloced 3 MB

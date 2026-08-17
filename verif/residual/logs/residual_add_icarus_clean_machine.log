@@ -1,0 +1,64 @@
+# FIRST-EVER off-author-machine dual-simulator run of this suite.
+# Host      : AWS EC2 c6a.xlarge (x86_64), ip-172-31-51-160
+# OS        : Ubuntu 24.04.4 LTS, kernel 6.17.0-1019-aws
+# Verilator : Verilator 5.044 2026-01-01 rev v5.044   [pinned 5.044 - MATCHES]
+# Icarus    : Icarus Verilog version 12.0 (stable) ()   [ARCHITECTURE.md pins 13.0 - THIS IS 12.0, see finding]
+# Python    : Python 3.12.3
+# Date(UTC) : Mon Jul 27 06:23:44 UTC 2026
+# Tree      : comp/level-c-integration snapshot, unmodified sources
+# Command   : make residual IVERILOG=/usr/bin/iverilog VVP=/usr/bin/vvp
+#   (tool-path overrides ONLY - zero source edits; the suite Makefiles
+#    hardcode /opt/homebrew/bin/{iverilog,vvp}, which is the defect
+#    this run documents. No /opt/homebrew symlink was used for these.)
+# ============================================================================
+mkdir -p build
+python3 gen_residual_vectors.py --outdir build
+/home/ubuntu/apex-clean/golden/apex_golden/fp.py:25: RuntimeWarning: overflow encountered in cast
+  return np.asarray(x, dtype=np.float64).astype(np.float16).view(np.uint16)
+residual oracle: 20012 fp16 add vectors (12 directed + 20000 random) -> build
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps +incdir+build --top-module residual_add ../../rtl/misc/residual_add.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.032 MB sources in 2 modules, into 0.030 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.008 s (elab=0.001, cvt=0.004, bld=0.000); cpu 0.008 s on 1 threads; alloced 19.691 MB
+LINT CLEAN (-Wall, no waivers)
+mkdir -p build/obj_res
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps +incdir+build --top-module tb_residual_add \
+    -Mdir build/obj_res ../../rtl/misc/residual_add.sv tb_residual_add.sv
+make[1]: Entering directory '/home/ubuntu/apex-clean/verif/residual/build/obj_res'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex-clean/verif/residual/build/obj_res'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.006 s (elab=0.000, cvt=0.000, bld=0.006); cpu 0.001 s on 1 threads; alloced 18.379 MB
+build/obj_res/Vtb_residual_add 2>&1 | tee build/run_vl.log
+RESIDUAL_ADD SMOKE: ALL TESTS PASSED (t=20014000)
+  20012/20012 fp16 residual-add vectors bit-exact vs numpy fp16
+- tb_residual_add.sv:65: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 20ms; walltime 0.012 s; speed 1.614 s/s
+- Verilator: cpu 0.012 s on 1 threads; alloced 7 MB
+mkdir -p build
+/usr/bin/iverilog -g2012 -Wall -o build/tb_res.iv.vvp \
+    -I build -s tb_residual_add ../../rtl/misc/residual_add.sv tb_residual_add.sv
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../rtl/misc/residual_add.sv:139: warning: Assinging to a non-integral variable (ar) cannot be synthesized in an always_comb process.
+../../rtl/misc/residual_add.sv:140: warning: Assinging to a non-integral variable (br) cannot be synthesized in an always_comb process.
+../../rtl/misc/residual_add.sv:141: warning: Assinging to a non-integral variable (sr) cannot be synthesized in an always_comb process.
+/usr/bin/vvp build/tb_res.iv.vvp 2>&1 | tee build/run_iv.log
+RESIDUAL_ADD SMOKE: ALL TESTS PASSED (t=20014)
+  20012/20012 fp16 residual-add vectors bit-exact vs numpy fp16
+tb_residual_add.sv:65: $finish called at 20014 (1s)
+RESIDUAL_ADD SMOKE: passed on Verilator AND Icarus
+
+# make exit: rc=0

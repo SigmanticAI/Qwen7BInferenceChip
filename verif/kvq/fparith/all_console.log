@@ -1,0 +1,140 @@
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python prove.py 2>&1 | tee build/prove.log
+  PASS  scale_from_amax bits=4 (exhaustive 63488)
+  PASS  scale_from_amax bits=8 (exhaustive 63488)
+  distinct scales bits=4: 24833
+  distinct scales bits=8: 23385
+  PASS  dequant_one bits=4 (codes x 24833 scales)
+  PASS  dequant_one bits=8 (codes x 23385 scales)
+  PASS  widen f16->f32 (exhaustive 63488 finite)
+  PASS  quant vector==scalar cross-check
+  PASS  quant_one bits=4 (63488 x  x 24833 scales)
+  PASS  quant_one bits=8 (63488 x  x 23385 scales)
+
+DATAPATH INTEGER-MODEL PROOF: ALL PASS
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python gen_fparith_vectors.py 2>&1 | tee build/gen.log
+  wrote scale_exp_b4.hex: 63488 words
+  wrote scale_exp_b8.hex: 63488 words
+  wrote widen_exp.hex: 63488 words
+  wrote qscale_b4.hex: 24833 words
+  wrote qsum_b4.hex: 24833 words
+  quant bits=4: 24833 scales x 63488 x-values
+  wrote qscale_b8.hex: 23385 words
+  wrote qsum_b8.hex: 23385 words
+  quant bits=8: 23385 scales x 63488 x-values
+  wrote dsum.hex: 63488 words
+  dequant: 63488 scales x 512 codes
+  wrote fparith_sizes.svh
+GEN OK
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps -Wall +incdir+build/vec --Mdir build/obj_fparith --top-module tb_fparith \
+	    /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_fp_pkg.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_scale_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_quant_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_fparith.cpp Vtb_fparith___024root__0.cpp Vtb_fparith__main.cpp Vtb_fparith___024root__Slow.cpp Vtb_fparith___024root__0__Slow.cpp Vtb_fparith__Syms__Slow.cpp > Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_fparith__ALL.o Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_fparith__ALL.a    -pthread -lpthread   -o Vtb_fparith
+rm Vtb_fparith__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.133 MB sources in 6 modules, into 0.383 MB in 6 C++ files needing 0.002 MB
+- Verilator: Walltime 1.874 s (elab=0.004, cvt=0.029, bld=1.828); cpu 0.042 s on 12 threads; alloced 14.953 MB
+./build/obj_fparith/Vtb_fparith 2>&1 | tee build/run.log
+SCALE   done: 63488 finite amax x 2 qmax, fn+unit (checks=253952)
+WIDEN   done: 63488 finite patterns, fn+unit (checks=380928)
+DEQUANT done: 63488 finite scales x 512 codes (checks=573952)
+  quant b4 progress: scale 0/24833
+  quant b4 progress: scale 4000/24833
+  quant b4 progress: scale 8000/24833
+  quant b4 progress: scale 12000/24833
+  quant b4 progress: scale 16000/24833
+  quant b4 progress: scale 20000/24833
+  quant b4 progress: scale 24000/24833
+QUANT4  done: 24833 scales x 63488 x (checks=4788993)
+  quant b8 progress: scale 0/23385
+  quant b8 progress: scale 4000/23385
+  quant b8 progress: scale 8000/23385
+  quant b8 progress: scale 12000/23385
+  quant b8 progress: scale 16000/23385
+  quant b8 progress: scale 20000/23385
+QUANT8  done: 23385 scales x 63488 x (checks=8748634)
+FPARITH TB: ALL PASS (checks=8748634 fails=0)
+- tb_fparith.sv:270: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 8ms; walltime 7.857 s; speed 1.078 ms/s
+- Verilator: cpu 7.838 s on 1 threads; alloced 3 MB
+cp /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_fp_pkg.sv build/mut_tie/cq_fp_pkg.sv
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python patch_fparith_mutant.py mut_tie build/mut_tie/cq_fp_pkg.sv
+PATCH OK mut_tie: seeded in build/mut_tie/cq_fp_pkg.sv
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps \
+	    +incdir+build/vec --Mdir build/obj_mut_tie --top-module tb_fparith \
+	    build/mut_tie/cq_fp_pkg.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_scale_unit.sv \
+	    /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_quant_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_fparith.cpp Vtb_fparith___024root__0.cpp Vtb_fparith__main.cpp Vtb_fparith___024root__Slow.cpp Vtb_fparith___024root__0__Slow.cpp Vtb_fparith__Syms__Slow.cpp > Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_fparith__ALL.o Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_fparith__ALL.a    -pthread -lpthread   -o Vtb_fparith
+rm Vtb_fparith__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.129 MB sources in 6 modules, into 0.381 MB in 6 C++ files needing 0.002 MB
+- Verilator: Walltime 1.760 s (elab=0.002, cvt=0.026, bld=1.722); cpu 0.039 s on 12 threads; alloced 14.766 MB
+running seeded-error check mut_tie (must FAIL)...
+mut_tie CAUGHT (TB exited non-zero):
+FAIL quant b4 cksum s=0400 exp=a597c9bc6bacbb00 got=bf3d38625ac3fb00
+FAIL quant b4 cksum s=0402 exp=5e3c4cda27216528 got=fadd4abd0d62d528
+FAIL quant b4 cksum s=0404 exp=a347072568b41bd0 got=5afb77d8105cdbd0
+cp /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_fp_pkg.sv build/mut_eps/cq_fp_pkg.sv
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python patch_fparith_mutant.py mut_eps build/mut_eps/cq_fp_pkg.sv
+PATCH OK mut_eps: seeded in build/mut_eps/cq_fp_pkg.sv
+/opt/homebrew/bin/verilator --binary --timing --assert -j 0 --timescale 1ns/1ps \
+	    +incdir+build/vec --Mdir build/obj_mut_eps --top-module tb_fparith \
+	    build/mut_eps/cq_fp_pkg.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_scale_unit.sv \
+	    /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_quant_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_dequant_unit.sv tb_fparith.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_fparith.cpp Vtb_fparith___024root__0.cpp Vtb_fparith__main.cpp Vtb_fparith___024root__Slow.cpp Vtb_fparith___024root__0__Slow.cpp Vtb_fparith__Syms__Slow.cpp > Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_fparith__ALL.o Vtb_fparith__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_fparith__ALL.a    -pthread -lpthread   -o Vtb_fparith
+rm Vtb_fparith__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.129 MB sources in 6 modules, into 0.383 MB in 6 C++ files needing 0.002 MB
+- Verilator: Walltime 1.668 s (elab=0.001, cvt=0.026, bld=1.632); cpu 0.040 s on 12 threads; alloced 14.766 MB
+running seeded-error check mut_eps (must FAIL)...
+mut_eps CAUGHT (TB exited non-zero):
+FAIL scale fn b4 amax=0001 exp=0400 got=5092
+FAIL scale UNIT b4 amax=0001 exp=0400 got=5092
+FAIL scale fn b8 amax=0001 exp=0400 got=4008
+MUTATION GATE: 2/2 seeded errors caught (mut_tie, mut_eps)
+/opt/homebrew/bin/sv2v --define=SYNTHESIS /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_fp_pkg.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/amax_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_scale_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_quant_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_dequant_unit.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/scale_bank.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/residual_buffer.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/sram_controller.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_value_path.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/cores/cq_key_path.sv /Users/nabilabdelazizferhattaleb/Desktop/apex_npu/rtl/kvq/kvq_engine.sv > build/kvq_flat.v
+checking flattened netlist for real-math remnants...
+  none — clean
+/opt/homebrew/bin/yosys -p "read_verilog build/kvq_flat.v; hierarchy -top kvq_engine; proc; opt; stat" \
+	    > build/yosys.log 2>&1 || { tail -20 build/yosys.log; exit 1; }
+SYNTH CHECK: PASS (yosys stat completed, zero real remnants)
+FPARITH GATE: PASS
+exit=0

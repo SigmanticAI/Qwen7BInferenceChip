@@ -1,0 +1,18 @@
+# Merged-tree gates, final tree 9a466d1 (box, Verilator 5.044)
+# Chain v2 (tree a19165b — inputs identical for these suites; scripts/fpga-only delta to 9a466d1):
+GATE golden: PASS   (v2 run, tree a19165b)
+GATE l3 (incl. walker mode): PASS   (v2 run, tree a19165b)
+# Chain v3 (tree 9a466d1):
+GATE seq_walker: PASS
+f2sim div=8: F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS
+f2sim div=2: F2SIM RESULT: files=18 checks=27996 fails=0 -> PASS
+=== GATES V3 COMPLETE ===
+── tree ──
+9a466d1 Turnkey A2 build package: real aws_clk_gen wiring, CDC xdc, build flags, MMCM-lock preflight
+── seq_walker tail ──
+FAIL cs: s_q=3fff elem=0406 expected 3c34ee53 got 3c34ee52
+MUTATION GATE: 4/4 mutant runs caught
+==== B1 WALKER SUITE: ALL TARGETS COMPLETE ====
+make: Leaving directory '/home/ubuntu/apex/verif/seq_walker'
+── verilator ──
+Verilator 5.044 2026-01-01 rev v5.044

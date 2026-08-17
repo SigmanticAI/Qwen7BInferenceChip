@@ -1,0 +1,27 @@
+// verif/seq_walker/lint_waivers.vlt — B1 layer-walker unit suite.
+//
+// SCOPE RULE (matching verif/seq/lint_waivers.vlt's RATIONALE, not merely its
+// letter): UNUSEDPARAM is waived on PACKAGES ONLY. A package exists to publish
+// constants to several consumers in different scopes — apex_pkg.sv publishes
+// the frozen cross-block contract; seq_walker_pkg.sv publishes B1's descriptor
+// layout, error codes and WALK CSR window. In this unit suite the four
+// WALK_*_ADDR constants have no consumer because the apex_top glue that
+// decodes them is stage 4, and WALK_SCORE_FRAC/WALK_OUT_FRAC are consumed by
+// seq_walker_comp but not by seq_layer_walker. Neither is dead code; both are
+// checked for real at the stage-4 full-apex_top lint gate.
+//
+// There are NO waivers on any B1-owned MODULE (seq_walker_comp.sv,
+// seq_layer_walker.sv) or on the TB — those are -Wall clean on their own,
+// with every unused bit tied off explicitly rather than waived.
+`verilator_config
+lint_off -rule UNUSEDPARAM -file "*apex_pkg.sv"
+lint_off -rule UNUSEDPARAM -file "*seq_walker_pkg.sv"
+// vendored-lineage KVQ core, imported read-only for scale_from_amax (§A-2)
+lint_off -rule UNUSEDPARAM -file "*cq_fp_pkg.sv"
+// MXE's implemented-capacity package (D-029 erratum): pulled into this unit
+// suite so seq_walker_pkg can import M_TILE_MAX and both TBs can replay
+// mxe_ctrl's own legality rule. Its buffer/pipeline params (ABUF_*, ACNT_W,
+// ROW_W, PASS_W, KB_MAX, TAGP_DEPTH, FLUSH_CYC) belong to mxe_ctrl/mxe_array,
+// which this suite does not compile — same PACKAGE-ONLY rationale as above,
+// and they are lint-checked for real in verif/mxe and at the L3 apex_top gate.
+lint_off -rule UNUSEDPARAM -file "*mxe_cfg_pkg.sv"

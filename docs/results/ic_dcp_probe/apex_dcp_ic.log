@@ -1,0 +1,4 @@
+== BUILD POINT: APEX_CL_GQA=4 APEX_CL_DM=3584 APEX_CL_D=128 recipe=A2
+Command: synth_design -mode out_of_context -top cl_apex -verilog_define XSDB_SLV_DIS -verilog_define APEX_CL_D=128 -verilog_define APEX_CL_GQA=4 -verilog_define APEX_CL_DM=3584 -part xcvu47p-fsvh2892-2-e -keep_equivalent_registers
+Phase 22.1 Optimize Skews
+ERROR: Did not find the post-route DCP file from /home/ubuntu/aws-fpga/hdk/cl/examples/cl_apex/build/checkpoints/

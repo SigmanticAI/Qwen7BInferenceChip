@@ -1,0 +1,407 @@
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps -j 4 -I../../verif/common lint_waivers.vlt --top-module seq_walker ../../rtl/apex_pkg.sv ../../rtl/xbr/stream_skid.sv ../../rtl/seq/seq_walker.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.084 MB sources in 4 modules, into 0.028 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.018 s (elab=0.003, cvt=0.006, bld=0.000); cpu 0.010 s on 4 threads; alloced 9.062 MB
+LINT CLEAN (-Wall, waivers scoped to frozen apex_pkg.sv only)
+mkdir -p build
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python gen_seq_vectors.py | tee build/vectors.log
+directed: 54 descriptors -> build/vectors_directed.txt
+random: 402 descriptors -> build/vectors_random.txt
+reset: 16 descriptors -> build/vectors_reset.txt
+mkdir -p build/obj
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps -j 4 -I../../verif/common lint_waivers.vlt --top-module tb_seq_sb \
+	    -Mdir build/obj ../../rtl/apex_pkg.sv ../../rtl/xbr/stream_skid.sv ../../rtl/seq/seq_walker.sv mxe_stub.sv tb_seq_sb.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_seq_sb.cpp Vtb_seq_sb___024root__0.cpp Vtb_seq_sb_tb_seq_sb__0.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0.cpp Vtb_seq_sb__main.cpp Vtb_seq_sb__ConstPool__0__Slow.cpp Vtb_seq_sb___024root__Slow.cpp Vtb_seq_sb___024root__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__Slow.cpp Vtb_seq_sb_tb_seq_sb__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0__Slow.cpp Vtb_seq_sb__Syms__Slow.cpp > Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_seq_sb__ALL.o Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_seq_sb__ALL.a    -pthread -lpthread   -o Vtb_seq_sb
+rm Vtb_seq_sb__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.169 MB sources in 8 modules, into 0.263 MB in 13 C++ files needing 0.001 MB
+- Verilator: Walltime 1.909 s (elab=0.003, cvt=0.016, bld=1.880); cpu 0.032 s on 4 threads; alloced 12.172 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_directed.txt +lat_mode=1 +bp_mode=1 \
+	    +gap_mode=1 +seed=401 | tee build/run_directed.log
+[TB] vectors=build/vectors_directed.txt lat=1 bp=1 gap=1 seed=401
+COV cat_legal_plain 37
+COV cat_legal_k1 1
+COV cat_legal_k2048 2
+COV cat_legal_m1 2
+COV cat_bad_opcode 2
+COV cat_k_zero 2
+COV cat_k_big 2
+COV cat_m_zero 1
+COV cat_n_zero 1
+COV cat_m_big 1
+COV cat_n_big 1
+COV cat_buf_bad 2
+COV drains 17
+COV q_full_seen 46
+COV skid_bp 0
+COV b2b_dispatch 23
+COV beats_last 32
+COV jobs_done 32
+COV jobs_rejected 12
+COV abort_inflight 1
+COV abort_queued 1
+COV abort_empty 1
+COV gate_off 3
+COV gate_on 3
+COV qcheck 1
+COV rst_p1 0
+COV rst_p2 0
+COV rst_p3 0
+COV rst_p4 0
+COV bp_m0 0
+COV gap_m0 0
+COV lat_m0 0
+COV bp_m1 1
+COV gap_m1 1
+COV lat_m1 1
+COV bp_m2 0
+COV gap_m2 0
+COV lat_m2 0
+TB PASS: 5 dispatched (5 done, 0 rejected, 10 discarded by abort/reset), 32 last-beats checked, 0 errors (lat=1 bp=1 gap=1 seed=401)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 9us; walltime 0.001 s; speed 12.115 ms/s
+- Verilator: cpu 0.001 s on 1 threads; alloced 1 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_directed.txt +lat_mode=0 +bp_mode=0 \
+	    +gap_mode=0 +seed=402 | tee build/run_fast.log
+[TB] vectors=build/vectors_directed.txt lat=0 bp=0 gap=0 seed=402
+COV cat_legal_plain 37
+COV cat_legal_k1 1
+COV cat_legal_k2048 2
+COV cat_legal_m1 2
+COV cat_bad_opcode 2
+COV cat_k_zero 2
+COV cat_k_big 2
+COV cat_m_zero 1
+COV cat_n_zero 1
+COV cat_m_big 1
+COV cat_n_big 1
+COV cat_buf_bad 2
+COV drains 17
+COV q_full_seen 33
+COV skid_bp 0
+COV b2b_dispatch 23
+COV beats_last 32
+COV jobs_done 32
+COV jobs_rejected 12
+COV abort_inflight 1
+COV abort_queued 1
+COV abort_empty 1
+COV gate_off 3
+COV gate_on 3
+COV qcheck 1
+COV rst_p1 0
+COV rst_p2 0
+COV rst_p3 0
+COV rst_p4 0
+COV bp_m0 1
+COV gap_m0 1
+COV lat_m0 1
+COV bp_m1 0
+COV gap_m1 0
+COV lat_m1 0
+COV bp_m2 0
+COV gap_m2 0
+COV lat_m2 0
+TB PASS: 5 dispatched (5 done, 0 rejected, 10 discarded by abort/reset), 32 last-beats checked, 0 errors (lat=0 bp=0 gap=0 seed=402)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 6us; walltime 0.000 s; speed 16.049 ms/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_random.txt +lat_mode=1 +bp_mode=1 \
+	    +gap_mode=1 +seed=403 | tee build/run_random.log
+[TB] vectors=build/vectors_random.txt lat=1 bp=1 gap=1 seed=403
+COV cat_legal_plain 145
+COV cat_legal_k1 34
+COV cat_legal_k2048 38
+COV cat_legal_m1 47
+COV cat_bad_opcode 19
+COV cat_k_zero 18
+COV cat_k_big 22
+COV cat_m_zero 12
+COV cat_n_zero 16
+COV cat_m_big 19
+COV cat_n_big 20
+COV cat_buf_bad 12
+COV drains 34
+COV q_full_seen 655
+COV skid_bp 192
+COV b2b_dispatch 204
+COV beats_last 233
+COV jobs_done 233
+COV jobs_rejected 123
+COV abort_inflight 5
+COV abort_queued 2
+COV abort_empty 0
+COV gate_off 4
+COV gate_on 4
+COV qcheck 0
+COV rst_p1 0
+COV rst_p2 0
+COV rst_p3 0
+COV rst_p4 0
+COV bp_m0 0
+COV gap_m0 0
+COV lat_m0 0
+COV bp_m1 1
+COV gap_m1 1
+COV lat_m1 1
+COV bp_m2 0
+COV gap_m2 0
+COV lat_m2 0
+TB PASS: 56 dispatched (37 done, 19 rejected, 46 discarded by abort/reset), 233 last-beats checked, 0 errors (lat=1 bp=1 gap=1 seed=403)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 48us; walltime 0.003 s; speed 14.713 ms/s
+- Verilator: cpu 0.003 s on 1 threads; alloced 1 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_random.txt +lat_mode=2 +bp_mode=2 \
+	    +gap_mode=2 +seed=404 | tee build/run_storm.log
+[TB] vectors=build/vectors_random.txt lat=2 bp=2 gap=2 seed=404
+COV cat_legal_plain 145
+COV cat_legal_k1 34
+COV cat_legal_k2048 38
+COV cat_legal_m1 47
+COV cat_bad_opcode 19
+COV cat_k_zero 18
+COV cat_k_big 22
+COV cat_m_zero 12
+COV cat_n_zero 16
+COV cat_m_big 19
+COV cat_n_big 20
+COV cat_buf_bad 12
+COV drains 34
+COV q_full_seen 8410
+COV skid_bp 3029
+COV b2b_dispatch 204
+COV beats_last 233
+COV jobs_done 233
+COV jobs_rejected 123
+COV abort_inflight 5
+COV abort_queued 2
+COV abort_empty 0
+COV gate_off 4
+COV gate_on 4
+COV qcheck 0
+COV rst_p1 0
+COV rst_p2 0
+COV rst_p3 0
+COV rst_p4 0
+COV bp_m0 0
+COV gap_m0 0
+COV lat_m0 0
+COV bp_m1 0
+COV gap_m1 0
+COV lat_m1 0
+COV bp_m2 1
+COV gap_m2 1
+COV lat_m2 1
+TB PASS: 56 dispatched (37 done, 19 rejected, 46 discarded by abort/reset), 233 last-beats checked, 0 errors (lat=2 bp=2 gap=2 seed=404)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 438us; walltime 0.019 s; speed 22.794 ms/s
+- Verilator: cpu 0.019 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_random.txt +lat_mode=2 +bp_mode=0 \
+	    +gap_mode=2 +seed=405 | tee build/run_stall.log
+[TB] vectors=build/vectors_random.txt lat=2 bp=0 gap=2 seed=405
+COV cat_legal_plain 145
+COV cat_legal_k1 34
+COV cat_legal_k2048 38
+COV cat_legal_m1 47
+COV cat_bad_opcode 19
+COV cat_k_zero 18
+COV cat_k_big 22
+COV cat_m_zero 12
+COV cat_n_zero 16
+COV cat_m_big 19
+COV cat_n_big 20
+COV cat_buf_bad 12
+COV drains 34
+COV q_full_seen 4274
+COV skid_bp 1463
+COV b2b_dispatch 204
+COV beats_last 232
+COV jobs_done 232
+COV jobs_rejected 123
+COV abort_inflight 5
+COV abort_queued 2
+COV abort_empty 0
+COV gate_off 4
+COV gate_on 4
+COV qcheck 0
+COV rst_p1 0
+COV rst_p2 0
+COV rst_p3 0
+COV rst_p4 0
+COV bp_m0 1
+COV gap_m0 0
+COV lat_m0 0
+COV bp_m1 0
+COV gap_m1 0
+COV lat_m1 0
+COV bp_m2 0
+COV gap_m2 1
+COV lat_m2 1
+TB PASS: 56 dispatched (37 done, 19 rejected, 47 discarded by abort/reset), 232 last-beats checked, 0 errors (lat=2 bp=0 gap=2 seed=405)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 208us; walltime 0.009 s; speed 23.289 ms/s
+- Verilator: cpu 0.009 s on 1 threads; alloced 2 MB
+set -o pipefail; build/obj/Vtb_seq_sb +vectors=build/vectors_reset.txt +lat_mode=1 +bp_mode=1 \
+	    +gap_mode=0 +seed=406 | tee build/run_reset.log
+[TB] vectors=build/vectors_reset.txt lat=1 bp=1 gap=0 seed=406
+RESET cyc=15: mid-op reset in phase 1 (qc=2 mv=1 inflight=0 aborting=0)
+RESET cyc=84: mid-op reset in phase 2 (qc=1 mv=1 inflight=0 aborting=0)
+RESET cyc=181: mid-op reset in phase 3 (qc=2 mv=0 inflight=1 aborting=0)
+RESET cyc=271: mid-op reset in phase 4 (qc=0 mv=1 inflight=0 aborting=1)
+COV cat_legal_plain 12
+COV cat_legal_k1 0
+COV cat_legal_k2048 0
+COV cat_legal_m1 0
+COV cat_bad_opcode 0
+COV cat_k_zero 0
+COV cat_k_big 2
+COV cat_m_zero 1
+COV cat_n_zero 0
+COV cat_m_big 0
+COV cat_n_big 1
+COV cat_buf_bad 0
+COV drains 4
+COV q_full_seen 0
+COV skid_bp 0
+COV b2b_dispatch 12
+COV beats_last 12
+COV jobs_done 12
+COV jobs_rejected 4
+COV abort_inflight 0
+COV abort_queued 0
+COV abort_empty 0
+COV gate_off 0
+COV gate_on 0
+COV qcheck 0
+COV rst_p1 1
+COV rst_p2 1
+COV rst_p3 1
+COV rst_p4 1
+COV bp_m0 0
+COV gap_m0 1
+COV lat_m0 0
+COV bp_m1 1
+COV gap_m1 0
+COV lat_m1 1
+COV bp_m2 0
+COV gap_m2 0
+COV lat_m2 0
+TB PASS: 4 dispatched (3 done, 1 rejected, 0 discarded by abort/reset), 12 last-beats checked, 0 errors (lat=1 bp=1 gap=0 seed=406)
+- tb_seq_sb.sv:673: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 3us; walltime 0.000 s; speed 15.269 ms/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 1 MB
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python coverage_report.py build/run_*.log | tee build/coverage.txt
+bucket                  hits  status   note
+------------------------------------------------------------------------------
+cat_legal_plain          521  HIT      plain legal descriptors walked
+cat_legal_k1             104  HIT      legal K=1 boundary
+cat_legal_k2048          118  HIT      legal K=2048 boundary (D-003 cap)
+cat_legal_m1             145  HIT      legal M=1 (single-beat job)
+cat_bad_opcode            61  HIT      illegal opcode -> reject
+cat_k_zero                58  HIT      K=0 -> reject
+cat_k_big                 72  HIT      K>2048 -> reject (D-003)
+cat_m_zero                39  HIT      M=0 -> reject
+cat_n_zero                50  HIT      N=0 -> reject
+cat_m_big                 59  HIT      M>64 -> reject (§3 implemented range)
+cat_n_big                 63  HIT      N>8 -> reject (§3 implemented range)
+cat_buf_bad               40  HIT      nonzero buffer id -> reject
+drains                   140  HIT      full-drain checkpoints (N records)
+q_full_seen            13418  HIT      FIFO at QDEPTH observed
+skid_bp                 4684  HIT      input skid backpressured (ds_ready low)
+b2b_dispatch             670  HIT      dispatch within 3 cycles of previous done
+beats_last               774  HIT      result-beat `last` framing checked
+jobs_done                774  HIT      legal jobs completed (done pulses)
+jobs_rejected            397  HIT      illegal descriptors rejected
+abort_inflight            17  HIT      soft abort with a job IN FLIGHT (must finish)
+abort_queued               8  HIT      soft abort with queued-only work (all dropped)
+abort_empty                2  HIT      soft abort while empty (no-op resync)
+gate_off                  18  HIT      CTRL.enable=0 holds dispatch
+gate_on                   18  HIT      CTRL.enable=1 resumes
+qcheck                     2  HIT      settled queue-state compare (Q records)
+rst_p1                     1  HIT      hard reset: queue filling, head stalled
+rst_p2                     1  HIT      hard reset: descriptor presented, unaccepted
+rst_p3                     1  HIT      hard reset: job in flight
+rst_p4                     1  HIT      hard reset: mid-abort drain
+bp_m0                      2  HIT      result backpressure: none
+bp_m1                      3  HIT      result backpressure: ~75% duty
+bp_m2                      1  HIT      result backpressure: storm
+gap_m0                     2  HIT      descriptor feed: full rate
+gap_m1                     2  HIT      descriptor feed: short gaps
+gap_m2                     2  HIT      descriptor feed: bursty stalls
+lat_m0                     1  HIT      stub: zero-latency accept/beats
+lat_m1                     3  HIT      stub: random latencies
+lat_m2                     2  HIT      stub: storm latencies
+------------------------------------------------------------------------------
+COVERAGE: all required buckets hit (38 required, 38 total)
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python mutate.py d006_early ../../rtl build/mut_d006_early/rtl
+MUTANT d006_early: seq/seq_walker.sv patched
+mkdir -p build/mut_d006_early/obj
+/opt/homebrew/bin/verilator --binary --timing --assert --timescale 1ns/1ps -j 4 lint_waivers.vlt -I../../verif/common --top-module tb_seq_sb -Mdir build/mut_d006_early/obj build/mut_d006_early/rtl/apex_pkg.sv build/mut_d006_early/rtl/xbr/stream_skid.sv build/mut_d006_early/rtl/seq/seq_walker.sv mxe_stub.sv tb_seq_sb.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_seq_sb.cpp Vtb_seq_sb___024root__0.cpp Vtb_seq_sb_tb_seq_sb__0.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0.cpp Vtb_seq_sb__main.cpp Vtb_seq_sb__ConstPool__0__Slow.cpp Vtb_seq_sb___024root__Slow.cpp Vtb_seq_sb___024root__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__Slow.cpp Vtb_seq_sb_tb_seq_sb__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0__Slow.cpp Vtb_seq_sb__Syms__Slow.cpp > Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_seq_sb__ALL.o Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_seq_sb__ALL.a    -pthread -lpthread   -o Vtb_seq_sb
+rm Vtb_seq_sb__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.168 MB sources in 8 modules, into 0.262 MB in 13 C++ files needing 0.001 MB
+- Verilator: Walltime 1.782 s (elab=0.003, cvt=0.017, bld=1.753); cpu 0.033 s on 4 threads; alloced 12.891 MB
+MUTANT d006_early CAUGHT:
+[135000] %Error: seq_sb_sva.svh:63: Assertion failed in tb_seq_sb.dut.u_sva_seq.ap_busy_inflight: [SVA seq] busy hole: job in flight but not busy
+%Error: seq_sb_sva.svh:63: Verilog $stop
+/Users/nabilabdelazizferhattaleb/.pyenv/versions/3.11.5/bin/python mutate.py fifo_skip ../../rtl build/mut_fifo_skip/rtl
+MUTANT fifo_skip: seq/seq_walker.sv patched
+mkdir -p build/mut_fifo_skip/obj
+/opt/homebrew/bin/verilator --binary --timing --assert --timescale 1ns/1ps -j 4 lint_waivers.vlt -I../../verif/common --top-module tb_seq_sb -Mdir build/mut_fifo_skip/obj build/mut_fifo_skip/rtl/apex_pkg.sv build/mut_fifo_skip/rtl/xbr/stream_skid.sv build/mut_fifo_skip/rtl/seq/seq_walker.sv mxe_stub.sv tb_seq_sb.sv
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_timing.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_timing.cpp
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o verilated_threads.o /opt/homebrew/Cellar/verilator/5.044/share/verilator/include/verilated_threads.cpp
+python3 /opt/homebrew/Cellar/verilator/5.044/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtb_seq_sb.cpp Vtb_seq_sb___024root__0.cpp Vtb_seq_sb_tb_seq_sb__0.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0.cpp Vtb_seq_sb__main.cpp Vtb_seq_sb__ConstPool__0__Slow.cpp Vtb_seq_sb___024root__Slow.cpp Vtb_seq_sb___024root__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__Slow.cpp Vtb_seq_sb_tb_seq_sb__0__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__Slow.cpp Vtb_seq_sb_tb_seq_sb__03a__03a__VDynScope_3__Vclpkg__0__Slow.cpp Vtb_seq_sb__Syms__Slow.cpp > Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+c++ -Os  -I.  -MMD -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include -I/opt/homebrew/Cellar/verilator/5.044/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=1 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Xclang -fno-pch-timestamp -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-int-in-bool-context -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-vla-cxx-extension    -DVL_TIME_CONTEXT   -std=gnu++20 -c -o Vtb_seq_sb__ALL.o Vtb_seq_sb__ALL.cpp
+warning: unknown warning option '-Wno-vla-cxx-extension'; did you mean '-Wno-vla-extension'? [-Wunknown-warning-option]
+1 warning generated.
+1 warning generated.
+1 warning generated.
+1 warning generated.
+c++  -Wl,-U,__Z15vl_time_stamp64v,-U,__Z13sc_time_stampv   verilated.o verilated_timing.o verilated_threads.o Vtb_seq_sb__ALL.a    -pthread -lpthread   -o Vtb_seq_sb
+rm Vtb_seq_sb__ALL.verilator_deplist.tmp
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev vUNKNOWN-built20260101
+- Verilator: Built from 0.167 MB sources in 8 modules, into 0.263 MB in 13 C++ files needing 0.001 MB
+- Verilator: Walltime 2.062 s (elab=0.003, cvt=0.023, bld=2.020); cpu 0.041 s on 4 threads; alloced 13.922 MB
+MUTANT fifo_skip CAUGHT:
+FAIL cyc=15: dispatch #1 got 7c48342b9973000000000005002009ff exp 8c9b4adc671800027640500747000401
+FAIL cyc=15: LEGALITY oracle mismatch (golden 1, stub 0) desc=7c48342b9973000000000005002009ff
+FAIL cyc=19: dispatch #2 got fcb7feec63e100073ef7000480000601 exp 7c48342b9973000000000005002009ff
+MUTATION GATE: 2/2 mutants caught
+==== SEQ SUITE: ALL TARGETS COMPLETE ====

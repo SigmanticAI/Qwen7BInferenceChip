@@ -1,0 +1,8 @@
+`verilator_config
+// IB-LAYER L4 lane — the ONLY waiver beyond verif/top/smoke/lint_waivers.vlt
+// (both are referenced in the l4 Makefile VOPTS). -Wall stays fatal; this is
+// file+line-scoped, never a blanket -Wno-*. The compose suite instantiates
+// apex_stage_buf at max-legal STAGE_R_MAX=31 (the L3 b128 build point) where
+// `job_rows <= 5'(R_MAX)` is a constant-true bound check kept defensively in
+// RTL for smaller elaborations — identical to verif/top/l3/lint_waivers.vlt:33.
+lint_off -rule CMPCONST -file "*apex_stage_buf.sv" -lines 167

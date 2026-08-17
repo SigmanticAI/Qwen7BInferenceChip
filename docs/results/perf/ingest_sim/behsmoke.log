@@ -1,0 +1,9 @@
+set -o pipefail; verilator --cc --exe --build -j 0 -Wno-fatal -CFLAGS -std=gnu++17 \
+	  --timescale 1ns/1ps --top-module sh_ddr --Mdir obj_beh \
+	  sh_ddr_beh.sv tb_ddr.cpp -o ddrbeh 2>&1 | tail -2
+- Verilator: Built from 0.043 MB sources in 2 modules, into 0.142 MB in 5 C++ files needing 0.000 MB
+- Verilator: Walltime 1.553 s (elab=0.002, cvt=0.011, bld=1.535); cpu 0.019 s on 12 threads; alloced 10.203 MB
+set -o pipefail; ./obj_beh/ddrbeh | tee beh_default.log | tail -2
+DDRBEH RESULT: checks=801 fails=0 -> PASS
+set -o pipefail; ./obj_beh/ddrbeh +ddr_stall=48879 +ddr_lat=3 | tee beh_stall.log | tail -2
+DDRBEH RESULT: checks=801 fails=0 -> PASS

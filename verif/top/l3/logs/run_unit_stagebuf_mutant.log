@@ -1,0 +1,13 @@
+[8] LOAD bank0: 8 rows x nb=16 (F-5a)
+[267] EMIT PAT_D sel=0 (F-5b)
+[279] EMIT PAT_D sel=1 (F-5b)
+[291] EMIT PAT_D sel=2 (F-5b)
+[303] EMIT PAT_D sel=3 (F-5b)
+[315] EMIT PAT_D sel=4 (F-5b)
+[327] EMIT PAT_D sel=5 (F-5b)
+[339] EMIT PAT_D sel=6 (F-5b)
+[351] EMIT PAT_D sel=7 (F-5b)
+[363] EMIT PAT_D sel=8 (F-5b)
+[3675000] %Error: tb_stagebuf_patd.sv:171: Assertion failed in tb_stagebuf_patd.expect_beat: [PAT_D sel=8 beat=0] got e0c0a08060402000/0 exp 482808e8c8a88868/0
+%Error: tb_stagebuf_patd.sv:171: Verilog $stop
+Aborting...

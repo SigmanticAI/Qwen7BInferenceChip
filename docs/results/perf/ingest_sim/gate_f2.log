@@ -1,0 +1,22 @@
+[1] golden prefill + the epilogue subject …
+    rq=(48303,25) comp=0x4044e000 (chain B's OPROJ family is the SAME real attention row, staged at bank-1 rows fp_rows.. per HEAD's fp_oproj_base)
+[2] CHAIN A — walked fuel-fed OPROJ + o8 epilogue, host-free window …
+    fuel arm spliced (3 ops); walk window has 0 host ops -> HOST-FREE
+    rc=0 r1 bit-exact=True bad=0 fuel_audit=1 cyc={'stamps': {'E6R-PREGO': 1419114, 'E6R-WALKDONE': 2398710}, 'walk_shell_cycles': 979596, 'walk_tile_cycles': 244899}
+[3] CHAIN B — {QKV + OPROJ} under ONE descriptor …
+    rc=0 QKV 144 jobs bit-exact=True bad=0; OPROJ r1 bit-exact=True; control-silence 0 writes / 144 RO advances; cyc={'stamps': {'E6R-PREGO': 1627882, 'E6R-WALKDONE': 3866670}, 'walk_shell_cycles': 2238788, 'walk_tile_cycles': 559697}
+[4] DISC A — walk-off (W2_MASK[14] cleared): the legacy path must produce NO r1 …
+    rc=1 ok=False -> RED (legacy park/starvation class, as measured)
+[5] DISC B — one poisoned byte in the SEQUENCER-fetched Wo, SEARCHED on golden so the requant cannot absorb it …
+    predicted 1 moved r1 element(s); measured == prediction: True ; != good r1: True -> RED by the predicted delta
+[6] DISC C — a searched rq_scale delta in the descriptor: r1 must move by golden's OWN requant prediction …
+    delta +377; predicted 20 moved element(s); measured == prediction: True -> RED by the predicted delta (epilogue params LIVE)
+------------------------------------------------------------------------------
+  A: walked o8 epilogue r1 bit-exact  : PASS
+  A: walk window is HOST-FREE         : PASS
+  B: QKV+OPROJ one-descriptor walk    : PASS
+  walk-off (mask bit cleared) is RED  : PASS
+  poisoned Wo byte is RED via r1      : PASS
+  rq-pair perturbation is RED via r1  : PASS
+  E-6 WALKED o8 EPILOGUE GATE         : PASS
+  record -> build/walk_ingest_f2/walk_fuel_layer_result.json

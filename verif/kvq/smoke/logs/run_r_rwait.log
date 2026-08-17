@@ -1,0 +1,9 @@
+==== tb_kvq_rwait config=rwait expect_bug=0 (D-016a: unwritten-address read)
+[R] sanity round-trip at addr 0 OK (checks=65 fails=0)
+============================================================
+CONFIG rwait: checks=137 fails=0
+D-016a RESULT [rwait]: PASS — bounded RWAIT, clean drop, RD_ERR irq + W1C, engine usable
+- tb_kvq_rwait.sv:236: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 4us; walltime 0.003 s; speed 1.249 ms/s
+- Verilator: cpu 0.003 s on 1 threads; alloced 2 MB

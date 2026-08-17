@@ -1,0 +1,3 @@
+{"tag":"fs_0","addr":"0x00003244","mask":"0x0001ffff","value":82059,"i":0}
+{"tag":"dbg2_full","addr":"0x00001098","mask":"0xffffffff","value":33555778,"i":1}
+{"tag":"stk_at_fault","addr":"0x00001058","mask":"0x0000ffff","value":1,"i":2}

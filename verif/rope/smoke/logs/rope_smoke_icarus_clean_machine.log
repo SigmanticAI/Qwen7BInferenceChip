@@ -1,0 +1,588 @@
+# FIRST-EVER off-author-machine dual-simulator run of this suite.
+# Host      : AWS EC2 c6a.xlarge (x86_64), ip-172-31-51-160
+# OS        : Ubuntu 24.04.4 LTS, kernel 6.17.0-1019-aws
+# Verilator : Verilator 5.044 2026-01-01 rev v5.044   [pinned 5.044 - MATCHES]
+# Icarus    : Icarus Verilog version 12.0 (stable) ()   [ARCHITECTURE.md pins 13.0 - THIS IS 12.0, see finding]
+# Python    : Python 3.12.3
+# Date(UTC) : Mon Jul 27 06:23:43 UTC 2026
+# Tree      : comp/level-c-integration snapshot, unmodified sources
+# Command   : make rope IVERILOG=/usr/bin/iverilog VVP=/usr/bin/vvp
+#   (tool-path overrides ONLY - zero source edits; the suite Makefiles
+#    hardcode /opt/homebrew/bin/{iverilog,vvp}, which is the defect
+#    this run documents. No /opt/homebrew symlink was used for these.)
+# ============================================================================
+mkdir -p build
+python3 ../../../golden/gen_rope_lut_tables.py --out build/rope_lut_tables.regen.svh
+wrote build/rope_lut_tables.regen.svh: 256 cos/sin base+slope (base max 16384, slope max 402)
+diff -q build/rope_lut_tables.regen.svh ../../../rtl/rope/rope_lut_tables.svh
+TABLES CHECK: rtl/rope/rope_lut_tables.svh matches the golden arbiter
+mkdir -p build
+python3 gen_rope_vectors.py --outdir build
+rope oracle: 12288 channel-pair vectors (head_dim in [64, 128], m in 0..127) -> build
+rope ROM   : 256 cos/sin base+slope -> build (Icarus $readmemh path)
+/opt/homebrew/bin/verilator --lint-only -Wall --timing --assert --timescale 1ns/1ps +incdir+../../../rtl/rope +incdir+build --top-module rope ../../../rtl/rope/rope.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.046 MB sources in 2 modules, into 0.045 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.016 s (elab=0.002, cvt=0.008, bld=0.000); cpu 0.016 s on 1 threads; alloced 20.641 MB
+LINT CLEAN (-Wall, no waivers)
+mkdir -p build/obj_rope
+/opt/homebrew/bin/verilator --binary -Wall --timing --assert --timescale 1ns/1ps +incdir+../../../rtl/rope +incdir+build --top-module tb_rope \
+    -Mdir build/obj_rope ../../../rtl/rope/rope.sv tb_rope.sv
+make[1]: Entering directory '/home/ubuntu/apex-clean/verif/rope/smoke/build/obj_rope'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/ubuntu/apex-clean/verif/rope/smoke/build/obj_rope'
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.044
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.006 s (elab=0.000, cvt=0.000, bld=0.006); cpu 0.001 s on 1 threads; alloced 18.379 MB
+build/obj_rope/Vtb_rope 2>&1 | tee build/run_vl.log
+ROPE SMOKE: ALL TESTS PASSED (t=12290000)
+  12288/12288 channel-pair vectors bit-exact vs apex_golden rope_fx
+  (head_dim in {64,128}, position m in 0..127, HF half-split)
+- tb_rope.sv:87: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.044 2026-01-01
+- Verilator: $finish at 20ms; walltime 0.011 s; speed 1.744 s/s
+- Verilator: cpu 0.011 s on 1 threads; alloced 7 MB
+mkdir -p build
+/usr/bin/iverilog -g2012 -Wall -o build/tb_rope.iv.vvp \
+    -I ../../../rtl/rope -I build \
+    -s tb_rope ../../../rtl/rope/rope.sv tb_rope.sv
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:195: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+../../../rtl/rope/rope.sv:208: warning: Assinging to a non-integral variable (cr) cannot be synthesized in an always_comb process.
+../../../rtl/rope/rope.sv:209: warning: Assinging to a non-integral variable (sr) cannot be synthesized in an always_comb process.
+../../../rtl/rope/rope.sv:210: warning: Assinging to a non-integral variable (xr_i) cannot be synthesized in an always_comb process.
+../../../rtl/rope/rope.sv:211: warning: Assinging to a non-integral variable (xr_ih) cannot be synthesized in an always_comb process.
+../../../rtl/rope/rope.sv:213: warning: Assinging to a non-integral variable (lo) cannot be synthesized in an always_comb process.
+../../../rtl/rope/rope.sv:214: warning: Assinging to a non-integral variable (hi) cannot be synthesized in an always_comb process.
+/usr/bin/vvp build/tb_rope.iv.vvp 2>&1 | tee build/run_iv.log
+ROPE SMOKE: ALL TESTS PASSED (t=12290)
+  12288/12288 channel-pair vectors bit-exact vs apex_golden rope_fx
+  (head_dim in {64,128}, position m in 0..127, HF half-split)
+tb_rope.sv:87: $finish called at 12290 (1s)
+ROPE SMOKE: swept-domain check passed on Verilator AND Icarus
+
+# make exit: rc=0

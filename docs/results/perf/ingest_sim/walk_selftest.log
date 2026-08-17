@@ -1,0 +1,12 @@
+  PASS  1 the chain-A descriptor is fmt=1 LEGAL at the twin's CFG_D
+  PASS  2 chain-A mask is EXACTLY {FPROJ, OPROJ, RES1} (an RTL exact set)
+  PASS  3 chain-B mask is EXACTLY {FPROJ, QKV, OPROJ, RES1}
+  PASS  4 the walk-off discriminator differs by EXACTLY W2_MASK[14]
+  PASS  5 the RQ pair lands in slot RQ[H] (the o-proj slot the RTL reads)
+  PASS  6 the composite lands in the JC_OPROJ slot
+  PASS  7 the o8 stream is 112 serializer beats — ONE frame (<= 255)
+  PASS  8 ONE base-0 residual window holds the row
+  PASS  9 golden_epilogue: requant reproducible, r1 is one f16 row
+  PASS  10 an rq_scale delta (+488, searched on golden first) moves the golden o8 (disc C premise holds)
+==============================================================
+WALK_FUEL_LAYER SELFTEST: ALL PASS
