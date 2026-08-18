@@ -64,8 +64,10 @@ evidence under an anti-fabrication rule. See
 
 The scope is deliberately honest: this is **one tile** — no DRAM
 controller, no PCIe, no NoC (out of scope by charter). The architecture is
-sized for 7B-class models (head_dim = 128 verified in RTL), demonstrated
-end-to-end on real Qwen2.5-7B tokens through the verified pipeline, and the
+demonstrated end-to-end on real **Qwen2.5-0.5B** on FPGA hardware. The
+architecture is sized for 7B-class models (head_dim = 128 exists in RTL,
+and Qwen2.5-7B tokens have run through the software-verified golden
+pipeline — not through silicon), and the
 paper-architecture that wraps the tile into a full chip is specified with
 per-number provenance in [`docs/spec/APEX7B_SPEC.md`](docs/spec/APEX7B_SPEC.md).
 
@@ -197,7 +199,7 @@ reading: [`docs/results/prompt_on_chip/`](docs/results/prompt_on_chip/)).
 
 ### Feeding the beast: weight streaming
 
-A 7B model's weights don't fit on a tile — they stream. The IB-FUEL lane
+A real model's weights don't fit on a tile — they stream. The IB-FUEL lane
 ([`docs/design/IB_FUEL.md`](docs/design/IB_FUEL.md)) gives the walker a
 fuel line from DDR: per-job weight records prefetched into an on-tile FIFO,
 so the GEMM engine contracts over streamed weights without stalling, and
@@ -275,6 +277,8 @@ The methodology is the product as much as the RTL is:
 ## 5. Real models through the pipeline
 
 Not a toy trace: `run_tinynpu.py --prompt` streams greedy **Qwen2.5-7B**
+(through the software-verified golden pipeline — the FPGA-measured model
+is **Qwen2.5-0.5B**) —
 tokens through the golden fixed-point pipeline — the same executable
 arbiter the RTL is verified against — producing coherent text, with
 sampled hardware-shaped jobs traced and replayed bit-exact, and the
@@ -318,7 +322,7 @@ which.** No blended claims.
 
 - **Measured** cycle counts, compression ratios, and check totals live in
   [`STATUS.md`](STATUS.md) and the per-campaign results directories.
-- **Projected** end-state performance (7B at reading speed on ~3 W with
+- **Projected** (not measured) end-state performance (7B at reading speed on ~3 W with
   32k–64k context held flat by KV compression; 5–10× less energy per token
   than a desktop GPU at the same single-stream job — *never* a speed win
   over GPUs) comes from the analytic model with asserted calibration
