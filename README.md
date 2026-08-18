@@ -314,6 +314,32 @@ toolchains:
   [`docs/design/PROMPT_ON_CHIP.md`](docs/design/PROMPT_ON_CHIP.md) and
   [`docs/results/prompt_on_chip/`](docs/results/prompt_on_chip/).
 
+### Run it yourself
+
+The verified reference image is **`agfi-030a812cd224b409d`** (A2 recipe,
+15.625 MHz tile; registered with its build receipt in
+[`scripts/fpga/f2/clock_key.py`](scripts/fpga/f2/clock_key.py)). These steps
+were executed verbatim against that image before this section was committed —
+battery `193 checks, 0 fails`, then live prompts answered with every walked
+value graded bit-exact:
+
+```sh
+# prove the silicon: boots an f2.6xlarge, loads the image, flies the
+# 193-check battery + walked chains, prints the verdict, terminates itself
+bash scripts/fpga/f2/run_walked_demo.sh agfi-030a812cd224b409d
+
+# talk to it: an interactive prompt CLI on the walked pipeline
+# ("The capital of France is" -> " Paris.", graded end to end)
+bash scripts/fpga/f2/run_chat_demo.sh
+```
+
+Requirements: AWS CLI credentials with F2 access (`f2.6xlarge`,
+us-west-2) and the team's model-weight artifacts (the DDR images derive
+from `mlx-community/Qwen2.5-0.5B-Instruct-4bit`; the staging bucket is
+configured in the scripts — external users should regenerate the weight
+image with `scripts/fpga/f2/make_weight_image.py` against their own
+bucket). Cost: about $2 and 30 minutes per full run.
+
 ## 7. Performance: what's measured, what's projected
 
 This repo's rule: **a number is either measured on hardware/simulation, or

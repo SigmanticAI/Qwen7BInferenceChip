@@ -13,7 +13,7 @@
 # Cost ~$1.65/h while you chat; setup ~20-25 min.
 set -euo pipefail
 
-AGFI="${1:-agfi-0500f4afe435b5e71}"
+AGFI="${1:-agfi-030a812cd224b409d}"
 KEEP="${KEEP:-0}"     # KEEP=1 -> STOP the card on exit instead of
                       # terminating: disk (code+weights) survives, resume
                       # with chat_resume.sh in ~5 min for ~$3/mo idle cost.

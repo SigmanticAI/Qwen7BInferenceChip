@@ -12,7 +12,7 @@
 set -euo pipefail
 
 IID="${1:?usage: chat_resume.sh <instance-id> (the id run_chat_demo.sh printed)}"
-AGFI="${2:-agfi-0500f4afe435b5e71}"
+AGFI="${2:-agfi-030a812cd224b409d}"
 REGION=us-west-2
 KEY=~/.ssh/apex-f2.pem
 SSH="ssh -n -i $KEY -o StrictHostKeyChecking=no -o ConnectTimeout=15"
