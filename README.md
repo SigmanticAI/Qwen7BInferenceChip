@@ -378,6 +378,18 @@ for hardware design and verification. Its verification discipline
 (golden-model scoreboards, assertions, coverage, adversarial review) is
 the methodology carried through the whole project.
 
+---
+
+## Built with Sigmantic AI
+
+APEX was developed with the help of **[Sigmantic AI](https://github.com/SigmanticAI)**'s
+verification tooling. Sigmantic AI builds autonomous verification agents that
+take hardware from natural-language spec to verified RTL — real UVM
+testbenches, real simulators, honest sign-off. Underneath is the **Polaris
+Engine**: a closed-loop planner that treats verification as scientific
+discovery, choosing at every step the one simulation that will reveal the
+most about your design.
+
 ## 11. License
 
 Apache License 2.0 — see [`LICENSE`](LICENSE). Use it, study it, build on
