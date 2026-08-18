@@ -19,23 +19,6 @@ number in this repo is labeled as what it is: **measured or projected**.
 
 ---
 
-## Built with Sigmantic AI
-
-APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
-verification tooling. Sigmantic AI builds autonomous verification agents that
-take hardware from natural-language spec to verified RTL — real UVM
-testbenches, real simulators, honest sign-off. Underneath is the **Polaris
-Engine**: a closed-loop planner that treats verification as scientific
-discovery, choosing at every step the one simulation that will reveal the
-most about your design.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
-  <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
-</picture>
-
----
-
 ## Table of contents
 
 1. [Why this exists](#1-why-this-exists)
@@ -85,6 +68,23 @@ sized for 7B-class models (head_dim = 128 verified in RTL), demonstrated
 end-to-end on real Qwen2.5-7B tokens through the verified pipeline, and the
 paper-architecture that wraps the tile into a full chip is specified with
 per-number provenance in [`docs/spec/APEX7B_SPEC.md`](docs/spec/APEX7B_SPEC.md).
+
+---
+
+## Built with Sigmantic AI
+
+APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
+verification tooling. Sigmantic AI builds autonomous verification agents that
+take hardware from natural-language spec to verified RTL — real UVM
+testbenches, real simulators, honest sign-off. Underneath is the **Polaris
+Engine**: a closed-loop planner that treats verification as scientific
+discovery, choosing at every step the one simulation that will reveal the
+most about your design.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
+  <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
+</picture>
 
 ## 2. The architecture
 
