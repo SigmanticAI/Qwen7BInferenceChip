@@ -382,6 +382,11 @@ the methodology carried through the whole project.
 
 ## Built with Sigmantic AI
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
+  <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
+</picture>
+
 APEX was developed with the help of **[Sigmantic AI](https://github.com/SigmanticAI)**'s
 verification tooling. Sigmantic AI builds autonomous verification agents that
 take hardware from natural-language spec to verified RTL — real UVM
