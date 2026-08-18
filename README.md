@@ -409,6 +409,6 @@ In dependency order, tracked live in
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img alt="APEX — a transformer-inference NPU on AWS F2. The chip walks the layers; the host only grades them." src="assets/hero-light.svg" width="100%">
+  <img alt="APEX — a transformer-inference tile on AWS F2. The tile walks the layers; the host only grades them." src="assets/hero-light.svg" width="100%">
 </picture>
 
