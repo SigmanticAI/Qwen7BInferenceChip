@@ -143,3 +143,31 @@ golden ~1.2 (e7 walked shrinks it) + emit 0.35 + head 0.16 + tile 0.2.
   cone, with the micro-flight map as ground truth.
 
 MEASURED LADDER: 12.1 → 5.8 → 5.4 → 5.1 → 4.0 → 3.3 → **3.1** s/token.
+
+## 2026-08-16 — THE BIG STACK: 1.78 s/token = 0.56 tok/s MEASURED
+
+Sleep-cut (0.48s) + golden-trim-2 (5.6x golden, 14x head, bitwise-
+certified) stacked on the A0 image: fast 6-token steady
+[1.794, 1.769, 1.799, 1.78] ≈ **1.78 s/token = 0.56 tok/s**, GATE PASS.
+
+MEASURED LADDER: 12.1 → 5.8 → 5.4 → 5.1 → 4.0 → 3.3 → 3.1 → **1.78**.
+
+e7 fence (S-4 softmax-divider race, program-side): sim 24/24 but
+silicon STILL RED, identical refuse — the drain reorder was not the
+enabler. Disclosed next step: host-side poll backoff during the S-4
+window. The complete mechanism (divider MSB-first quot; p/2^k; x1.5
+double-sample; closed-form k(t,T)) is banked in E7_LIVE_T_DEFECT.md.
+
+Remaining anatomy at 1.78: engine drain tail (~1.1 est) + golden ~0.2
++ head ~0.02 — FILETIMES attribution next card.
+
+## 2026-08-18 night flight (image agfi-0993d61f190577fe2)
+
+- fast 6-token: steady ~1.77 s/token = **0.56 tok/s CONFIRMED** on the
+  fresh A0 current-tree image (GATE PASS).
+- e7 + fence at A0: STILL RED (identical refuse) — the S-4 fence does
+  not stop the race on silicon; next = host poll backoff (in-session).
+- W4: still 0 cells despite the wired knob (the define does not reach
+  synth_design — read the invocation echo in the night vivado log).
+- Ops notes: --time-report is an f2_host_run flag (pass via
+  APEX_F2HR_EXTRA), and battery regops must ship in the code tgz.

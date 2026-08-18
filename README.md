@@ -323,9 +323,11 @@ were executed verbatim against that image before this section was committed —
 battery `193 checks, 0 fails`, then live prompts answered with every walked
 value graded bit-exact:
 
-Measured throughput, harness-printed on silicon: **0.25 tok/s** on this
-reference image (A2, 15.625 MHz, fast mode) — the full per-optimization
-ladder from the 0.004 tok/s host-driven baseline lives in
+Measured throughput, harness-printed on silicon: **0.56 tok/s** on the
+fastest registered image (A0, 62.5 MHz — steady 1.78 s/token, confirmed on
+two builds, all gates passing) and **0.25 tok/s** on this reference image
+(A2, 15.625 MHz) — the full per-optimization ladder from the 0.004 tok/s
+host-driven baseline (a 140× measured climb) lives in
 [`docs/results/prompt_on_chip/FIRST_WALKED_TOKENS.md`](docs/results/prompt_on_chip/FIRST_WALKED_TOKENS.md).
 
 ```sh
