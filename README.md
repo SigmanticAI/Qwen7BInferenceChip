@@ -1,25 +1,3 @@
-## Built with Sigmantic AI
-
-APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
-verification tooling. Sigmantic AI builds autonomous verification agents that
-take hardware from natural-language spec to verified RTL — real UVM
-testbenches, real simulators, honest sign-off. Underneath is the **Polaris
-Engine**: a closed-loop planner that treats verification as scientific
-discovery, choosing at every step the one simulation that will reveal the
-most about your design.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
-  <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
-</picture>
-
----
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img alt="APEX — a transformer-inference NPU on AWS F2. The chip walks the layers; the host only grades them." src="assets/hero-light.svg" width="100%">
-</picture>
-
 <p align="center">
   <img src="docs/assets/apex_banner.svg" width="520"
        alt="APEX — tinyNPU: the attention engine that remembers">
@@ -38,6 +16,23 @@ number in this repo is labeled as what it is: **measured or projected**.
 > so reading speed is designed to stay flat as the context grows. Verified
 > numbers live one click away: [`STATUS.md`](STATUS.md) ·
 > [results index](docs/results/) · [master table](docs/design/MASTER_TABLE.md).
+
+---
+
+## Built with Sigmantic AI
+
+APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
+verification tooling. Sigmantic AI builds autonomous verification agents that
+take hardware from natural-language spec to verified RTL — real UVM
+testbenches, real simulators, honest sign-off. Underneath is the **Polaris
+Engine**: a closed-loop planner that treats verification as scientific
+discovery, choosing at every step the one simulation that will reveal the
+most about your design.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
+  <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
+</picture>
 
 ---
 
@@ -405,3 +400,11 @@ In dependency order, tracked live in
 4. **Measured tokens/second** — the token-loop harness replaces
    projections with silicon measurements, rung by rung.
 5. **Sky130 signoff** — from FPGA-proven to silicon-signoff-ready.
+
+---
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <img alt="APEX — a transformer-inference NPU on AWS F2. The chip walks the layers; the host only grades them." src="assets/hero-light.svg" width="100%">
+</picture>
+
