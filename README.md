@@ -1,6 +1,23 @@
+## Built with Sigmantic AI
+
+APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
+verification tooling. Sigmantic AI builds autonomous verification agents that
+take hardware from natural-language spec to verified RTL — real UVM
+testbenches, real simulators, honest sign-off. Underneath is the **Polaris
+Engine**: a closed-loop planner that treats verification as scientific
+discovery, choosing at every step the one simulation that will reveal the
+most about your design.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/polaris-dark.svg">
   <img alt="The Polaris Engine — verification as scientific discovery: a closed loop that runs, each cycle, the one simulation that reveals the most." src="assets/polaris-light.svg" width="100%">
+</picture>
+
+---
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+  <img alt="APEX — a transformer-inference NPU on AWS F2. The chip walks the layers; the host only grades them." src="assets/hero-light.svg" width="100%">
 </picture>
 
 <p align="center">
@@ -370,27 +387,7 @@ bring-up copies were replaced by documented clean-room rewrites; each
 module's provenance header and the decision register in
 [`ARCHITECTURE.md`](ARCHITECTURE.md) (§9–§10) keep that history auditable.
 
-### Built with Sigmantic AI
-
-The foundational verified GEMM designs this tile builds on were generated
-and verified with **[Sigmantic AI](https://sigmanticai.com)** — AI agents
-for hardware design and verification. Its verification discipline
-(golden-model scoreboards, assertions, coverage, adversarial review) is
-the methodology carried through the whole project.
-
----
-
-## Built with Sigmantic AI
-
-APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
-verification tooling. Sigmantic AI builds autonomous verification agents that
-take hardware from natural-language spec to verified RTL — real UVM
-testbenches, real simulators, honest sign-off. Underneath is the **Polaris
-Engine**: a closed-loop planner that treats verification as scientific
-discovery, choosing at every step the one simulation that will reveal the
-most about your design.
-
-## 11. License
+### 11. License
 
 Apache License 2.0 — see [`LICENSE`](LICENSE). Use it, study it, build on
 it; keep the notices.
