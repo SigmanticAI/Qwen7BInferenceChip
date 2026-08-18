@@ -382,7 +382,7 @@ the methodology carried through the whole project.
 
 ## Built with Sigmantic AI
 
-APEX was developed with the help of **[Sigmantic AI](https://github.com/SigmanticAI)**'s
+APEX was developed with the help of **[Sigmantic AI](https://www.sigmanticai.com/)**'s
 verification tooling. Sigmantic AI builds autonomous verification agents that
 take hardware from natural-language spec to verified RTL — real UVM
 testbenches, real simulators, honest sign-off. Underneath is the **Polaris
