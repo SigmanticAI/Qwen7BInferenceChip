@@ -323,6 +323,13 @@ were executed verbatim against that image before this section was committed —
 battery `193 checks, 0 fails`, then live prompts answered with every walked
 value graded bit-exact:
 
+Measured throughput, harness-printed on silicon: **0.25 tok/s** on this
+reference image (A2, 15.625 MHz, fast mode) and **0.32 tok/s** on the
+fastest registered image (`agfi-0ffb83a83f00524c0`, A0, 62.5 MHz) — the
+full per-optimization ladder from the 0.004 tok/s host-driven baseline
+lives in
+[`docs/results/prompt_on_chip/FIRST_WALKED_TOKENS.md`](docs/results/prompt_on_chip/FIRST_WALKED_TOKENS.md).
+
 ```sh
 # prove the silicon: boots an f2.6xlarge, loads the image, flies the
 # 193-check battery + walked chains, prints the verdict, terminates itself
